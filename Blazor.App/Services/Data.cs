@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading;
+using SimpleProgram.Lib;
 using SimpleProgram.Lib.Archives;
 using SimpleProgram.Lib.Archives.MasterScada;
 
@@ -7,24 +11,17 @@ namespace Blazor.App.Services
 {
     public static class Data
     {
-        #region Public Fields
+        public static readonly Dictionary<string, ITagArchive> TagArchives = new Dictionary<string, ITagArchive>();
+
 
         public static readonly TagGroup1 TagGroup1;
         private static readonly Archive MsArchive = new Archive();
 
-        #endregion Public Fields
-
-
-        #region Private Fields
 
         private const int RefreshTime = 1000;
 
         private static readonly Timer RefreshTimer;
 
-        #endregion Private Fields
-
-
-        #region Public Constructors
 
         static Data()
         {
@@ -34,24 +31,37 @@ namespace Blazor.App.Services
                 "Host=localhost;Database=energy;Username=postgres;Password=123");
 
             TagGroup1 = new TagGroup1(archiveDefault: MsArchive);
+            
+            
+            // находим ссылки на архивы
+            FillTagArchives();
         }
 
-        #endregion Public Constructors
-
-
-        #region Public Events
 
         public static event Action OnRefresh;
 
-        #endregion Public Events
-
-
-        #region Public Methods
 
         public static void StartUp()
         {
         }
 
-        #endregion Public Methods
+        private static void FillTagArchives()
+        {
+            foreach (FieldInfo field in typeof(Data).GetFields())
+            {
+                // находим группы тегов
+                if(!typeof(TagGroupBase).IsAssignableFrom(field.FieldType)) continue;
+                
+                // ссылка на группу тегов
+                TagGroupBase obj = (TagGroupBase)field.GetValue(typeof(Data));
+                
+                // добавляем ссылки
+                foreach (KeyValuePair<string,ITagArchive> archive in obj.TagArchives)
+                {
+                    TagArchives.Add(archive.Key, archive.Value);
+                }
+            }
+            
+        }
     }
 }

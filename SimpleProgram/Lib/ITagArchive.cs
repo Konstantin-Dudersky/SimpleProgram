@@ -7,5 +7,6 @@ namespace SimpleProgram.Lib
         Archive Archive { get; set; }
         string ArchiveTagName { get; set; }
         string TagName { get; set; }
+        TimeSeries GetTimeSeries();
     }
 }

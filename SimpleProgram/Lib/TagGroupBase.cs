@@ -1,11 +1,15 @@
-﻿using SimpleProgram.Lib.Archives;
+﻿using System;
+using System.Collections.Generic;
+using SimpleProgram.Lib.Archives;
 using System.Reflection;
 
 namespace SimpleProgram.Lib
 {
     public class TagGroupBase
     {
-        public TagGroupBase(Archives.Archive archiveDefault = null)
+        public readonly Dictionary<string, ITagArchive> TagArchives = new Dictionary<string, ITagArchive>();
+
+        protected TagGroupBase(Archives.Archive archiveDefault = null)
         {
             ArchiveDefault = archiveDefault;
 
@@ -23,6 +27,10 @@ namespace SimpleProgram.Lib
                 {
                     propArchiveName.SetValue(obj, $"{GetType().Name}.{field.Name}");
                 }
+                
+                // добавляем в словарь архивных тегов
+                ITagArchive tagArchive = (ITagArchive) obj;
+                TagArchives.Add(tagArchive.ArchiveTagName, tagArchive);
 
                 // ссылка на архив
                 PropertyInfo propArchive = obj.GetType().GetProperty(nameof(ITagArchive.Archive));

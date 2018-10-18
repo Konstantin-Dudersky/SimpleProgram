@@ -14,15 +14,22 @@ namespace Blazor.App.Services
 
         public Tag<bool> tagBool = new Tag<bool>();
 
-        public Tag<double> archiveTag1 = new Tag<double>()
+        public Tag<double> MDBB_QS1 = new Tag<double>()
         {
             ArchiveTagName = "Энергоменеджмент.Счетчики.Модуль 1, MDB-B, QS1, PAC",
         };
 
-        public Tag<double> archiveTag2 = new Tag<double>()
+        public Tag<double> MDBA_QS1 = new Tag<double>()
         {
             ArchiveTagName = "Энергоменеджмент.Счетчики.Модуль 1, MDB-A, QS1, PAC",
         };
+
+        public Tag<double> temperature = new Tag<double>()
+        {
+            ArchiveTagName = "Энергоменеджмент.Темп наружного воздуха.Средняя темп.Выходы.Average_temp",
+        };
+        
+        
 
         public Timer timer;
         public Timer timer2;
@@ -32,7 +39,7 @@ namespace Blazor.App.Services
         {
             timer = new Timer(new TimerCallback(obj => tag1.Value++), null, 0, 5);
 
-            timer2 = new Timer(new TimerCallback(obj => archiveTag1.Value += 2), null, 0, 500);
+            timer2 = new Timer(new TimerCallback(obj => MDBB_QS1.Value += 2), null, 0, 500);
         }
     }
 }

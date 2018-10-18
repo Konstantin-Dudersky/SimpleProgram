@@ -2,673 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87ff04a8-d640-472b-a0f9-f0857fefb6c4" name="Default Changelist" comment="Init">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.SimpleProgram/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.SimpleProgram/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.SimpleProgram/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/App.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/Blazor.App.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/Blazor.App.csproj.user" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/Properties/launchSettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/Services/Data.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/Services/Plot.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/Services/TagGroup1.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/Services/WeatherForecast.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/Services/WeatherForecastService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/Startup.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/_ViewImports.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/libman.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/wwwroot/foundation/css/foundation-float.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/wwwroot/foundation/css/foundation-float.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/wwwroot/foundation/css/foundation-prototype.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/wwwroot/foundation/css/foundation-prototype.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/wwwroot/foundation/css/foundation-rtl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/wwwroot/foundation/css/foundation-rtl.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/wwwroot/foundation/css/foundation.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/wwwroot/foundation/css/foundation.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/wwwroot/foundation/js/plugins/foundation.equalizer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/wwwroot/foundation/js/plugins/foundation.magellan.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/wwwroot/foundation/js/plugins/foundation.sticky.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/wwwroot/foundation/js/plugins/foundation.util.mediaQuery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.App/wwwroot/foundation/js/plugins/foundation.util.motion.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/Blazor.Server.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/Blazor.Server.csproj.user" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/Properties/PublishProfiles/FolderProfile.pubxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/Properties/PublishProfiles/FolderProfile.pubxml.user" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/Properties/PublishProfiles/Raspberry.pubxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/Properties/PublishProfiles/Raspberry.pubxml.user" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/Properties/launchSettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/Startup.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/appsettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Blazor.Server.csproj.EntityFrameworkCore.targets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Blazor.Server.csproj.nuget.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Blazor.Server.csproj.nuget.g.props" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Blazor.Server.csproj.nuget.g.targets" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/Blazor.Server.AssemblyInfoInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/Blazor.Server.RazorAssemblyInfo.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/Blazor.Server.RazorAssemblyInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/Blazor.Server.RazorTargetAssemblyInfo.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/Blazor.Server.assets.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/Blazor.Server.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/Blazor.Server.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/Blazor.Server.csprojAssemblyReference.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/Blazor.Server.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/Blazor.Server.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App.blazor.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/Blazor.App.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/Blazor.App.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/blazor.boot.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/blazor.server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/blazor.webassembly.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/bootstrap/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/bootstrap/bootstrap.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/open-iconic/FONT-LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/open-iconic/ICON-LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/open-iconic/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/open-iconic/font/css/open-iconic-bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/open-iconic/font/fonts/open-iconic.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/open-iconic/font/fonts/open-iconic.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/open-iconic/font/fonts/open-iconic.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/open-iconic/font/fonts/open-iconic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/open-iconic/font/fonts/open-iconic.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/site.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.Server.deps.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.Server.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.Server.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.Server.runtimeconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/MessagePack.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Microsoft.AspNetCore.Blazor.Server.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Microsoft.AspNetCore.SignalR.Protocols.MessagePack.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Mono.Cecil.Mdb.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Mono.Cecil.Pdb.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Mono.Cecil.Rocks.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Mono.Cecil.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/appsettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/web.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/Blazor.Server.AssemblyInfoInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/Blazor.Server.RazorAssemblyInfo.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/Blazor.Server.RazorAssemblyInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/Blazor.Server.RazorTargetAssemblyInfo.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/Blazor.Server.assets.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/Blazor.Server.csproj.CopyComplete" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/Blazor.Server.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/Blazor.Server.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/Blazor.Server.csprojAssemblyReference.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/Blazor.Server.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/Blazor.Server.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App.blazor.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/Blazor.App.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/Blazor.App.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/Microsoft.AspNetCore.Blazor.Browser.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/Microsoft.AspNetCore.Blazor.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/Microsoft.JSInterop.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/asmjs/mono.asm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/asmjs/mono.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/asmjs/mono.js.mem" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/blazor.boot.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/blazor.server.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/blazor.webassembly.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/wasm/mono.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/wasm/mono.wasm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/bootstrap/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/bootstrap/bootstrap.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/open-iconic/FONT-LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/open-iconic/ICON-LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/open-iconic/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/open-iconic/font/css/open-iconic-bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/open-iconic/font/fonts/open-iconic.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/open-iconic/font/fonts/open-iconic.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/open-iconic/font/fonts/open-iconic.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/open-iconic/font/fonts/open-iconic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/open-iconic/font/fonts/open-iconic.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/css/site.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/css/foundation-float.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/css/foundation-float.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/css/foundation-prototype.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/css/foundation-prototype.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/css/foundation-rtl.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/css/foundation-rtl.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/css/foundation.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/css/foundation.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/foundation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/foundation.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.abide.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.abide.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.accordion.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.accordion.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.accordionMenu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.accordionMenu.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.core.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.core.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.drilldown.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.drilldown.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.dropdown.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.dropdown.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.dropdownMenu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.dropdownMenu.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.equalizer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.equalizer.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.interchange.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.interchange.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.magellan.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.magellan.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.offcanvas.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.offcanvas.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.orbit.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.orbit.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.responsiveAccordionTabs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.responsiveAccordionTabs.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.responsiveMenu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.responsiveMenu.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.responsiveToggle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.responsiveToggle.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.reveal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.reveal.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.slider.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.slider.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.smoothScroll.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.smoothScroll.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.sticky.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.sticky.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.tabs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.tabs.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.toggler.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.toggler.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.tooltip.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.tooltip.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.box.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.box.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.imageLoader.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.imageLoader.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.keyboard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.keyboard.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.mediaQuery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.mediaQuery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.motion.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.motion.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.nest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.nest.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.timer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.timer.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.timerAndImageLoader.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.timerAndImageLoader.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.touch.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.touch.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.triggers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.util.triggers.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.zf.responsiveAccordionTabs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/foundation/js/plugins/foundation.zf.responsiveAccordionTabs.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/jquery/core.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/jquery/jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/jquery/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/jquery/jquery.min.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/jquery/jquery.slim.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/jquery/jquery.slim.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/jquery/jquery.slim.min.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-basic.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-basic.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-cartesian.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-cartesian.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-finance.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-finance.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-geo-assets.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-geo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-geo.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-gl2d.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-gl2d.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-gl3d.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-gl3d.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-af.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-am.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-ar-dz.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-ar-eg.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-ar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-az.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-bg.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-bs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-ca.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-cs.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-da.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-de-ch.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-de.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-el.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-eo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-es-ar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-es-pe.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-es.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-et.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-eu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-fa.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-fi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-fo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-fr-ch.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-fr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-gl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-gu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-he.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-hi-in.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-hr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-hu.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-hy.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-id.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-is.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-it.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-ja.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-ka.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-km.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-ko.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-lt.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-lv.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-me-me.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-me.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-mk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-ml.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-ms.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-mt.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-nl-be.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-nl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-no.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-pa.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-pl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-pt-br.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-rm.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-ro.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-ru.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-sk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-sl.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-sq.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-sr-sr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-sr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-sv.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-sw.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-ta.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-th.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-tr.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-tt.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-uk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-ur.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-vi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-zh-cn.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-zh-hk.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-locale-zh-tw.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-mapbox.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly-mapbox.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/plotly.js/plotly.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.Server.deps.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.Server.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.Server.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.Server.runtimeconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/MessagePack.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Microsoft.AspNetCore.Blazor.Browser.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Microsoft.AspNetCore.Blazor.Server.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Microsoft.AspNetCore.Blazor.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Microsoft.AspNetCore.SignalR.Protocols.MessagePack.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Microsoft.JSInterop.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Mono.Cecil.Mdb.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Mono.Cecil.Pdb.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Mono.Cecil.Rocks.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Mono.Cecil.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Mono.WebAssembly.Interop.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/appsettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/libman.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/web.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/project.assets.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Blazor.Server/obj/project.packagespec.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/.vscode/tasks.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/Lib/Archives/Archive.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/Lib/Archives/IDbContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/MasterScadaContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/masterscadadataitems.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/masterscadadataraw.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/masterscadaprojects.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/masterscadaproperties.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/Lib/Archives/TimeSeries.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/Lib/Archives/TimeValue.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/Lib/ITag.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/Lib/Tag.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/Lib/TagGroupBase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/SimpleProgram.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/bin/Debug/netstandard2.0/SimpleProgram.deps.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/bin/Debug/netstandard2.0/SimpleProgram.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/bin/Debug/netstandard2.0/SimpleProgram.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/obj/Debug/netstandard2.0/SimpleProgram.AssemblyInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/obj/Debug/netstandard2.0/SimpleProgram.AssemblyInfoInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/obj/Debug/netstandard2.0/SimpleProgram.assets.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/obj/Debug/netstandard2.0/SimpleProgram.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/obj/Debug/netstandard2.0/SimpleProgram.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/obj/Debug/netstandard2.0/SimpleProgram.csprojAssemblyReference.cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/obj/Debug/netstandard2.0/SimpleProgram.dll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/obj/Debug/netstandard2.0/SimpleProgram.pdb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SimpleProgram/obj/SimpleProgram.csproj.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SimpleProgram/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SimpleProgram/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Debug/netstandard2.0/dist/_framework/_bin/Microsoft.Extensions.DependencyInjection.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/Microsoft.Extensions.DependencyInjection.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Debug/netstandard2.0/dist/_framework/_bin/Microsoft.Extensions.Logging.Abstractions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Debug/netstandard2.0/dist/_framework/_bin/Npgsql.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Debug/netstandard2.0/dist/_framework/_bin/System.Collections.Immutable.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Debug/netstandard2.0/dist/_framework/_bin/System.Linq.Queryable.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Debug/netstandard2.0/dist/_framework/_bin/System.Reflection.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Debug/netstandard2.0/dist/_framework/_bin/System.Runtime.Extensions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/Microsoft.AspNetCore.Blazor.TagHelperWorkaround.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/Mono.WebAssembly.Interop.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/Microsoft.EntityFrameworkCore.Abstractions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/Microsoft.EntityFrameworkCore.Relational.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/Microsoft.EntityFrameworkCore.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/Microsoft.Extensions.Caching.Abstractions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/Microsoft.Extensions.Caching.Memory.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/Microsoft.Extensions.Configuration.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/Microsoft.Extensions.Logging.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/Microsoft.Extensions.Options.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/Microsoft.Extensions.Primitives.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/Npgsql.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/Remotion.Linq.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/System.Buffers.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/System.Collections.Immutable.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/System.ComponentModel.Annotations.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/System.Diagnostics.DiagnosticSource.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/System.Interactive.Async.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/System.Linq.Expressions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/System.Linq.Queryable.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/System.Linq.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/System.Memory.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/System.Numerics.Vectors.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/System.ObjectModel.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/System.Reflection.Emit.ILGeneration.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/System.Reflection.Emit.Lightweight.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/System.Reflection.Emit.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/System.Reflection.TypeExtensions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/System.Threading.Tasks.Extensions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/System.Threading.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/Blazor.App.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/Blazor.App.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/Microsoft.EntityFrameworkCore.Abstractions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/Microsoft.EntityFrameworkCore.Relational.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/Microsoft.EntityFrameworkCore.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/Microsoft.Extensions.Caching.Abstractions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/Microsoft.Extensions.Caching.Memory.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/Microsoft.Extensions.Configuration.Abstractions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/Microsoft.Extensions.Logging.Abstractions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/Microsoft.Extensions.Logging.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/Microsoft.Extensions.Options.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/Microsoft.Extensions.Primitives.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/Npgsql.EntityFrameworkCore.PostgreSQL.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/Npgsql.EntityFrameworkCore.PostgreSQL.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/Npgsql.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/Npgsql.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/Remotion.Linq.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Collections.Immutable.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Collections.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.ComponentModel.Annotations.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.ComponentModel.DataAnnotations.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Core.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Core.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Data.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Data.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Diagnostics.Debug.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Diagnostics.DiagnosticSource.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Diagnostics.Tracing.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.IO.Compression.FileSystem.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.IO.Compression.FileSystem.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Interactive.Async.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Linq.Expressions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Linq.Queryable.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Linq.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Memory.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.ObjectModel.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Reflection.Extensions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Reflection.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Resources.ResourceManager.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Runtime.CompilerServices.Unsafe.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Runtime.Extensions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Runtime.Serialization.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Runtime.Serialization.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Runtime.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Threading.Tasks.Extensions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Threading.Tasks.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/System.Threading.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/_bin/netstandard.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/netstandard.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/asmjs/mono.asm.js" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/asmjs/mono.asm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/asmjs/mono.js" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/asmjs/mono.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/asmjs/mono.js.mem" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/asmjs/mono.js.mem" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/blazor.boot.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/wasm/mono.js" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/wasm/mono.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/bin/Release/netstandard2.0/dist/_framework/wasm/mono.wasm" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/wasm/mono.wasm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Blazor.App.csproj.nuget.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Blazor.App.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleProgram/obj/SimpleProgram.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Blazor.App.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleProgram/obj/SimpleProgram.csproj.nuget.g.targets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/App.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/App.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Blazor.App.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/Blazor.Server.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Blazor.App.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Blazor.App.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Blazor.App.csproj.CopyComplete" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/Blazor.Server.csproj.CopyComplete" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Blazor.App.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Blazor.App.csproj.FileListAbsolute.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Blazor.App.csprojAssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Blazor.App.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Blazor.App.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Blazor.App.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Blazor.App.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Blazor.components.input.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Blazor.definition.components.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Blazor.inputs.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/BlazorTemp/Blazor.App.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/BlazorTemp/Blazor.App.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/BlazorPlot.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/BlazorPlot.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/BlazorPlot1.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/Counter - Copy.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/Counter.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/Counter.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/FetchData.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/FetchData.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/Index.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/Index.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/_ViewImports.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/_ViewImports.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Shared/MainLayout.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Shared/MainLayout.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Shared/NavMenu.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Shared/NavMenu.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Shared/SurveyPrompt.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Shared/SurveyPrompt.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/_ViewImports.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/_ViewImports.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/blazor.boot.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/bootjson-references.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/embedded.resources.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/inputs.basic.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/inputs.bootjson.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/inputs.copylocal.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/inputs.linkerswitch.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolve-dependencies.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolved.assemblies.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Blazor.App.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Blazor.App.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Microsoft.AspNetCore.Blazor.Browser.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/Microsoft.AspNetCore.Blazor.Browser.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Microsoft.AspNetCore.Blazor.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/Microsoft.AspNetCore.Blazor.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Microsoft.EntityFrameworkCore.Abstractions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Microsoft.EntityFrameworkCore.Relational.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Microsoft.EntityFrameworkCore.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Microsoft.Extensions.Caching.Abstractions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Microsoft.Extensions.Caching.Memory.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Microsoft.Extensions.Configuration.Abstractions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Microsoft.Extensions.DependencyInjection.Abstractions.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/Microsoft.Extensions.DependencyInjection.Abstractions.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Microsoft.Extensions.DependencyInjection.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Microsoft.Extensions.Logging.Abstractions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Microsoft.Extensions.Logging.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Microsoft.Extensions.Options.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Microsoft.Extensions.Primitives.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Microsoft.JSInterop.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/Microsoft.JSInterop.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Mono.Security.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/Mono.Security.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Mono.WebAssembly.Interop.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/Mono.WebAssembly.Interop.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Npgsql.EntityFrameworkCore.PostgreSQL.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Npgsql.EntityFrameworkCore.PostgreSQL.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Npgsql.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Npgsql.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/Remotion.Linq.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/SimpleProgram.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/SimpleProgram.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/SimpleProgram.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/SimpleProgram.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Collections.Immutable.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Collections.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.ComponentModel.Annotations.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.ComponentModel.Composition.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.ComponentModel.Composition.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.ComponentModel.DataAnnotations.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Core.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Core.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Data.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Data.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Diagnostics.Debug.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Diagnostics.DiagnosticSource.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Diagnostics.Tracing.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Drawing.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Drawing.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.IO.Compression.FileSystem.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.IO.Compression.FileSystem.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.IO.Compression.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.IO.Compression.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Interactive.Async.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Linq.Expressions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Linq.Queryable.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Linq.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Memory.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Net.Http.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Net.Http.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Numerics.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Numerics.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.ObjectModel.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Reflection.Extensions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Reflection.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Resources.ResourceManager.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Runtime.CompilerServices.Unsafe.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Runtime.Extensions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Runtime.Serialization.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Runtime.Serialization.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Runtime.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.ServiceModel.Internals.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.ServiceModel.Internals.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Threading.Tasks.Extensions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Threading.Tasks.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Threading.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Transactions.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Transactions.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Web.Services.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Web.Services.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Xml.Linq.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Xml.Linq.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.Xml.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Xml.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/System.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/mscorlib.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/mscorlib.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/blazor/resolvedassemblies/netstandard.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/netstandard.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/App.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/App.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Blazor.App.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/Blazor.Server.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Blazor.App.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Blazor.App.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Blazor.App.csproj.CopyComplete" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Blazor.App.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Blazor.App.csproj.FileListAbsolute.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Blazor.App.csprojAssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Blazor.App.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Blazor.App.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Blazor.components.input.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Blazor.definition.components.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Blazor.inputs.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/BlazorTemp/Blazor.App.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/BlazorTemp/Blazor.App.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Pages/BlazorPlot.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Pages/BlazorPlot.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Pages/Counter.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Pages/Counter.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Pages/FetchData.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Pages/FetchData.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Pages/Index.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Pages/Index.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Pages/_ViewImports.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Pages/_ViewImports.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Shared/MainLayout.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Shared/MainLayout.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Shared/NavMenu.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Shared/NavMenu.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Shared/SurveyPrompt.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/Shared/SurveyPrompt.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/_ViewImports.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/_ViewImports.g.i.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/blazor.boot.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/bootjson-references.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/embedded.resources.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/inputs.basic.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/inputs.bootjson.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/inputs.copylocal.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/inputs.linkerswitch.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolve-dependencies.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolved.assemblies.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Blazor.App.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Blazor.App.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Microsoft.AspNetCore.Blazor.Browser.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Microsoft.AspNetCore.Blazor.Browser.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Microsoft.AspNetCore.Blazor.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Microsoft.AspNetCore.Blazor.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Microsoft.EntityFrameworkCore.Abstractions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Microsoft.EntityFrameworkCore.Relational.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Microsoft.EntityFrameworkCore.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Microsoft.Extensions.Caching.Abstractions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Microsoft.Extensions.Caching.Memory.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Microsoft.Extensions.Configuration.Abstractions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Microsoft.Extensions.DependencyInjection.Abstractions.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/Microsoft.Extensions.DependencyInjection.Abstractions.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Microsoft.Extensions.DependencyInjection.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/Microsoft.Extensions.DependencyInjection.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Microsoft.Extensions.Logging.Abstractions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Microsoft.Extensions.Logging.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Microsoft.Extensions.Options.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Microsoft.Extensions.Primitives.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Microsoft.JSInterop.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Microsoft.JSInterop.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Mono.Security.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/Mono.Security.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Mono.WebAssembly.Interop.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Debug/netcoreapp2.1/PubTmp/Out/Mono.WebAssembly.Interop.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Npgsql.EntityFrameworkCore.PostgreSQL.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Npgsql.EntityFrameworkCore.PostgreSQL.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Npgsql.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Npgsql.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/Remotion.Linq.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Collections.Immutable.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Collections.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.ComponentModel.Annotations.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.ComponentModel.Composition.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.ComponentModel.Composition.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.ComponentModel.DataAnnotations.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Core.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Data.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Diagnostics.Debug.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Diagnostics.DiagnosticSource.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Diagnostics.Tracing.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Drawing.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Drawing.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.IO.Compression.FileSystem.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.IO.Compression.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.IO.Compression.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Interactive.Async.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Linq.Expressions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Linq.Queryable.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Linq.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Memory.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Net.Http.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Net.Http.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Numerics.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Numerics.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.ObjectModel.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Reflection.Extensions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Reflection.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Resources.ResourceManager.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Runtime.CompilerServices.Unsafe.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Runtime.Extensions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Runtime.Serialization.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Runtime.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.ServiceModel.Internals.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.ServiceModel.Internals.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Threading.Tasks.Extensions.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Threading.Tasks.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Threading.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Transactions.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Transactions.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Web.Services.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Web.Services.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Xml.Linq.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Xml.Linq.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.Xml.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.Xml.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/System.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/System.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/mscorlib.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.Server/obj/Release/netcoreapp2.1/PubTmp/Out/Blazor.App/dist/_framework/_bin/mscorlib.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/Release/netstandard2.0/blazor/resolvedassemblies/netstandard.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleProgram/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleProgram/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SimpleProgram/.idea/dataSources/5d242487-99b9-44ca-ba19-78a86f1e240e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SimpleProgram/.idea/dataSources/5d242487-99b9-44ca-ba19-78a86f1e240e.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SimpleProgram/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SimpleProgram/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blazor.App/Pages/BlazorPlot.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.App/Pages/BlazorPlot.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blazor.App/Pages/Counter.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.App/Pages/Counter.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blazor.App/Services/Data.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.App/Services/Data.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Blazor.App/Services/TagGroup1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.App/Services/TagGroup1.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SimpleProgram/Lib/ITagArchive.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleProgram/Lib/ITagArchive.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SimpleProgram/Lib/TagArray.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleProgram/Lib/TagGroupBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleProgram/Lib/TagGroupBase.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -695,13 +36,37 @@
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="energy@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="energy@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="energy: database" type="6d9b600a:PostgresImplModel$Database" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="energy@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="energy: database" type="6d9b600a:PostgresImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="energy@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="energy: database" type="6d9b600a:PostgresImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="public: schema" type="a16502c0:PostgresImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="energy@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="energy: database" type="6d9b600a:PostgresImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="public: schema" type="a16502c0:PostgresImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
     </expand>
     <select />
@@ -710,42 +75,46 @@
     <session id="365475463">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="cs" value="39" />
-          <entry key="cshtml" value="10" />
+          <entry key="cs" value="49" />
+          <entry key="cshtml" value="14" />
           <entry key="csproj" value="1" />
           <entry key="json" value="1" />
+          <entry key="masterscadadataitems" value="1" />
+          <entry key="masterscadadataraw" value="1" />
           <entry key="public" value="1" />
           <entry key="sql" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="C#" value="39" />
+          <entry key="C#" value="49" />
           <entry key="Csproj" value="1" />
+          <entry key="Database Element" value="2" />
           <entry key="JSON" value="1" />
-          <entry key="Razor" value="10" />
+          <entry key="Razor" value="14" />
           <entry key="Scratch" value="1" />
           <entry key="UML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cs" value="752" />
-          <entry key="cshtml" value="39" />
+          <entry key="cs" value="1571" />
+          <entry key="cshtml" value="436" />
           <entry key="txt" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="C#" value="752" />
+          <entry key="C#" value="1571" />
           <entry key="PLAIN_TEXT" value="17" />
-          <entry key="Razor" value="39" />
+          <entry key="Razor" value="436" />
         </counts>
       </usages-collector>
     </session>
@@ -753,98 +122,104 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/ITagArchive.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-              <folding>
-                <marker date="1539859586120" expanded="true" signature="62:230" ph="{...}" />
-                <marker date="1539859586120" expanded="true" signature="97:228" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/ITag.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
-              <folding>
-                <marker date="1539859905678" expanded="true" signature="27:114" ph="{...}" />
-                <marker date="1539859905678" expanded="true" signature="55:112" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/TagGroupBase.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="65" selection-start-line="14" selection-start-column="65" selection-end-line="14" selection-end-column="65" />
-              <folding>
-                <marker date="1539859456392" expanded="true" signature="6:58" ph="..." />
-                <marker date="1539859456392" expanded="true" signature="87:1278" ph="{...}" />
-                <marker date="1539859456392" expanded="true" signature="119:1276" ph="{...}" />
-                <marker date="1539859456392" expanded="true" signature="193:1215" ph="{...}" />
-                <marker date="1539859456392" expanded="true" signature="357:1205" ph="{...}" />
-                <marker date="1539859456392" expanded="true" signature="755:876" ph="{...}" />
-                <marker date="1539859456392" expanded="true" signature="1092:1191" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/Tag.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" selection-start-line="11" selection-end-line="12" />
-              <folding>
-                <marker date="1539859879105" expanded="true" signature="6:47" ph="..." />
-                <marker date="1539859879105" expanded="true" signature="123:646" ph="{...}" />
-                <marker date="1539859879105" expanded="true" signature="320:479" ph="{...}" />
-                <marker date="1539859879105" expanded="true" signature="373:469" ph="{...}" />
-                <marker date="1539859879105" expanded="true" signature="562:640" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Blazor.App/Services/Data.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="35" column="65" selection-start-line="35" selection-start-column="65" selection-end-line="35" selection-end-column="65" />
+            <state relative-caret-position="672">
+              <caret line="61" selection-start-line="61" selection-end-line="61" />
               <folding>
-                <marker date="1539844752886" expanded="true" signature="6:117" ph="..." />
-                <marker date="1539844752886" expanded="true" signature="148:1231" ph="{...}" />
-                <marker date="1539844752886" expanded="true" signature="179:1229" ph="{...}" />
-                <marker date="1539844752886" expanded="true" signature="194:369" ph="Public Fields" />
-                <marker date="1539844752886" expanded="true" signature="380:537" ph="Private Fields" />
-                <marker date="1539844752886" expanded="true" signature="548:984" ph="Public Constructors" />
-                <marker date="1539844752886" expanded="true" signature="598:944" ph="{...}" />
-                <marker date="1539844752886" expanded="true" signature="995:1097" ph="Public Events" />
-                <marker date="1539844752886" expanded="true" signature="1108:1223" ph="Public Methods" />
-                <marker date="1539844752886" expanded="true" signature="1168:1188" ph="{...}" />
+                <marker date="1539868762262" expanded="true" signature="6:254" ph="..." />
+                <marker date="1539868762262" expanded="true" signature="285:1920" ph="{...}" />
+                <marker date="1539868762262" expanded="true" signature="316:1918" ph="{...}" />
+                <marker date="1539868762262" expanded="true" signature="684:1127" ph="{...}" />
+                <marker date="1539868762262" expanded="true" signature="1214:1234" ph="{...}" />
+                <marker date="1539868762262" expanded="true" signature="1281:1912" ph="{...}" />
+                <marker date="1539868762262" expanded="true" signature="1357:1889" ph="{...}" />
+                <marker date="1539868762262" expanded="true" signature="1774:1875" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Blazor.App/Pages/Counter.cshtml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+              <folding>
+                <marker date="1539869659858" expanded="true" signature="96:227" ph="@{...}" />
+                <marker date="1539869659858" expanded="true" signature="147:225" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Blazor.App/Services/TagGroup1.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="28" column="77" selection-start-line="28" selection-start-column="77" selection-end-line="28" selection-end-column="77" />
+              <folding>
+                <marker date="1539869760997" expanded="false" signature="6:96" ph="..." />
+                <marker date="1539869760997" expanded="true" signature="127:1250" ph="{...}" />
+                <marker date="1539869760997" expanded="true" signature="171:1248" ph="{...}" />
+                <marker date="1539869760997" expanded="true" signature="417:512" ph="{...}" />
+                <marker date="1539869760997" expanded="true" signature="579:674" ph="{...}" />
+                <marker date="1539869760997" expanded="true" signature="744:860" ph="{...}" />
+                <marker date="1539869760997" expanded="true" signature="1045:1242" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/MasterScadaContext.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1012">
+              <caret line="63" column="26" lean-forward="true" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
+              <folding>
+                <marker date="1539869907821" expanded="false" signature="6:124" ph="..." />
+                <marker date="1539869907821" expanded="true" signature="174:2257" ph="{...}" />
+                <marker date="1539869907821" expanded="true" signature="231:2255" ph="{...}" />
+                <marker date="1539869907821" expanded="true" signature="268:288" ph="{...}" />
+                <marker date="1539869907821" expanded="true" signature="387:407" ph="{...}" />
+                <marker date="1539869907821" expanded="true" signature="824:1658" ph="{...}" />
+                <marker date="1539869907821" expanded="true" signature="1016:1267" ph="{...}" />
+                <marker date="1539869907821" expanded="true" signature="1333:1455" ph="{...}" />
+                <marker date="1539869907821" expanded="true" signature="1523:1646" ph="{...}" />
+                <marker date="1539869907821" expanded="true" signature="1712:2249" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Blazor.App/Services/TagGroup1.cs">
+        <entry file="das://5d242487-99b9-44ca-ba19-78a86f1e240e/database/energy/schema/public/table/masterscadadataraw">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Blazor.App/Pages/BlazorPlot.cshtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="582">
-              <caret line="40" column="46" lean-forward="true" selection-start-line="40" selection-start-column="46" selection-end-line="40" selection-end-column="46" />
+            <state relative-caret-position="425">
+              <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
               <folding>
-                <marker date="1539860322960" expanded="true" signature="6:96" ph="..." />
-                <marker date="1539860322960" expanded="true" signature="127:1292" ph="{...}" />
-                <marker date="1539860322960" expanded="true" signature="171:1290" ph="{...}" />
-                <marker date="1539860322960" expanded="true" signature="420:515" ph="{...}" />
-                <marker date="1539860322960" expanded="true" signature="585:680" ph="{...}" />
-                <marker date="1539860322960" expanded="true" signature="847:1284" ph="{...}" />
+                <marker date="1539869344358" expanded="true" signature="329:692" ph="&lt;div.../&gt;" />
+                <marker date="1539869344358" expanded="true" signature="354:580" ph="&lt;div.../&gt;" />
+                <marker date="1539869344358" expanded="true" signature="384:569" ph="&lt;select.../&gt;" />
+                <marker date="1539869344358" expanded="true" signature="426:551" ph="@..." />
+                <marker date="1539869344358" expanded="true" signature="464:551" ph="{...}" />
+                <marker date="1539869344358" expanded="true" signature="585:685" ph="&lt;div.../&gt;" />
+                <marker date="1539869344358" expanded="true" signature="743:1696" ph="@{...}" />
+                <marker date="1539869344358" expanded="true" signature="793:1004" ph="{...}" />
+                <marker date="1539869344358" expanded="true" signature="850:907" ph="{...}" />
+                <marker date="1539869344358" expanded="true" signature="937:998" ph="{...}" />
+                <marker date="1539869344358" expanded="true" signature="1159:1531" ph="{...}" />
+                <marker date="1539869344358" expanded="true" signature="1588:1628" ph="{...}" />
+                <marker date="1539869344358" expanded="true" signature="1652:1693" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -864,9 +239,9 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6DADD22E-0197-42CE-80AA-EFEF99855BE0/c8/baa03cfb/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/ITagArchive.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Blazor.App/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/BlazorPlot.g.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Blazor.App/App.cshtml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/_ViewImports.g.i.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/ITag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Blazor.App/_ViewImports.cshtml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Tag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Blazor.App/Pages/FetchData.cshtml" root0="FORCE_HIGHLIGHTING" />
@@ -899,18 +274,19 @@
         <option value="$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/masterscadadataitems.cs" />
         <option value="$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/masterscadaprojects.cs" />
         <option value="$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/masterscadaproperties.cs" />
-        <option value="$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/MasterScadaContext.cs" />
         <option value="$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/masterscadadataraw.cs" />
         <option value="$PROJECT_DIR$/Blazor.App/_ViewImports.cshtml" />
-        <option value="$PROJECT_DIR$/Blazor.App/Pages/BlazorPlot.cshtml" />
-        <option value="$PROJECT_DIR$/Blazor.App/Services/Data.cs" />
         <option value="$PROJECT_DIR$/Blazor.App/Pages/Counter.cshtml" />
         <option value="$PROJECT_DIR$/SimpleProgram/Lib/TagArray.cs" />
-        <option value="$PROJECT_DIR$/SimpleProgram/Lib/TagGroupBase.cs" />
-        <option value="$PROJECT_DIR$/SimpleProgram/Lib/ITagArchive.cs" />
-        <option value="$PROJECT_DIR$/SimpleProgram/Lib/Tag.cs" />
         <option value="$PROJECT_DIR$/SimpleProgram/Lib/ITag.cs" />
+        <option value="$PROJECT_DIR$/SimpleProgram/Lib/DataBase.cs" />
+        <option value="$PROJECT_DIR$/SimpleProgram/Lib/Tag.cs" />
+        <option value="$PROJECT_DIR$/SimpleProgram/Lib/ITagArchive.cs" />
+        <option value="$PROJECT_DIR$/Blazor.App/Services/Data.cs" />
+        <option value="$PROJECT_DIR$/SimpleProgram/Lib/TagGroupBase.cs" />
+        <option value="$PROJECT_DIR$/Blazor.App/Pages/BlazorPlot.cshtml" />
         <option value="$PROJECT_DIR$/Blazor.App/Services/TagGroup1.cs" />
+        <option value="$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/MasterScadaContext.cs" />
       </list>
     </option>
   </component>
@@ -940,7 +316,9 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator currentView="SolutionExplorer" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -963,6 +341,12 @@
               <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
               <item name="SimpleProgram" type="24d0babc:SolutionExplorerModelNode" />
               <item name="Blazor.App" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Pages" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="SimpleProgram" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Blazor.App" type="24d0babc:SolutionExplorerModelNode" />
               <item name="Services" type="24d0babc:SolutionExplorerModelNode" />
             </path>
             <path>
@@ -976,6 +360,21 @@
               <item name="SimpleProgram" type="24d0babc:SolutionExplorerModelNode" />
               <item name="Lib" type="24d0babc:SolutionExplorerModelNode" />
             </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="SimpleProgram" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="SimpleProgram" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Lib" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Archives" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="SimpleProgram" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="SimpleProgram" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Lib" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Archives" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="MasterScada" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -988,7 +387,9 @@
     <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
     <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Blazor.App/Blazor.App.csproj" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunDashboard">
@@ -1045,7 +446,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1539841160339</updated>
-      <workItem from="1539841162705" duration="14007000" />
+      <workItem from="1539841162705" duration="24428000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <created>1539857688836</created>
@@ -1058,7 +459,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14007000" />
+    <option name="totallyTimeSpent" value="24428000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1074,7 +475,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15831557" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15831557" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="NuGet" weight="0.3856813" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
@@ -1082,18 +483,19 @@
       <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection Results" weight="0.329718" />
       <window_info anchor="bottom" id="Unit Tests" />
+      <window_info anchor="bottom" id="Database Console" weight="0.329718" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="bottom" id="Event Log" sideWeight="0.50053304" side_tool="true" weight="0.329718" />
       <window_info anchor="bottom" id="Build" weight="0.2646421" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" weight="0.329718" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.329718" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.26789588" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3177874" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="Errors In Solution" weight="0.25426438" />
-      <window_info anchor="right" id="Database" weight="0.195629" />
+      <window_info active="true" anchor="right" id="Database" visible="true" weight="0.23667377" />
       <window_info anchor="right" id="Unit Tests Coverage" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1217,25 +619,6 @@
           <folding>
             <marker date="1539842492376" expanded="true" signature="95:517" ph="{...}" />
             <marker date="1539842492376" expanded="true" signature="135:515" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/MasterScadaContext.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-231">
-          <caret line="5" column="48" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
-          <folding>
-            <marker date="1539842432145" expanded="true" signature="6:124" ph="..." />
-            <marker date="1539842432145" expanded="true" signature="174:2257" ph="{...}" />
-            <marker date="1539842432145" expanded="true" signature="231:2255" ph="{...}" />
-            <marker date="1539842432145" expanded="true" signature="268:288" ph="{...}" />
-            <marker date="1539842432145" expanded="true" signature="387:407" ph="{...}" />
-            <marker date="1539842432145" expanded="true" signature="824:1658" ph="{...}" />
-            <marker date="1539842432145" expanded="true" signature="1016:1267" ph="{...}" />
-            <marker date="1539842432145" expanded="true" signature="1333:1455" ph="{...}" />
-            <marker date="1539842432145" expanded="true" signature="1523:1646" ph="{...}" />
-            <marker date="1539842432145" expanded="true" signature="1712:2249" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1387,11 +770,11 @@
         <state relative-caret-position="170">
           <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
           <folding>
-            <marker date="1539860257462" expanded="true" signature="6:123" ph="..." />
-            <marker date="1539860257462" expanded="true" signature="148:735" ph="{...}" />
-            <marker date="1539860257462" expanded="true" signature="175:733" ph="{...}" />
-            <marker date="1539860257462" expanded="true" signature="228:286" ph="{...}" />
-            <marker date="1539860257462" expanded="true" signature="607:700" ph="{...}" />
+            <marker date="1539869296249" expanded="true" signature="6:123" ph="..." />
+            <marker date="1539869296249" expanded="true" signature="148:735" ph="{...}" />
+            <marker date="1539869296249" expanded="true" signature="175:733" ph="{...}" />
+            <marker date="1539869296249" expanded="true" signature="228:286" ph="{...}" />
+            <marker date="1539869296249" expanded="true" signature="607:700" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1423,22 +806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Blazor.App/Pages/BlazorPlot.cshtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="36" lean-forward="true" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
-          <folding>
-            <marker date="1539844733209" expanded="true" signature="379:1291" ph="@{...}" />
-            <marker date="1539844733209" expanded="true" signature="429:640" ph="{...}" />
-            <marker date="1539844733209" expanded="true" signature="486:543" ph="{...}" />
-            <marker date="1539844733209" expanded="true" signature="573:634" ph="{...}" />
-            <marker date="1539844733209" expanded="true" signature="794:1162" ph="{...}" />
-            <marker date="1539844733209" expanded="true" signature="1184:1224" ph="{...}" />
-            <marker date="1539844733209" expanded="true" signature="1247:1288" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6DADD22E-0197-42CE-80AA-EFEF99855BE0/c8/baa03cfb/Dictionary`2.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
@@ -1453,17 +820,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Blazor.App/Pages/Counter.cshtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="48" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
-          <folding>
-            <marker date="1539847291206" expanded="true" signature="99:230" ph="@{...}" />
-            <marker date="1539847291206" expanded="true" signature="150:228" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/TagArray.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1471,89 +827,179 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/TagGroupBase.cs">
+    <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/ITag.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="65" selection-start-line="14" selection-start-column="65" selection-end-line="14" selection-end-column="65" />
-          <folding>
-            <marker date="1539859456392" expanded="true" signature="6:58" ph="..." />
-            <marker date="1539859456392" expanded="true" signature="87:1278" ph="{...}" />
-            <marker date="1539859456392" expanded="true" signature="119:1276" ph="{...}" />
-            <marker date="1539859456392" expanded="true" signature="193:1215" ph="{...}" />
-            <marker date="1539859456392" expanded="true" signature="357:1205" ph="{...}" />
-            <marker date="1539859456392" expanded="true" signature="755:876" ph="{...}" />
-            <marker date="1539859456392" expanded="true" signature="1092:1191" ph="{...}" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/ITagArchive.cs">
+    <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/DataBase.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-          <folding>
-            <marker date="1539859586120" expanded="true" signature="62:230" ph="{...}" />
-            <marker date="1539859586120" expanded="true" signature="97:228" ph="{...}" />
-          </folding>
+        <state relative-caret-position="102">
+          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/Tag.cs">
+    <entry file="file://$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/BlazorPlot.g.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" selection-start-line="11" selection-end-line="12" />
+        <state relative-caret-position="217">
+          <caret line="66" column="162" selection-start-line="66" selection-start-column="162" selection-end-line="66" selection-end-column="162" />
           <folding>
-            <marker date="1539859879105" expanded="true" signature="6:47" ph="..." />
-            <marker date="1539859879105" expanded="true" signature="123:646" ph="{...}" />
-            <marker date="1539859879105" expanded="true" signature="320:479" ph="{...}" />
-            <marker date="1539859879105" expanded="true" signature="373:469" ph="{...}" />
-            <marker date="1539859879105" expanded="true" signature="562:640" ph="{...}" />
+            <marker date="1539869764919" expanded="true" signature="6330:6495" ph="{...}" />
+            <marker date="1539869764919" expanded="false" signature="275:767" ph="..." />
+            <marker date="1539869764919" expanded="true" signature="6330:6493" ph="{...}" />
+            <marker date="1539869764919" expanded="true" signature="3648:5296" ph="{...}" />
+            <marker date="1539869764919" expanded="true" signature="3846:4267" ph="{...}" />
+            <marker date="1539869764919" expanded="true" signature="5461:5672" ph="{...}" />
+            <marker date="1539869764919" expanded="true" signature="5518:5575" ph="{...}" />
+            <marker date="1539869764919" expanded="true" signature="5605:5666" ph="{...}" />
+            <marker date="1539869764919" expanded="true" signature="5827:6195" ph="{...}" />
+            <marker date="1539869764919" expanded="true" signature="6424:6431" ph="{...}" />
+            <marker date="1539869764919" expanded="true" signature="6353:6393" ph="{...}" />
+            <marker date="1539869764919" expanded="true" signature="6417:6458" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Blazor.App/Services/Data.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="35" column="65" selection-start-line="35" selection-start-column="65" selection-end-line="35" selection-end-column="65" />
+        <state relative-caret-position="672">
+          <caret line="61" selection-start-line="61" selection-end-line="61" />
           <folding>
-            <marker date="1539844752886" expanded="true" signature="6:117" ph="..." />
-            <marker date="1539844752886" expanded="true" signature="148:1231" ph="{...}" />
-            <marker date="1539844752886" expanded="true" signature="179:1229" ph="{...}" />
-            <marker date="1539844752886" expanded="true" signature="194:369" ph="Public Fields" />
-            <marker date="1539844752886" expanded="true" signature="380:537" ph="Private Fields" />
-            <marker date="1539844752886" expanded="true" signature="548:984" ph="Public Constructors" />
-            <marker date="1539844752886" expanded="true" signature="598:944" ph="{...}" />
-            <marker date="1539844752886" expanded="true" signature="995:1097" ph="Public Events" />
-            <marker date="1539844752886" expanded="true" signature="1108:1223" ph="Public Methods" />
-            <marker date="1539844752886" expanded="true" signature="1168:1188" ph="{...}" />
+            <marker date="1539868762262" expanded="true" signature="6:254" ph="..." />
+            <marker date="1539868762262" expanded="true" signature="285:1920" ph="{...}" />
+            <marker date="1539868762262" expanded="true" signature="316:1918" ph="{...}" />
+            <marker date="1539868762262" expanded="true" signature="684:1127" ph="{...}" />
+            <marker date="1539868762262" expanded="true" signature="1214:1234" ph="{...}" />
+            <marker date="1539868762262" expanded="true" signature="1281:1912" ph="{...}" />
+            <marker date="1539868762262" expanded="true" signature="1357:1889" ph="{...}" />
+            <marker date="1539868762262" expanded="true" signature="1774:1875" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/ITag.cs">
+    <entry file="file://$PROJECT_DIR$/Blazor.App/Pages/Counter.cshtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
+        <state relative-caret-position="170">
+          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
           <folding>
-            <marker date="1539859905678" expanded="true" signature="27:114" ph="{...}" />
-            <marker date="1539859905678" expanded="true" signature="55:112" ph="{...}" />
+            <marker date="1539869659858" expanded="true" signature="96:227" ph="@{...}" />
+            <marker date="1539869659858" expanded="true" signature="147:225" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/TagGroupBase.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+          <folding>
+            <marker date="1539869207697" expanded="true" signature="6:106" ph="..." />
+            <marker date="1539869207697" expanded="true" signature="135:1642" ph="{...}" />
+            <marker date="1539869207697" expanded="true" signature="167:1640" ph="{...}" />
+            <marker date="1539869207697" expanded="true" signature="354:1579" ph="{...}" />
+            <marker date="1539869207697" expanded="true" signature="518:1569" ph="{...}" />
+            <marker date="1539869207697" expanded="true" signature="916:1037" ph="{...}" />
+            <marker date="1539869207697" expanded="true" signature="1456:1555" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/Tag.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2">
+          <caret column="33" selection-start-column="33" selection-end-column="33" />
+          <folding>
+            <marker date="1539860453094" expanded="true" signature="6:47" ph="..." />
+            <marker date="1539860453094" expanded="true" signature="77:642" ph="{...}" />
+            <marker date="1539860453094" expanded="true" signature="117:640" ph="{...}" />
+            <marker date="1539860453094" expanded="true" signature="314:473" ph="{...}" />
+            <marker date="1539860453094" expanded="true" signature="367:463" ph="{...}" />
+            <marker date="1539860453094" expanded="true" signature="556:634" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/ITagArchive.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+          <folding>
+            <marker date="1539866021907" expanded="true" signature="62:266" ph="{...}" />
+            <marker date="1539866021907" expanded="true" signature="97:264" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Blazor.App/Pages/BlazorPlot.cshtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+          <folding>
+            <marker date="1539869344358" expanded="true" signature="329:692" ph="&lt;div.../&gt;" />
+            <marker date="1539869344358" expanded="true" signature="354:580" ph="&lt;div.../&gt;" />
+            <marker date="1539869344358" expanded="true" signature="384:569" ph="&lt;select.../&gt;" />
+            <marker date="1539869344358" expanded="true" signature="426:551" ph="@..." />
+            <marker date="1539869344358" expanded="true" signature="464:551" ph="{...}" />
+            <marker date="1539869344358" expanded="true" signature="585:685" ph="&lt;div.../&gt;" />
+            <marker date="1539869344358" expanded="true" signature="743:1696" ph="@{...}" />
+            <marker date="1539869344358" expanded="true" signature="793:1004" ph="{...}" />
+            <marker date="1539869344358" expanded="true" signature="850:907" ph="{...}" />
+            <marker date="1539869344358" expanded="true" signature="937:998" ph="{...}" />
+            <marker date="1539869344358" expanded="true" signature="1159:1531" ph="{...}" />
+            <marker date="1539869344358" expanded="true" signature="1588:1628" ph="{...}" />
+            <marker date="1539869344358" expanded="true" signature="1652:1693" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Blazor.App/Services/TagGroup1.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="40" column="46" lean-forward="true" selection-start-line="40" selection-start-column="46" selection-end-line="40" selection-end-column="46" />
+        <state relative-caret-position="425">
+          <caret line="28" column="77" selection-start-line="28" selection-start-column="77" selection-end-line="28" selection-end-column="77" />
           <folding>
-            <marker date="1539860322960" expanded="true" signature="6:96" ph="..." />
-            <marker date="1539860322960" expanded="true" signature="127:1292" ph="{...}" />
-            <marker date="1539860322960" expanded="true" signature="171:1290" ph="{...}" />
-            <marker date="1539860322960" expanded="true" signature="420:515" ph="{...}" />
-            <marker date="1539860322960" expanded="true" signature="585:680" ph="{...}" />
-            <marker date="1539860322960" expanded="true" signature="847:1284" ph="{...}" />
+            <marker date="1539869760997" expanded="false" signature="6:96" ph="..." />
+            <marker date="1539869760997" expanded="true" signature="127:1250" ph="{...}" />
+            <marker date="1539869760997" expanded="true" signature="171:1248" ph="{...}" />
+            <marker date="1539869760997" expanded="true" signature="417:512" ph="{...}" />
+            <marker date="1539869760997" expanded="true" signature="579:674" ph="{...}" />
+            <marker date="1539869760997" expanded="true" signature="744:860" ph="{...}" />
+            <marker date="1539869760997" expanded="true" signature="1045:1242" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/MasterScadaContext.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1012">
+          <caret line="63" column="26" lean-forward="true" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
+          <folding>
+            <marker date="1539869907821" expanded="false" signature="6:124" ph="..." />
+            <marker date="1539869907821" expanded="true" signature="174:2257" ph="{...}" />
+            <marker date="1539869907821" expanded="true" signature="231:2255" ph="{...}" />
+            <marker date="1539869907821" expanded="true" signature="268:288" ph="{...}" />
+            <marker date="1539869907821" expanded="true" signature="387:407" ph="{...}" />
+            <marker date="1539869907821" expanded="true" signature="824:1658" ph="{...}" />
+            <marker date="1539869907821" expanded="true" signature="1016:1267" ph="{...}" />
+            <marker date="1539869907821" expanded="true" signature="1333:1455" ph="{...}" />
+            <marker date="1539869907821" expanded="true" signature="1523:1646" ph="{...}" />
+            <marker date="1539869907821" expanded="true" signature="1712:2249" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://5d242487-99b9-44ca-ba19-78a86f1e240e/database/energy/schema/public/table/masterscadadataitems">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://5d242487-99b9-44ca-ba19-78a86f1e240e/database/energy/schema/public/table/masterscadadataraw">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>

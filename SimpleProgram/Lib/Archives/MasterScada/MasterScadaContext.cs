@@ -50,7 +50,7 @@ namespace SimpleProgram.Lib.Archives.MasterScada
         {
             TimeSeries values = new TimeSeries();
 
-            int itemid = (from i in masterscadadataitems
+            var itemid = (from i in masterscadadataitems
                 where i.name == name
                 select i.itemid).FirstOrDefault();
 
