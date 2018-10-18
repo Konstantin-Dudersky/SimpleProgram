@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87ff04a8-d640-472b-a0f9-f0857fefb6c4" name="Default Changelist" comment="Init">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SimpleProgram/.idea/dataSources/5d242487-99b9-44ca-ba19-78a86f1e240e.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SimpleProgram/.idea/dataSources/5d242487-99b9-44ca-ba19-78a86f1e240e.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SimpleProgram/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SimpleProgram/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SimpleProgram/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SimpleProgram/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SimpleProgram/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SimpleProgram/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/Pages/BlazorPlot.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.App/Pages/BlazorPlot.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/Pages/Counter.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.App/Pages/Counter.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Blazor.App/Services/Data.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.App/Services/Data.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Blazor.App/Services/TagGroup1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Blazor.App/Services/TagGroup1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SimpleProgram/Lib/ITagArchive.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleProgram/Lib/ITagArchive.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SimpleProgram/Lib/TagGroupBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SimpleProgram/Lib/TagGroupBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimpleProgram/.vscode/tasks.json" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -118,23 +115,43 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-485492279">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="cs" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="C#" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Blazor.App/Services/Data.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="672">
-              <caret line="61" selection-start-line="61" selection-end-line="61" />
+            <state relative-caret-position="705">
+              <caret line="59" column="17" lean-forward="true" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
               <folding>
-                <marker date="1539868762262" expanded="true" signature="6:254" ph="..." />
-                <marker date="1539868762262" expanded="true" signature="285:1920" ph="{...}" />
-                <marker date="1539868762262" expanded="true" signature="316:1918" ph="{...}" />
-                <marker date="1539868762262" expanded="true" signature="684:1127" ph="{...}" />
-                <marker date="1539868762262" expanded="true" signature="1214:1234" ph="{...}" />
-                <marker date="1539868762262" expanded="true" signature="1281:1912" ph="{...}" />
-                <marker date="1539868762262" expanded="true" signature="1357:1889" ph="{...}" />
-                <marker date="1539868762262" expanded="true" signature="1774:1875" ph="{...}" />
+                <marker date="1539883737948" expanded="false" signature="6:254" ph="..." />
+                <marker date="1539883737948" expanded="true" signature="285:1907" ph="{...}" />
+                <marker date="1539883737948" expanded="true" signature="316:1905" ph="{...}" />
+                <marker date="1539883737948" expanded="true" signature="684:1127" ph="{...}" />
+                <marker date="1539883737948" expanded="true" signature="1214:1234" ph="{...}" />
+                <marker date="1539883737948" expanded="true" signature="1281:1899" ph="{...}" />
+                <marker date="1539883737948" expanded="true" signature="1357:1889" ph="{...}" />
+                <marker date="1539883737948" expanded="true" signature="1774:1875" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -143,12 +160,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Blazor.App/Pages/Counter.cshtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
+            <state relative-caret-position="160">
               <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-              <folding>
-                <marker date="1539869659858" expanded="true" signature="96:227" ph="@{...}" />
-                <marker date="1539869659858" expanded="true" signature="147:225" ph="{...}" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -156,17 +169,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Blazor.App/Services/TagGroup1.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
+            <state relative-caret-position="448">
               <caret line="28" column="77" selection-start-line="28" selection-start-column="77" selection-end-line="28" selection-end-column="77" />
-              <folding>
-                <marker date="1539869760997" expanded="false" signature="6:96" ph="..." />
-                <marker date="1539869760997" expanded="true" signature="127:1250" ph="{...}" />
-                <marker date="1539869760997" expanded="true" signature="171:1248" ph="{...}" />
-                <marker date="1539869760997" expanded="true" signature="417:512" ph="{...}" />
-                <marker date="1539869760997" expanded="true" signature="579:674" ph="{...}" />
-                <marker date="1539869760997" expanded="true" signature="744:860" ph="{...}" />
-                <marker date="1539869760997" expanded="true" signature="1045:1242" ph="{...}" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -174,25 +178,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/MasterScadaContext.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1012">
-              <caret line="63" column="26" lean-forward="true" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
-              <folding>
-                <marker date="1539869907821" expanded="false" signature="6:124" ph="..." />
-                <marker date="1539869907821" expanded="true" signature="174:2257" ph="{...}" />
-                <marker date="1539869907821" expanded="true" signature="231:2255" ph="{...}" />
-                <marker date="1539869907821" expanded="true" signature="268:288" ph="{...}" />
-                <marker date="1539869907821" expanded="true" signature="387:407" ph="{...}" />
-                <marker date="1539869907821" expanded="true" signature="824:1658" ph="{...}" />
-                <marker date="1539869907821" expanded="true" signature="1016:1267" ph="{...}" />
-                <marker date="1539869907821" expanded="true" signature="1333:1455" ph="{...}" />
-                <marker date="1539869907821" expanded="true" signature="1523:1646" ph="{...}" />
-                <marker date="1539869907821" expanded="true" signature="1712:2249" ph="{...}" />
-              </folding>
+            <state relative-caret-position="1008">
+              <caret line="63" column="26" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="das://5d242487-99b9-44ca-ba19-78a86f1e240e/database/energy/schema/public/table/masterscadadataraw">
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
@@ -204,23 +196,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Blazor.App/Pages/BlazorPlot.cshtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
+            <state relative-caret-position="496">
               <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
-              <folding>
-                <marker date="1539869344358" expanded="true" signature="329:692" ph="&lt;div.../&gt;" />
-                <marker date="1539869344358" expanded="true" signature="354:580" ph="&lt;div.../&gt;" />
-                <marker date="1539869344358" expanded="true" signature="384:569" ph="&lt;select.../&gt;" />
-                <marker date="1539869344358" expanded="true" signature="426:551" ph="@..." />
-                <marker date="1539869344358" expanded="true" signature="464:551" ph="{...}" />
-                <marker date="1539869344358" expanded="true" signature="585:685" ph="&lt;div.../&gt;" />
-                <marker date="1539869344358" expanded="true" signature="743:1696" ph="@{...}" />
-                <marker date="1539869344358" expanded="true" signature="793:1004" ph="{...}" />
-                <marker date="1539869344358" expanded="true" signature="850:907" ph="{...}" />
-                <marker date="1539869344358" expanded="true" signature="937:998" ph="{...}" />
-                <marker date="1539869344358" expanded="true" signature="1159:1531" ph="{...}" />
-                <marker date="1539869344358" expanded="true" signature="1588:1628" ph="{...}" />
-                <marker date="1539869344358" expanded="true" signature="1652:1693" ph="{...}" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -231,35 +208,30 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/masterscadaproperties.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Blazor.App/Services/Data.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Documents/GitHub/SimpleProgram/Lib/TagGroupBase.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Blazor.App/Services/TagGroup1.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Documents/GitHub/SimpleProgram/Lib/Archives/Archive.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6DADD22E-0197-42CE-80AA-EFEF99855BE0/c8/baa03cfb/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/ITagArchive.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Blazor.App/Startup.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/BlazorPlot.g.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Blazor.App/App.cshtml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/_ViewImports.g.i.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Blazor.App/_ViewImports.cshtml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Tag.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Blazor.App/Pages/FetchData.cshtml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/TagGroupBase.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Blazor.App/Pages/BlazorPlot.cshtml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/TimeValue.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Blazor.App/Pages/Index.cshtml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/TimeSeries.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Blazor.App/Pages/Counter.cshtml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/Archive.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Blazor.Server/Startup.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/IDbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Blazor.App/Shared/MainLayout.cshtml" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/masterscadadataitems.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/MasterScadaContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/masterscadaprojects.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Blazor.App/Pages/Counter.cshtml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Blazor.Server/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Blazor.App/Pages/Index.cshtml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Blazor.App/Pages/BlazorPlot.cshtml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Blazor.Server/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Blazor.App/Pages/FetchData.cshtml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/masterscadaproperties.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Blazor.App/_ViewImports.cshtml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/masterscadadataraw.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/masterscadaprojects.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/MasterScadaContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/masterscadadataitems.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/TagGroupBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/IDbContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/ITagArchive.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/Archive.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Blazor.App/App.cshtml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Tag.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/TimeSeries.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/TimeValue.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Blazor.App/Startup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Blazor.App/Services/TagGroup1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Blazor.App/Services/Data.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -282,11 +254,11 @@
         <option value="$PROJECT_DIR$/SimpleProgram/Lib/DataBase.cs" />
         <option value="$PROJECT_DIR$/SimpleProgram/Lib/Tag.cs" />
         <option value="$PROJECT_DIR$/SimpleProgram/Lib/ITagArchive.cs" />
-        <option value="$PROJECT_DIR$/Blazor.App/Services/Data.cs" />
         <option value="$PROJECT_DIR$/SimpleProgram/Lib/TagGroupBase.cs" />
         <option value="$PROJECT_DIR$/Blazor.App/Pages/BlazorPlot.cshtml" />
         <option value="$PROJECT_DIR$/Blazor.App/Services/TagGroup1.cs" />
         <option value="$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/MasterScadaContext.cs" />
+        <option value="$PROJECT_DIR$/Blazor.App/Services/Data.cs" />
       </list>
     </option>
   </component>
@@ -297,8 +269,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="295" />
-    <option name="y" value="16" />
+    <option name="x" value="322" />
+    <option name="y" value="22" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -324,7 +296,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="FileSystemExplorer" />
       <pane id="SolutionExplorer">
         <subPane>
           <expand>
@@ -336,12 +307,6 @@
               <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
               <item name="SimpleProgram" type="24d0babc:SolutionExplorerModelNode" />
               <item name="Blazor.App" type="24d0babc:SolutionExplorerModelNode" />
-            </path>
-            <path>
-              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
-              <item name="SimpleProgram" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Blazor.App" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Pages" type="24d0babc:SolutionExplorerModelNode" />
             </path>
             <path>
               <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
@@ -360,26 +325,12 @@
               <item name="SimpleProgram" type="24d0babc:SolutionExplorerModelNode" />
               <item name="Lib" type="24d0babc:SolutionExplorerModelNode" />
             </path>
-            <path>
-              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
-              <item name="SimpleProgram" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="SimpleProgram" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Lib" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Archives" type="24d0babc:SolutionExplorerModelNode" />
-            </path>
-            <path>
-              <item name="Project" type="784c90a0:SolutionExplorerRootNode" />
-              <item name="SimpleProgram" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="SimpleProgram" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Lib" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Archives" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="MasterScada" type="24d0babc:SolutionExplorerModelNode" />
-            </path>
           </expand>
           <select />
         </subPane>
         <option name="show-all-files" value="false" />
       </pane>
+      <pane id="FileSystemExplorer" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -390,7 +341,7 @@
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Blazor.App/Blazor.App.csproj" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -447,6 +398,8 @@
       <option name="presentableId" value="Default" />
       <updated>1539841160339</updated>
       <workItem from="1539841162705" duration="24428000" />
+      <workItem from="1539881620682" duration="2003000" />
+      <workItem from="1539886382314" duration="643000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <created>1539857688836</created>
@@ -459,7 +412,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24428000" />
+    <option name="totallyTimeSpent" value="27074000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -474,19 +427,9 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15831557" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14925373" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="NuGet" weight="0.3856813" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Inspection Results" weight="0.329718" />
-      <window_info anchor="bottom" id="Unit Tests" />
-      <window_info anchor="bottom" id="Database Console" weight="0.329718" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Event Log" sideWeight="0.50053304" side_tool="true" weight="0.329718" />
-      <window_info anchor="bottom" id="Build" weight="0.2646421" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49946696" weight="0.329718" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.329718" />
@@ -494,23 +437,37 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Errors In Solution" weight="0.25426438" />
-      <window_info active="true" anchor="right" id="Database" visible="true" weight="0.23667377" />
-      <window_info anchor="right" id="Unit Tests Coverage" />
+      <window_info anchor="bottom" id="NuGet" order="7" weight="0.3856813" />
+      <window_info anchor="bottom" id="Database Console" order="8" weight="0.329718" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="11" />
+      <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.329718" />
+      <window_info anchor="bottom" id="Unit Tests" order="13" />
+      <window_info anchor="bottom" id="Terminal" order="14" />
+      <window_info anchor="bottom" id="Event Log" order="15" sideWeight="0.50053304" side_tool="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Build" order="16" weight="0.27223426" />
+      <window_info anchor="bottom" id="REST Client" order="17" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Errors In Solution" order="3" weight="0.25426438" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.17857143" />
+      <window_info anchor="right" id="Unit Tests Coverage" order="5" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/SimpleProgram" />
+    </ignored-roots>
     <MESSAGE value="Init" />
     <option name="LAST_COMMIT_MESSAGE" value="Init" />
   </component>
@@ -525,56 +482,14 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Documents/GitHub/SimpleProgram/Lib/TagGroupBase.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="30" selection-start-column="30" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lib/Class1.cs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lib/Archives/Archive.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="52" column="1" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Documents/GitHub/SimpleProgram/Lib/Archives/Archive.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <marker date="1539785127232" expanded="false" signature="6:69" ph="..." />
-            <marker date="1539785127232" expanded="true" signature="107:1412" ph="{...}" />
-            <marker date="1539785127232" expanded="true" signature="135:170" ph="{...}" />
-            <marker date="1539785127232" expanded="true" signature="209:1410" ph="{...}" />
-            <marker date="1539785127232" expanded="false" signature="224:466" ph="Private Properties" />
-            <marker date="1539785127232" expanded="false" signature="478:1404" ph="Public Methods" />
-            <marker date="1539785127232" expanded="true" signature="554:622" ph="{...}" />
-            <marker date="1539785127232" expanded="true" signature="743:1369" ph="{...}" />
-            <marker date="1539785127232" expanded="true" signature="971:1239" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Documents/GitHub/SimpleProgram/Lib/TagGroupBase.cs" />
+    <entry file="file://$PROJECT_DIR$/Lib/Class1.cs" />
+    <entry file="file://$PROJECT_DIR$/Lib/Archives/Archive.cs" />
+    <entry file="file://$USER_HOME$/Documents/GitHub/SimpleProgram/Lib/Archives/Archive.cs" />
     <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/Archive.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <marker date="1539842301849" expanded="true" signature="6:50" ph="..." />
-            <marker date="1539842301849" expanded="true" signature="88:1383" ph="{...}" />
-            <marker date="1539842301849" expanded="true" signature="116:151" ph="{...}" />
-            <marker date="1539842301849" expanded="true" signature="190:1381" ph="{...}" />
-            <marker date="1539842301849" expanded="true" signature="205:447" ph="Private Properties" />
-            <marker date="1539842301849" expanded="true" signature="458:1375" ph="Public Methods" />
-            <marker date="1539842301849" expanded="true" signature="534:602" ph="{...}" />
-            <marker date="1539842301849" expanded="true" signature="715:1340" ph="{...}" />
-            <marker date="1539842301849" expanded="true" signature="943:1211" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -582,10 +497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="48" selection-start-line="2" selection-start-column="48" selection-end-line="2" selection-end-column="48" />
-          <folding>
-            <marker date="1539842492176" expanded="true" signature="94:265" ph="{...}" />
-            <marker date="1539842492176" expanded="true" signature="133:263" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -593,11 +504,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
-          <folding>
-            <marker date="1539842400750" expanded="false" signature="6:92" ph="..." />
-            <marker date="1539842400750" expanded="true" signature="142:359" ph="{...}" />
-            <marker date="1539842400750" expanded="true" signature="183:357" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -605,10 +511,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-          <folding>
-            <marker date="1539842454359" expanded="true" signature="48:434" ph="{...}" />
-            <marker date="1539842454359" expanded="true" signature="86:432" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -616,10 +518,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-          <folding>
-            <marker date="1539842492376" expanded="true" signature="95:517" ph="{...}" />
-            <marker date="1539842492376" expanded="true" signature="135:515" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -627,10 +525,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-          <folding>
-            <marker date="1539842180535" expanded="true" signature="36:131" ph="{...}" />
-            <marker date="1539842180535" expanded="true" signature="70:129" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -645,17 +539,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="219">
           <caret line="13" column="50" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
-          <folding>
-            <marker date="1539417684000" expanded="true" signature="6:251" ph="..." />
-            <marker date="1539417684000" expanded="true" signature="276:1611" ph="{...}" />
-            <marker date="1539417684000" expanded="true" signature="303:1609" ph="{...}" />
-            <marker date="1539417684000" expanded="true" signature="318:533" ph="/* This method gets called by the runtime. Use this method to add services to the container. ... */" />
-            <marker date="1539417684000" expanded="true" signature="600:1103" ph="{...}" />
-            <marker date="1539417684000" expanded="true" signature="827:1091" ph="{...}" />
-            <marker date="1539417684000" expanded="true" signature="945:1075" ph="{...}" />
-            <marker date="1539417684000" expanded="true" signature="1291:1603" ph="{...}" />
-            <marker date="1539417684000" expanded="true" signature="1381:1458" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -666,9 +549,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <marker date="1539417680000" expanded="true" signature="0:151" ph="&lt;!--...--&gt;" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -676,12 +556,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <marker date="1539842192935" expanded="true" signature="51:412" ph="{...}" />
-            <marker date="1539842192935" expanded="true" signature="80:410" ph="{...}" />
-            <marker date="1539842192935" expanded="true" signature="218:290" ph="{...}" />
-            <marker date="1539842192935" expanded="true" signature="333:404" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -689,49 +563,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" selection-start-line="23" selection-end-line="23" />
-          <folding>
-            <marker date="1539842240652" expanded="true" signature="6:85" ph="..." />
-            <marker date="1539842240652" expanded="true" signature="123:928" ph="{...}" />
-            <marker date="1539842240652" expanded="true" signature="153:926" ph="{...}" />
-            <marker date="1539842240652" expanded="true" signature="450:509" ph="{...}" />
-            <marker date="1539842240652" expanded="true" signature="574:639" ph="{...}" />
-            <marker date="1539842240652" expanded="true" signature="682:920" ph="{...}" />
-            <marker date="1539842240652" expanded="true" signature="792:871" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/_ViewImports.g.i.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="24" column="64" selection-start-line="24" selection-start-column="64" selection-end-line="24" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/_ViewImports.g.i.cs" />
     <entry file="file://$PROJECT_DIR$/Blazor.App/Shared/MainLayout.cshtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <marker date="1539524812000" expanded="true" signature="60:104" ph="&lt;div.../&gt;" />
-            <marker date="1539524812000" expanded="true" signature="106:312" ph="&lt;div.../&gt;" />
-            <marker date="1539524812000" expanded="true" signature="129:248" ph="&lt;div.../&gt;" />
-            <marker date="1539524812000" expanded="true" signature="254:305" ph="&lt;div.../&gt;" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Blazor.App/Startup.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
-          <folding>
-            <marker date="1539605041658" expanded="true" signature="6:117" ph="..." />
-            <marker date="1539605041658" expanded="true" signature="139:611" ph="{...}" />
-            <marker date="1539605041658" expanded="true" signature="166:609" ph="{...}" />
-            <marker date="1539605041658" expanded="true" signature="239:450" ph="{...}" />
-            <marker date="1539605041658" expanded="true" signature="262:379" ph="/* Since Blazor is running on the server, we can use an application service ... */" />
-            <marker date="1539605041658" expanded="true" signature="512:603" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -743,25 +585,21 @@
           <nodes />
           <notes />
           <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="454.5" y="251.5" />
+          <settings layout="Hierarchic Group" zoom="1.0" x="455.0" y="252.0" />
           <SelectedNodes />
           <Categories>
             <Category>Key columns</Category>
             <Category>Columns</Category>
           </Categories>
+          <SCOPE>All</SCOPE>
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/5d242487-99b9-44ca-ba19-78a86f1e240e/console.sql">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/5d242487-99b9-44ca-ba19-78a86f1e240e/console.sql" />
     <entry file="file://$PROJECT_DIR$/Blazor.App/_ViewImports.cshtml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <marker date="1539843492136" expanded="true" signature="7:237" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -769,35 +607,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-          <folding>
-            <marker date="1539869296249" expanded="true" signature="6:123" ph="..." />
-            <marker date="1539869296249" expanded="true" signature="148:735" ph="{...}" />
-            <marker date="1539869296249" expanded="true" signature="175:733" ph="{...}" />
-            <marker date="1539869296249" expanded="true" signature="228:286" ph="{...}" />
-            <marker date="1539869296249" expanded="true" signature="607:700" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Blazor.App/Pages/FetchData.cshtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <marker date="1539417680000" expanded="true" signature="188:863" ph="@..." />
-            <marker date="1539417680000" expanded="true" signature="211:246" ph="{...}" />
-            <marker date="1539417680000" expanded="true" signature="251:863" ph="{...}" />
-            <marker date="1539417680000" expanded="true" signature="258:861" ph="&lt;table.../&gt;" />
-            <marker date="1539417680000" expanded="true" signature="288:480" ph="&lt;thead.../&gt;" />
-            <marker date="1539417680000" expanded="true" signature="308:463" ph="&lt;tr.../&gt;" />
-            <marker date="1539417680000" expanded="true" signature="489:848" ph="&lt;tbody.../&gt;" />
-            <marker date="1539417680000" expanded="true" signature="509:831" ph="@..." />
-            <marker date="1539417680000" expanded="true" signature="545:831" ph="{...}" />
-            <marker date="1539417680000" expanded="true" signature="576:817" ph="&lt;tr.../&gt;" />
-            <marker date="1539417680000" expanded="true" signature="865:1047" ph="@{...}" />
-            <marker date="1539417680000" expanded="true" signature="959:1045" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Blazor.App/Pages/Index.cshtml">
       <provider selected="true" editor-type-id="text-editor">
@@ -806,103 +620,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6DADD22E-0197-42CE-80AA-EFEF99855BE0/c8/baa03cfb/Dictionary`2.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="64" column="18" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimpleProgram/Class1.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/TagArray.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="12" column="46" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/ITag.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="43" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/DataBase.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/BlazorPlot.g.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="66" column="162" selection-start-line="66" selection-start-column="162" selection-end-line="66" selection-end-column="162" />
-          <folding>
-            <marker date="1539869764919" expanded="true" signature="6330:6495" ph="{...}" />
-            <marker date="1539869764919" expanded="false" signature="275:767" ph="..." />
-            <marker date="1539869764919" expanded="true" signature="6330:6493" ph="{...}" />
-            <marker date="1539869764919" expanded="true" signature="3648:5296" ph="{...}" />
-            <marker date="1539869764919" expanded="true" signature="3846:4267" ph="{...}" />
-            <marker date="1539869764919" expanded="true" signature="5461:5672" ph="{...}" />
-            <marker date="1539869764919" expanded="true" signature="5518:5575" ph="{...}" />
-            <marker date="1539869764919" expanded="true" signature="5605:5666" ph="{...}" />
-            <marker date="1539869764919" expanded="true" signature="5827:6195" ph="{...}" />
-            <marker date="1539869764919" expanded="true" signature="6424:6431" ph="{...}" />
-            <marker date="1539869764919" expanded="true" signature="6353:6393" ph="{...}" />
-            <marker date="1539869764919" expanded="true" signature="6417:6458" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Blazor.App/Services/Data.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
-          <folding>
-            <marker date="1539868762262" expanded="true" signature="6:254" ph="..." />
-            <marker date="1539868762262" expanded="true" signature="285:1920" ph="{...}" />
-            <marker date="1539868762262" expanded="true" signature="316:1918" ph="{...}" />
-            <marker date="1539868762262" expanded="true" signature="684:1127" ph="{...}" />
-            <marker date="1539868762262" expanded="true" signature="1214:1234" ph="{...}" />
-            <marker date="1539868762262" expanded="true" signature="1281:1912" ph="{...}" />
-            <marker date="1539868762262" expanded="true" signature="1357:1889" ph="{...}" />
-            <marker date="1539868762262" expanded="true" signature="1774:1875" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Blazor.App/Pages/Counter.cshtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-          <folding>
-            <marker date="1539869659858" expanded="true" signature="96:227" ph="@{...}" />
-            <marker date="1539869659858" expanded="true" signature="147:225" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6DADD22E-0197-42CE-80AA-EFEF99855BE0/c8/baa03cfb/Dictionary`2.cs" />
+    <entry file="file://$PROJECT_DIR$/SimpleProgram/Class1.cs" />
+    <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/TagArray.cs" />
+    <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/ITag.cs" />
+    <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/DataBase.cs" />
+    <entry file="file://$PROJECT_DIR$/Blazor.App/obj/Debug/netstandard2.0/Pages/BlazorPlot.g.cs" />
     <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/TagGroupBase.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="451">
           <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
-          <folding>
-            <marker date="1539869207697" expanded="true" signature="6:106" ph="..." />
-            <marker date="1539869207697" expanded="true" signature="135:1642" ph="{...}" />
-            <marker date="1539869207697" expanded="true" signature="167:1640" ph="{...}" />
-            <marker date="1539869207697" expanded="true" signature="354:1579" ph="{...}" />
-            <marker date="1539869207697" expanded="true" signature="518:1569" ph="{...}" />
-            <marker date="1539869207697" expanded="true" signature="916:1037" ph="{...}" />
-            <marker date="1539869207697" expanded="true" signature="1456:1555" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -910,14 +637,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2">
           <caret column="33" selection-start-column="33" selection-end-column="33" />
-          <folding>
-            <marker date="1539860453094" expanded="true" signature="6:47" ph="..." />
-            <marker date="1539860453094" expanded="true" signature="77:642" ph="{...}" />
-            <marker date="1539860453094" expanded="true" signature="117:640" ph="{...}" />
-            <marker date="1539860453094" expanded="true" signature="314:473" ph="{...}" />
-            <marker date="1539860453094" expanded="true" signature="367:463" ph="{...}" />
-            <marker date="1539860453094" expanded="true" signature="556:634" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -925,67 +644,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
-          <folding>
-            <marker date="1539866021907" expanded="true" signature="62:266" ph="{...}" />
-            <marker date="1539866021907" expanded="true" signature="97:264" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Blazor.App/Pages/BlazorPlot.cshtml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
-          <folding>
-            <marker date="1539869344358" expanded="true" signature="329:692" ph="&lt;div.../&gt;" />
-            <marker date="1539869344358" expanded="true" signature="354:580" ph="&lt;div.../&gt;" />
-            <marker date="1539869344358" expanded="true" signature="384:569" ph="&lt;select.../&gt;" />
-            <marker date="1539869344358" expanded="true" signature="426:551" ph="@..." />
-            <marker date="1539869344358" expanded="true" signature="464:551" ph="{...}" />
-            <marker date="1539869344358" expanded="true" signature="585:685" ph="&lt;div.../&gt;" />
-            <marker date="1539869344358" expanded="true" signature="743:1696" ph="@{...}" />
-            <marker date="1539869344358" expanded="true" signature="793:1004" ph="{...}" />
-            <marker date="1539869344358" expanded="true" signature="850:907" ph="{...}" />
-            <marker date="1539869344358" expanded="true" signature="937:998" ph="{...}" />
-            <marker date="1539869344358" expanded="true" signature="1159:1531" ph="{...}" />
-            <marker date="1539869344358" expanded="true" signature="1588:1628" ph="{...}" />
-            <marker date="1539869344358" expanded="true" signature="1652:1693" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Blazor.App/Services/TagGroup1.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="28" column="77" selection-start-line="28" selection-start-column="77" selection-end-line="28" selection-end-column="77" />
-          <folding>
-            <marker date="1539869760997" expanded="false" signature="6:96" ph="..." />
-            <marker date="1539869760997" expanded="true" signature="127:1250" ph="{...}" />
-            <marker date="1539869760997" expanded="true" signature="171:1248" ph="{...}" />
-            <marker date="1539869760997" expanded="true" signature="417:512" ph="{...}" />
-            <marker date="1539869760997" expanded="true" signature="579:674" ph="{...}" />
-            <marker date="1539869760997" expanded="true" signature="744:860" ph="{...}" />
-            <marker date="1539869760997" expanded="true" signature="1045:1242" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/MasterScadaContext.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1012">
-          <caret line="63" column="26" lean-forward="true" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
-          <folding>
-            <marker date="1539869907821" expanded="false" signature="6:124" ph="..." />
-            <marker date="1539869907821" expanded="true" signature="174:2257" ph="{...}" />
-            <marker date="1539869907821" expanded="true" signature="231:2255" ph="{...}" />
-            <marker date="1539869907821" expanded="true" signature="268:288" ph="{...}" />
-            <marker date="1539869907821" expanded="true" signature="387:407" ph="{...}" />
-            <marker date="1539869907821" expanded="true" signature="824:1658" ph="{...}" />
-            <marker date="1539869907821" expanded="true" signature="1016:1267" ph="{...}" />
-            <marker date="1539869907821" expanded="true" signature="1333:1455" ph="{...}" />
-            <marker date="1539869907821" expanded="true" signature="1523:1646" ph="{...}" />
-            <marker date="1539869907821" expanded="true" signature="1712:2249" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -996,10 +654,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Blazor.App/Services/Data.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="59" column="17" lean-forward="true" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
+          <folding>
+            <marker date="1539883737948" expanded="false" signature="6:254" ph="..." />
+            <marker date="1539883737948" expanded="true" signature="285:1907" ph="{...}" />
+            <marker date="1539883737948" expanded="true" signature="316:1905" ph="{...}" />
+            <marker date="1539883737948" expanded="true" signature="684:1127" ph="{...}" />
+            <marker date="1539883737948" expanded="true" signature="1214:1234" ph="{...}" />
+            <marker date="1539883737948" expanded="true" signature="1281:1899" ph="{...}" />
+            <marker date="1539883737948" expanded="true" signature="1357:1889" ph="{...}" />
+            <marker date="1539883737948" expanded="true" signature="1774:1875" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Blazor.App/Pages/Counter.cshtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Blazor.App/Services/TagGroup1.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="28" column="77" selection-start-line="28" selection-start-column="77" selection-end-line="28" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimpleProgram/Lib/Archives/MasterScada/MasterScadaContext.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1008">
+          <caret line="63" column="26" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="das://5d242487-99b9-44ca-ba19-78a86f1e240e/database/energy/schema/public/table/masterscadadataraw">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Blazor.App/Pages/BlazorPlot.cshtml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
         </state>
       </provider>
     </entry>

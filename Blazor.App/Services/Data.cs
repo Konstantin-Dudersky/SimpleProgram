@@ -61,7 +61,6 @@ namespace Blazor.App.Services
                     TagArchives.Add(archive.Key, archive.Value);
                 }
             }
-            
         }
     }
 }
