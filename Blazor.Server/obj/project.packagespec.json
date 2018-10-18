@@ -1,0 +1,61 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "E:\\SimpleProgram\\SimpleProgram\\Blazor.Server\\Blazor.Server.csproj",
+    "projectName": "Blazor.Server",
+    "projectPath": "E:\\SimpleProgram\\SimpleProgram\\Blazor.Server\\Blazor.Server.csproj",
+    "outputPath": "E:\\SimpleProgram\\SimpleProgram\\Blazor.Server\\obj\\",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.1"
+    ],
+    "frameworks": {
+      "netcoreapp2.1": {
+        "projectReferences": {
+          "E:\\SimpleProgram\\SimpleProgram\\Blazor.App\\Blazor.App.csproj": {
+            "projectPath": "E:\\SimpleProgram\\SimpleProgram\\Blazor.App\\Blazor.App.csproj"
+          }
+        }
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.1": {
+      "dependencies": {
+        "Microsoft.AspNetCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.1.1, )",
+          "autoReferenced": true
+        },
+        "Microsoft.AspNetCore.Blazor.Server": {
+          "target": "Package",
+          "version": "[0.6.0, )"
+        },
+        "Microsoft.AspNetCore.Razor.Design": {
+          "target": "Package",
+          "version": "[2.1.2, )"
+        },
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.1.0, )",
+          "autoReferenced": true
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

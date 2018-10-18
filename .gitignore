@@ -1,0 +1,12 @@
+
+Blazor\.App/bin/
+
+Blazor\.App/obj/
+
+Blazor\.Server/obj/
+
+Blazor\.Server/bin/
+
+SimpleProgram/bin/
+
+SimpleProgram/obj/
