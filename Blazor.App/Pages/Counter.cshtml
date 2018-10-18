@@ -1,0 +1,14 @@
+﻿@page "/counter"
+
+@using Blazor.App.Services
+
+<BlazorPlot Counter="@Data.TagGroup1.archiveTag1"/>
+
+@functions { 
+
+    protected override void OnInit()
+    {
+        base.OnInit();
+        Data.OnRefresh += StateHasChanged;
+    }
+}

@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <title>Blazor</title>
+    <base href="/" />
+    <!--<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />-->
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="foundation/css/foundation.css" rel="stylesheet"/>
+    <script src="plotly.js/plotly.min.js"></script>
+</head>
+<body>
+    <app>Loading...</app>
+
+    <script src="_framework/blazor.server.js"></script>
+
+    <script>
+        window.plotlyhelpers = {
+            react: function (id, obj) {
+                Plotly.react(id, obj);
+                return true;
+            }
+        };
+    </script>
+    <script src="jquery/jquery.min.js"></script>
+    <script src="foundation/js/foundation.min.js"></script>
+    <script>
+        $(document).foundation();
+    </script>
+
+</body>
+</html>

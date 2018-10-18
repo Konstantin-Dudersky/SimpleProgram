@@ -1,0 +1,61 @@
+﻿@using Blazor.App.Services
+
+<h1>Counter</h1>
+
+<input type="number" bind="@Counter.Value" />
+
+<button class="button" onclick="@Prompt">Click me</button>
+
+<button class="button" onclick="@On">on</button>
+<button class="button" onclick="@Off">off</button>
+<span class="@((State.Value ? "success" : "secondary")) label">label</span>
+
+
+
+<div id="tester" style="height:400px;"></div>
+
+@functions { 
+    protected override void OnInit()
+    {
+        base.OnInit();
+
+        if (State is null)
+        {
+            State = new Tag<bool>();
+        }
+
+        if (Counter is null)
+        {
+            Counter = new Tag<double>();
+        }
+    }
+
+    [Parameter]
+    private Tag<bool> State { get; set; }
+
+    [Parameter]
+    private Tag<double> Counter { get; set; }
+
+    public Task<bool> Prompt()
+    {
+        Plot<string, double> plot = new Plot<string, double>();
+
+        TimeSeries timeSeries = Data.TagGroup1.archiveTag1.GetTimeSeries();
+
+        plot.data[0].x = timeSeries.Times.Select(x => x.ToString()).ToList();
+        plot.data[0].y = timeSeries.Values;
+
+        return JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", "tester", plot);
+    }
+
+    public void On()
+    {
+        State.Value = true;
+    }
+
+    public void Off()
+    {
+        State.Value = false;
+    }
+
+}

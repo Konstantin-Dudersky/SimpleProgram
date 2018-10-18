@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\admin\.Rider2018.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\admin\.Rider2018.2\system\resharper-host\local\Transient\ReSharperHost\v182\SolutionCaches\_SimpleProgram.992090289.00" t="ExcludeRecursive" />
+    <e p="E:\SimpleProgram\SimpleProgram" t="IncludeFlat">
+      <e p="Blazor.App" t="IncludeRecursive">
+        <e p="_ViewImports.cshtml" t="Include" />
+        <e p="App.cshtml" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Blazor.App.csproj" t="IncludeRecursive" />
+        <e p="libman.json" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.0" t="Include">
+              <e p="Blazor.App.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Pages" t="Include">
+          <e p="_ViewImports.cshtml" t="Include" />
+          <e p="BlazorPlot.cshtml" t="Include" />
+          <e p="Counter.cshtml" t="Include" />
+          <e p="FetchData.cshtml" t="Include" />
+          <e p="Index.cshtml" t="Include" />
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Services" t="Include">
+          <e p="Data.cs" t="Include" />
+          <e p="Plot.cs" t="Include" />
+          <e p="TagGroup1.cs" t="Include" />
+          <e p="WeatherForecast.cs" t="Include" />
+          <e p="WeatherForecastService.cs" t="Include" />
+        </e>
+        <e p="shared" t="Include">
+          <e p="MainLayout.cshtml" t="Include" />
+          <e p="NavMenu.cshtml" t="Include" />
+          <e p="SurveyPrompt.cshtml" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="wwwroot" t="Include">
+          <e p="css" t="Include">
+            <e p="bootstrap" t="Include">
+              <e p="bootstrap.min.css" t="Include" />
+              <e p="bootstrap.min.css.map" t="Include" />
+            </e>
+            <e p="open-iconic" t="Include">
+              <e p="font" t="Include">
+                <e p="css" t="Include">
+                  <e p="open-iconic-bootstrap.min.css" t="Include" />
+                </e>
+                <e p="fonts" t="Include">
+                  <e p="open-iconic.eot" t="Include" />
+                  <e p="open-iconic.otf" t="Include" />
+                  <e p="open-iconic.svg" t="Include" />
+                  <e p="open-iconic.ttf" t="Include" />
+                  <e p="open-iconic.woff" t="Include" />
+                </e>
+              </e>
+              <e p="FONT-LICENSE" t="Include" />
+              <e p="ICON-LICENSE" t="Include" />
+              <e p="README.md" t="Include" />
+            </e>
+            <e p="site.css" t="Include" />
+          </e>
+          <e p="foundation" t="Include">
+            <e p="css" t="Include">
+              <e p="foundation-float.css" t="Include" />
+              <e p="foundation-float.min.css" t="Include" />
+              <e p="foundation-prototype.css" t="Include" />
+              <e p="foundation-prototype.min.css" t="Include" />
+              <e p="foundation-rtl.css" t="Include" />
+              <e p="foundation-rtl.min.css" t="Include" />
+              <e p="foundation.css" t="Include" />
+              <e p="foundation.min.css" t="Include" />
+            </e>
+            <e p="js" t="Include">
+              <e p="foundation.js" t="Include" />
+              <e p="foundation.min.js" t="Include" />
+              <e p="plugins" t="Include">
+                <e p="foundation.abide.js" t="Include" />
+                <e p="foundation.abide.min.js" t="Include" />
+                <e p="foundation.accordion.js" t="Include" />
+                <e p="foundation.accordion.min.js" t="Include" />
+                <e p="foundation.accordionMenu.js" t="Include" />
+                <e p="foundation.accordionMenu.min.js" t="Include" />
+                <e p="foundation.core.js" t="Include" />
+                <e p="foundation.core.min.js" t="Include" />
+                <e p="foundation.drilldown.js" t="Include" />
+                <e p="foundation.drilldown.min.js" t="Include" />
+                <e p="foundation.dropdown.js" t="Include" />
+                <e p="foundation.dropdown.min.js" t="Include" />
+                <e p="foundation.dropdownMenu.js" t="Include" />
+                <e p="foundation.dropdownMenu.min.js" t="Include" />
+                <e p="foundation.equalizer.js" t="Include" />
+                <e p="foundation.equalizer.min.js" t="Include" />
+                <e p="foundation.interchange.js" t="Include" />
+                <e p="foundation.interchange.min.js" t="Include" />
+                <e p="foundation.magellan.js" t="Include" />
+                <e p="foundation.magellan.min.js" t="Include" />
+                <e p="foundation.offcanvas.js" t="Include" />
+                <e p="foundation.offcanvas.min.js" t="Include" />
+                <e p="foundation.orbit.js" t="Include" />
+                <e p="foundation.orbit.min.js" t="Include" />
+                <e p="foundation.responsiveAccordionTabs.js" t="Include" />
+                <e p="foundation.responsiveAccordionTabs.min.js" t="Include" />
+                <e p="foundation.responsiveMenu.js" t="Include" />
+                <e p="foundation.responsiveMenu.min.js" t="Include" />
+                <e p="foundation.responsiveToggle.js" t="Include" />
+                <e p="foundation.responsiveToggle.min.js" t="Include" />
+                <e p="foundation.reveal.js" t="Include" />
+                <e p="foundation.reveal.min.js" t="Include" />
+                <e p="foundation.slider.js" t="Include" />
+                <e p="foundation.slider.min.js" t="Include" />
+                <e p="foundation.smoothScroll.js" t="Include" />
+                <e p="foundation.smoothScroll.min.js" t="Include" />
+                <e p="foundation.sticky.js" t="Include" />
+                <e p="foundation.sticky.min.js" t="Include" />
+                <e p="foundation.tabs.js" t="Include" />
+                <e p="foundation.tabs.min.js" t="Include" />
+                <e p="foundation.toggler.js" t="Include" />
+                <e p="foundation.toggler.min.js" t="Include" />
+                <e p="foundation.tooltip.js" t="Include" />
+                <e p="foundation.tooltip.min.js" t="Include" />
+                <e p="foundation.util.box.js" t="Include" />
+                <e p="foundation.util.box.min.js" t="Include" />
+                <e p="foundation.util.imageLoader.js" t="Include" />
+                <e p="foundation.util.imageLoader.min.js" t="Include" />
+                <e p="foundation.util.keyboard.js" t="Include" />
+                <e p="foundation.util.keyboard.min.js" t="Include" />
+                <e p="foundation.util.mediaQuery.js" t="Include" />
+                <e p="foundation.util.mediaQuery.min.js" t="Include" />
+                <e p="foundation.util.motion.js" t="Include" />
+                <e p="foundation.util.motion.min.js" t="Include" />
+                <e p="foundation.util.nest.js" t="Include" />
+                <e p="foundation.util.nest.min.js" t="Include" />
+                <e p="foundation.util.timer.js" t="Include" />
+                <e p="foundation.util.timer.min.js" t="Include" />
+                <e p="foundation.util.timerAndImageLoader.js" t="Include" />
+                <e p="foundation.util.timerAndImageLoader.min.js" t="Include" />
+                <e p="foundation.util.touch.js" t="Include" />
+                <e p="foundation.util.touch.min.js" t="Include" />
+                <e p="foundation.util.triggers.js" t="Include" />
+                <e p="foundation.util.triggers.min.js" t="Include" />
+                <e p="foundation.zf.responsiveAccordionTabs.js" t="Include" />
+                <e p="foundation.zf.responsiveAccordionTabs.min.js" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="index.html" t="Include" />
+          <e p="jquery" t="Include">
+            <e p="core.js" t="Include" />
+            <e p="jquery.js" t="Include" />
+            <e p="jquery.min.js" t="Include" />
+            <e p="jquery.min.map" t="Include" />
+            <e p="jquery.slim.js" t="Include" />
+            <e p="jquery.slim.min.js" t="Include" />
+            <e p="jquery.slim.min.map" t="Include" />
+          </e>
+          <e p="plotly.js" t="Include">
+            <e p="plotly-basic.js" t="Include" />
+            <e p="plotly-basic.min.js" t="Include" />
+            <e p="plotly-cartesian.js" t="Include" />
+            <e p="plotly-cartesian.min.js" t="Include" />
+            <e p="plotly-finance.js" t="Include" />
+            <e p="plotly-finance.min.js" t="Include" />
+            <e p="plotly-geo-assets.js" t="Include" />
+            <e p="plotly-geo.js" t="Include" />
+            <e p="plotly-geo.min.js" t="Include" />
+            <e p="plotly-gl2d.js" t="Include" />
+            <e p="plotly-gl2d.min.js" t="Include" />
+            <e p="plotly-gl3d.js" t="Include" />
+            <e p="plotly-gl3d.min.js" t="Include" />
+            <e p="plotly-locale-af.js" t="Include" />
+            <e p="plotly-locale-am.js" t="Include" />
+            <e p="plotly-locale-ar-dz.js" t="Include" />
+            <e p="plotly-locale-ar-eg.js" t="Include" />
+            <e p="plotly-locale-ar.js" t="Include" />
+            <e p="plotly-locale-az.js" t="Include" />
+            <e p="plotly-locale-bg.js" t="Include" />
+            <e p="plotly-locale-bs.js" t="Include" />
+            <e p="plotly-locale-ca.js" t="Include" />
+            <e p="plotly-locale-cs.js" t="Include" />
+            <e p="plotly-locale-da.js" t="Include" />
+            <e p="plotly-locale-de-ch.js" t="Include" />
+            <e p="plotly-locale-de.js" t="Include" />
+            <e p="plotly-locale-el.js" t="Include" />
+            <e p="plotly-locale-eo.js" t="Include" />
+            <e p="plotly-locale-es-ar.js" t="Include" />
+            <e p="plotly-locale-es-pe.js" t="Include" />
+            <e p="plotly-locale-es.js" t="Include" />
+            <e p="plotly-locale-et.js" t="Include" />
+            <e p="plotly-locale-eu.js" t="Include" />
+            <e p="plotly-locale-fa.js" t="Include" />
+            <e p="plotly-locale-fi.js" t="Include" />
+            <e p="plotly-locale-fo.js" t="Include" />
+            <e p="plotly-locale-fr-ch.js" t="Include" />
+            <e p="plotly-locale-fr.js" t="Include" />
+            <e p="plotly-locale-gl.js" t="Include" />
+            <e p="plotly-locale-gu.js" t="Include" />
+            <e p="plotly-locale-he.js" t="Include" />
+            <e p="plotly-locale-hi-in.js" t="Include" />
+            <e p="plotly-locale-hr.js" t="Include" />
+            <e p="plotly-locale-hu.js" t="Include" />
+            <e p="plotly-locale-hy.js" t="Include" />
+            <e p="plotly-locale-id.js" t="Include" />
+            <e p="plotly-locale-is.js" t="Include" />
+            <e p="plotly-locale-it.js" t="Include" />
+            <e p="plotly-locale-ja.js" t="Include" />
+            <e p="plotly-locale-ka.js" t="Include" />
+            <e p="plotly-locale-km.js" t="Include" />
+            <e p="plotly-locale-ko.js" t="Include" />
+            <e p="plotly-locale-lt.js" t="Include" />
+            <e p="plotly-locale-lv.js" t="Include" />
+            <e p="plotly-locale-me-me.js" t="Include" />
+            <e p="plotly-locale-me.js" t="Include" />
+            <e p="plotly-locale-mk.js" t="Include" />
+            <e p="plotly-locale-ml.js" t="Include" />
+            <e p="plotly-locale-ms.js" t="Include" />
+            <e p="plotly-locale-mt.js" t="Include" />
+            <e p="plotly-locale-nl-be.js" t="Include" />
+            <e p="plotly-locale-nl.js" t="Include" />
+            <e p="plotly-locale-no.js" t="Include" />
+            <e p="plotly-locale-pa.js" t="Include" />
+            <e p="plotly-locale-pl.js" t="Include" />
+            <e p="plotly-locale-pt-br.js" t="Include" />
+            <e p="plotly-locale-rm.js" t="Include" />
+            <e p="plotly-locale-ro.js" t="Include" />
+            <e p="plotly-locale-ru.js" t="Include" />
+            <e p="plotly-locale-sk.js" t="Include" />
+            <e p="plotly-locale-sl.js" t="Include" />
+            <e p="plotly-locale-sq.js" t="Include" />
+            <e p="plotly-locale-sr-sr.js" t="Include" />
+            <e p="plotly-locale-sr.js" t="Include" />
+            <e p="plotly-locale-sv.js" t="Include" />
+            <e p="plotly-locale-sw.js" t="Include" />
+            <e p="plotly-locale-ta.js" t="Include" />
+            <e p="plotly-locale-th.js" t="Include" />
+            <e p="plotly-locale-tr.js" t="Include" />
+            <e p="plotly-locale-tt.js" t="Include" />
+            <e p="plotly-locale-uk.js" t="Include" />
+            <e p="plotly-locale-ur.js" t="Include" />
+            <e p="plotly-locale-vi.js" t="Include" />
+            <e p="plotly-locale-zh-cn.js" t="Include" />
+            <e p="plotly-locale-zh-hk.js" t="Include" />
+            <e p="plotly-locale-zh-tw.js" t="Include" />
+            <e p="plotly-mapbox.js" t="Include" />
+            <e p="plotly-mapbox.min.js" t="Include" />
+            <e p="plotly.js" t="Include" />
+            <e p="plotly.min.js" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="Blazor.Server" t="IncludeRecursive">
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Blazor.Server.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="Blazor.Server.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+          <e p="PublishProfiles" t="Include">
+            <e p="FolderProfile.pubxml" t="Include" />
+            <e p="Raspberry.pubxml" t="Include" />
+          </e>
+        </e>
+        <e p="Startup.cs" t="Include" />
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="SimpleProgram" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Class1.cs" t="Include" />
+        <e p="Lib" t="Include">
+          <e p="Archives" t="Include">
+            <e p="Archive.cs" t="Include" />
+            <e p="IDbContext.cs" t="Include" />
+            <e p="MasterScada" t="Include">
+              <e p="MasterScadaContext.cs" t="Include" />
+              <e p="masterscadadataitems.cs" t="Include" />
+              <e p="masterscadadataraw.cs" t="Include" />
+              <e p="masterscadaprojects.cs" t="Include" />
+              <e p="masterscadaproperties.cs" t="Include" />
+            </e>
+            <e p="TimeSeries.cs" t="Include" />
+            <e p="TimeValue.cs" t="Include" />
+          </e>
+          <e p="ITag.cs" t="Include" />
+          <e p="ITagArchive.cs" t="Include" />
+          <e p="Tag.cs" t="Include" />
+          <e p="TagArray.cs" t="Include" />
+          <e p="TagGroupBase.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.0" t="Include">
+              <e p="SimpleProgram.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="SimpleProgram.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="SimpleProgram.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>
