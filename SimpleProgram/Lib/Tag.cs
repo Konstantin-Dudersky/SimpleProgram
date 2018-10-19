@@ -4,12 +4,13 @@ using System;
 
 namespace SimpleProgram.Lib
 {
-    public class Tag<T> : ITagArchive
+    public class Tag<T> : ITag
     {
         private T _value;
 
         public Archive Archive { get; set; }
-        public string ArchiveTagName { get; set; }
+        public string ArchiveTagId { get; set; }
+        public string TagId { get; set; }
         public string TagName { get; set; }
 
         public T Value
@@ -27,7 +28,7 @@ namespace SimpleProgram.Lib
 
         public TimeSeries GetTimeSeries()
         {
-            return Archive.GetTimeSeries(ArchiveTagName);
+            return Archive.GetTimeSeries(ArchiveTagId);
         }
     }
 }

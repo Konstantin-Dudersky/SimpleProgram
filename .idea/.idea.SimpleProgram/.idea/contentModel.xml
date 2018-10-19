@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Konst\.Rider2018.2\config\extensions" t="IncludeRecursive" />
-    <e p="C:\Users\Konst\.Rider2018.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Konst\.Rider2018.2\system\resharper-host\local\Transient\ReSharperHost\v182\SolutionCaches\_SimpleProgram.-1382001200.00" t="ExcludeRecursive" />
-    <e p="C:\Users\Konst\RiderProjects\SimpleProgram" t="IncludeFlat">
+    <e p="C:\Users\admin\.Rider2018.2\config\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\admin\.Rider2018.2\config\extensions" t="IncludeRecursive" />
+    <e p="C:\Users\admin\.Rider2018.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\admin\.Rider2018.2\system\resharper-host\local\Transient\ReSharperHost\v182\SolutionCaches\_SimpleProgram.992090289.00" t="ExcludeRecursive" />
+    <e p="E:\SimpleProgram\SimpleProgram" t="IncludeFlat">
       <e p="Blazor.App" t="IncludeRecursive">
         <e p="_ViewImports.cshtml" t="Include" />
         <e p="App.cshtml" t="Include" />
@@ -33,6 +34,7 @@
           <e p="Data.cs" t="Include" />
           <e p="Plot.cs" t="Include" />
           <e p="TagGroup1.cs" t="Include" />
+          <e p="TagGroup2.cs" t="Include" />
           <e p="WeatherForecast.cs" t="Include" />
           <e p="WeatherForecastService.cs" t="Include" />
         </e>
@@ -293,7 +295,7 @@
             <e p="TimeSeries.cs" t="Include" />
             <e p="TimeValue.cs" t="Include" />
           </e>
-          <e p="ITagArchive.cs" t="Include" />
+          <e p="ITag.cs" t="Include" />
           <e p="Tag.cs" t="Include" />
           <e p="TagGroupBase.cs" t="Include" />
         </e>

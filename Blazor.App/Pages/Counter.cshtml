@@ -1,14 +1,15 @@
 ﻿@page "/counter"
+@inject Data data
 
 @using Blazor.App.Services
 
-<BlazorPlot Counter="@Data.TagGroup1.MDBB_QS1"/>
+<BlazorPlot Counter="@data.TagGroup1.MDBB_QS1"/>
 
 @functions { 
 
     protected override void OnInit()
     {
         base.OnInit();
-        Data.OnRefresh += StateHasChanged;
+        data.OnRefresh += StateHasChanged;
     }
 }

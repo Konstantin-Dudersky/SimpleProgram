@@ -11,11 +11,15 @@ namespace Blazor.App
             // Since Blazor is running on the server, we can use an application service
             // to read the forecast data.
             services.AddSingleton<WeatherForecastService>();
+            Data data = new Data();
+            services.AddSingleton<Data>(data);
         }
 
         public void Configure(IBlazorApplicationBuilder app)
         {
-            Data.StartUp();
+//            Data.StartUp();
+            
+            
 
             app.AddComponent<App>("app");
         }
