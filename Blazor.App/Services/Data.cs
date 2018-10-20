@@ -24,10 +24,5 @@ namespace Blazor.App.Services
             // находим ссылки на архивы
             InitTagDict();
         }
-
-
-        public static void StartUp()
-        {
-        }
     }
 }

@@ -1,0 +1,35 @@
+@using Blazor.App.Services
+@page "/TagDict"
+@inject Data data
+
+<div id="example"></div>
+<button class="button" onclick="@Prompt">Таблица</button>
+<button class="button" onclick="@Render">Render</button>
+
+@functions
+{
+    Table table;
+
+    protected override void OnInit()
+    {
+        base.OnInit();
+        table = new Table();
+
+        data.OnRefresh += StateHasChanged;
+    }
+
+    private async void Prompt()
+    {
+        table.AddRow(new List<object> {"", "Ford", "Tesla", "Toyota", "Honda"});
+        table.AddRow(new List<object> {data.TagGroup1.MDBB_QS1.Value, "Ford", "Tesla", "Toyota", "Honda"});
+
+        var res = await JSRuntime.Current.InvokeAsync<object>("handontablehelpers.create", 123, "example", table);
+        Console.WriteLine("res:" + res);
+    }
+
+    private Task<bool> Render()
+    {
+        return JSRuntime.Current.InvokeAsync<bool>("handontablehelpers.create", true, "example", table);
+    }
+
+}

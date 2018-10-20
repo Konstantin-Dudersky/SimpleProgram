@@ -20,4 +20,8 @@
     <ProjectReference Include="..\SimpleProgram\SimpleProgram.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\handsontable" />
+  </ItemGroup>
+
 </Project>

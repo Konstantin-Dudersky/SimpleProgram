@@ -1,4 +1,6 @@
-﻿using System.Threading;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Threading;
 using SimpleProgram.Lib;
 using SimpleProgram.Lib.Archives;
 
@@ -10,7 +12,7 @@ namespace Blazor.App.Services
 
         public Tag<double> MDBA_QS1 = new Tag<double>
         {
-            ArchiveTagId = "Энергоменеджмент.Счетчики.Модуль 1, MDB-A, QS1, PAC"
+            ArchiveTagId = "Энергоменеджмент.Счетчики.Модуль 1, MDB-A, QS1, PAC",
         };
 
         public Tag<double> MDBB_QS1 = new Tag<double>
@@ -39,7 +41,9 @@ namespace Blazor.App.Services
 
             timer = new Timer(obj => tag1.Value++, null, 0, 5);
 
-            timer2 = new Timer(obj => MDBB_QS1.Value += 2, null, 0, 500);
+            var tagLink = MDBB_QS1.Conv<int>();
+
+            timer2 = new Timer(obj => tagLink.Value += 2, null, 0, 500);
         }
     }
 }

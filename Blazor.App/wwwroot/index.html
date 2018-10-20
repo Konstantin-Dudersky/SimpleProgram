@@ -1,33 +1,52 @@
 ﻿<!DOCTYPE html>
 <html class="no-js">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width">
     <title>Blazor</title>
-    <base href="/" />
+    <base href="/"/>
     <!--<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />-->
-    <link href="css/site.css" rel="stylesheet" />
+    <link href="css/site.css" rel="stylesheet"/>
     <link href="foundation/css/foundation.css" rel="stylesheet"/>
+
     <script src="plotly.js/plotly.min.js"></script>
+
+    <script src="handsontable/dist/handsontable.full.min.js"></script>
+    <link href="handsontable/dist/handsontable.full.min.css" rel="stylesheet" media="screen">
+
 </head>
 <body>
-    <app>Loading...</app>
+<app>Loading...</app>
 
-    <script src="_framework/blazor.server.js"></script>
+<script src="_framework/blazor.server.js"></script>
 
-    <script>
-        window.plotlyhelpers = {
-            react: function (id, obj) {
-                Plotly.react(id, obj);
-                return true;
-            }
-        };
-    </script>
-    <script src="jquery/jquery.min.js"></script>
-    <script src="foundation/js/foundation.min.js"></script>
-    <script>
-        $(document).foundation();
-    </script>
+
+<!--<div id="example"></div>-->
+
+<script>
+    window.handontablehelpers = {
+        create: function (render, id, data) {
+            var hot = new Handsontable(document.getElementById(id), data);
+            return hot;
+        }
+    };
+</script>
+
+<script>
+    window.plotlyhelpers = {
+        react: function (id, obj) {
+            Plotly.react(id, obj);
+            return true;
+        }
+    };
+</script>
+
+
+<script src="jquery/jquery.min.js"></script>
+<script src="foundation/js/foundation.min.js"></script>
+<script>
+    $(document).foundation();
+</script>
 
 </body>
 </html>

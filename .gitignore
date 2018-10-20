@@ -10,3 +10,5 @@ Blazor\.Server/bin/
 SimpleProgram/bin/
 
 SimpleProgram/obj/
+
+\.idea/

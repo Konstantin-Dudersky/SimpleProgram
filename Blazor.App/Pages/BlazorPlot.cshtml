@@ -9,7 +9,7 @@
 
 <button class="button" onclick="@On">on</button>
 <button class="button" onclick="@Off">off</button>
-<span class="@((State.Value ? "success" : "secondary")) label">label</span>
+<span class="@((State.GetValue<bool>() ? "success" : "secondary")) label">label</span>
 
 <div class="grid-x">
     <div class="small-8">
@@ -21,7 +21,7 @@
         </select>
     </div>
     <div class="small-4">
-        <button class="button" onclick="@Prompt">Построить</button>
+        <button class="small button" onclick="@Prompt">Построить</button>
     </div>
 </div>
 
@@ -46,10 +46,10 @@
     }
 
     [Parameter]
-    private Tag<bool> State { get; set; }
+    private ITag State { get; set; }
 
     [Parameter]
-    private Tag<double> Counter { get; set; }
+    private ITag<double> Counter { get; set; }
 
     private Task<bool> Prompt()
     {
@@ -67,11 +67,11 @@
 
     private void On()
     {
-        State.Value = true;
+        State.SetValue(true);
     }
 
     private void Off()
     {
-        State.Value = false;
+        State.SetValue(false);
     }
 }

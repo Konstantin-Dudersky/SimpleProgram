@@ -27,7 +27,7 @@ namespace SimpleProgram.Lib
             var str = new StringBuilder("----------\n");
             str.AppendLine("TagDict:");
 
-            foreach (var tag in TagDict) str.AppendLine($"{tag.Key}:\t{tag.Value.TagId}\t{tag.Value.Archive}");
+            foreach (var tag in TagDict) str.AppendLine($"{tag.Key}:\t{tag.Value.TagId}\t{tag.Value.Archive}\t{tag.Value.GetValue<double>()}");
 
             Console.WriteLine(str);
         }
@@ -41,16 +41,14 @@ namespace SimpleProgram.Lib
                 if (typeof(TagGroupBase).IsAssignableFrom(field.FieldType))
                 {
                     // ссылка на группу тегов
-                    var obj = (TagGroupBase) field.GetValue(rootTagGroup);
+                    var tagGroup = (TagGroupBase) field.GetValue(rootTagGroup);
 
-                    TapGroupProcessing(obj, (prefix == "" ? "" : $"{prefix}.") + field.Name);
+                    TapGroupProcessing(tagGroup, (prefix == "" ? "" : $"{prefix}.") + field.Name);
                 }
                 else if (typeof(ITag).IsAssignableFrom(field.FieldType))
                 {
                     // ссылка на тег
-                    var obj = field.GetValue(rootTagGroup);
-
-                    var tag = (ITag) obj;
+                    var tag = (ITag) field.GetValue(rootTagGroup);;
 
                     // ID тега
                     tag.TagId = prefix + "." + field.Name;
