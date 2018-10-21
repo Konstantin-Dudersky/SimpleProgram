@@ -14,9 +14,11 @@ namespace SimpleProgram.Lib
         T1 GetValue<T1>();
         void SetValue<T1>(T1 value);
 
-        #region Types
-
-        #endregion
+        string ValueString { get; set; }
+        
+        Type GenericType { get; }
+        
+        bool InputValid { get; }
     }
 
     public interface ITag<T> : ITag

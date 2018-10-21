@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Globalization;
 using SimpleProgram.Lib.Archives;
 
 namespace SimpleProgram.Lib
@@ -45,8 +47,31 @@ namespace SimpleProgram.Lib
             Value = (T) Convert.ChangeType(value, typeof(T));
         }
 
+        public string ValueString
+        {
+            get => Value.ToString(CultureInfo.InvariantCulture);
+            set
+            {
+                var fromString = default(T);
+                try
+                {
+                    fromString = (T) TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(value);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    InputValid = false;
+                }
+
+                Value = fromString;
+                InputValid = true;
+            }
+        }
+
+        public Type GenericType => typeof(T);
+        public bool InputValid { get; private set; } = true;
+
+
         public event Action OnChange;
-        
-        
     }
 }

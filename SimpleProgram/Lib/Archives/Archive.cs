@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace SimpleProgram.Lib.Archives
 {
@@ -10,28 +10,23 @@ namespace SimpleProgram.Lib.Archives
 
     public class Archive : IDbContext
     {
-        #region Private Properties
-
         private string ConnectionString { get; set; }
         private IDbContext Context { get; set; }
         private Providers Provider { get; set; } = Providers.PostgreSql;
 
-        #endregion Private Properties
-
-
-        #region Public Methods
+        public string ArchiveName { get; set; } = "Archive";
 
         public TimeSeries GetTimeSeries(string name)
         {
             return Context.GetTimeSeries(name);
         }
 
-        public void SetParams<TContext>(Providers provider, string connectionString) where TContext : DbContext
+        public void SetProvider<TContext>(Providers provider, string connectionString) where TContext : DbContext
         {
             Provider = provider;
             ConnectionString = connectionString;
 
-            DbContextOptionsBuilder<TContext> optionsBuilder = new DbContextOptionsBuilder<TContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<TContext>();
 
             switch (Provider)
             {
@@ -43,9 +38,7 @@ namespace SimpleProgram.Lib.Archives
                     throw new Exception("Не задан провайдер подключения к БД");
             }
 
-            Context = (IDbContext) Activator.CreateInstance(typeof(TContext), new object[] {optionsBuilder.Options});
+            Context = (IDbContext) Activator.CreateInstance(typeof(TContext), optionsBuilder.Options);
         }
-
-        #endregion Public Methods
     }
 }

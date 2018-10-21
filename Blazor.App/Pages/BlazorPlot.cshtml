@@ -1,4 +1,5 @@
 ﻿@using Blazor.App.Services
+@using SimpleProgram.Lib.JSInterop
 @inject Data data
 
 <h1>Counter</h1>
@@ -46,21 +47,21 @@
     }
 
     [Parameter]
-    private ITag State { get; set; }
+    private ITag<bool> State { get; set; }
 
     [Parameter]
     private ITag<double> Counter { get; set; }
 
     private Task<bool> Prompt()
     {
-        Plot<string, double> plot = new Plot<string, double>();
+        Plotly<string, double> plotly = new Plotly<string, double>();
 
         TimeSeries timeSeries = data.TagDict[_selectedTag].GetTimeSeries();
 
-        plot.data[0].x = timeSeries.Times.Select(x => x.ToString()).ToList();
-        plot.data[0].y = timeSeries.Values;
+        plotly.data[0].x = timeSeries.Times.Select(x => x.ToString()).ToList();
+        plotly.data[0].y = timeSeries.Values;
 
-        return JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", "tester", plot);
+        return JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", "tester", plotly);
     }
 
     private string _selectedTag;

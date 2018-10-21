@@ -1,15 +1,25 @@
-using System;
 using System.Collections.Generic;
 
-namespace SimpleProgram.Lib
+/*
+<script>
+    window.handontablehelpers = {
+        create: function (render, id, data) {
+            var hot = new Handsontable(document.getElementById(id), data);
+            return true;
+        }
+    };
+</script>
+*/
+
+namespace SimpleProgram.Lib.JSInterop
 {
-    public class Table
+    public class Handsontable
     {
         public List<List<object>> data { get; set; }
         public bool rowHeaders { get; set; } = true;
         public bool colHeaders { get; set; } = true;
 
-        public Table()
+        public Handsontable()
         {
             data = new List<List<object>>();
         }

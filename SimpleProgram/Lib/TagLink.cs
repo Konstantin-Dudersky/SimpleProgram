@@ -3,23 +3,6 @@ using SimpleProgram.Lib.Archives;
 
 namespace SimpleProgram.Lib
 {
-//    public class TagLink<TIn, TOut> : Tag<TOut>
-//        where TIn : IConvertible
-//        where TOut : IConvertible
-//    {
-//        private readonly Tag<TIn> _tagLink;
-//
-//        public TOut Value
-//        {
-//            get => _tagLink.GetValue<TOut>();
-//            set => _tagLink.SetValue(value);
-//        }
-//
-//        public TagLink(Tag<TIn> tagLink)
-//        {
-//            _tagLink = tagLink;
-//        }
-//    }
     public class TagLink<TOld, TNew> : ITag<TNew>
         where TNew : IConvertible
         where TOld : IConvertible
@@ -56,6 +39,11 @@ namespace SimpleProgram.Lib
         {
             throw new NotImplementedException();
         }
+
+        public string ValueString { get; set; }
+        public Type GenericType { get; }
+        public bool InputValid { get; }
+
 
         public TagLink(Tag<TOld> tagLink)
         {

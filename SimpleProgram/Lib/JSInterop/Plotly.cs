@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace Blazor.App.Services
+namespace SimpleProgram.Lib.JSInterop
 {
-    public class Plot<TX, TY>
+    public class Plotly<TX, TY>
     {
-        public Plot()
+        public Plotly()
         {
             data = new Data[1];
             data[0] = new Data();

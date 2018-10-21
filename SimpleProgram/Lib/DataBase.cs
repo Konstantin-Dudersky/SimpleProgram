@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.SymbolStore;
 using System.Text;
 using System.Threading;
 
@@ -10,12 +11,17 @@ namespace SimpleProgram.Lib
         private readonly Timer _refreshTimer;
         public readonly Dictionary<string, ITag> TagDict = new Dictionary<string, ITag>();
 
-        protected DataBase()
+        /// <summary>
+        /// 4 23423 234 2
+        /// </summary>
+        /// <param name="refreshTime"> 3423423423 4</param>
+        protected DataBase(int refreshTime = 1000)
         {
+            RefreshTime = refreshTime;
             _refreshTimer = new Timer(obj => OnRefresh?.Invoke(), null, 0, RefreshTime);
         }
 
-        protected int RefreshTime { private get; set; } = 1000;
+        private int RefreshTime { get; }
 
         public event Action OnRefresh;
 
@@ -34,8 +40,6 @@ namespace SimpleProgram.Lib
 
         private void TapGroupProcessing(object rootTagGroup, string prefix)
         {
-            Console.WriteLine("prefix: " + prefix);
-
             foreach (var field in rootTagGroup.GetType().GetFields())
                 // находим группы тегов
                 if (typeof(TagGroupBase).IsAssignableFrom(field.FieldType))
@@ -48,7 +52,7 @@ namespace SimpleProgram.Lib
                 else if (typeof(ITag).IsAssignableFrom(field.FieldType))
                 {
                     // ссылка на тег
-                    var tag = (ITag) field.GetValue(rootTagGroup);;
+                    var tag = (ITag) field.GetValue(rootTagGroup);
 
                     // ID тега
                     tag.TagId = prefix + "." + field.Name;
