@@ -10,10 +10,10 @@
 
 <button class="button" onclick="@On">on</button>
 <button class="button" onclick="@Off">off</button>
-<span class="@((State.GetValue<bool>() ? "success" : "secondary")) label">label</span>
+<span class="@(State.GetValue<bool>() ? "success" : "secondary") label">label</span>
 
-<div class="grid-x">
-    <div class="small-8">
+<div class="grid-x align-center">
+    <div class="cell small-8">
         <select bind="@_selectedTag">
             @foreach (var tag in data.TagDict)
             {
@@ -21,47 +21,33 @@
             }
         </select>
     </div>
-    <div class="small-4">
+    <div class="cell small-4">
         <button class="small button" onclick="@Prompt">Построить</button>
     </div>
 </div>
 
-
-<div id="tester" style="height: 400px;"></div>
+<div id="plotly"></div>
 
 @functions {
 
-    protected override void OnInit()
-    {
-        base.OnInit();
-
-        if (State is null)
-        {
-            State = new Tag<bool>();
-        }
-
-        if (Counter is null)
-        {
-            Counter = new Tag<double>();
-        }
-    }
+    [Parameter]
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+    private ITag<bool> State { get; set; } = new Tag<bool>();
 
     [Parameter]
-    private ITag<bool> State { get; set; }
-
-    [Parameter]
-    private ITag<double> Counter { get; set; }
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+    private ITag<double> Counter { get; set; } = new Tag<double>();
 
     private Task<bool> Prompt()
     {
-        Plotly<string, double> plotly = new Plotly<string, double>();
+        var plotly = new Plotly<string, double?>();
 
-        TimeSeries timeSeries = data.TagDict[_selectedTag].GetTimeSeries();
+        var timeSeries = data.TagDict[_selectedTag].GetTimeSeries();
 
         plotly.data[0].x = timeSeries.Times.Select(x => x.ToString()).ToList();
         plotly.data[0].y = timeSeries.Values;
 
-        return JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", "tester", plotly);
+        return JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", "plotly", plotly);
     }
 
     private string _selectedTag;
@@ -75,4 +61,5 @@
     {
         State.SetValue(false);
     }
+
 }

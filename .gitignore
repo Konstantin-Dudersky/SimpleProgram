@@ -12,3 +12,7 @@ SimpleProgram/bin/
 SimpleProgram/obj/
 
 \.idea/
+
+SimpleProgram\.Tests/bin/
+
+SimpleProgram\.Tests/obj/

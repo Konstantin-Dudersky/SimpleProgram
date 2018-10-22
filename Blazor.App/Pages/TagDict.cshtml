@@ -19,6 +19,7 @@
                 <th>@nameof(ITag.Archive.ArchiveName)</th>
                 <th>@nameof(ITag.ValueString)</th>
                 <th>@nameof(ITag.GenericType)</th>
+                <th>Plot</th>
             </tr>
             </thead>
             <tbody>
@@ -34,6 +35,11 @@
                                bind="@tag.ValueString" onfocusin="@StopRefresh" onfocusout="@StartRefresh"/>
                     </td>
                     <td>@tag.GenericType</td>
+                    <td>
+                        <NavLink href="@($"/Plot/{tag.TagId}")">
+                            <button class="button" style="margin: 0">Plot</button>
+                        </NavLink>
+                    </td>
                 </tr>
             }
             </tbody>
@@ -44,26 +50,28 @@
 
 @functions
 {
-    private bool _refresh;
+    private bool _refresh = true;
 
     protected override void OnInit()
     {
         base.OnInit();
-        StartRefresh();
+        data.OnRefresh += Refresh;
     }
 
     private void StartRefresh()
     {
-        if (_refresh) return;
         _refresh = true;
-        data.OnRefresh += StateHasChanged;
     }
 
     private void StopRefresh()
     {
-        if (!_refresh) return;
         _refresh = false;
-        data.OnRefresh -= StateHasChanged;
     }
 
+    private void Refresh()
+    {
+        if (_refresh)
+            StateHasChanged();
+    }
+    
 }

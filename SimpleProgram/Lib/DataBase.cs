@@ -29,6 +29,7 @@ namespace SimpleProgram.Lib
         {
             TapGroupProcessing(this, "");
 
+            return;
             // для вывода в консоли
             var str = new StringBuilder("----------\n");
             str.AppendLine("TagDict:");

@@ -57,7 +57,7 @@ namespace SimpleProgram.Lib.Archives.MasterScada
             IQueryable<TimeValue> data = (from v in masterscadadataraw
                 where v.itemid == itemid && v.quality == 192 && v.layer == 1
                 orderby v.Time
-                select new TimeValue(v.value, DateTime.FromBinary(v.Time)));
+                select new TimeValue((double) v.value, DateTime.FromBinary(v.Time)));
 
             values.AddRange(data);
 

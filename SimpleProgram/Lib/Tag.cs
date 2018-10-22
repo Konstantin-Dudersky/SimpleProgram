@@ -52,7 +52,7 @@ namespace SimpleProgram.Lib
             get => Value.ToString(CultureInfo.InvariantCulture);
             set
             {
-                var fromString = default(T);
+                T fromString;
                 try
                 {
                     fromString = (T) TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(value);
@@ -60,16 +60,15 @@ namespace SimpleProgram.Lib
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-                    InputValid = false;
+                    fromString = Value;
                 }
 
                 Value = fromString;
-                InputValid = true;
             }
         }
 
         public Type GenericType => typeof(T);
-        public bool InputValid { get; private set; } = true;
+        public bool InputValid { get; } = true;
 
 
         public event Action OnChange;

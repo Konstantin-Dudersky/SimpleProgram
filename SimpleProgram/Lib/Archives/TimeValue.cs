@@ -2,10 +2,10 @@
 
 namespace SimpleProgram.Lib.Archives
 {
-    public class TimeValue
+    public class TimeValue : IComparable
     {
-        public double? Value { get; }
-        public DateTime Time { get; }
+        public double? Value { get; set; }
+        public DateTime Time { get; set; }
 
         public TimeValue(double? value, DateTime time)
         {
@@ -16,6 +16,10 @@ namespace SimpleProgram.Lib.Archives
         public override string ToString()
         {
             return $"{Time.ToString()} \t{Value}";
+        }
+
+        public int CompareTo(object obj)
+        {
         }
     }
 }

@@ -1,0 +1,76 @@
+@* @page "/Plot" *@
+@page "/Plot/{TagId}"
+@using System.Globalization
+@using Blazor.App.Services
+@using SimpleProgram.Lib.JSInterop
+@inject Data data
+
+<style>
+    /* .cell { border: 1px solid red; } */
+</style>
+
+<div class="grid-y grid-frame">
+    <div class="cell">
+        <div class="grid-x align-middle">
+            <div class="cell small-12 large-6">
+                <select bind="@_tagId0">
+                    @foreach (var tag in data.TagDict)
+                    {
+                        <option value="@tag.Key">@tag.Value.ArchiveTagId</option>
+                    }
+                </select>
+            </div>
+            <div class="cell small-6 large-1">
+                <button class="button expanded" onclick="@Build">Построить</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="cell auto">
+        <div id="plotly" style="height: 100%"></div>
+    </div>
+
+</div>
+
+
+@functions
+{
+
+    protected override void OnInit()
+    {
+        base.OnInit();
+        _tagId0 = TagId;
+    }
+
+    protected override void OnAfterRender()
+    {
+        if (_tagId0 != null)
+        {
+            Build();
+        }
+    }
+
+    [Parameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
+    private string TagId { get; set; }
+
+    private string _tagId0;
+
+    private Task<bool> Build()
+    {
+        var plotly = new Plotly<string, double?>();
+
+        if (_tagId0 != null)
+        {
+            var timeSeries = data.TagDict[_tagId0].GetTimeSeries().IncreaseCountByPeriod(ByPeriod.Day);
+
+            plotly.data[0].x = timeSeries.Times.Select(x => x.ToString(CultureInfo.InvariantCulture)).ToList();
+            plotly.data[0].y = timeSeries.Values;
+            
+            plotly.data[0].name = data.TagDict[_tagId0].TagName;
+            plotly.data[0].type = PlotlyTypes.bar;
+            plotly.layout.title = "";
+        }
+        return JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", "plotly", plotly);
+    }
+}
