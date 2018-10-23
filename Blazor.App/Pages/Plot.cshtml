@@ -9,8 +9,17 @@
     /* .cell { border: 1px solid red; } */
 </style>
 
-<div class="grid-y grid-frame">
-    <div class="cell">
+<ul class="tabs" data-tabs id="example-tabs">
+    <li class="tabs-title is-active">
+        <a data-tabs-target="panel1" aria-selected="true">Выбор тегов</a>
+    </li>
+    <li class="tabs-title">
+        <a data-tabs-target="panel2">График</a>
+    </li>
+</ul>
+
+<div class="tabs-content" data-tabs-content="example-tabs">
+    <div class="tabs-panel is-active" id="panel1">
         <div class="grid-x align-middle">
             <div class="cell small-12 large-6">
                 <select bind="@_tagId0">
@@ -25,11 +34,9 @@
             </div>
         </div>
     </div>
-
-    <div class="cell auto">
-        <div id="plotly" style="height: 100%"></div>
+    <div class="tabs-panel" id="panel2">
+        <div id="plotly" style="height: 500px"></div>
     </div>
-
 </div>
 
 
@@ -50,13 +57,21 @@
         }
     }
 
+    protected override async Task OnAfterRenderAsync()
+    {
+        if (_jqueryInitialized) return;
+        _jqueryInitialized = await JSRuntime.Current.InvokeAsync<bool>("global.foundationInit");
+    }
+
+    private bool _jqueryInitialized;
+
     [Parameter]
     // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private string TagId { get; set; }
 
     private string _tagId0;
 
-    private Task<bool> Build()
+    private async void Build()
     {
         var plotly = new Plotly<string, double?>();
 
@@ -66,11 +81,13 @@
 
             plotly.data[0].x = timeSeries.Times.Select(x => x.ToString(CultureInfo.InvariantCulture)).ToList();
             plotly.data[0].y = timeSeries.Values;
-            
+
             plotly.data[0].name = data.TagDict[_tagId0].TagName;
             plotly.data[0].type = PlotlyTypes.bar;
             plotly.layout.title = "";
         }
-        return JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", "plotly", plotly);
+
+        await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", "plotly", plotly);
     }
+
 }

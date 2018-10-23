@@ -28,15 +28,6 @@ namespace SimpleProgram.Lib
         protected void InitTagDict()
         {
             TapGroupProcessing(this, "");
-
-            return;
-            // для вывода в консоли
-            var str = new StringBuilder("----------\n");
-            str.AppendLine("TagDict:");
-
-            foreach (var tag in TagDict) str.AppendLine($"{tag.Key}:\t{tag.Value.TagId}\t{tag.Value.Archive}\t{tag.Value.GetValue<double>()}");
-
-            Console.WriteLine(str);
         }
 
         private void TapGroupProcessing(object rootTagGroup, string prefix)

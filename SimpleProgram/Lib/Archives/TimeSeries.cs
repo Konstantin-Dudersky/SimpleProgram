@@ -37,7 +37,7 @@ namespace SimpleProgram.Lib.Archives
 
         public void Add(DateTime time, double? value)
         {
-            Add(new TimeValue(value, time));
+            Add(new TimeValue(time, value));
         }
 
         public void AddRange(IEnumerable<TimeValue> timeValues)
@@ -71,7 +71,7 @@ namespace SimpleProgram.Lib.Archives
                     period >= ByPeriod.Minute ? tsTemp.Time.Minute : 0,
                     period >= ByPeriod.Second ? tsTemp.Time.Second : 0)
                 into g
-                select new TimeValue(g.FirstOrDefault()?.Value, g.Key);
+                select new TimeValue(g.Key, g.FirstOrDefault()?.Value);
 
             newTs.AddRange(val.ToList());
 

@@ -4,6 +4,8 @@
 
 <h1>Counter</h1>
 
+<a href="#testanchor">testanchor</a>
+
 <input type="number" bind="@Counter.Value"/>
 
 <button class="button" onclick="@Prompt">Click me</button>
@@ -28,6 +30,8 @@
 
 <div id="plotly"></div>
 
+<div id="testanchor"></div>
+
 @functions {
 
     [Parameter]
@@ -49,6 +53,8 @@
 
         return JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", "plotly", plotly);
     }
+
+    
 
     private string _selectedTag;
 

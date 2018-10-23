@@ -1,18 +1,15 @@
 ﻿<!DOCTYPE html>
+<!--suppress ALL -->
 <html class="no-js">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width">
     <title>Blazor</title>
     <base href="/"/>
-    <!--<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />-->
     <link href="css/site.css" rel="stylesheet"/>
     <link href="foundation/css/foundation.css" rel="stylesheet"/>
 
     <script src="plotly.js/plotly.min.js"></script>
-
-    <script src="handsontable/dist/handsontable.full.min.js"></script>
-    <link href="handsontable/dist/handsontable.full.min.css" rel="stylesheet" media="screen">
 
 </head>
 <body>
@@ -30,6 +27,21 @@
             return true;
         }
     };
+    
+    window.global = {
+        getCurrentLocation: function () {
+            console.log(window.location);
+            return window.location.href;
+        },
+        
+        // Инициализация плагонов Foundation, в которых используется JS
+        // Вызывать в методе OnAfterRenderAsync()
+        foundationInit: function()
+        {
+            $(document).foundation();
+            return true;
+        }
+    }
 </script>
 
 
