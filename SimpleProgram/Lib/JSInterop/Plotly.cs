@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -8,10 +11,13 @@ namespace SimpleProgram.Lib.JSInterop
 {
     public class Plotly<TX, TY>
     {
-        public Plotly()
+        public Plotly(int count = 1)
         {
-            data = new Data[1];
-            data[0] = new Data();
+            data = new Data[count];
+            for (var i = 0; i < count; i++)
+            {
+                data[i] = new Data();
+            }
         }
 
 
@@ -26,6 +32,7 @@ namespace SimpleProgram.Lib.JSInterop
             {
                 x = new List<TX>();
                 y = new List<TY>();
+                z = new List<TY>();
             }
 
             /// <summary>
@@ -65,13 +72,11 @@ namespace SimpleProgram.Lib.JSInterop
             /// </summary>
             public object visible { get; set; } = PlotlyVisibles.true_;
 
-            //public object[] x { get; set; }
             public List<TX> x { get; set; }
 
-            //public object[] y { get; set; }
             public List<TY> y { get; set; }
-
-
+            
+            public List<TY> z { get; set; }
             
         }
 
@@ -101,7 +106,24 @@ namespace SimpleProgram.Lib.JSInterop
     public static class PlotlyTypes
     {
         public const string scatter = "scatter";
+        public const string scattergl = "scattergl";
         public const string bar = "bar";
+        public const string box = "box";
+        public const string pie = "pie";
+        public const string area = "area";
+        public const string heatmap = "heatmap";
+        public const string contour = "contour";
+        public const string histogram = "histogram";
+        public const string histogram2d = "histogram2d";
+        public const string histogram2dcontour = "histogram2dcontour";
+        public const string ohlc = "ohlc";
+        public const string candlestick = "candlestick";
+        public const string table = "table";
+
+        public static List<string> GetTypesList()
+        {
+            return typeof(PlotlyTypes).GetFields().Select(fieldInfo => fieldInfo.Name).ToList();
+        }
     }
 
     public static class PlotlyVisibles
@@ -109,5 +131,11 @@ namespace SimpleProgram.Lib.JSInterop
         public const bool false_ = false;
         public const string legendonly = "legendonly";
         public const bool true_ = true;
+    }
+
+    public class PlotlyBlalzorParam
+    {
+        public string tagId { get; set; } = "";
+        public string plotlyType { get; set; } = "";
     }
 }
