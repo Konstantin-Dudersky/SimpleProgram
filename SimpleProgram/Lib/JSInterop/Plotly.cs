@@ -136,6 +136,14 @@ namespace SimpleProgram.Lib.JSInterop
     public class PlotlyBlalzorParam
     {
         public string tagId { get; set; } = "";
-        public string plotlyType { get; set; } = "";
+        public string plotlyType { get; set; }
+        public PlotlyTransform transform { get; set; }
+        public int transformTime { get; set; }
+    }
+
+    public enum PlotlyTransform
+    {
+        Without,
+        Increment
     }
 }

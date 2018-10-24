@@ -5,10 +5,16 @@
 @using SimpleProgram.Lib.JSInterop
 @inject Data data
 
+@* <style> *@
+@*     .cell { *@
+@*         border: 1px solid red; *@
+@*     } *@
+@*      *@
+@* </style> *@
 
 <ul class="tabs" data-tabs id="example-tabs">
     <li class="tabs-title is-active">
-        <a data-tabs-target="panel1" >Выбор тегов</a>
+        <a data-tabs-target="panel1">Выбор тегов</a>
     </li>
     <li class="tabs-title">
         <a data-tabs-target="panel2" onmouseup="@Build">График</a>
@@ -20,15 +26,15 @@
     <div class="tabs-panel is-active" id="panel1">
 
         <ul class="accordion" data-accordion>
-            
-            @foreach(var selectedTag in _selectedTagId)
+
+            @foreach (var selectedTag in _selectedTagId)
             {
                 <li class="accordion-item" data-accordion-item>
                     <a class="accordion-title">@(selectedTag.tagId == "" ? "-- Тег не выбран --" : selectedTag.tagId)</a>
                     <div class="accordion-content" data-tab-content>
                         <div class="grid-x align-middle">
                             <div class="cell small-12 medium-8 large-6">
-                                <select bind="@selectedTag.tagId">
+                                <select bind="@selectedTag.tagId" onclick="@Click">
                                     <option value="" selected>-- Тег не выбран --</option>
                                     @foreach (var tag in data.TagDict)
                                     {
@@ -36,20 +42,32 @@
                                     }
                                 </select>
                             </div>
+
                             <div class="cell small-6 large-2">
-                                <select bind="@selectedTag.plotlyType">
+                                <select bind="@selectedTag.transform" onclick="@Click">
+                                    <option value="@PlotlyTransform.Without">-- Без трансформации --</option>
+                                    <option value="@PlotlyTransform.Increment">Приращение</option>
+                                </select>
+                            </div>
+
+                            <div class="cell small-6 large-2">
+                                <input type="number" class="expanded" @(selectedTag.transform == PlotlyTransform.Without ? "disabled" : "null") bind="@selectedTag.transformTime"/>
+                            </div>
+
+                            <div class="cell small-6 large-2">
+                                <select bind="@selectedTag.plotlyType" onclick="@Click">
                                     @foreach (var t in _plotlyTypesList)
                                     {
                                         <option value="@t">@t</option>
                                     }
                                 </select>
                             </div>
-                            
+
                         </div>
                     </div>
                 </li>
             }
-            
+
         </ul>
 
     </div>
@@ -92,19 +110,21 @@
 
     private async void Build()
     {
-       
         var plotly = new Plotly<string, double?>(_selectedTagId.Count);
 
         for (var i = 0; i < _selectedTagId.Count; i++)
         {
             if (_selectedTagId[i].tagId == "") continue;
 
-            var timeSeries = data.TagDict[_selectedTagId[i].tagId].GetTimeSeries().IncreaseCountByPeriod(ByPeriod.Hour);
-            
+            var timeSeries = data.TagDict[_selectedTagId[i].tagId].GetTimeSeries();
+
+            if (_selectedTagId[i].transform == PlotlyTransform.Increment)
+                timeSeries = timeSeries.IncreaseCountByPeriod(_selectedTagId[i].transformTime * 3600);
+
             if (_selectedTagId[i].plotlyType == PlotlyTypes.heatmap)
             {
                 plotly.data[i].x = timeSeries.Times.Select(x => x.ToString(CultureInfo.InvariantCulture)).ToList();
-                plotly.data[i].y = new List<double?>(){0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
+                plotly.data[i].y = new List<double?> {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
                 plotly.data[i].z = timeSeries.Values;
             }
 
@@ -118,10 +138,13 @@
             plotly.data[i].type = _selectedTagId[i].plotlyType;
             plotly.layout.title = "";
         }
-        
-        
 
         await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", "plotly", plotly);
+    }
+
+    private void Click()
+    {
+    // пустой метод, вызывается по нажатию на select, без него не работает bind
     }
 
 }
