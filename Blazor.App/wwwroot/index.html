@@ -25,6 +25,11 @@
         react: function (id, obj) {
             Plotly.react(id, obj);
             return true;
+        },
+        
+        purge: function (id) {
+            Plotly.purge(id);
+            return true;
         }
     };
     

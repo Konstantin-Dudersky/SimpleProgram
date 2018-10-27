@@ -44,7 +44,7 @@
 
     private Task<bool> Prompt()
     {
-        var plotly = new Plotly<string, double?>();
+        var plotly = new Plotly();
 
         var timeSeries = data.TagDict[_selectedTag].GetTimeSeries();
 
