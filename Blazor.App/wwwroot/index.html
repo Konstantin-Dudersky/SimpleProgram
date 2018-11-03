@@ -30,7 +30,12 @@
         purge: function (id) {
             Plotly.purge(id);
             return true;
-        }
+        },
+
+        downloadImage: function(id) {
+            Plotly.downloadImage(id, {format: 'png', width: 1920, height: 1080, filename: 'newplot'});
+            return true;
+        } 
     };
     
     window.global = {

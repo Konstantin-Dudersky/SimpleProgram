@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 
@@ -73,44 +72,6 @@ namespace SimpleProgram.Lib.Archives
         #endregion
     }
 
-    public class TimeSeriesHeatmap
-    {
-        public List<string> X { get; } = new List<string>();
-        public List<DateTime> Y { get; } = new List<DateTime>();
-        public List<List<double?>> Z { get; } = new List<List<double?>>();
-
-        public List<string> YToString => Y.Select(t => t.ToString("yyyy-MM-dd HH:mm:ss")).ToList();
-
-        [SuppressMessage("ReSharper", "InconsistentNaming")]
-        public void AddYZ(DateTime dt, List<double?> values)
-        {
-            Y.Add(dt);
-            Z.Add(values);
-        }
-
-        public void AddX(string x)
-        {
-            X.Add(x);
-        }
-
-        public override string ToString()
-        {
-            var str = new StringBuilder();
-            str.AppendLine("x:");
-            foreach (var time in Y) str.AppendLine(time.ToString("yyyy-MM-dd HH:mm:ss"));
-            str.AppendLine("-----------");
-            str.AppendLine("z:");
-            foreach (var values in Z)
-            {
-                foreach (var d in values) str.Append($"{d:f1} \t");
-
-                str.AppendLine("----");
-            }
-
-            return str.ToString();
-        }
-    }
-
     public static class TimeSeriesExtension
     {
         public static TimeSeries IncreaseCountByPeriod(this TimeSeries ts, int seconds)
@@ -143,17 +104,22 @@ namespace SimpleProgram.Lib.Archives
             return newTs;
         }
 
-        public static TimeSeriesHeatmap ConvertToHeatmap(this TimeSeries ts, int seconds)
+        public static Heatmap ToHeatmap(this TimeSeries ts, ByPeriod xPeriod = ByPeriod.Day)
         {
-            var heatmap = new TimeSeriesHeatmap();
-            var format = "";
+            var heatmap = new Heatmap();
+
+            if (ts.Times.Count < 2)
+            {
+                Console.WriteLine("Кол-во элементов для heatmap меньше 2");
+                return new Heatmap();
+            }
 
             var tshm = from t in ts.TimeValues
                 group t by new DateTime(
                     t.Time.Year,
-                    t.Time.Month,
-                    GetPeriod(seconds) == ByPeriod.Hour ? t.Time.Day : 1,
-                    0,
+                    xPeriod >= ByPeriod.Month ? t.Time.Month : 1,
+                    xPeriod >= ByPeriod.Day ? t.Time.Day : 1,
+                    xPeriod >= ByPeriod.Hour ? t.Time.Hour : 0,
                     0,
                     0)
                 into g
@@ -162,29 +128,45 @@ namespace SimpleProgram.Lib.Archives
             foreach (var t in tshm)
                 heatmap.AddYZ(t.Key, t.Select(n => n.Value).ToList());
 
-            var begin = heatmap.Y[0];
+            // формируем ось х
+            var begin = ts[0].Time;
             var end = begin;
-            switch (GetPeriod(seconds))
+            var format = "";
+
+            switch (xPeriod)
             {
                 case ByPeriod.Year:
                     break;
+
                 case ByPeriod.Month:
+                    end = begin.AddMonths(1);
+                    format = "dd";
                     break;
+
                 case ByPeriod.Day:
-                    break;
-                case ByPeriod.Hour:
                     end = begin.AddDays(1);
                     format = "HH:mm";
                     break;
-                case ByPeriod.Minute:
+
+                case ByPeriod.Hour:
+                    end = begin.AddHours(1);
+                    format = "mm:ss";
                     break;
+
+                case ByPeriod.Minute:
+                    end = begin.AddMinutes(1);
+                    format = "ss";
+                    break;
+
                 case ByPeriod.Second:
                     break;
+
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
             var x = new List<DateTime>();
+            var seconds = (int) ts[1].Time.Subtract(ts[0].Time).TotalSeconds;
 
             while (begin < end)
             {
@@ -207,6 +189,12 @@ namespace SimpleProgram.Lib.Archives
 
             switch (GetPeriod(secondsAdd))
             {
+                case ByPeriod.Year:
+                    break;
+
+                case ByPeriod.Month:
+                    break;
+
                 case ByPeriod.Day:
                     beginDt = new DateTime(beginDt.Year, beginDt.Month, 1, 0, 0, 0);
                     endDt = new DateTime(endDt.Year, endDt.Month, DateTime.DaysInMonth(endDt.Year, endDt.Month),
@@ -214,19 +202,9 @@ namespace SimpleProgram.Lib.Archives
                     break;
 
                 case ByPeriod.Hour:
+                case ByPeriod.Minute:
                     beginDt = new DateTime(beginDt.Year, beginDt.Month, beginDt.Day, 0, 0, 0);
                     endDt = new DateTime(endDt.Year, endDt.Month, endDt.Day, 23, 0, 0);
-                    break;
-
-                case ByPeriod.Minute:
-                    beginDt = new DateTime(beginDt.Year, beginDt.Month, beginDt.Day, beginDt.Hour, 0, 0);
-                    endDt = new DateTime(endDt.Year, endDt.Month, endDt.Day, endDt.Hour, 59, 0);
-                    break;
-
-                case ByPeriod.Year:
-                    break;
-
-                case ByPeriod.Month:
                     break;
 
                 case ByPeriod.Second:

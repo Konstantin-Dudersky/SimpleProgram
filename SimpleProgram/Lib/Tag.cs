@@ -34,7 +34,7 @@ namespace SimpleProgram.Lib
 
         public TimeSeries GetTimeSeries()
         {
-            return Archive.GetTimeSeries(ArchiveTagId);
+            return Archive.GetTimeSeries(ArchiveTagId); 
         }
 
         public T1 GetValue<T1>()
