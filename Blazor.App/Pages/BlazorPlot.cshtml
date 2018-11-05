@@ -6,7 +6,7 @@
 
 <a href="#testanchor">testanchor</a>
 
-<input type="number" bind="@Counter.Value"/>
+<input type="number" bind="@Counter.ValueString"/>
 
 <button class="button" onclick="@Prompt">Click me</button>
 
@@ -36,11 +36,11 @@
 
     [Parameter]
     // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
-    private ITag<bool> State { get; set; } = new Tag<bool>();
+    private Tag<bool> State { get; set; } = new Tag<bool>();
 
     [Parameter]
     // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
-    private ITag<double> Counter { get; set; } = new Tag<double>();
+    private ITag Counter { get; set; } = new Tag<double>();
 
     private Task<bool> Prompt()
     {

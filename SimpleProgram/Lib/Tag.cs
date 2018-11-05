@@ -5,17 +5,17 @@ using SimpleProgram.Lib.Archives;
 
 namespace SimpleProgram.Lib
 {
-    public class Tag<T> : ITag<T>
+    public sealed class Tag<T> : ITag
         where T : IConvertible
     {
         private T _value;
 
-        public T Value
+        public object Value
         {
-            get => _value;
+            get => Convert.ChangeType(_value, typeof(T));
             set
             {
-                _value = value;
+                _value = (T) Convert.ChangeType(value, typeof(object));
                 OnChange?.Invoke();
             }
         }
@@ -34,22 +34,22 @@ namespace SimpleProgram.Lib
 
         public TimeSeries GetTimeSeries()
         {
-            return Archive.GetTimeSeries(ArchiveTagId); 
+            return Archive.GetTimeSeries(ArchiveTagId);
         }
 
         public T1 GetValue<T1>()
         {
-            return (T1) Convert.ChangeType(Value, typeof(T1));
+            return (T1) Convert.ChangeType(_value, typeof(T1));
         }
 
         public void SetValue<T1>(T1 value)
         {
-            Value = (T) Convert.ChangeType(value, typeof(T));
+            _value = (T) Convert.ChangeType(value, typeof(T));
         }
 
         public string ValueString
         {
-            get => Value.ToString(CultureInfo.InvariantCulture);
+            get => _value.ToString(CultureInfo.InvariantCulture);
             set
             {
                 T fromString;
@@ -60,10 +60,10 @@ namespace SimpleProgram.Lib
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-                    fromString = Value;
+                    fromString = _value;
                 }
 
-                Value = fromString;
+                _value = fromString;
             }
         }
 

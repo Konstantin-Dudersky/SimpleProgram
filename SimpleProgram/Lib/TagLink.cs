@@ -7,7 +7,7 @@ namespace SimpleProgram.Lib
         where TNew : IConvertible
         where TOld : IConvertible
     {
-        private Tag<TOld> _tagLink;
+        private readonly Tag<TOld> _tagLink;
 
         public TNew Value
         {
@@ -28,6 +28,12 @@ namespace SimpleProgram.Lib
         public TimeSeries GetTimeSeries()
         {
             throw new NotImplementedException();
+        }
+
+        object ITag.Value
+        {
+            get => Value;
+            set => throw new NotImplementedException();
         }
 
         public T1 GetValue<T1>()

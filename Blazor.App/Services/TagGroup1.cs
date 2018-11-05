@@ -39,7 +39,7 @@ namespace Blazor.App.Services
         {
             ArchiveDefault = Data.MsArchive;
 
-            timer = new Timer(obj => tag1.Value++, null, 0, 5);
+            timer = new Timer(obj => tag1.SetValue(tag1.GetValue<int>() + 1), null, 0, 5);
 
             var tagLink = MDBB_QS1.Conv<int>();
 

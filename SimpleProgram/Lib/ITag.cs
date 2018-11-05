@@ -10,6 +10,8 @@ namespace SimpleProgram.Lib
         string TagId { get; set; }
         string TagName { get; set; }
         TimeSeries GetTimeSeries();
+        object Value { get; set; }
+
 
         T1 GetValue<T1>();
         void SetValue<T1>(T1 value);
