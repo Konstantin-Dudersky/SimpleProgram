@@ -9,51 +9,67 @@ namespace SimpleProgram.Lib
     {
         private readonly Tag<TOld> _tagLink;
 
-        public TNew Value
-        {
-            get => (TNew) Convert.ChangeType(_tagLink.Value, typeof(TNew));
-            set => _tagLink.Value =  (TOld) Convert.ChangeType(value, typeof(TOld));
-        }
-
-        public ITag<TNew1> Conv<TNew1>() where TNew1 : IConvertible
-        {
-            throw new NotImplementedException();
-        }
-
-        public Archive Archive { get; set; }
-        public string ArchiveTagId { get; set; }
-        public string TagId { get; set; }
-        public string TagName { get; set; }
-
-        public TimeSeries GetTimeSeries()
-        {
-            throw new NotImplementedException();
-        }
-
-        object ITag.Value
-        {
-            get => Value;
-            set => throw new NotImplementedException();
-        }
-
-        public T1 GetValue<T1>()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetValue<T1>(T1 value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string ValueString { get; set; }
-        public Type GenericType { get; }
-        public bool InputValid { get; }
-
-
         public TagLink(Tag<TOld> tagLink)
         {
             _tagLink = tagLink;
         }
+
+        public TNew Value
+        {
+            get => (TNew) Convert.ChangeType(_tagLink.Value, typeof(TNew));
+            set => _tagLink.Value = (TOld) Convert.ChangeType(value, typeof(TOld));
+        }
+
+        public Archive Archive
+        {
+            get => _tagLink.Archive;
+            set => _tagLink.Archive = value;
+        }
+
+        public string ArchiveTagId
+        {
+            get => _tagLink.ArchiveTagId;
+            set => _tagLink.ArchiveTagId = value;
+        }
+
+        public string TagId
+        {
+            get => _tagLink.TagId;
+            set => _tagLink.TagId = value;
+        }
+
+        public string TagName
+        {
+            get => _tagLink.TagName;
+            set => _tagLink.TagName = value;
+        }
+
+        public ITag<TNew1> ConvertTo<TNew1>() where TNew1 : IConvertible
+        {
+            return _tagLink.ConvertTo<TNew1>();
+        }
+
+        public TimeSeries GetTimeSeries()
+        {
+            return _tagLink.GetTimeSeries();
+        }
+
+        public T1 GetValue<T1>()
+        {
+            return _tagLink.GetValue<T1>();
+        }
+
+        public void SetValue<T1>(T1 value)
+        {
+            _tagLink.SetValue(value);
+        }
+
+        public string ValueString
+        {
+            get => _tagLink.ValueString;
+            set => _tagLink.ValueString = value;
+        }
+
+        public Type GenericType => typeof(TNew);
     }
 }

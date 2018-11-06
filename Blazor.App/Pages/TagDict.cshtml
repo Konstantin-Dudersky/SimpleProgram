@@ -31,7 +31,7 @@
                     <td>@tag.ArchiveTagId</td>
                     <td>@tag.Archive.ArchiveName</td>
                     <td>
-                        <input style="margin-bottom: 0" type="text" class="@(tag.InputValid ? "" : "is-invalid-input")"
+                        <input style="margin-bottom: 0" type="text"
                                bind="@tag.ValueString" onfocusin="@StopRefresh" onfocusout="@StartRefresh"/>
                     </td>
                     <td>@tag.GenericType</td>

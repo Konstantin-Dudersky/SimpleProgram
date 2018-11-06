@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 using SimpleProgram.Lib;
 using Xunit;
 
@@ -26,6 +27,27 @@ namespace SimpleProgram.Tests
             Assert.Equal(0, tag.GetValue<double>());
             Assert.Equal(0, tag.GetValue<int>());
             Assert.False(tag.GetValue<bool>());
+        }
+
+        [Fact]
+        public void TagLinkTest()
+        {
+            var tag = new Tag<double> {Value = 2.0};
+            var tagLink = tag.ConvertTo<int>();
+
+            tagLink.Value = 1;
+            Assert.Equal(Convert.ToDouble(tagLink.Value), tag.Value);
+
+            tag.Value = 3.0;
+            Assert.Equal(Convert.ToInt32(tag.Value), tagLink.Value);
+
+            // tagLink2
+            var tagLink2 = tagLink.ConvertTo<short>();
+            tagLink2.Value = 5;
+            Assert.Equal(Convert.ToDouble(tagLink2.Value), tag.Value);
+
+            tag.Value = 2.0;
+            Assert.Equal(Convert.ToInt16(tag.Value), tagLink2.Value);
         }
     }
 }
