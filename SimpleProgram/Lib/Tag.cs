@@ -5,32 +5,31 @@ using SimpleProgram.Lib.Archives;
 
 namespace SimpleProgram.Lib
 {
-    public sealed class Tag<T> : ITag
+    public sealed class Tag<T> : ITag<T>
         where T : IConvertible
     {
         private T _value;
 
-        public object Value
+        public T Value
         {
-            get => Convert.ChangeType(_value, typeof(T));
+            get => _value;
             set
             {
-                _value = (T) Convert.ChangeType(value, typeof(object));
+                _value = value;
                 OnChange?.Invoke();
             }
         }
-
-        public ITag<TNew> Conv<TNew>() where TNew : IConvertible
-        {
-            return new TagLink<T, TNew>(this);
-        }
-
 
         public Archive Archive { get; set; }
         public string ArchiveTagId { get; set; }
         public string TagId { get; set; }
         public string TagName { get; set; }
 
+
+        public ITag<TNew> ConvertTo<TNew>() where TNew : IConvertible
+        {
+            return new TagLink<T, TNew>(this);
+        }
 
         public TimeSeries GetTimeSeries()
         {
@@ -39,17 +38,17 @@ namespace SimpleProgram.Lib
 
         public T1 GetValue<T1>()
         {
-            return (T1) Convert.ChangeType(_value, typeof(T1));
+            return (T1) System.Convert.ChangeType(Value, typeof(T1));
         }
 
         public void SetValue<T1>(T1 value)
         {
-            _value = (T) Convert.ChangeType(value, typeof(T));
+            Value = (T) System.Convert.ChangeType(value, typeof(T));
         }
 
         public string ValueString
         {
-            get => _value.ToString(CultureInfo.InvariantCulture);
+            get => Value.ToString(CultureInfo.InvariantCulture);
             set
             {
                 T fromString;
@@ -60,16 +59,14 @@ namespace SimpleProgram.Lib
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-                    fromString = _value;
+                    fromString = Value;
                 }
 
-                _value = fromString;
+                Value = fromString;
             }
         }
 
         public Type GenericType => typeof(T);
-        public bool InputValid { get; } = true;
-
 
         public event Action OnChange;
     }

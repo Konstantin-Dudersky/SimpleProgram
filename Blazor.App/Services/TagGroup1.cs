@@ -41,7 +41,7 @@ namespace Blazor.App.Services
 
             timer = new Timer(obj => tag1.SetValue(tag1.GetValue<int>() + 1), null, 0, 5);
 
-            var tagLink = MDBB_QS1.Conv<int>();
+            var tagLink = MDBB_QS1.ConvertTo<int>();
 
             timer2 = new Timer(obj => tagLink.Value += 2, null, 0, 500);
         }
