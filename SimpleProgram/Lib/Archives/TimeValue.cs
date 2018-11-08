@@ -12,18 +12,11 @@ namespace SimpleProgram.Lib.Archives
         }
 
         public double? Value { get; set; }
-        public DateTime Time { get; set; }
+        public DateTime Time { get; }
 
         public int CompareTo(object obj)
         {
-//            var compareTime = (Time.CompareTo(((TimeValue) obj).Time));
-//            if (compareTime != 0)
-//                return compareTime;
-//            else
-//            {
-//                if (Value == null)
-//            }
-            throw new NotImplementedException();
+            return Time.CompareTo(((TimeValue) obj).Time);
         }
 
         public override string ToString()

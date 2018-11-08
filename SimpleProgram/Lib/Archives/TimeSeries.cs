@@ -57,6 +57,11 @@ namespace SimpleProgram.Lib.Archives
             return builder.ToString();
         }
 
+        public void Sort()
+        {
+            TimeValues.Sort();
+        }
+
         #region implements IEnumerable<object>
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -71,6 +76,7 @@ namespace SimpleProgram.Lib.Archives
 
         #endregion
     }
+
 
     public static class TimeSeriesExtension
     {

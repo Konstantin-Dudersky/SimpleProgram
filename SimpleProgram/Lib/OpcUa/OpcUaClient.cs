@@ -50,6 +50,7 @@ namespace SimpleProgram.Lib.OpcUa
             try
             {
                 ConsoleSampleClient().Wait();
+                
             }
             catch (Exception ex)
             {

@@ -27,5 +27,27 @@ namespace SimpleProgram.Tests
 //
 //            Assert.Equal(right.TimeValues, output.TimeValues);
 //        }
+
+        [Fact]
+        public void SortTest()
+        {
+            var ts1 = new TimeSeries 
+            {
+                {new DateTime(2000, 1, 1, 0, 1, 1), 10}, 
+                {new DateTime(2000, 1, 1, 0, 0, 0), 10},
+                {new DateTime(2000, 1, 1, 0, 0, 1), 10}
+            };
+
+            var ts2 = new TimeSeries
+            {
+                {new DateTime(2000, 1, 1, 0, 0, 0), 11}, 
+                {new DateTime(2000, 1, 1, 0, 0, 1), 11},
+                {new DateTime(2000, 1, 1, 0, 1, 1), 11}
+            };
+
+            ts1.Sort();
+            
+            Assert.Equal(ts2, ts1);
+        }
     }
 }

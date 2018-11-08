@@ -17,10 +17,6 @@ namespace Blazor.App
 
         public void Configure(IBlazorApplicationBuilder app)
         {
-//            Data.StartUp();
-            
-            
-
             app.AddComponent<App>("app");
         }
     }
