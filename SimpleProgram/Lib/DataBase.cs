@@ -1,24 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.SymbolStore;
-using System.Text;
 using System.Threading;
 
 namespace SimpleProgram.Lib
 {
     public class DataBase
     {
-        private readonly Timer _refreshTimer;
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
+        private Timer RefreshTimer { get; }
         public readonly Dictionary<string, ITag> TagDict = new Dictionary<string, ITag>();
 
-        /// <summary>
-        /// 4 23423 234 2
-        /// </summary>
-        /// <param name="refreshTime"> 3423423423 4</param>
         protected DataBase(int refreshTime = 1000)
         {
             RefreshTime = refreshTime;
-            _refreshTimer = new Timer(obj => OnRefresh?.Invoke(), null, 0, RefreshTime);
+            RefreshTimer = new Timer(obj => OnRefresh?.Invoke(), null, 0, RefreshTime);
         }
 
         private int RefreshTime { get; }

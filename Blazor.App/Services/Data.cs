@@ -13,9 +13,11 @@ namespace Blazor.App.Services
             ArchiveName = "Архив MasterScada"
         };
 
-        public MySampleClient client;
+        public static readonly OpcUaClient OpcClient = new OpcUaClient("opc.tcp://localhost:48010", false, 10);
 
         public readonly TagGroup1 TagGroup1;
+        public readonly TgOpcItems TgOpcItems;
+
 
 
         public Data() : base(500)
@@ -24,11 +26,10 @@ namespace Blazor.App.Services
                 Providers.PostgreSql,
                 "Host=localhost;Database=energy;Username=postgres;Password=123");
             
-            client = new MySampleClient("opc.tcp://localhost:48010", false, 10);
-
-
             TagGroup1 = new TagGroup1();
+            TgOpcItems = new TgOpcItems();
 
+            
 //            var bot = new TelegramBotClient("611768794:AAE1RZMstPcBkrjIZq2h2pzwgK8qAKMR-yU");
 //            var me = bot.SendTextMessageAsync("@saria_channel", "123123");
 

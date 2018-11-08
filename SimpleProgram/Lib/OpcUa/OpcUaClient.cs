@@ -23,17 +23,19 @@ namespace SimpleProgram.Lib.OpcUa
         ErrorInvalidCommandLine = 0x100
     }
 
-    public class MySampleClient
+    public class OpcUaClient
     {
         private const int ReconnectPeriod = 5;
         private static bool _autoAccept;
         private readonly int _clientRunTime;
         private readonly string _endpointUrl;
+
+        private readonly List<MonitoredItem> _monitoredItems = new List<MonitoredItem>();
         private readonly Timer _timer;
         private SessionReconnectHandler _reconnectHandler;
         private Session _session;
 
-        public MySampleClient(string endpointUrl, bool autoAccept, int stopTimeout)
+        public OpcUaClient(string endpointUrl, bool autoAccept, int stopTimeout)
         {
             _endpointUrl = endpointUrl;
             _autoAccept = autoAccept;
@@ -43,7 +45,7 @@ namespace SimpleProgram.Lib.OpcUa
 
         private static ExitCode ExitCode { get; set; }
 
-        public void Run()
+        private void Run()
         {
             try
             {
@@ -129,40 +131,40 @@ namespace SimpleProgram.Lib.OpcUa
 
             var references = _session.FetchReferences(ObjectIds.ObjectsFolder);
 
-            _session.Browse(
-                null,
-                null,
-                ObjectIds.ObjectsFolder,
-                0u,
-                BrowseDirection.Forward,
-                ReferenceTypeIds.HierarchicalReferences,
-                true,
-                (uint) NodeClass.Variable | (uint) NodeClass.Object | (uint) NodeClass.Method,
-                out continuationPoint,
-                out references);
-
-            Console.WriteLine(" DisplayName, BrowseName, NodeClass");
-            foreach (var rd in references)
-            {
-                Console.WriteLine(" {0}, {1}, {2}", rd.DisplayName, rd.BrowseName, rd.NodeClass);
-                ReferenceDescriptionCollection nextRefs;
-                byte[] nextCp;
-                _session.Browse(
-                    null,
-                    null,
-                    ExpandedNodeId.ToNodeId(rd.NodeId, _session.NamespaceUris),
-                    0u,
-                    BrowseDirection.Forward,
-                    ReferenceTypeIds.HierarchicalReferences,
-                    true,
-                    (uint) NodeClass.Variable | (uint) NodeClass.Object | (uint) NodeClass.Method,
-                    out nextCp,
-                    out nextRefs);
-
-                foreach (var nextRd in nextRefs)
-                    Console.WriteLine("   + {0}, {1}, {2}", nextRd.DisplayName, nextRd.BrowseName,
-                        nextRd.NodeClass);
-            }
+//            _session.Browse(
+//                null,
+//                null,
+//                ObjectIds.ObjectsFolder,
+//                0u,
+//                BrowseDirection.Forward,
+//                ReferenceTypeIds.HierarchicalReferences,
+//                true,
+//                (uint) NodeClass.Variable | (uint) NodeClass.Object | (uint) NodeClass.Method,
+//                out continuationPoint,
+//                out references);
+//
+//            Console.WriteLine(" DisplayName, BrowseName, NodeClass");
+//            foreach (var rd in references)
+//            {
+//                Console.WriteLine(" {0}, {1}, {2}", rd.DisplayName, rd.BrowseName, rd.NodeClass);
+//                ReferenceDescriptionCollection nextRefs;
+//                byte[] nextCp;
+//                _session.Browse(
+//                    null,
+//                    null,
+//                    ExpandedNodeId.ToNodeId(rd.NodeId, _session.NamespaceUris),
+//                    0u,
+//                    BrowseDirection.Forward,
+//                    ReferenceTypeIds.HierarchicalReferences,
+//                    true,
+//                    (uint) NodeClass.Variable | (uint) NodeClass.Object | (uint) NodeClass.Method,
+//                    out nextCp,
+//                    out nextRefs);
+//
+//                foreach (var nextRd in nextRefs)
+//                    Console.WriteLine("   + {0}, {1}, {2}", nextRd.DisplayName, nextRd.BrowseName,
+//                        nextRd.NodeClass);
+//            }
 
             Console.WriteLine("5 - Create a subscription with publishing interval of 1 second.");
             ExitCode = ExitCode.ErrorCreateSubscription;
@@ -179,21 +181,17 @@ namespace SimpleProgram.Lib.OpcUa
                 {
                     DisplayName = "ServerStatusCurrentTime",
                     StartNodeId = "i=" + Variables.Server_ServerStatus_CurrentTime
-                },
-                new MonitoredItem
-                {
-                    DisplayName = "test",
-                    StartNodeId = "ns=2;s=Demo.Dynamic.Scalar.Double",
-                    SamplingInterval = 2000,
                 }
             };
-            list.ForEach(i => i.Notification += OnNotification);
+            list.AddRange(_monitoredItems);
+//            list.ForEach(i => i.Notification += OnNotification);
             subscription.AddItems(list);
 
             Console.WriteLine("7 - Add the subscription to the session.");
             ExitCode = ExitCode.ErrorAddSubscription;
             _session.AddSubscription(subscription);
             subscription.Create();
+
 
             Console.WriteLine("8 - Running...Press Ctrl-C to exit...");
             ExitCode = ExitCode.ErrorRunning;
@@ -239,5 +237,57 @@ namespace SimpleProgram.Lib.OpcUa
             Console.WriteLine(_autoAccept ? "Accepted Certificate: {0}" : "Rejected Certificate: {0}",
                 e.Certificate.Subject);
         }
+
+        public void AddMonitoredItem(TagOpcUaClient client, string nodeId, int samplingInterval,
+            MonitoredItemNotificationEventHandler eventHandler)
+        {
+            var monitoredItem = new MonitoredItem
+            {
+                StartNodeId = nodeId,
+                SamplingInterval = samplingInterval
+            };
+            _monitoredItems.Add(monitoredItem);
+            monitoredItem.Notification += eventHandler;
+            client.NewValueToChannel += OnNewValueToChannel;
+        }
+
+        private void OnNewValueToChannel(object sender, ValueToChannelArgs eventArgs)
+        {
+            var dataValue = _session.ReadValue(eventArgs.NodeId);
+
+            dataValue.Value = eventArgs.Value;
+            var writeValueCollection = new WriteValueCollection
+            {
+                new WriteValue
+                {
+                    Value = new DataValue(
+                        new Variant(Convert.ChangeType(dataValue.Value, dataValue.Value.GetType()))),
+                    NodeId = eventArgs.NodeId,
+                    AttributeId = Attributes.Value
+                }
+            };
+
+            _session.Write(null, writeValueCollection, out var status, out _);
+
+            foreach (var s in status)
+            {
+                if (s != StatusCodes.Good)
+                    Console.WriteLine($"{eventArgs.NodeId}\t{s}");
+            }
+
+        }
+    }
+
+
+    public class ValueToChannelArgs : EventArgs
+    {
+        public ValueToChannelArgs(string nodeId, object value)
+        {
+            NodeId = nodeId;
+            Value = value;
+        }
+
+        public string NodeId { get; }
+        public object Value { get; }
     }
 }

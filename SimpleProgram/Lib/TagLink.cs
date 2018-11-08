@@ -1,5 +1,6 @@
 using System;
 using SimpleProgram.Lib.Archives;
+using SimpleProgram.Lib.OpcUa;
 
 namespace SimpleProgram.Lib
 {
@@ -71,5 +72,7 @@ namespace SimpleProgram.Lib
         }
 
         public Type GenericType => typeof(TNew);
+        public DateTime TimeStamp => _tagLink.TimeStamp;
+        public TagOpcUaClient OpcUaClient { get; set; }
     }
 }

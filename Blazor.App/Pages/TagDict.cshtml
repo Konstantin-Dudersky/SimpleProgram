@@ -4,22 +4,49 @@
 
 <style>
     /* скрывает стобцы */
-    #testable tr td:nth-child(0),
-    #testable tr th:nth-child(0) { display: none; }
+    #testable tr td:nth-child(1), #testable tr th:nth-child(1) { display: @(_visibleColumns.Values.ToList()[0] ? "table-cell": "none"); }
+    #testable tr td:nth-child(2), #testable tr th:nth-child(2) { display: @(_visibleColumns.Values.ToList()[1] ? "table-cell": "none"); }
+    #testable tr td:nth-child(3), #testable tr th:nth-child(3) { display: @(_visibleColumns.Values.ToList()[2] ? "table-cell": "none"); }
+    #testable tr td:nth-child(4), #testable tr th:nth-child(4) { display: @(_visibleColumns.Values.ToList()[3] ? "table-cell": "none"); }
+    #testable tr td:nth-child(5), #testable tr th:nth-child(5) { display: @(_visibleColumns.Values.ToList()[4] ? "table-cell": "none"); }
+    #testable tr td:nth-child(6), #testable tr th:nth-child(6) { display: @(_visibleColumns.Values.ToList()[5] ? "table-cell": "none"); }
+    #testable tr td:nth-child(7), #testable tr th:nth-child(7) { display: @(_visibleColumns.Values.ToList()[6] ? "table-cell": "none"); }
+    #testable tr td:nth-child(8), #testable tr th:nth-child(8) { display: @(_visibleColumns.Values.ToList()[7] ? "table-cell": "none"); }
+    #testable tr td:nth-child(9), #testable tr th:nth-child(9) { display: @(_visibleColumns.Values.ToList()[8] ? "table-cell": "none"); }
+    #testable tr td:nth-child(10), #testable tr th:nth-child(10) { display: @(_visibleColumns.Values.ToList()[9] ? "table-cell": "none"); }
 </style>
+
+<div class="grid-x align-middle grid-padding-x">
+    <div class="cell small-12 medium-4 large-2">
+        <button class="button expanded" type="button" data-toggle="dropdown-columns">Выбрать колонки</button>
+        <div class="dropdown-pane" id="dropdown-columns" data-dropdown data-auto-focus="true">
+            <div class="grid-container">
+                <div class="grid-x grid-margin-x">
+                    @foreach (var key in _visibleColumns.Keys)
+                    {
+                        <div class="cell large-12">
+                            <input id="checkbox1" type="checkbox" bind="@_visibleColumns[key]"/>
+                            <label for="checkbox1">@key</label>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="grid-x align-middle">
     <div class="cell">
         <table class="hover unstriped scroll" id="testable">
             <thead>
             <tr>
-                <th>@nameof(ITag.TagId)</th>
+                <th>@_visibleColumns.Keys.ToList()[0]</th>
                 <th>@nameof(ITag.TagName)</th>
                 <th>@nameof(ITag.ArchiveTagId)</th>
-                <th>@nameof(ITag.Archive.ArchiveName)</th>
+                <th>@(nameof(ITag.Archive) + nameof(ITag.Archive.ArchiveName))</th>
                 <th>@nameof(ITag.ValueString)</th>
+                <th>@nameof(ITag.TimeStamp)</th>
                 <th>@nameof(ITag.GenericType)</th>
-                <th>Plot</th>
             </tr>
             </thead>
             <tbody>
@@ -29,17 +56,22 @@
                     <td>@tag.TagId</td>
                     <td>@tag.TagName</td>
                     <td>@tag.ArchiveTagId</td>
-                    <td>@tag.Archive.ArchiveName</td>
+                    <td>@tag.Archive?.ArchiveName</td>
                     <td>
                         <input style="margin-bottom: 0" type="text"
                                bind="@tag.ValueString" onfocusin="@StopRefresh" onfocusout="@StartRefresh"/>
                     </td>
+                    <td>@tag.TimeStamp.ToLocalTime()</td>
                     <td>@tag.GenericType</td>
-                    <td>
-                        <NavLink href="@($"/Plot/{tag.TagId}")">
-                            <button class="button" style="margin: 0">Plot</button>
-                        </NavLink>
-                    </td>
+                    <td>@tag.OpcUaClient?.Client</td>
+                    <td>@tag.OpcUaClient?.NodeId</td>
+                    <td>@tag.OpcUaClient?.SamplingInterval</td>
+                    
+                    @* <td> *@
+                    @*     <NavLink href="@($"/Plot/{tag.TagId}")"> *@
+                    @*         <button class="button" style="margin: 0">Plot</button> *@
+                    @*     </NavLink> *@
+                    @* </td> *@
                 </tr>
             }
             </tbody>
@@ -52,11 +84,34 @@
 {
     private bool _refresh = true;
 
+    readonly Dictionary<string, bool> _visibleColumns = new Dictionary<string, bool>(); 
+
     protected override void OnInit()
     {
         base.OnInit();
         data.OnRefresh += Refresh;
+        
+        // управление видимостью столбцов
+        _visibleColumns[nameof(ITag.TagId)] = true;
+        _visibleColumns[nameof(ITag.TagName)] = true;
+        _visibleColumns[nameof(ITag.ArchiveTagId)] = true;
+        _visibleColumns[$"{nameof(ITag.Archive)}.{nameof(ITag.Archive.ArchiveName)}"] = true;
+        _visibleColumns[nameof(ITag.ValueString)] = true;
+        _visibleColumns[nameof(ITag.TimeStamp)] = true;
+        _visibleColumns[nameof(ITag.GenericType)] = true;
+        _visibleColumns[nameof(ITag.GenericType)] = true;
+        _visibleColumns[nameof(ITag.OpcUaClient.Client)] = false;
+        _visibleColumns[nameof(ITag.OpcUaClient.NodeId)] = false;
+        _visibleColumns[nameof(ITag.OpcUaClient.SamplingInterval)] = false;
     }
+
+    protected override async Task OnAfterRenderAsync()
+    {
+        if (_jqueryInitialized) return;
+        _jqueryInitialized = await JSRuntime.Current.InvokeAsync<bool>("global.foundationInit");
+    }
+
+    private bool _jqueryInitialized;
 
     private void StartRefresh()
     {
@@ -73,5 +128,5 @@
         if (_refresh)
             StateHasChanged();
     }
-    
+
 }

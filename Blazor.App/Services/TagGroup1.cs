@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using SimpleProgram.Lib;
 using SimpleProgram.Lib.Archives;
+using SimpleProgram.Lib.OpcUa;
 
 namespace Blazor.App.Services
 {
@@ -19,12 +20,12 @@ namespace Blazor.App.Services
         {
             ArchiveTagId = "Энергоменеджмент.Счетчики.Модуль 1, MDB-B, QS1, PAC"
         };
+        
 
         public Tag<int> tag1 = new Tag<int>();
         public Tag<int> tag2 = new Tag<int>();
 
         public Tag<bool> tagBool = new Tag<bool>();
-        public TagGroup2 TagGroup2 = new TagGroup2();
 
         public Tag<double> temperature = new Tag<double>
         {

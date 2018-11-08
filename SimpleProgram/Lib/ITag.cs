@@ -1,5 +1,6 @@
 using System;
 using SimpleProgram.Lib.Archives;
+using SimpleProgram.Lib.OpcUa;
 
 namespace SimpleProgram.Lib
 {
@@ -17,6 +18,9 @@ namespace SimpleProgram.Lib
         string ValueString { get; set; }
         
         Type GenericType { get; }
+        DateTime TimeStamp { get; }
+        
+        TagOpcUaClient OpcUaClient { get; set; }
     }
 
     public interface ITag<T> : ITag
