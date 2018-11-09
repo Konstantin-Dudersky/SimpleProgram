@@ -95,5 +95,21 @@ namespace SimpleProgram.Tests
             Assert.Equal(tsMultiplication, ts1 * ts2);
             Assert.Equal(tsDivision, tsDivisionTest);
         }
+
+        [Fact]
+        public void SimplifyTest()
+        {
+            var ts = new TimeSeries
+            {
+                {new DateTime(1000, 1, 1, 0, 0, 0), 1}
+            };
+            
+            // None
+            Assert.Equal(ts, ts.Simplify(SimplifyType.None, 60));
+            
+            // Increment
+            var newTs = ts.Simplify(SimplifyType.Increment, 3600);
+            Assert.Equal(ts, newTs);
+        }
     }
 }

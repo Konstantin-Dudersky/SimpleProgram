@@ -2,7 +2,7 @@ using System;
 using SimpleProgram.Lib.Archives;
 using SimpleProgram.Lib.OpcUa;
 
-namespace SimpleProgram.Lib
+namespace SimpleProgram.Lib.Tag
 {
     public interface ITag
     {
@@ -10,7 +10,7 @@ namespace SimpleProgram.Lib
         string ArchiveTagId { get; set; }
         string TagId { get; set; }
         string TagName { get; set; }
-        TimeSeries GetTimeSeries();
+        TimeSeries GetTimeSeries(SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600);
 
         T1 GetValue<T1>();
         void SetValue<T1>(T1 value);

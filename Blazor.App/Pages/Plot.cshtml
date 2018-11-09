@@ -44,8 +44,8 @@
 
                             <div class="cell small-6 medium-4 large-2">
                                 <select bind="@selectedTag.transform">
-                                    <option value="@PlotlyTransform.Without">-- Без трансформации --</option>
-                                    <option value="@PlotlyTransform.Increment">Приращение</option>
+                                    <option value="@SimplifyType.None">-- Без трансформации --</option>
+                                    <option value="@SimplifyType.Increment">Приращение</option>
                                 </select>
                             </div>
 
@@ -209,33 +209,27 @@
                 continue;
             }
 
-
-            var timeSeries = data.TagDict[_selectedTagId[i].tagId].GetTimeSeries();
-
-            if (_selectedTagId[i].transform == PlotlyTransform.Increment)
-                timeSeries = timeSeries.IncreaseCountByPeriod(_selectedTagId[i].transformTime * _selectedTagId[i].transformTimeCoef);
-
+            var ts = data.TagDict[_selectedTagId[i].tagId].GetTimeSeries(_selectedTagId[i].transform,
+                _selectedTagId[i].transformTime * _selectedTagId[i].transformTimeCoef);
 
             if (_selectedTagId[i].plotlyType == PlotlyTypes.heatmap)
             {
-                var heatmap = timeSeries.ToHeatmap(ByPeriod.Day);
+                var heatMap = ts.ToHeatmap();
 
-                _plotly.data[i].y = heatmap.YToString;
-                _plotly.data[i].x = heatmap.X;
-                _plotly.data[i].z = heatmap.Z;
+                _plotly.data[i].y = heatMap.YToString;
+                _plotly.data[i].x = heatMap.X;
+                _plotly.data[i].z = heatMap.Z;
             }
             else
             {
-                _plotly.data[i].x = timeSeries.TimesToPlotly();
-                _plotly.data[i].y = timeSeries.Values;
+                _plotly.data[i].x = ts.TimesToPlotly();
+                _plotly.data[i].y = ts.Values;
             }
 
             _plotly.data[i].name = data.TagDict[_selectedTagId[i].tagId].TagName;
             _plotly.data[i].type = _selectedTagId[i].plotlyType;
             _plotly.data[i].yaxis = _selectedTagId[i].yaxis;
         }
-
-    //        Console.WriteLine(Microsoft.JSInterop.Json.Serialize(_plotly.layout));
 
         await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", "plotly", _plotly);
     }

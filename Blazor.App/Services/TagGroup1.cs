@@ -1,9 +1,15 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using SimpleProgram.Lib;
 using SimpleProgram.Lib.Archives;
 using SimpleProgram.Lib.OpcUa;
+using SimpleProgram.Lib.Tag;
+// ReSharper disable StringLiteralTypo
+// ReSharper disable InconsistentNaming
+// ReSharper disable FieldCanBeMadeReadOnly.Global
+// ReSharper disable IdentifierTypo
 
 namespace Blazor.App.Services
 {
@@ -22,19 +28,21 @@ namespace Blazor.App.Services
         };
         
 
-        public Tag<int> tag1 = new Tag<int>();
+        public readonly Tag<int> tag1 = new Tag<int>();
         public Tag<int> tag2 = new Tag<int>();
 
-        public Tag<bool> tagBool = new Tag<bool>();
+        public readonly Tag<bool> tagBool = new Tag<bool>();
 
         public Tag<double> temperature = new Tag<double>
         {
             ArchiveTagId = "Энергоменеджмент.Темп наружного воздуха.Средняя темп.Выходы.Average_temp"
         };
 
+        public Tag<double> tagSum = new Tag<double>();
 
-        public Timer timer;
-        public Timer timer2;
+
+        private Timer timer;
+        private Timer timer2;
 
         public TagGroup1(Archive archiveDefault = null)
         {
@@ -45,6 +53,8 @@ namespace Blazor.App.Services
             var tagLink = MDBB_QS1.ConvertTo<int>();
 
             timer2 = new Timer(obj => tagLink.Value += 2, null, 0, 500);
+            
+            tagSum.ConfDerivedFromTags((t1, t2, t3, t4, t5, t6, t7, t8, t9, t10) => t1 + t2, MDBA_QS1, MDBB_QS1);
         }
     }
 }

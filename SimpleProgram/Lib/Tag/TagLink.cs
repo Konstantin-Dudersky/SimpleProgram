@@ -2,7 +2,7 @@ using System;
 using SimpleProgram.Lib.Archives;
 using SimpleProgram.Lib.OpcUa;
 
-namespace SimpleProgram.Lib
+namespace SimpleProgram.Lib.Tag
 {
     public class TagLink<TOld, TNew> : ITag<TNew>
         where TNew : IConvertible
@@ -53,6 +53,11 @@ namespace SimpleProgram.Lib
         public TimeSeries GetTimeSeries()
         {
             return _tagLink.GetTimeSeries();
+        }
+
+        public TimeSeries GetTimeSeries(SimplifyType simplifyType, int simplifyTime)
+        {
+            throw new NotImplementedException();
         }
 
         public T1 GetValue<T1>()

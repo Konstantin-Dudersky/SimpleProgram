@@ -1,5 +1,6 @@
 using System;
 using Opc.Ua.Client;
+using SimpleProgram.Lib.Tag;
 
 namespace SimpleProgram.Lib.OpcUa
 {

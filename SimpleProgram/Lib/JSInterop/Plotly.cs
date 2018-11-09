@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using SimpleProgram.Lib.Archives;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -200,16 +201,10 @@ namespace SimpleProgram.Lib.JSInterop
         public string tagId { get; set; } = "";
         public string plotlyType { get; set; } = PlotlyTypes.scatter;
 
-        public PlotlyTransform transform { get; set; } = PlotlyTransform.Without;
+        public SimplifyType transform { get; set; } = SimplifyType.None;
         public int transformTime { get; set; } = 1;
         public int transformTimeCoef { get; set; } = 3600;
 
         public string yaxis { get; set; } = Plotly.Data.YaxisEnum.y;
-    }
-
-    public enum PlotlyTransform
-    {
-        Without,
-        Increment
     }
 }

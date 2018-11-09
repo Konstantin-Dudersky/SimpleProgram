@@ -31,7 +31,8 @@ namespace SimpleProgram.Lib.Archives
         /// <summary>
         ///     Разница в секундах между последовательными метками времени
         /// </summary>
-        public int PeriodInSeconds => (int) (TimeValues.ElementAt(1).Key - TimeValues.ElementAt(0).Key).TotalSeconds;
+        public int? PeriodInSeconds => 
+            Count >= 2 ? (int?) (TimeValues.ElementAt(1).Key - TimeValues.ElementAt(0).Key).TotalSeconds : null;
 
         /// <summary>
         ///     Возвращает значение по ключу (метка времени)
@@ -146,12 +147,14 @@ namespace SimpleProgram.Lib.Archives
 
     public static class TimeSeriesExtension
     {
-        public static TimeSeries IncreaseCountByPeriod(this TimeSeries ts, int seconds)
+        public static TimeSeries Simplify(this TimeSeries ts, SimplifyType simplifyType, int seconds)
         {
+            if (simplifyType == SimplifyType.None) return ts;
+            
             var dict = GetDateTimeRange(ts.TimeBegin, ts.TimeEnd, seconds);
 
-            var j = 0;
-            var endTime = dict.ElementAt(0).Key;
+            var j = 1;
+            var endTime = dict.ElementAt(j).Key;
             foreach (var timeValue in ts.TimeValues)
             {
                 while (timeValue.Key > endTime)
@@ -159,20 +162,32 @@ namespace SimpleProgram.Lib.Archives
                 dict.ElementAt(j - 1).Value.Add(timeValue.Value);
             }
 
-            // начальные значения
             var newTs = new TimeSeries();
 
-            foreach (var d in dict)
-                newTs.Add(d.Key, d.Value.FirstOrDefault());
+            switch (simplifyType)
+            {
+                case SimplifyType.None:
+                    newTs = ts;
+                    break;
+                
+                case SimplifyType.Increment:
+                    // начальные значения
+                    foreach (var d in dict)
+                        newTs.Add(d.Key, d.Value.FirstOrDefault());
 
+                    for (var i = 1; i < newTs.Count; i++)
+                        if (newTs[i] == null)
+                            newTs[i - 1] = null;
+                        else if (newTs[i - 1] != null)
+                            newTs[i - 1] = newTs[i] - newTs[i - 1];
+                    newTs.RemoveLast();
+                    
+                    break;
 
-            for (var i = 1; i < newTs.Count; i++)
-                if (newTs[i] == null)
-                    newTs[i - 1] = null;
-                else if (newTs[i - 1] != null)
-                    newTs[i - 1] = newTs[i] - newTs[i - 1];
-            newTs.RemoveLast();
-
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(simplifyType), simplifyType, null);
+            }
+            
             return newTs;
         }
 
@@ -238,7 +253,10 @@ namespace SimpleProgram.Lib.Archives
             }
 
             var x = new List<DateTime>();
-            var seconds = ts.PeriodInSeconds;
+            
+            if (ts.PeriodInSeconds == null)
+                throw new Exception("Значение PeriodInSeconds класса TimeSeries не определено");
+            var seconds = (int) ts.PeriodInSeconds;
 
             while (begin < end)
             {
@@ -326,5 +344,11 @@ namespace SimpleProgram.Lib.Archives
         Hour,
         Minute,
         Second
+    }
+
+    public enum SimplifyType
+    {
+        None,
+        Increment
     }
 }

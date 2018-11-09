@@ -4,7 +4,7 @@ using System.Globalization;
 using SimpleProgram.Lib.Archives;
 using SimpleProgram.Lib.OpcUa;
 
-namespace SimpleProgram.Lib
+namespace SimpleProgram.Lib.Tag
 {
     public sealed class Tag<T> : ITag<T>
         where T : IConvertible
@@ -46,9 +46,22 @@ namespace SimpleProgram.Lib
             return new TagLink<T, TNew>(this);
         }
 
-        public TimeSeries GetTimeSeries()
+        public TimeSeries GetTimeSeries(SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600)
         {
-            return Archive.GetTimeSeries(ArchiveTagId);
+            if (_derivedFunc == null)
+                return Archive.GetTimeSeries(ArchiveTagId).Simplify(simplifyType, simplifyTime);
+
+            return _derivedFunc(
+                _derivedTag1?.GetTimeSeries(SimplifyType.Increment, 3600),
+                _derivedTag2?.GetTimeSeries(SimplifyType.Increment, 3600),
+                _derivedTag3?.GetTimeSeries(SimplifyType.Increment, 3600),
+                _derivedTag4?.GetTimeSeries(SimplifyType.Increment, 3600),
+                _derivedTag5?.GetTimeSeries(SimplifyType.Increment, 3600),
+                _derivedTag6?.GetTimeSeries(SimplifyType.Increment, 3600),
+                _derivedTag7?.GetTimeSeries(SimplifyType.Increment, 3600),
+                _derivedTag8?.GetTimeSeries(SimplifyType.Increment, 3600),
+                _derivedTag9?.GetTimeSeries(SimplifyType.Increment, 3600),
+                _derivedTag10?.GetTimeSeries(SimplifyType.Increment, 3600));
         }
 
         public T1 GetValue<T1>()
@@ -92,6 +105,50 @@ namespace SimpleProgram.Lib
         public event Action OnChange;
         public event EventHandler<TagExchangeWithChannelArgs> NewValueToChannel;
 
+        #region ConfDerivedFromTags
+
+        private ITag _derivedTag1;
+        private ITag _derivedTag2;
+        private ITag _derivedTag3;
+        private ITag _derivedTag4;
+        private ITag _derivedTag5;
+        private ITag _derivedTag6;
+        private ITag _derivedTag7;
+        private ITag _derivedTag8;
+        private ITag _derivedTag9;
+        private ITag _derivedTag10;
+
+        private Func<TimeSeries, TimeSeries, TimeSeries, TimeSeries, TimeSeries, TimeSeries, TimeSeries, TimeSeries,
+            TimeSeries, TimeSeries, TimeSeries> _derivedFunc;
+
+        public void ConfDerivedFromTags(
+            Func<TimeSeries, TimeSeries, TimeSeries, TimeSeries, TimeSeries, TimeSeries, TimeSeries, TimeSeries,
+                TimeSeries, TimeSeries, TimeSeries> func,
+            ITag tag1 = null,
+            ITag tag2 = null,
+            ITag tag3 = null,
+            ITag tag4 = null,
+            ITag tag5 = null,
+            ITag tag6 = null,
+            ITag tag7 = null,
+            ITag tag8 = null,
+            ITag tag9 = null,
+            ITag tag10 = null)
+        {
+            _derivedFunc = func;
+            _derivedTag1 = tag1;
+            _derivedTag2 = tag2;
+            _derivedTag3 = tag3;
+            _derivedTag4 = tag4;
+            _derivedTag5 = tag5;
+            _derivedTag6 = tag6;
+            _derivedTag7 = tag7;
+            _derivedTag8 = tag8;
+            _derivedTag9 = tag9;
+            _derivedTag10 = tag10;
+        }
+
+        #endregion
     }
 
     public class TagExchangeWithChannelArgs : EventArgs

@@ -1,5 +1,6 @@
 using SimpleProgram.Lib;
 using SimpleProgram.Lib.OpcUa;
+using SimpleProgram.Lib.Tag;
 
 namespace Blazor.App.Services
 {
