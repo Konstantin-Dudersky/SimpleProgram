@@ -4,25 +4,49 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+// ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
+// ReSharper disable StringLiteralTypo
+
 namespace SimpleProgram.Lib.Archives
 {
-    public class TimeSeries : IEnumerable<object>
+    public class TimeSeries : IEnumerable<KeyValuePair<DateTime, double?>>
     {
-        public SortedList<DateTime, double?> TimeValues { get; } = new SortedList<DateTime,double?>();
+        public SortedList<DateTime, double?> TimeValues { get; } = new SortedList<DateTime, double?>();
 
         public IList<double?> Values => TimeValues.Values;
         public IList<DateTime> Times => TimeValues.Keys;
         public int Count => TimeValues.Count;
-        public DateTime TimeBegin => TimeValues.FirstOrDefault().Key;
-        public DateTime TimeEnd => TimeValues.LastOrDefault().Key;
-        public int PeriodInSeconds => (int) (TimeValues.ElementAt(1).Key - TimeValues.ElementAt(0).Key).TotalSeconds; 
 
-        public double? this[DateTime index]
+        /// <summary>
+        ///     Метка времени первого значения
+        /// </summary>
+        public DateTime TimeBegin => TimeValues.FirstOrDefault().Key;
+
+        /// <summary>
+        ///     Метка времени последнего значения
+        /// </summary>
+        public DateTime TimeEnd => TimeValues.LastOrDefault().Key;
+
+        /// <summary>
+        ///     Разница в секундах между последовательными метками времени
+        /// </summary>
+        public int PeriodInSeconds => (int) (TimeValues.ElementAt(1).Key - TimeValues.ElementAt(0).Key).TotalSeconds;
+
+        /// <summary>
+        ///     Возвращает значение по ключу (метка времени)
+        /// </summary>
+        /// <param name="index">Метка времени</param>
+        private double? this[DateTime index]
         {
-            get => TimeValues[index];
+            get => TimeValues.ContainsKey(index) ? TimeValues[index] : null;
             set => TimeValues[index] = value;
         }
-        
+
+        /// <summary>
+        ///     Возвращает значение по порядковому номеру
+        /// </summary>
+        /// <param name="index">Порядковый номер</param>
         public double? this[int index]
         {
             get => TimeValues.ElementAt(index).Value;
@@ -34,9 +58,9 @@ namespace SimpleProgram.Lib.Archives
             TimeValues[time] = value;
         }
 
-        public void RemoveAt(int index)
+        private void AddTimes(IEnumerable<DateTime> times)
         {
-            TimeValues.RemoveAt(index);
+            foreach (var time in times) TimeValues[time] = null;
         }
 
         public void RemoveLast()
@@ -56,16 +80,64 @@ namespace SimpleProgram.Lib.Archives
             return builder.ToString();
         }
 
-        #region implements IEnumerable<object>
+        #region operator
+
+        private static TimeSeries Operation(TimeSeries ts1, TimeSeries ts2, Func<double?, double?, double?> func)
+        {
+            var ts = new TimeSeries();
+            ts.AddTimes(ts1.Times);
+            ts.AddTimes(ts2.Times);
+
+            foreach (var time in ts.Times.ToList())
+                if (ts1[time] == null || ts2[time] == null)
+                {
+                    ts[time] = null;
+                }
+                else
+                {
+                    var value = func(ts1[time], ts2[time]);
+
+                    if (value != null && (double.IsNaN((double) value) || double.IsInfinity((double) value)))
+                        ts[time] = null;
+                    else
+                        ts[time] = value;
+                }
+
+            return ts;
+        }
+
+        public static TimeSeries operator +(TimeSeries ts1, TimeSeries ts2)
+        {
+            return Operation(ts1, ts2, (x1, x2) => x1 + x2);
+        }
+
+        public static TimeSeries operator -(TimeSeries ts1, TimeSeries ts2)
+        {
+            return Operation(ts1, ts2, (x1, x2) => x1 - x2);
+        }
+
+        public static TimeSeries operator *(TimeSeries ts1, TimeSeries ts2)
+        {
+            return Operation(ts1, ts2, (x1, x2) => x1 * x2);
+        }
+
+        public static TimeSeries operator /(TimeSeries ts1, TimeSeries ts2)
+        {
+            return Operation(ts1, ts2, (x1, x2) => x1 / x2);
+        }
+
+        #endregion
+
+        #region implements IEnumerable<>
 
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
 
-        public IEnumerator<object> GetEnumerator()
+        public IEnumerator<KeyValuePair<DateTime, double?>> GetEnumerator()
         {
-            yield return TimeValues.GetEnumerator();
+            return TimeValues.GetEnumerator();
         }
 
         #endregion
