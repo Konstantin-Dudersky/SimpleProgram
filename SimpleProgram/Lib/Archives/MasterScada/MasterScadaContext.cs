@@ -48,20 +48,23 @@ namespace SimpleProgram.Lib.Archives.MasterScada
 
         public TimeSeries GetTimeSeries(string name)
         {
-            TimeSeries values = new TimeSeries();
+            var ts = new TimeSeries();
 
             var itemid = (from i in masterscadadataitems
                 where i.name == name
                 select i.itemid).FirstOrDefault();
 
-            IQueryable<TimeValue> data = (from v in masterscadadataraw
+            var data = from v in masterscadadataraw
                 where v.itemid == itemid && v.quality == 192 && v.layer == 1
                 orderby v.Time
-                select new TimeValue(DateTime.FromBinary(v.Time), (double) v.value));
+                select new { Time = DateTime.FromBinary(v.Time), Value = (double) v.value};
 
-            values.AddRange(data);
+            foreach (var timeValue in data)
+            {
+                ts.Add(timeValue.Time, timeValue.Value);
+            }
 
-            return values;
+            return ts;
         }
     }
 }

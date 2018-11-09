@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <None Update="Opc.Ua.SampleClient.Config.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

@@ -45,8 +45,6 @@ namespace SimpleProgram.Tests
                 {new DateTime(2000, 1, 1, 0, 1, 1), 11}
             };
 
-            ts1.Sort();
-            
             Assert.Equal(ts2, ts1);
         }
     }

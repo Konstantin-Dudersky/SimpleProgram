@@ -8,31 +8,30 @@ namespace SimpleProgram.Lib.Archives
 {
     public class TimeSeries : IEnumerable<object>
     {
-        public List<TimeValue> TimeValues { get; } = new List<TimeValue>();
+        public SortedList<DateTime, double?> TimeValues { get; } = new SortedList<DateTime,double?>();
 
-        public List<double?> Values => TimeValues.Select(x => x.Value).ToList();
-        public List<DateTime> Times => TimeValues.Select(x => x.Time).ToList();
+        public IList<double?> Values => TimeValues.Values;
+        public IList<DateTime> Times => TimeValues.Keys;
         public int Count => TimeValues.Count;
+        public DateTime TimeBegin => TimeValues.FirstOrDefault().Key;
+        public DateTime TimeEnd => TimeValues.LastOrDefault().Key;
+        public int PeriodInSeconds => (int) (TimeValues.ElementAt(1).Key - TimeValues.ElementAt(0).Key).TotalSeconds; 
 
-        public TimeValue this[int index]
+        public double? this[DateTime index]
         {
             get => TimeValues[index];
             set => TimeValues[index] = value;
         }
-
-        public void Add(TimeValue timeValue)
+        
+        public double? this[int index]
         {
-            TimeValues.Add(timeValue);
+            get => TimeValues.ElementAt(index).Value;
+            set => TimeValues[TimeValues.ElementAt(index).Key] = value;
         }
 
         public void Add(DateTime time, double? value)
         {
-            Add(new TimeValue(time, value));
-        }
-
-        public void AddRange(IEnumerable<TimeValue> timeValues)
-        {
-            TimeValues.AddRange(timeValues);
+            TimeValues[time] = value;
         }
 
         public void RemoveAt(int index)
@@ -53,13 +52,8 @@ namespace SimpleProgram.Lib.Archives
         public override string ToString()
         {
             var builder = new StringBuilder();
-            foreach (var tv in TimeValues) builder.AppendLine(tv.ToString());
+            foreach (var tv in TimeValues) builder.AppendLine($"{tv.Key}\t{tv.Value}");
             return builder.ToString();
-        }
-
-        public void Sort()
-        {
-            TimeValues.Sort();
         }
 
         #region implements IEnumerable<object>
@@ -71,7 +65,7 @@ namespace SimpleProgram.Lib.Archives
 
         public IEnumerator<object> GetEnumerator()
         {
-            return TimeValues.GetEnumerator();
+            yield return TimeValues.GetEnumerator();
         }
 
         #endregion
@@ -82,13 +76,13 @@ namespace SimpleProgram.Lib.Archives
     {
         public static TimeSeries IncreaseCountByPeriod(this TimeSeries ts, int seconds)
         {
-            var dict = GetDateTimeRange(ts.TimeValues[0].Time, ts.TimeValues[ts.Count - 1].Time, seconds);
+            var dict = GetDateTimeRange(ts.TimeBegin, ts.TimeEnd, seconds);
 
             var j = 0;
             var endTime = dict.ElementAt(0).Key;
             foreach (var timeValue in ts.TimeValues)
             {
-                while (timeValue.Time > endTime)
+                while (timeValue.Key > endTime)
                     endTime = dict.ElementAt(++j).Key;
                 dict.ElementAt(j - 1).Value.Add(timeValue.Value);
             }
@@ -101,10 +95,10 @@ namespace SimpleProgram.Lib.Archives
 
 
             for (var i = 1; i < newTs.Count; i++)
-                if (newTs[i].Value == null)
-                    newTs[i - 1].Value = null;
-                else if (newTs[i - 1].Value != null)
-                    newTs[i - 1].Value = newTs[i].Value - newTs[i - 1].Value;
+                if (newTs[i] == null)
+                    newTs[i - 1] = null;
+                else if (newTs[i - 1] != null)
+                    newTs[i - 1] = newTs[i] - newTs[i - 1];
             newTs.RemoveLast();
 
             return newTs;
@@ -122,10 +116,10 @@ namespace SimpleProgram.Lib.Archives
 
             var tshm = from t in ts.TimeValues
                 group t by new DateTime(
-                    t.Time.Year,
-                    xPeriod >= ByPeriod.Month ? t.Time.Month : 1,
-                    xPeriod >= ByPeriod.Day ? t.Time.Day : 1,
-                    xPeriod >= ByPeriod.Hour ? t.Time.Hour : 0,
+                    t.Key.Year,
+                    xPeriod >= ByPeriod.Month ? t.Key.Month : 1,
+                    xPeriod >= ByPeriod.Day ? t.Key.Day : 1,
+                    xPeriod >= ByPeriod.Hour ? t.Key.Hour : 0,
                     0,
                     0)
                 into g
@@ -135,7 +129,7 @@ namespace SimpleProgram.Lib.Archives
                 heatmap.AddYZ(t.Key, t.Select(n => n.Value).ToList());
 
             // формируем ось х
-            var begin = ts[0].Time;
+            var begin = ts.TimeBegin;
             var end = begin;
             var format = "";
 
@@ -172,7 +166,7 @@ namespace SimpleProgram.Lib.Archives
             }
 
             var x = new List<DateTime>();
-            var seconds = (int) ts[1].Time.Subtract(ts[0].Time).TotalSeconds;
+            var seconds = ts.PeriodInSeconds;
 
             while (begin < end)
             {
