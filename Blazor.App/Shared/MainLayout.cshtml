@@ -1,18 +1,43 @@
 ﻿@using Blazor.App.Services
 @inherits BlazorLayoutComponent
 
-<div class="sidebar">
-    <NavMenu />
+<div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
+    <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
+    <div class="title-bar-title">Menu</div>
 </div>
 
-<div class="main">
-    @* <div class="top-row px-4"> *@
-    @*     <a href="https://blazor.net" target="_blank" class="ml-md-auto">About</a> *@
-    @* </div> *@
-    @* *@
-    @* <div class="content px-4"> *@
-    @* </div> *@
-    @Body
-
+<div class="top-bar" id="responsive-menu">
+    <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+            <li class="menu-text">Site Title</li>
+            <li><NavLink href="" Match=NavLinkMatch.All>Home</NavLink></li>
+            <li><NavLink href="counter">Counter</NavLink></li>
+            <li><NavLink href="fetchdata">Fetch data</NavLink></li>
+            <li><NavLink href="TagDict">TagDict</NavLink></li>
+            <li><NavLink href="Plot">Plot </NavLink></li>
+        </ul>
+    </div>
+    <div class="top-bar-right">
+        <ul class="menu">
+            <li><input type="search" placeholder="Search"></li>
+            <li><button type="button" class="button">Search</button></li>
+        </ul>
+    </div>
 </div>
 
+
+@Body
+
+
+
+@functions{
+
+    private bool _jqueryInitialized;
+    
+    protected override async Task OnAfterRenderAsync()
+    {
+        if (_jqueryInitialized) return;
+        _jqueryInitialized = await JSRuntime.Current.InvokeAsync<bool>("global.foundationInit");
+    }
+
+}

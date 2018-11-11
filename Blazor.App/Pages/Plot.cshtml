@@ -218,13 +218,13 @@
         _plotly = new Plotly();
     }
 
+    private bool _jqueryInitialized;
+
     protected override async Task OnAfterRenderAsync()
     {
         if (_jqueryInitialized) return;
         _jqueryInitialized = await JSRuntime.Current.InvokeAsync<bool>("global.foundationInit");
     }
-
-    private bool _jqueryInitialized;
 
     private readonly List<PlotlyBlalzorParam> _selectedTagId = new List<PlotlyBlalzorParam>();
     private readonly List<string> _plotlyTypesList = PlotlyTypes.GetTypesList();
