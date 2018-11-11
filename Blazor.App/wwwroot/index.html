@@ -10,6 +10,12 @@
     <link href="foundation/css/foundation.css" rel="stylesheet"/>
 
     <script src="plotly.js/plotly.min.js"></script>
+    
+    <style>
+        html {
+            font-size: 80%;
+        }
+    </style>
 
 </head>
 <body>
@@ -33,7 +39,8 @@
         },
 
         downloadImage: function(id) {
-            Plotly.downloadImage(id, {format: 'png', width: 1920, height: 1080, filename: 'newplot'});
+            // TODO название файла из заголовка графика, если заголовок задан
+            Plotly.downloadImage(id, {format: 'png', width: 1800, height: 900, filename: 'График'});
             return true;
         } 
     };

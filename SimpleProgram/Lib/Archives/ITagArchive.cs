@@ -1,7 +1,9 @@
-﻿namespace SimpleProgram.Lib.Archives
+﻿using System;
+
+namespace SimpleProgram.Lib.Archives
 {
-    public interface IDbContext
+    public interface ITagArchive
     {
-        TimeSeries GetTimeSeries(string name);
+        TimeSeries GetTimeSeries(string name, DateTime dateTimeFrom, DateTime dateTimeTo);
     }
 }

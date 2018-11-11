@@ -50,14 +50,9 @@ namespace SimpleProgram.Lib.Tag
             return _tagLink.ConvertTo<TNew1>();
         }
 
-        public TimeSeries GetTimeSeries()
+        public TimeSeries GetTimeSeries(DateTime begin, DateTime end, SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600)
         {
-            return _tagLink.GetTimeSeries();
-        }
-
-        public TimeSeries GetTimeSeries(SimplifyType simplifyType, int simplifyTime)
-        {
-            throw new NotImplementedException();
+            return _tagLink.GetTimeSeries(begin, end, simplifyType, simplifyTime);
         }
 
         public T1 GetValue<T1>()

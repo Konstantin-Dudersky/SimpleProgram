@@ -8,18 +8,13 @@ namespace SimpleProgram.Lib.Archives
         PostgreSql = 1
     }
 
-    public class Archive : IDbContext
+    public class Archive : ITagArchive
     {
-        private string ConnectionString { get; set; }
-        private IDbContext Context { get; set; }
-        private Providers Provider { get; set; } = Providers.PostgreSql;
-
         public string ArchiveName { get; set; } = "Archive";
 
-        public TimeSeries GetTimeSeries(string name)
-        {
-            return Context.GetTimeSeries(name);
-        }
+        private string ConnectionString { get; set; }
+        private ITagArchive Context { get; set; }
+        private Providers Provider { get; set; } = Providers.PostgreSql;
 
         public void SetProvider<TContext>(Providers provider, string connectionString) where TContext : DbContext
         {
@@ -38,7 +33,16 @@ namespace SimpleProgram.Lib.Archives
                     throw new Exception("Не задан провайдер подключения к БД");
             }
 
-            Context = (IDbContext) Activator.CreateInstance(typeof(TContext), optionsBuilder.Options);
+            Context = (ITagArchive) Activator.CreateInstance(typeof(TContext), optionsBuilder.Options);
         }
+
+        #region ITagArchive
+
+        public TimeSeries GetTimeSeries(string name, DateTime dateTimeFrom, DateTime dateTimeTo)
+        {
+            return Context.GetTimeSeries(name, dateTimeFrom, dateTimeTo);
+        }
+
+        #endregion
     }
 }

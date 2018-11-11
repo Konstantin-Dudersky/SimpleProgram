@@ -10,20 +10,31 @@ namespace SimpleProgram.Lib.JSInterop
 {
     public class Plotly
     {
-        public Plotly(int count = 1)
-        {
-            data = new Data[count];
-            for (var i = 0; i < count; i++) data[i] = new Data();
-        }
-
-
         public Config config { get; set; } = new Config();
-        public Data[] data { get; set; }
+        public List<Data> data { get; set; } = new List<Data>();
         public Layout layout { get; set; } = new Layout();
 
+        public Data GetLastData()
+        {
+            return data.Last();
+        }
+
+        public void AddData()
+        {
+            data.Add(new Data());
+        }
+
+        public void ClearData()
+        {
+            data.Clear();
+        }
 
         public class Data
         {
+            public Cells cells { get; set; } = new Cells();
+            
+            public Header header { get; set; } = new Header();
+
             /// <summary>
             ///     Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling
             ///     legend items.
@@ -44,7 +55,7 @@ namespace SimpleProgram.Lib.JSInterop
             /// </summary>
             public double opacity { get; set; } = 1.0;
 
-            public string type { get; set; } = PlotlyTypes.scatter;
+            public string type { get; set; } = ""; // = PlotlyTypes.scatter;
 
             /// <summary>
             ///     Determines whether or not an item corresponding to this trace is shown in the legend.
@@ -87,6 +98,28 @@ namespace SimpleProgram.Lib.JSInterop
 
                 public static IEnumerable<string> Values =>
                     typeof(YaxisEnum).GetFields().Select(fieldInfo => fieldInfo.Name).ToList();
+            }
+
+            public class Header
+            {
+                /// <summary>
+                ///     Header cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]`
+                ///     vector length for all columns must be the same (longer vectors will be truncated). Each value must be a finite
+                ///     number or a string.
+                ///     <para>value: data array</para>
+                /// </summary>
+                public List<object> values { get; } = new List<object>();
+            }
+
+            public class Cells
+            {
+                /// <summary>
+                ///     Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector
+                ///     length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a
+                ///     string.
+                ///     <para>value: data array</para>
+                /// </summary>
+                public List<List<object>> values { get; } = new List<List<object>>();
             }
         }
 
@@ -144,11 +177,12 @@ namespace SimpleProgram.Lib.JSInterop
                 ///     <para>enumerated : "free" | "/^x([2-9]|[1-9][0-9]+)?$/" | "/^y([2-9]|[1-9][0-9]+)?$/"</para>
                 /// </summary>
                 public string overlaying { get; set; } = "";
-                
+
                 /// <summary>
-                /// Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is set to "free".
-                /// <para>number between or equal to 0 and 1</para>
-                /// <para>default: 0</para>
+                ///     Sets the position of this axis in the plotting space (in normalized coordinates). Only has an effect if `anchor` is
+                ///     set to "free".
+                ///     <para>number between or equal to 0 and 1</para>
+                ///     <para>default: 0</para>
                 /// </summary>
                 public string position { get; set; }
 

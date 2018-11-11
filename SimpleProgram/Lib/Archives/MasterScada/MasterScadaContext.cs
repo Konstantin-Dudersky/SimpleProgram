@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
 using System.Linq;
-using System;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace SimpleProgram.Lib.Archives.MasterScada
 {
-    public class MasterScadaDb : DbContext, IDbContext
+    public class MasterScadaDb : DbContext, ITagArchive
     {
         public MasterScadaDb()
         {
@@ -46,25 +46,30 @@ namespace SimpleProgram.Lib.Archives.MasterScada
             });
         }
 
-        public TimeSeries GetTimeSeries(string name)
+        #region ITagArchive
+
+        public TimeSeries GetTimeSeries(string name, DateTime dateTimeFrom, DateTime dateTimeTo)
         {
             var ts = new TimeSeries();
+
+            var fromDtBinary = dateTimeFrom.ToBinary();
+            var toDtBinary = dateTimeTo.ToBinary();
 
             var itemid = (from i in masterscadadataitems
                 where i.name == name
                 select i.itemid).FirstOrDefault();
 
             var data = from v in masterscadadataraw
-                where v.itemid == itemid && v.quality == 192 && v.layer == 1
+                where v.itemid == itemid && v.quality == 192 && v.layer == 1 && 
+                      v.Time >= fromDtBinary && v.Time <= toDtBinary
                 orderby v.Time
-                select new { Time = DateTime.FromBinary(v.Time), Value = (double) v.value};
+                select new {Time = DateTime.FromBinary(v.Time), Value = (double) v.value};
 
-            foreach (var timeValue in data)
-            {
-                ts.Add(timeValue.Time, timeValue.Value);
-            }
+            foreach (var timeValue in data) ts.Add(timeValue.Time, timeValue.Value);
 
             return ts;
         }
+
+        #endregion
     }
 }

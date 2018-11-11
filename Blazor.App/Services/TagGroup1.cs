@@ -54,7 +54,10 @@ namespace Blazor.App.Services
 
             timer2 = new Timer(obj => tagLink.Value += 2, null, 0, 500);
             
-            tagSum.ConfDerivedFromTags((t1, t2, t3, t4, t5, t6, t7, t8, t9, t10) => t1 + t2, MDBA_QS1, MDBB_QS1);
+            tagSum.ConfDerivedFromTags(
+                (t1, t2, t3, t4, t5, t6, t7, t8, t9, t10) => t1 + t2,
+                MDBA_QS1, SimplifyType.Increment,
+                MDBB_QS1, SimplifyType.Increment);
         }
     }
 }

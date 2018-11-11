@@ -10,7 +10,7 @@ namespace SimpleProgram.Lib.Tag
         string ArchiveTagId { get; set; }
         string TagId { get; set; }
         string TagName { get; set; }
-        TimeSeries GetTimeSeries(SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600);
+        TimeSeries GetTimeSeries(DateTime begin, DateTime end, SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600);
 
         T1 GetValue<T1>();
         void SetValue<T1>(T1 value);
@@ -20,7 +20,7 @@ namespace SimpleProgram.Lib.Tag
         Type GenericType { get; }
         DateTime TimeStamp { get; }
         
-        TagOpcUaClient OpcUaClient { get; set; }
+        TagOpcUaClient OpcUaClient { get; }
     }
 
     public interface ITag<T> : ITag

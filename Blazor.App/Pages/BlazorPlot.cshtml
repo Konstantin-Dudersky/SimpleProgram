@@ -47,7 +47,7 @@
     {
         var plotly = new Plotly();
 
-        var timeSeries = data.TagDict[_selectedTag].GetTimeSeries();
+        var timeSeries = data.TagDict[_selectedTag].GetTimeSeries(DateTime.MinValue, DateTime.MaxValue);
 
         plotly.data[0].x = timeSeries.Times.Select(x => x.ToString()).ToList();
         plotly.data[0].y = timeSeries.Values;

@@ -184,6 +184,25 @@ namespace SimpleProgram.Lib.Archives
                     
                     break;
 
+                case SimplifyType.Average:
+                    foreach (var d in dict)
+                        newTs.Add(d.Key, d.Value.Average());
+                    newTs.RemoveLast();
+                    
+                    break;
+
+                case SimplifyType.Max:
+                    foreach (var d in dict)
+                        newTs.Add(d.Key, d.Value.Max());
+                    newTs.RemoveLast();
+                    break;
+                
+                case SimplifyType.Min:
+                    foreach (var d in dict)
+                        newTs.Add(d.Key, d.Value.Min());
+                    newTs.RemoveLast();
+                    break;
+                
                 default:
                     throw new ArgumentOutOfRangeException(nameof(simplifyType), simplifyType, null);
             }
@@ -349,6 +368,9 @@ namespace SimpleProgram.Lib.Archives
     public enum SimplifyType
     {
         None,
-        Increment
+        Increment,
+        Average,
+        Max,
+        Min
     }
 }
