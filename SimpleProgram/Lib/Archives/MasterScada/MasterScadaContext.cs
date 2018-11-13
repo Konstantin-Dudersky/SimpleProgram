@@ -70,6 +70,8 @@ namespace SimpleProgram.Lib.Archives.MasterScada
             return ts;
         }
 
+        public string ArchiveName { get; set; }
+
         #endregion
     }
 }

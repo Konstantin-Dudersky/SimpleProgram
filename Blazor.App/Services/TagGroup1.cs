@@ -44,7 +44,7 @@ namespace Blazor.App.Services
         private Timer timer;
         private Timer timer2;
 
-        public TagGroup1(Archive archiveDefault = null)
+        public TagGroup1(ITagArchive archiveDefault = null)
         {
             ArchiveDefault = Data.MsArchive;
 

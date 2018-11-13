@@ -26,7 +26,7 @@ namespace SimpleProgram.Lib.Tag
             }
         }
 
-        public Archive Archive { get; set; }
+        public ITagArchive Archive { get; set; }
         public string ArchiveTagId { get; set; }
         public string TagId { get; set; }
         public string TagName { get; set; }

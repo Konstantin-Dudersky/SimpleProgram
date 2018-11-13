@@ -6,7 +6,7 @@ namespace SimpleProgram.Lib.Tag
 {
     public interface ITag
     {
-        Archive Archive { get; set; }
+        ITagArchive Archive { get; set; }
         string ArchiveTagId { get; set; }
         string TagId { get; set; }
         string TagName { get; set; }

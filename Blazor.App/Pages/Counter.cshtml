@@ -3,9 +3,6 @@
 
 @using Blazor.App.Services
 
-<i class="fa fa-camera-retro"></i> fa-camera-retro
-
-
 <div class="grid-x grid-padding-x grid-padding-y">
     <div class="cell small-12 medium-6 large-4" style="height: 600px;" id="1">
         <ScatterByTime 
@@ -14,9 +11,9 @@
             />
     </div>
     
-    @* <div class="cell small-12 medium-6 large-4" style="height: 600px;" id="2"> *@
-    @*     <ScatterByTime Header="52s5435345"/> *@
-    @* </div>   *@
+    <div class="cell small-12 medium-6 large-4" style="height: 600px;" id="2">
+        <ScatterByTime Header="52s5435345"/>
+    </div>
 </div>
 
 <BlazorPlot Counter="@data.TagGroup1.MDBB_QS1" State="@data.TagGroup1.tagBool"/>

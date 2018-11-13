@@ -5,5 +5,6 @@ namespace SimpleProgram.Lib.Archives
     public interface ITagArchive
     {
         TimeSeries GetTimeSeries(string name, DateTime dateTimeFrom, DateTime dateTimeTo);
+        string ArchiveName { get; set; }
     }
 }

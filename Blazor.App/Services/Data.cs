@@ -8,7 +8,8 @@ namespace Blazor.App.Services
 {
     public class Data : DataBase
     {
-        public static readonly Archive MsArchive = new Archive
+        public static readonly Archive<MasterScadaDb> MsArchive = new Archive<MasterScadaDb>(Providers.PostgreSql,
+            "Host=localhost;Database=energy;Username=postgres;Password=123")
         {
             ArchiveName = "Архив MasterScada"
         };

@@ -21,7 +21,7 @@ namespace SimpleProgram.Lib.Tag
             set => _tagLink.Value = (TOld) Convert.ChangeType(value, typeof(TOld));
         }
 
-        public Archive Archive
+        public ITagArchive Archive
         {
             get => _tagLink.Archive;
             set => _tagLink.Archive = value;
