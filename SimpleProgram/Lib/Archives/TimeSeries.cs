@@ -38,7 +38,7 @@ namespace SimpleProgram.Lib.Archives
         ///     Возвращает значение по ключу (метка времени)
         /// </summary>
         /// <param name="index">Метка времени</param>
-        private double? this[DateTime index]
+        internal double? this[DateTime index]
         {
             get => TimeValues.ContainsKey(index) ? TimeValues[index] : null;
             set => TimeValues[index] = value;
@@ -59,7 +59,7 @@ namespace SimpleProgram.Lib.Archives
             TimeValues[time] = value;
         }
 
-        private void AddTimes(IEnumerable<DateTime> times)
+        internal void AddTimes(IEnumerable<DateTime> times)
         {
             foreach (var time in times) TimeValues[time] = null;
         }

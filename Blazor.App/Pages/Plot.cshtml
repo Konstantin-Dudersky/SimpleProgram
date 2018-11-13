@@ -11,194 +11,308 @@
 
 <div class="grid-y grid-frame">
 
-    <div class="cell auto">
+<div class="cell auto">
 
-        <ul class="tabs" data-tabs id="example-tabs">
-            <li class="tabs-title is-active">
-                <a data-tabs-target="panel1" onmouseup="@Purge">Выбор тегов</a>
-            </li>
-            <li class="tabs-title">
-                <a data-tabs-target="panel2" onmouseup="@Purge">Настройка графика</a>
-            </li>
-            <li class="tabs-title">
-                <a data-tabs-target="panel3" onmouseup="@BuildPlot">График</a>
-            </li>
-        </ul>
+<ul class="tabs" data-tabs id="example-tabs">
+    <li class="tabs-title is-active">
+        <a data-tabs-target="panel1" onmouseup="@Purge">Выбор тегов</a>
+    </li>
+    <li class="tabs-title">
+        <a data-tabs-target="panel2" onmouseup="@Purge">Настройка графика</a>
+    </li>
+    <li class="tabs-title">
+        <a data-tabs-target="panel3" onmouseup="@BuildPlot">График</a>
+    </li>
+</ul>
 
-        <div class="tabs-content" data-tabs-content="example-tabs" style="height:100%;">
+<div class="tabs-content" data-tabs-content="example-tabs" style="height: 100%;">
 
-            <div class="tabs-panel is-active" id="panel1">
+<div class="tabs-panel is-active" id="panel1">
 
-                <div class="grid-x align-middle grid-padding-x">
+    <div class="grid-x align-middle grid-padding-x">
 
-                    <div class="cell small-2 medium-2 large-1">
-                        <label for="beginDate" class="text-right middle">От:</label>
+        <div class="cell small-2 medium-2 large-1">
+            <label for="beginDate" class="text-right middle">От:</label>
 
-                    </div>
-                    <div class="cell small-10 medium-4 large-2">
-                        <input id="beginDate" type="date" value="@BeginDateStr"
-                               onchange="@((UIChangeEventArgs e) => BeginDateStr = e.Value.ToString())"/>
-                    </div>
+        </div>
+        <div class="cell small-10 medium-4 large-2">
+            <input id="beginDate" type="date" value="@BeginDateStr"
+                   onchange="@((UIChangeEventArgs e) => BeginDateStr = e.Value.ToString())"/>
+        </div>
 
-                    <div class="cell small-2 medium-2 large-1">
-                        <label for="endDate" class="text-right middle">До:</label>
-                    </div>
+        <div class="cell small-2 medium-2 large-1">
+            <label for="endDate" class="text-right middle">До:</label>
+        </div>
 
-                    <div class="cell small-10 medium-4 large-2">
-                        <input id="endDate" type="date" value="@EndDateStr"
-                               onchange="@((UIChangeEventArgs e) => EndDateStr = e.Value.ToString())"/>
-                    </div>
+        <div class="cell small-10 medium-4 large-2">
+            <input id="endDate" type="date" value="@EndDateStr"
+                   onchange="@((UIChangeEventArgs e) => EndDateStr = e.Value.ToString())"/>
+        </div>
 
-                </div>
+    </div>
 
-                <ul class="accordion" data-accordion>
+    <ul class="accordion" data-accordion>
 
-                    @foreach (var selectedTag in _selectedTagId)
-                    {
-                        <li class="accordion-item" data-accordion-item>
-                            <a class="accordion-title">@(selectedTag.tagId == "" ? "-- Тег не выбран --" : selectedTag.tagId)</a>
-                            <div class="accordion-content" data-tab-content>
-                                <div class="grid-x align-middle grid-padding-x">
-                                    <div class="cell small-12 medium-8 large-6">
-                                        <select bind="@selectedTag.tagId">
-                                            <option value="" selected>-- Тег не выбран --</option>
-                                            @foreach (var tag in data.TagDict)
-                                            {
-                                                <option value="@tag.Key">@tag.Value.ArchiveTagId</option>
-                                            }
-                                        </select>
-                                    </div>
+        @foreach (var tag in _selectedTagId)
+        {
+            <li class="accordion-item" data-accordion-item>
+                <a class="accordion-title">@(tag.tagId == "" ? "-- Тег не выбран --" : tag.tagId)</a>
+                <div class="accordion-content" data-tab-content>
+                    <div class="grid-x align-middle grid-padding-x">
 
-                                    <div class="cell small-6 medium-4 large-2">
-                                        <select bind="@selectedTag.transform">
-                                            <option value="@SimplifyType.None">-- Без трансформации --</option>
-                                            <option value="@SimplifyType.Increment">Приращение</option>
-                                            <option value="@SimplifyType.Average">Усреднение</option>
-                                            <option value="@SimplifyType.Max">Максимум</option>
-                                            <option value="@SimplifyType.Min">Минимум</option>
-                                        </select>
-                                    </div>
+                        <div class="cell small-12 medium-2 large-1">
+                            <label for="@($"{nameof(tag.plotlyType)}-{tag.GetHashCode()}")"
+                                   class="text-right middle">
+                                Тип
+                            </label>
+                        </div>
 
-                                    <div class="cell small-6 medium-2 large-1">
-                                        <input type="number" class="expanded" bind="@selectedTag.transformTime"/>
-                                    </div>
+                        <div class="cell small-12 medium-4 large-3">
+                            <select bind="@tag.plotlyType"
+                                    id="@($"{nameof(tag.plotlyType)}-{tag.GetHashCode()}")">
+                                @foreach (var t in _plotlyTypesList)
+                                {
+                                    <option value="@t">@t</option>
+                                }
+                            </select>
+                        </div>
 
-                                    <div class="cell small-6 medium-2 large-1">
-                                        <select bind="@selectedTag.transformTimeCoef">
-                                            <option value="60">минут</option>
-                                            <option value="3600" selected>часов</option>
-                                            <option value="86400">день</option>
-                                            <option value="2592000">месяц</option>
-                                        </select>
-                                    </div>
 
-                                    <div class="cell small-6 medium-4 large-2">
-                                        <select bind="@selectedTag.plotlyType">
-                                            @foreach (var t in _plotlyTypesList)
-                                            {
-                                                <option value="@t">@t</option>
-                                            }
-                                        </select>
-                                    </div>
+                        <div class="cell small-12 medium-2 large-1">
+                            <label for="@($"{nameof(tag.DataModeLines)}-{tag.GetHashCode()}")"
+                                   class="text-right middle">
+                                Отображать
+                            </label>
+                        </div>
 
-                                    <div class="cell small-6 medium-2 large-1">
-                                        <select bind="@selectedTag.yaxis">
-                                            @foreach (var y in Plotly.Data.YaxisEnum.Values)
-                                            {
-                                                <option value="@y">@y</option>
-                                            }
-                                        </select>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </li>
-                    }
-
-                </ul>
-
-            </div>
-
-            <div class="tabs-panel" id="panel2">
-                <div class="grid-x align-middle grid-padding-x">
-                    <div class="small-3 large-1 cell">
-                        <label for="right-label" class="text-right middle">Заголовок</label>
-                    </div>
-                    <div class="small-12 large-5 cell">
-                        <input type="text" id="right-label" placeholder="Заголовок" bind="@_plotly.layout.title"/>
-                    </div>
-                </div>
-
-                <ul class="accordion" data-accordion>
-                    @foreach (var y in new List<Plotly.Layout.Yaxis> {_plotly.layout.yaxis, _plotly.layout.yaxis2})
-                    {
-                        <li class="accordion-item" data-accordion-item>
-                            <a class="accordion-title">@y</a>
-                            <div class="accordion-content" data-tab-content>
-                                <div class="grid-x align-middle grid-padding-x">
-
-                                    @* overlaying *@
-                                    <div class="cell small-6 large-1">
-                                        <label for="" class="text-right middle">Overlaying</label>
-                                    </div>
-                                    <div class="cell small-6 large-1">
-                                        <input type="text" id="" bind="@y.overlaying" placeholder="overlaying"/>
-                                    </div>
-
-                                    @* side *@
-                                    <div class="cell small-6 large-1">
-                                        <label for="" class="text-right middle">Side</label>
-                                    </div>
-                                    <div class="cell small-6 large-1">
-                                        <select id="" bind="@y.side">
-                                            @foreach (var side in Plotly.Layout.Yaxis.SideEnum.Values)
-                                            {
-                                                <option value="@side">@side</option>
-                                            }
-                                        </select>
-                                    </div>
-
-                                    @* anchor *@
-                                    <div class="cell small-6 large-1">
-                                        <label for="" class="text-right middle">Anchor</label>
-                                    </div>
-                                    <div class="cell small-6 large-1">
-                                        <input type="text" placeholder="anchor" bind="@y.anchor"/>
-                                    </div>
-
-                                    @* position *@
-                                    <div class="cell small-6 large-1">
-                                        <label for="" class="text-right middle">Position</label>
-                                    </div>
-                                    <div class="cell small-6 large-1">
-                                        <input type="text" placeholder="position" bind="@y.position"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    }
-                </ul>
-            </div>
-
-            <div class="tabs-panel" id="panel3" style="height:100%;">
-                <div class="grid-y" style="height: 100%;">
-                    <div class="cell">
-                        <div class="grid-x">
-                            <div class="cell small-6 medium-4 large-2">
-                                <button class="button expanded" onclick="@DownloadImage">To Image</button>
+                        <div class="cell small-12 medium-4 large-5">
+                            <div class="expanded button-group">
+                                <a class="button @(tag.DataModeLines ? "primary" : "secondary")"
+                                   onclick="@(() => tag.DataModeLines = !tag.DataModeLines)"
+                                   for="@($"{nameof(tag.DataModeLines)}-{tag.GetHashCode()}")">
+                                    Линии
+                                </a>
+                                <a class="button @(tag.DataModeMarkers ? "primary" : "secondary")"
+                                   onclick="@(() => tag.DataModeMarkers = !tag.DataModeMarkers)">
+                                    Маркеры
+                                </a>
+                                <a class="button @(tag.DataModeText ? "primary" : "secondary")"
+                                   onclick="@(() => tag.DataModeText = !tag.DataModeText)">
+                                    Текст
+                                </a>
                             </div>
                         </div>
+
+
+                        <div class="cell small-12 medium-2 large-1">
+                            <label for="@($"{nameof(tag.yaxis)}-{tag.GetHashCode()}")"
+                                   class="text-right middle">
+                                Ось Y
+                            </label>
+                        </div>
+
+                        <div class="cell small-12 medium-4 large-1">
+                            <select bind="@tag.yaxis"
+                                    id="@($"{nameof(tag.yaxis)}-{tag.GetHashCode()}")">
+                                @foreach (var y in Plotly.Data.YaxisEnum.Values)
+                                {
+                                    <option value="@y">@y</option>
+                                }
+                            </select>
+                        </div>
+
+
+                        <div class="cell small-12 medium-2 large-1">
+                            <label for="@($"{nameof(tag.transformTime)}-{tag.GetHashCode()}")"
+                                   class="text-right middle">
+                                Период
+                            </label>
+                        </div>
+
+                        <div class="cell small-6 medium-2 large-1">
+                            <input type="number" class="expanded" bind="@tag.transformTime"
+                                   id="@($"{nameof(tag.transformTime)}-{tag.GetHashCode()}")"/>
+                        </div>
+
+                        <div class="cell small-6 medium-2 large-1">
+                            <select bind="@tag.transformTimeCoef">
+                                <option value="60">минута</option>
+                                <option value="3600" selected>час</option>
+                                <option value="86400">день</option>
+                                <option value="2592000">месяц</option>
+                            </select>
+                        </div>
+
                     </div>
 
-                    <div class="cell auto">
-                        <div id="plotly" style="height: 100%; width: 100%"></div>
+
+                    <div class="grid-x align-middle grid-padding-x">
+
+                        <div class="cell small-12 medium-2 large-1">
+                            <label for="@($"{nameof(tag.tagId)}-{tag.GetHashCode()}")"
+                                   class="text-right middle">
+                                Тег (ось Y)
+                            </label>
+                        </div>
+
+                        <div class="cell small-12 medium-10 large-5">
+                            <select bind="@tag.tagId" id="@($"{nameof(tag.tagId)}-{tag.GetHashCode()}")">
+                                <option value="" selected>-- Тег не выбран --</option>
+                                @foreach (var tagDict in data.TagDict)
+                                {
+                                    <option value="@tagDict.Key">@tagDict.Value.ArchiveTagId</option>
+                                }
+                            </select>
+                        </div>
+                        
+                        
+                        <div class="cell small-12 medium-2 large-1">
+                            <label for="@($"{nameof(tag.transform)}-{tag.GetHashCode()}")"
+                                   class="text-right middle">
+                                Трансформация
+                            </label>
+                        </div>
+
+                        <div class="cell small-12 medium-4 large-2">
+                            <select bind="@tag.transform"
+                                    id="@($"{nameof(tag.transform)}-{tag.GetHashCode()}")">
+                                <option value="@SimplifyType.None">-- Без трансформации --</option>
+                                <option value="@SimplifyType.Increment">Приращение</option>
+                                <option value="@SimplifyType.Average">Усреднение</option>
+                                <option value="@SimplifyType.Max">Максимум</option>
+                                <option value="@SimplifyType.Min">Минимум</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="grid-x align-middle grid-padding-x">
+
+                        <div class="cell small-12 medium-2 large-1">
+                            <label for="@($"{nameof(tag.tagIdX)}-{tag.GetHashCode()}")"
+                                   class="text-right middle">
+                                Тег (ось Х)
+                            </label>
+                        </div>
+
+                        <div class="cell small-12 medium-10 large-5">
+                            <select bind="@tag.tagIdX"
+                                    id="@($"{nameof(tag.tagIdX)}-{tag.GetHashCode()}")">
+                                <option value="" selected>-- Время --</option>
+                                @foreach (var tagDict in data.TagDict)
+                                {
+                                    <option value="@tagDict.Key">@tagDict.Value.ArchiveTagId</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="cell small-12 medium-2 large-1">
+                            <label for="@($"{nameof(tag.transformX)}-{tag.GetHashCode()}")"
+                                   class="text-right middle @(tag.tagIdX == "" ? "invisible" : "")">
+                                Трансформация
+                            </label>
+                        </div>
+
+                        <div class="cell small-12 medium-4 large-2">
+                            <select bind="@tag.transformX"
+                                    class="@(tag.tagIdX == "" ? "invisible" : "")"
+                                    id="@($"{nameof(tag.transformX)}-{tag.GetHashCode()}")">
+                                <option value="@SimplifyType.Increment">Приращение</option>
+                                <option value="@SimplifyType.Average">Усреднение</option>
+                                <option value="@SimplifyType.Max">Максимум</option>
+                                <option value="@SimplifyType.Min">Минимум</option>
+                            </select>
+                        </div>
 
                     </div>
                 </div>
+            </li>
+        }
+
+    </ul>
+
+</div>
+
+<div class="tabs-panel" id="panel2">
+    <div class="grid-x align-middle grid-padding-x">
+        <div class="small-3 large-1 cell">
+            <label for="right-label" class="text-right middle">Заголовок</label>
+        </div>
+        <div class="small-12 large-5 cell">
+            <input type="text" id="right-label" placeholder="Заголовок" bind="@_plotly.layout.title"/>
+        </div>
+    </div>
+
+    <ul class="accordion" data-accordion>
+        @foreach (var y in new List<Plotly.Layout.Yaxis> {_plotly.layout.yaxis, _plotly.layout.yaxis2})
+        {
+            <li class="accordion-item" data-accordion-item>
+                <a class="accordion-title">@y</a>
+                <div class="accordion-content" data-tab-content>
+                    <div class="grid-x align-middle grid-padding-x">
+
+                        @* overlaying *@
+                        <div class="cell small-6 large-1">
+                            <label for="" class="text-right middle">Overlaying</label>
+                        </div>
+                        <div class="cell small-6 large-1">
+                            <input type="text" id="" bind="@y.overlaying" placeholder="overlaying"/>
+                        </div>
+
+                        @* side *@
+                        <div class="cell small-6 large-1">
+                            <label for="" class="text-right middle">Side</label>
+                        </div>
+                        <div class="cell small-6 large-1">
+                            <select id="" bind="@y.side">
+                                @foreach (var side in Plotly.Layout.Yaxis.SideEnum.Values)
+                                {
+                                    <option value="@side">@side</option>
+                                }
+                            </select>
+                        </div>
+
+                        @* anchor *@
+                        <div class="cell small-6 large-1">
+                            <label for="" class="text-right middle">Anchor</label>
+                        </div>
+                        <div class="cell small-6 large-1">
+                            <input type="text" placeholder="anchor" bind="@y.anchor"/>
+                        </div>
+
+                        @* position *@
+                        <div class="cell small-6 large-1">
+                            <label for="" class="text-right middle">Position</label>
+                        </div>
+                        <div class="cell small-6 large-1">
+                            <input type="text" placeholder="position" bind="@y.position"/>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+
+<div class="tabs-panel" id="panel3" style="height: 100%;">
+    <div class="grid-y" style="height: 100%;">
+        <div class="cell">
+            <div class="grid-x">
+                <div class="cell small-6 medium-4 large-2">
+                    <button class="button expanded" onclick="@DownloadImage">To Image</button>
+                </div>
             </div>
+        </div>
+
+        <div class="cell auto">
+            <div id="plotly" style="height: 100%; width: 100%"></div>
 
         </div>
     </div>
+</div>
+
+</div>
+</div>
 
 </div>
 
@@ -244,22 +358,48 @@
             if (tag.tagId == "")
                 continue;
 
-            var result = DateTime.TryParseExact(BeginDateStr, "yyyy-MM-dd", CultureInfo.InvariantCulture, 
+            var result = DateTime.TryParseExact(BeginDateStr, "yyyy-MM-dd", CultureInfo.InvariantCulture,
                 DateTimeStyles.None, out var begin);
-            if (!result)     
+            if (!result)
                 begin = DateTime.MinValue;
 
-            result = DateTime.TryParseExact(EndDateStr, "yyyy-MM-dd", CultureInfo.InvariantCulture, 
+            result = DateTime.TryParseExact(EndDateStr, "yyyy-MM-dd", CultureInfo.InvariantCulture,
                 DateTimeStyles.None, out var end);
-            if (!result) 
+            if (!result)
                 end = DateTime.MaxValue;
-            
-            
-            var ts = data.TagDict[tag.tagId].GetTimeSeries(begin, end, 
+
+
+            var ts = data.TagDict[tag.tagId].GetTimeSeries(begin, end,
                 tag.transform, tag.transformTime * tag.transformTimeCoef);
 
             switch (tag.plotlyType)
             {
+                case PlotlyTypes.scatter:
+                case PlotlyTypes.scattergl:
+                {
+                    if (tag.tagIdX == "")
+                    {
+    // на оси Х выбрано время
+                        _plotly.AddData();
+
+                        _plotly.GetLastData().x = ts.TimesToPlotly();
+                        _plotly.GetLastData().y = ts.Values;
+                    }
+                    else
+                    {
+                        _plotly.AddData();
+
+                        var tsX = data.TagDict[tag.tagIdX].GetTimeSeries(begin, end,
+                            tag.transformX, tag.transformTime * tag.transformTimeCoef);
+
+                        var scatter = new Scatter(tsX, ts);
+                        _plotly.GetLastData().x = scatter.X;
+                        _plotly.GetLastData().y = scatter.Y;
+                    }
+                    break;
+                }
+
+
                 case PlotlyTypes.heatmap:
                 {
                     _plotly.AddData();
@@ -283,7 +423,6 @@
                     _plotly.GetLastData().cells.values.Add(ts.Values.Select(x => (object) x).ToList());
                     _plotly.GetLastData().header.values.Add(data.TagDict[tag.tagId].TagName);
 
-
                     break;
 
                 default:
@@ -294,6 +433,7 @@
                     break;
             }
 
+            _plotly.GetLastData().Mode(tag.DataModeLines, tag.DataModeMarkers, tag.DataModeText);
             _plotly.GetLastData().name = data.TagDict[tag.tagId].TagName;
             _plotly.GetLastData().type = tag.plotlyType;
             _plotly.GetLastData().yaxis = tag.yaxis;

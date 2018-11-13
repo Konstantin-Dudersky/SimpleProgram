@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using SimpleProgram.Lib.Archives;
 
 // ReSharper disable InconsistentNaming
@@ -42,6 +43,36 @@ namespace SimpleProgram.Lib.JSInterop
             ///     <para>default: "" </para>
             /// </summary>
             public string legendgroup { get; set; }
+            
+            public string mode { get; set; }
+
+            public void Mode(bool lines, bool markers, bool text)
+            {
+                var str = "";
+                if (lines)
+                {
+                    str += "lines";
+                }
+
+                if (markers)
+                {
+                    if (str != "")
+                        str += "+";
+                    str += "markers";
+                }
+
+                if (text)
+                {
+                    if (str != "")
+                        str += "+";
+                    str += "text";
+                }
+
+                if (str == "")
+                    str = "none";
+
+                mode = str;
+            }
 
             /// <summary>
             ///     Sets the trace name. The trace name appear as the legend item and on hover.
@@ -151,6 +182,7 @@ namespace SimpleProgram.Lib.JSInterop
                 yaxis4.overlaying = "y";
             }
 
+
             /// <summary>
             ///     Sets the plot's title.
             /// </summary>
@@ -232,10 +264,16 @@ namespace SimpleProgram.Lib.JSInterop
 
     public class PlotlyBlalzorParam
     {
-        public string tagId { get; set; } = "";
         public string plotlyType { get; set; } = PlotlyTypes.scatter;
+        public bool DataModeLines { get; set; } = true;
+        public bool DataModeMarkers { get; set; } = false;
+        public bool DataModeText { get; set; } = false;
+
+        public string tagId { get; set; } = "";
+        public string tagIdX { get; set; } = "";
 
         public SimplifyType transform { get; set; } = SimplifyType.None;
+        public SimplifyType transformX { get; set; } = SimplifyType.Average;
         public int transformTime { get; set; } = 1;
         public int transformTimeCoef { get; set; } = 3600;
 

@@ -16,3 +16,7 @@ SimpleProgram/obj/
 SimpleProgram\.Tests/bin/
 
 SimpleProgram\.Tests/obj/
+
+node_modules/
+
+Blazor\.App/wwwroot/lib/

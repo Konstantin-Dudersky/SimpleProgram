@@ -1,0 +1,60 @@
+@using System.Threading
+@using Blazor.App.Services
+@using Microsoft.AspNetCore.Blazor.RenderTree
+@using SimpleProgram.Lib.JSInterop
+@using SimpleProgram.Lib.Tag
+
+@inject Data data
+
+<div class="card" >
+    <div class="card-divider align-center">
+        <h4>@Header</h4>
+    </div>
+    <div id="@($"plotly-{_id}")" style="height: 100%; width: 100%;"></div>
+</div>
+
+
+@functions{
+
+    [Parameter]
+    private string Header { get; set; } = "График";
+
+    [Parameter]
+    private ITag Tag { get; set; }
+
+    private int _id;
+
+    readonly Plotly _plotLy = new Plotly();
+
+    protected override void OnInit()
+    {
+        base.OnInit();
+        _id = new Random().Next();
+    }
+
+    protected override async Task OnAfterRenderAsync()
+    {
+        if (Tag == null)
+            Tag = data.TagGroup1.tagSum;
+        
+        _plotLy.ClearData();
+        _plotLy.AddData();
+
+        var ts = Tag.GetTimeSeries(DateTime.MinValue, DateTime.MaxValue);
+
+        _plotLy.GetLastData().x = ts.Times;
+        _plotLy.GetLastData().y = ts.Values;
+
+        try
+        {
+            
+            JSRuntime.Current?.InvokeAsync<bool>("plotlyhelpers.react", $"plotly-{_id}", _plotLy);
+            ;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+}
