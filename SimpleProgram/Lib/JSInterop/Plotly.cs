@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using SimpleProgram.Lib.Archives;
+
+// ReSharper disable CommentTypo
+// ReSharper disable IdentifierTypo
+// ReSharper disable CollectionNeverQueried.Global
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable UnusedAutoPropertyAccessor.Global
@@ -33,8 +36,13 @@ namespace SimpleProgram.Lib.JSInterop
         public class Data
         {
             public Cells cells { get; set; } = new Cells();
-            
+
             public Header header { get; set; } = new Header();
+
+            public Link link { get; } = new Link();
+            
+            public Node node { get; } = new Node();
+
 
             /// <summary>
             ///     Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling
@@ -43,36 +51,8 @@ namespace SimpleProgram.Lib.JSInterop
             ///     <para>default: "" </para>
             /// </summary>
             public string legendgroup { get; set; }
-            
+
             public string mode { get; set; }
-
-            public void Mode(bool lines, bool markers, bool text)
-            {
-                var str = "";
-                if (lines)
-                {
-                    str += "lines";
-                }
-
-                if (markers)
-                {
-                    if (str != "")
-                        str += "+";
-                    str += "markers";
-                }
-
-                if (text)
-                {
-                    if (str != "")
-                        str += "+";
-                    str += "text";
-                }
-
-                if (str == "")
-                    str = "none";
-
-                mode = str;
-            }
 
             /// <summary>
             ///     Sets the trace name. The trace name appear as the legend item and on hover.
@@ -86,7 +66,14 @@ namespace SimpleProgram.Lib.JSInterop
             /// </summary>
             public double opacity { get; set; } = 1.0;
 
-            public string type { get; set; } = ""; // = PlotlyTypes.scatter;
+            /// <summary>
+            /// Sets the orientation of the Sankey diagram.
+            /// <para>values: enumerated : "v" | "h"</para>
+            /// <para>default: "h"</para>
+            /// </summary>
+            public string orientation { get; set; } = "h";
+
+            public string type { get; set; } = "";
 
             /// <summary>
             ///     Determines whether or not an item corresponding to this trace is shown in the legend.
@@ -117,18 +104,41 @@ namespace SimpleProgram.Lib.JSInterop
 
             public object z { get; set; } = new object();
 
-
-            public static class YaxisEnum
+            public void Mode(bool lines, bool markers, bool text)
             {
-                public const string y = "y";
-                public const string y2 = "y2";
-                public const string y3 = "y3";
-                public const string y4 = "y4";
-                public const string y5 = "y5";
-                public const string y6 = "y6";
+                var str = "";
+                if (lines) str += "lines";
 
-                public static IEnumerable<string> Values =>
-                    typeof(YaxisEnum).GetFields().Select(fieldInfo => fieldInfo.Name).ToList();
+                if (markers)
+                {
+                    if (str != "")
+                        str += "+";
+                    str += "markers";
+                }
+
+                if (text)
+                {
+                    if (str != "")
+                        str += "+";
+                    str += "text";
+                }
+
+                if (str == "")
+                    str = "none";
+
+                mode = str;
+            }
+
+
+            public class Cells
+            {
+                /// <summary>
+                ///     Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector
+                ///     length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a
+                ///     string.
+                ///     <para>value: data array</para>
+                /// </summary>
+                public List<List<object>> values { get; } = new List<List<object>>();
             }
 
             public class Header
@@ -142,34 +152,74 @@ namespace SimpleProgram.Lib.JSInterop
                 public List<object> values { get; } = new List<object>();
             }
 
-            public class Cells
+            /// <summary>
+            /// The links of the Sankey plot.
+            /// </summary>
+            public class Link
+            {
+                
+            }
+
+            /// <summary>
+            /// The nodes of the Sankey plot.
+            /// </summary>
+            public class Node
             {
                 /// <summary>
-                ///     Cell values. `values[m][n]` represents the value of the `n`th point in column `m`, therefore the `values[m]` vector
-                ///     length for all columns must be the same (longer vectors will be truncated). Each value must be a finite number or a
-                ///     string.
-                ///     <para>value: data array</para>
+                /// The shown name of the node.
+                /// <para>values: data array</para>
                 /// </summary>
-                public List<List<object>> values { get; } = new List<List<object>>();
+                public string label { get; set; }
+                
+                /// <summary>
+                /// Sets the `node` color. It can be a single value, or an array for specifying color for each `node`. If `node.color` is omitted, then the default `Plotly` color palette will be cycled through to have a variety of colors. These defaults are not fully opaque, to allow some visibility of what is beneath the node.
+                /// <para>values: color or array of colors</para>
+                /// </summary>
+                public object color { get; set; }
+                
+            }
+
+            public static class YaxisEnum
+            {
+                public const string y = "y";
+                public const string y2 = "y2";
+                public const string y3 = "y3";
+                public const string y4 = "y4";
+                public const string y5 = "y5";
+                public const string y6 = "y6";
+
+                public static IEnumerable<string> Values =>
+                    typeof(YaxisEnum).GetFields().Select(fieldInfo => fieldInfo.Name).ToList();
             }
         }
 
         public class Config
         {
             public bool displaylogo { get; set; } = false;
+
+            /// <summary>
+            ///     true - Always Display the Modebar
+            ///     false - Hide the Modebar
+            /// </summary>
+            public bool displayModeBar { get; set; } = true;
+
             public bool editable { get; set; } = false;
+
             public string linkText { get; set; } = "Edit chart";
+
             public bool responsive { get; set; } = true;
+
             public bool scrollZoom { get; set; } = false;
+
             public bool showLink { get; set; } = false;
+
             public bool staticPlot { get; set; } = false;
-
-
-            //public bool? displayModeBar { get; set; } = null;
         }
 
         public class Layout
         {
+            public readonly Margin margin = new Margin();
+            
             public readonly Yaxis yaxis = new Yaxis();
             public readonly Yaxis yaxis2 = new Yaxis();
             public readonly Yaxis yaxis3 = new Yaxis();
@@ -182,11 +232,61 @@ namespace SimpleProgram.Lib.JSInterop
                 yaxis4.overlaying = "y";
             }
 
+            /// <summary>
+            ///     Determines whether or not a legend is drawn. Default is `true` if there is a trace to show and any of these: a) Two
+            ///     or more traces would by default be shown in the legend. b) One pie trace is shown in the legend. c) One trace is
+            ///     explicitly given with `showlegend: true`.
+            /// </summary>
+            public bool showlegend { get; set; } = true;
+
 
             /// <summary>
             ///     Sets the plot's title.
             /// </summary>
             public string title { get; set; }
+
+            public class Margin
+            {
+                /// <summary>
+                /// Sets the left margin (in px).
+                /// <para>values: number greater than or equal to 0</para> 
+                /// <para>default: 80</para>
+                /// </summary>
+                public int l { get; set; } = 80;
+                
+                /// <summary>
+                /// Sets the right margin (in px).
+                /// <para>values: number greater than or equal to 0</para> 
+                /// <para>default: 80</para>
+                /// </summary>
+                public int r { get; set; } = 80;
+                
+                /// <summary>
+                /// Sets the top margin (in px).
+                /// <para>values: number greater than or equal to 0</para> 
+                /// <para>default: 100</para>
+                /// </summary>
+                public int t { get; set; } = 100;
+                
+                /// <summary>
+                /// Sets the bottom margin (in px).
+                /// <para>values: number greater than or equal to 0</para> 
+                /// <para>default: 80</para>
+                /// </summary>
+                public int b { get; set; } = 80;
+
+                /// <summary>
+                /// Sets the amount of padding (in px) between the plotting area and the axis lines.
+                /// <para>values: number greater than or equal to 0</para> 
+                /// <para>default: 0</para>
+                /// </summary>
+                public int pad { get; set; } = 0;
+                
+                /// <summary>
+                /// <para>default: true</para>
+                /// </summary>
+                public bool autoexpand { get; set; } = true;
+            }
 
             public class Yaxis
             {
@@ -229,24 +329,27 @@ namespace SimpleProgram.Lib.JSInterop
                         typeof(SideEnum).GetFields().Select(fieldInfo => fieldInfo.Name).ToList();
                 }
             }
+            
+            
         }
     }
 
     public static class PlotlyTypes
     {
-        public const string scatter = "scatter";
-        public const string scattergl = "scattergl";
+        public const string area = "area";
         public const string bar = "bar";
         public const string box = "box";
-        public const string pie = "pie";
-        public const string area = "area";
-        public const string heatmap = "heatmap";
+        public const string candlestick = "candlestick";
         public const string contour = "contour";
+        public const string heatmap = "heatmap";
         public const string histogram = "histogram";
         public const string histogram2d = "histogram2d";
         public const string histogram2dcontour = "histogram2dcontour";
         public const string ohlc = "ohlc";
-        public const string candlestick = "candlestick";
+        public const string pie = "pie";
+        public const string sankey = "sankey";
+        public const string scatter = "scatter";
+        public const string scattergl = "scattergl";
         public const string table = "table";
 
         public static List<string> GetTypesList()

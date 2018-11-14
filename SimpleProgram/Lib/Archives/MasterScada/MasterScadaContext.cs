@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Linq;
-using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
 using Microsoft.EntityFrameworkCore;
+
+// ReSharper disable IdentifierTypo
+// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 
 namespace SimpleProgram.Lib.Archives.MasterScada
 {
-    public class MasterScadaDb : DbContext, ITagArchive
+    public class MasterScadaDb : DbContext, IArchiveInterop
     {
-        public MasterScadaDb()
-        {
-        }
-
-        public MasterScadaDb(DbContextOptions<MasterScadaDb> options)
+        public MasterScadaDb(DbContextOptions options)
             : base(options)
         {
         }
 
-        public virtual DbSet<masterscadadataitems> masterscadadataitems { get; set; }
-        public virtual DbSet<masterscadadataraw> masterscadadataraw { get; set; }
-        public virtual DbSet<masterscadaprojects> masterscadaprojects { get; set; }
-        public virtual DbSet<masterscadaproperties> masterscadaproperties { get; set; }
+        protected virtual DbSet<masterscadadataitems> masterscadadataitems { get; set; }
+        protected virtual DbSet<masterscadadataraw> masterscadadataraw { get; set; }
+        protected virtual DbSet<masterscadaprojects> masterscadaprojects { get; set; }
+        protected virtual DbSet<masterscadaproperties> masterscadaproperties { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -60,7 +60,7 @@ namespace SimpleProgram.Lib.Archives.MasterScada
                 select i.itemid).FirstOrDefault();
 
             var data = from v in masterscadadataraw
-                where v.itemid == itemid && v.quality == 192 && v.layer == 1 && 
+                where v.itemid == itemid && v.quality == 192 && v.layer == 1 &&
                       v.Time >= fromDtBinary && v.Time <= toDtBinary
                 orderby v.Time
                 select new {Time = DateTime.FromBinary(v.Time), Value = (double) v.value};
@@ -70,7 +70,32 @@ namespace SimpleProgram.Lib.Archives.MasterScada
             return ts;
         }
 
+        public void DeleteArchiveData(string name, DateTime begin, DateTime end)
+        {
+            
+        }
+
+        public object[] GetEntities(string name, DateTime begin, DateTime end)
+        {
+            var fromDtBinary = begin.ToBinary();
+            var toDtBinary = end.ToBinary();
+            
+            var itemid = (from i in masterscadadataitems
+                where i.name == name
+                select i.itemid).FirstOrDefault();
+
+            var data = from v in masterscadadataraw
+                where v.itemid == itemid && v.quality == 192 && v.layer == 1 &&
+                      v.Time >= fromDtBinary && v.Time <= toDtBinary
+                orderby v.Time
+                select v;
+
+            return data.ToArray();
+        }
+
         public string ArchiveName { get; set; }
+        
+        
 
         #endregion
     }

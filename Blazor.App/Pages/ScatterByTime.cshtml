@@ -1,12 +1,9 @@
-@using System.Threading
 @using Blazor.App.Services
-@using Microsoft.AspNetCore.Blazor.RenderTree
 @using SimpleProgram.Lib.JSInterop
 @using SimpleProgram.Lib.Tag
-
 @inject Data data
 
-<div class="card" >
+<div class="card">
     <div class="card-divider align-center">
         <h4>@Header</h4>
     </div>
@@ -17,14 +14,16 @@
 @functions{
 
     [Parameter]
-    private string Header { get; set; } = "График";
+    private string Header { get; } = "График";
 
     [Parameter]
     private ITag Tag { get; set; }
 
     private int _id;
 
-    readonly Plotly _plotLy = new Plotly();
+    private bool _rendered;
+
+    private Plotly _plotLy;
 
     protected override void OnInit()
     {
@@ -34,9 +33,15 @@
 
     protected override async Task OnAfterRenderAsync()
     {
+        if (_rendered) return;
+
+        _rendered = true;
+
+        _plotLy = new Plotly();
+
         if (Tag == null)
             Tag = data.TagGroup1.tagSum;
-        
+
         _plotLy.ClearData();
         _plotLy.AddData();
 
@@ -45,16 +50,16 @@
         _plotLy.GetLastData().x = ts.Times;
         _plotLy.GetLastData().y = ts.Values;
 
-        try
-        {
-            
-            JSRuntime.Current?.InvokeAsync<bool>("plotlyhelpers.react", $"plotly-{_id}", _plotLy);
-            ;
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
+        _plotLy.layout.showlegend = false;
+        _plotLy.layout.margin.l = 60;
+        _plotLy.layout.margin.r = 10;
+        _plotLy.layout.margin.t = 10;
+        _plotLy.layout.margin.b = 60;
+        _plotLy.config.displayModeBar = false;
+
+        await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", $"plotly-{_id}", _plotLy);
+
+        _plotLy = null;
     }
 
 }

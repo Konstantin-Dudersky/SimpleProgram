@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore;
+﻿using System;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using System.Net;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Debug;
 
 namespace Blazor.Server
 {
@@ -18,6 +21,7 @@ namespace Blazor.Server
                     .AddCommandLine(args)
                     .Build())
                 .UseStartup<Startup>()
+                .ConfigureLogging(logging => logging.SetMinimumLevel(LogLevel.Warning))
                 .UseKestrel(options =>
                 {
                     options.Listen(IPAddress.Any, 5001);

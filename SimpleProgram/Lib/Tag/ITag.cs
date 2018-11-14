@@ -11,6 +11,7 @@ namespace SimpleProgram.Lib.Tag
         string TagId { get; set; }
         string TagName { get; set; }
         TimeSeries GetTimeSeries(DateTime begin, DateTime end, SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600);
+        void DeleteData(DateTime begin, DateTime end);
 
         T1 GetValue<T1>();
         void SetValue<T1>(T1 value);

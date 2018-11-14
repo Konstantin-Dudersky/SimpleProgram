@@ -1,4 +1,4 @@
-﻿using Opc.Ua;
+using Opc.Ua;
 using SimpleProgram.Lib;
 using SimpleProgram.Lib.Archives;
 using SimpleProgram.Lib.Archives.MasterScada;
@@ -23,9 +23,6 @@ namespace Blazor.App.Services
 
         public Data() : base(500)
         {
-            MsArchive.SetProvider<MasterScadaDb>(
-                Providers.PostgreSql,
-                "Host=localhost;Database=energy;Username=postgres;Password=123");
             
             TagGroup1 = new TagGroup1();
             TgOpcItems = new TgOpcItems();

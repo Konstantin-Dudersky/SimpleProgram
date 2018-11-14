@@ -55,6 +55,11 @@ namespace SimpleProgram.Lib.Tag
             return _tagLink.GetTimeSeries(begin, end, simplifyType, simplifyTime);
         }
 
+        public void DeleteData(DateTime begin, DateTime end)
+        {
+            _tagLink.DeleteData(begin, end);
+        }
+
         public T1 GetValue<T1>()
         {
             return _tagLink.GetValue<T1>();

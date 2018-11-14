@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+using SimpleProgram.Lib.Archives.MasterScada;
 
 namespace SimpleProgram.Lib.Archives
 {
@@ -38,26 +39,6 @@ namespace SimpleProgram.Lib.Archives
             type = typeof(TCont);
         }
 
-        public void SetProvider<TContext>(Providers provider, string connectionString) where TContext : DbContext
-        {
-            Provider = provider;
-            ConnectionString = connectionString;
-
-            var optionsBuilder = new DbContextOptionsBuilder<TContext>();
-
-            switch (Provider)
-            {
-                case Providers.PostgreSql:
-                    optionsBuilder.UseNpgsql(ConnectionString);
-                    break;
-
-                default:
-                    throw new Exception("Не задан провайдер подключения к БД");
-            }
-
-//            Context = (ITagArchive) Activator.CreateInstance(typeof(TContext), optionsBuilder.Options);
-        }
-
         #region ITagArchive
 
         public TimeSeries GetTimeSeries(string name, DateTime dateTimeFrom, DateTime dateTimeTo)
@@ -66,12 +47,28 @@ namespace SimpleProgram.Lib.Archives
 
             using (var context = (DbContext) Activator.CreateInstance(type, _optionsBuilder.Options))
             {
-                data =  ((ITagArchive) context).GetTimeSeries(name, dateTimeFrom, dateTimeTo);
+                data =  ((IArchiveInterop) context).GetTimeSeries(name, dateTimeFrom, dateTimeTo);
             }
-
+            
             return data;
         }
 
+        public void DeleteArchiveData(string name, DateTime begin, DateTime end)
+        {
+            using (var context = (DbContext) Activator.CreateInstance(type, _optionsBuilder.Options))
+            {
+                var entities = ((IArchiveInterop) context).GetEntities(name, begin, end);
+                context.RemoveRange(entities);
+                context.SaveChanges();
+            }
+        }
+
         #endregion
+    }
+
+    interface IArchiveInterop
+    {
+        TimeSeries GetTimeSeries(string name, DateTime dateTimeFrom, DateTime dateTimeTo);
+        object[] GetEntities(string name, DateTime begin, DateTime end);
     }
 }

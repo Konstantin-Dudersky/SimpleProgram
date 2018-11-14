@@ -56,6 +56,11 @@ namespace SimpleProgram.Lib.Tag
                 _derivedTag10?.GetTimeSeries(begin, end, _derivedSimplify10, simplifyTime));
         }
 
+        public void DeleteData(DateTime begin, DateTime end)
+        {
+            Archive.DeleteArchiveData(ArchiveTagId, begin, end);
+        }
+
         public T1 GetValue<T1>()
         {
             return (T1) Convert.ChangeType(Value, typeof(T1));

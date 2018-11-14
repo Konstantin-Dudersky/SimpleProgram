@@ -1,0 +1,138 @@
+@page "/DeleteData"
+
+@using System.Globalization
+@using Blazor.App.Services
+@using SimpleProgram.Lib.JSInterop
+
+@inject Data data
+
+<div class="grid-container">
+    <div class="grid-x grid-padding-x align-middle">
+        <div class="cell small-12 medium-4 large-2">
+            <label for="beginDate" class="text-right middle">От:</label>
+        </div>
+    
+        <div class="cell small-12 medium-4 large-2">
+            <input type="date" id="beginDate" value="@BeginDateStr"
+                   onchange="@((UIChangeEventArgs e) => BeginDateStr = e.Value.ToString())"/>
+        </div>
+    
+        <div class="cell small-12 medium-4 large-2">
+            <input type="time" id="beginTime" value="@BeginTimeStr"
+                   onchange="@((UIChangeEventArgs e) => BeginTimeStr = e.Value.ToString())"/>
+        </div>
+    
+        
+        <div class="cell small-12 medium-4 large-2">
+            <label for="endDate" class="text-right middle">До:</label>
+        </div>
+    
+        <div class="cell small-12 medium-4 large-2">
+            <input type="date" id="endDate" value="@EndDateStr"
+                   onchange="@((UIChangeEventArgs e) => EndDateStr = e.Value.ToString())"/>
+        </div>
+    
+        <div class="cell small-12 medium-4 large-2">
+            <input type="time" id="endTime" value="@EndTimeStr"
+                   onchange="@((UIChangeEventArgs e) => EndTimeStr = e.Value.ToString())"/>
+        </div>
+        
+        
+        <div class="cell small-12 medium-4 large-2">
+            <label for="tag" class="text-right middle">Тег:</label>
+        </div>
+        
+        <div class="cell small-12 medium-8 large-10">
+            <select bind="@tagId" id="tag">
+                <option value="" selected>-- Тег не выбран --</option>
+                @foreach (var tagDict in data.TagDict)
+                {
+                    <option value="@tagDict.Key">@tagDict.Value.ArchiveTagId</option>
+                }
+            </select>
+        </div>
+        
+        
+        <div class="cell small-6 medium-4 large-2">
+            <button class="button expanded" onclick="@ToTable">Вывести в таблицу</button>
+        </div>
+        
+        <div class="cell small-6 medium-4 large-2">
+            <button class="button expanded alert" onclick="@Delete">Удалить</button>
+        </div>
+        
+        <div class="cell small-12 medium-12 large-12">
+            <div id="plotly" style="height: 500px; width: 100%"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@functions
+{
+    private string BeginDateStr { get; set; } = DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd");
+    private string BeginTimeStr { get; set; } = DateTime.Now.AddMonths(-1).ToString("HH:mm");
+    private string EndDateStr { get; set; } = DateTime.Now.ToString("yyyy-MM-dd");
+    private string EndTimeStr { get; set; } = DateTime.Now.ToString("HH:mm");
+
+    private readonly Plotly _plotLy = new Plotly();
+
+    private string tagId;
+    
+    private async void ToTable()
+    {
+        if (tagId == "")
+            return;
+        
+        _plotLy.ClearData();
+        
+        await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.purge", "plotly");
+
+        var result = DateTime.TryParseExact($"{BeginDateStr} {BeginTimeStr}", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture,
+            DateTimeStyles.None, out var begin);
+        if (!result)
+            begin = DateTime.MinValue;
+
+        result = DateTime.TryParseExact($"{EndDateStr} {EndTimeStr}", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture,
+            DateTimeStyles.None, out var end);
+        if (!result)
+            end = DateTime.MaxValue;
+        
+        var ts = data.TagDict[tagId].GetTimeSeries(begin, end);
+        
+        if (_plotLy.data.Count == 0)
+        {
+            _plotLy.AddData();
+            _plotLy.GetLastData().cells.values.Add(ts.TimesToPlotly().Select(x => (object) x).ToList());
+            _plotLy.GetLastData().header.values.Add("Время");
+        }
+
+        _plotLy.GetLastData().cells.values.Add(ts.Values.Select(x => (object) x).ToList());
+        _plotLy.GetLastData().header.values.Add(data.TagDict[tagId].TagName);
+        
+        _plotLy.GetLastData().name = data.TagDict[tagId].TagName;
+        _plotLy.GetLastData().type = PlotlyTypes.table;
+        
+        await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", "plotly", _plotLy);
+    }
+
+    private void Delete()
+    {
+        if (tagId == "")
+            return;
+
+        var result = DateTime.TryParseExact($"{BeginDateStr} {BeginTimeStr}", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture,
+            DateTimeStyles.None, out var begin);
+        if (!result)
+            begin = DateTime.MinValue;
+
+        result = DateTime.TryParseExact($"{EndDateStr} {EndTimeStr}", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture,
+            DateTimeStyles.None, out var end);
+        if (!result)
+            end = DateTime.MaxValue;
+        
+        data.TagDict[tagId].DeleteData(begin, end);
+    }
+}

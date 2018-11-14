@@ -7,11 +7,12 @@
     <title>Blazor</title>
     <base href="/"/>
     <link href="lib/foundation-sites/css/foundation.min.css" rel="stylesheet"/>
-    
     <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
-
-    <script src="lib/plotly.js/plotly.min.js"></script>
     
+    <script src="lib/plotly.js/plotly.min.js"></script>
+    <script src="lib/plotly.js/plotly-locale-ru.js"></script>
+    <script>Plotly.setPlotConfig({locale: 'ru'})</script>
+
     <style>
         html {
             font-size: 80%;
