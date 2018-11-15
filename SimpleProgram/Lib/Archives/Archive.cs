@@ -12,6 +12,8 @@ namespace SimpleProgram.Lib.Archives
     public class Archive<TCont> : ITagArchive
         where TCont: DbContext
     {
+        
+
         public string ArchiveName { get; set; } = "Archive";
 
         private string ConnectionString { get; set; }
@@ -61,6 +63,11 @@ namespace SimpleProgram.Lib.Archives
                 context.RemoveRange(entities);
                 context.SaveChanges();
             }
+        }
+        
+        public double Increment(string name, DateTime begin, DateTime end)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

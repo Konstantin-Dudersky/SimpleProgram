@@ -11,7 +11,7 @@ namespace SimpleProgram.Lib
         private Timer RefreshTimer { get; }
         public readonly Dictionary<string, ITag> TagDict = new Dictionary<string, ITag>();
 
-        protected DataBase(int refreshTime = 1000)
+        protected DataBase(int refreshTime = 5000)
         {
             RefreshTime = refreshTime;
             RefreshTimer = new Timer(obj => OnRefresh?.Invoke(), null, 0, RefreshTime);

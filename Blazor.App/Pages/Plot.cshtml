@@ -5,13 +5,6 @@
 @using SimpleProgram.Lib.JSInterop
 @inject Data data
 
-@* <style> *@
-@*     .cell { border: 1px solid red; } *@
-@* </style> *@
-
-<div class="grid-y grid-frame">
-
-<div class="cell auto">
 
 <ul class="tabs" data-tabs id="example-tabs">
     <li class="tabs-title is-active">
@@ -311,9 +304,7 @@
 </div>
 
 </div>
-</div>
 
-</div>
 
 
 @functions
@@ -378,7 +369,7 @@
                 {
                     if (tag.tagIdX == "")
                     {
-                        // на оси Х выбрано время
+    // на оси Х выбрано время
                         _plotly.AddData();
 
                         _plotly.GetLastData().x = ts.TimesToPlotly();
