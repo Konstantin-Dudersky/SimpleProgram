@@ -21,7 +21,8 @@
 
 @functions {
 
-    Timer _refresh;
+/*    Timer _refresh;
+    private int _refreshCount = 0;
     
     protected override void OnInit()
     {
@@ -32,7 +33,6 @@
     private void Refresh(object state)
     {
         StateHasChanged();
-        Console.WriteLine("refresh");
-    }
-
+        Console.WriteLine($"refresh {++_refreshCount}");
+    }*/
 }
