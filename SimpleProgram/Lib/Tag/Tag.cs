@@ -26,8 +26,11 @@ namespace SimpleProgram.Lib.Tag
             }
         }
 
-        public ITagArchive Archive { get; set; }
+        public IArchive Archive { get; set; }
         public string ArchiveTagId { get; set; }
+        
+        
+
         public string TagId { get; set; }
         public string TagName { get; set; }
         public DateTime TimeStamp { get; private set; }
@@ -55,6 +58,11 @@ namespace SimpleProgram.Lib.Tag
                 _derivedTag8?.GetTimeSeries(begin, end, _derivedSimplify8, simplifyTime),
                 _derivedTag9?.GetTimeSeries(begin, end, _derivedSimplify9, simplifyTime),
                 _derivedTag10?.GetTimeSeries(begin, end, _derivedSimplify10, simplifyTime));
+        }
+        
+        public double Increment(DateTime begin, DateTime end)
+        {
+            return Archive.Increment(ArchiveTagId, begin, end);
         }
 
         public void DeleteData(DateTime begin, DateTime end, double lessThen, double moreThen)

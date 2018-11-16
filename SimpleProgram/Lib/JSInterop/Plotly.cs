@@ -157,7 +157,23 @@ namespace SimpleProgram.Lib.JSInterop
             /// </summary>
             public class Link
             {
+                /// <summary>
+                /// An integer number `[0..nodes.length - 1]` that represents the source node.
+                /// <para>values: data array</para>
+                /// </summary>
+                public List<int> source { get; set; } = new List<int>();
                 
+                /// <summary>
+                /// An integer number `[0..nodes.length - 1]` that represents the source node.
+                /// <para>values: data array</para>
+                /// </summary>
+                public List<int> target { get; set; } = new List<int>();
+                
+                /// <summary>
+                /// A numeric value representing the flow volume value.
+                /// <para>values: data array</para>
+                /// </summary>
+                public List<double> value { get; set; } = new List<double>();
             }
 
             /// <summary>
@@ -169,14 +185,15 @@ namespace SimpleProgram.Lib.JSInterop
                 /// The shown name of the node.
                 /// <para>values: data array</para>
                 /// </summary>
-                public string label { get; set; }
-                
+                public List<string> label { get; set; } = new List<string>(); // {"A1", "A2", "B1", "B2", "C1", "C2"};
+
                 /// <summary>
                 /// Sets the `node` color. It can be a single value, or an array for specifying color for each `node`. If `node.color` is omitted, then the default `Plotly` color palette will be cycled through to have a variety of colors. These defaults are not fully opaque, to allow some visibility of what is beneath the node.
                 /// <para>values: color or array of colors</para>
                 /// </summary>
-                public object color { get; set; }
-                
+//                public List<string> color { get; set; } = new List<string>
+//                    {"blue", "blue", "blue", "blue", "blue", "blue"};
+
             }
 
             public static class YaxisEnum

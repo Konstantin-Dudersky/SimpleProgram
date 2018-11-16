@@ -21,7 +21,7 @@ namespace SimpleProgram.Lib.Tag
             set => _tagLink.Value = (TOld) Convert.ChangeType(value, typeof(TOld));
         }
 
-        public ITagArchive Archive
+        public IArchive Archive
         {
             get => _tagLink.Archive;
             set => _tagLink.Archive = value;
@@ -31,6 +31,11 @@ namespace SimpleProgram.Lib.Tag
         {
             get => _tagLink.ArchiveTagId;
             set => _tagLink.ArchiveTagId = value;
+        }
+
+        public double Increment(DateTime begin, DateTime end)
+        {
+            return _tagLink.Increment(begin, end);
         }
 
         public string TagId

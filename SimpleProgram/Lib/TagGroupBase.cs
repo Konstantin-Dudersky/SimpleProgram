@@ -7,6 +7,6 @@ namespace SimpleProgram.Lib
 {
     public class TagGroupBase
     {
-        public ITagArchive ArchiveDefault { get; set; }
+        public IArchive ArchiveDefault { get; set; }
     }
 }

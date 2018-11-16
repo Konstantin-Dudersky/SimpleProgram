@@ -1,8 +1,8 @@
 @using Blazor.App.Services
 @using SimpleProgram.Lib.JSInterop
-@using SimpleProgram.Lib.Tag
 
 @inject Data data
+
 
 <div class="card" style="height: 100%; width: 100%;">
     <div class="card-divider align-center">
@@ -12,51 +12,50 @@
 </div>
 
 
-@functions{
-
+@functions
+{
     [Parameter]
     // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
     private string Header { get; set; } = "График";
-
-    [Parameter]
-    private ITag Tag { get; set; }
-
+    
     private int _id;
-
-    private bool _rendered;
 
     protected override void OnInit()
     {
         base.OnInit();
         _id = new Random().Next();
     }
+    
+    private bool _rendered;
 
     protected override async Task OnAfterRenderAsync()
     {
         if (_rendered) return;
-
+        
         _rendered = true;
 
         var plotLy = new Plotly();
-        
-        if (Tag == null)
-            Tag = data.TagGroup1.tagSum;
 
-        plotLy.ClearData();
         plotLy.AddData();
+        
+        var sankey = new Sankey();
 
-        var ts = Tag.GetTimeSeries(DateTime.MinValue, DateTime.MaxValue);
+        var nodeA1 = sankey.AddNode("A1");
+        var nodeA2 = sankey.AddNode("A2");
+        var nodeB1 = sankey.AddNode("B1");
+        
+        sankey.AddLink(nodeA1, nodeB1, data.TagGroup1.MDBA_QS1.Increment(DateTime.MinValue, DateTime.MaxValue));
+        sankey.AddLink(nodeA2, nodeB1, data.TagGroup1.MDBB_QS1.Increment(DateTime.MinValue, DateTime.MaxValue));
 
-        plotLy.GetLastData().x = ts.Times;
-        plotLy.GetLastData().y = ts.Values;
+        plotLy.GetLastData().node.label = sankey.NodeLabels;
 
-        plotLy.layout.showlegend = false;
-        plotLy.layout.margin.l = 60;
-        plotLy.layout.margin.r = 10;
-        plotLy.layout.margin.t = 10;
-        plotLy.layout.margin.b = 60;
-        plotLy.config.displayModeBar = false;
-
+        plotLy.GetLastData().link.source = sankey.LinkSources;
+        plotLy.GetLastData().link.target = sankey.LinkTargets;
+        plotLy.GetLastData().link.value = sankey.LinkValues;
+        
+        plotLy.GetLastData().type = PlotlyTypes.sankey;
+        plotLy.GetLastData().orientation = "h";
+        
         await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", $"plotly-{_id}", plotLy);
     }
 

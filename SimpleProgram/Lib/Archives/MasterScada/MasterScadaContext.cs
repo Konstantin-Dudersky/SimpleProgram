@@ -47,7 +47,42 @@ namespace SimpleProgram.Lib.Archives.MasterScada
             });
         }
 
+        private int GetItemid(string name)
+        {
+            return 
+                (from i in masterscadadataitems
+                where i.name == name
+                select i.itemid).FirstOrDefault();
+        }
+        
+        private IEnumerable<masterscadadataraw> GetMasterscadadataraws(string name, DateTime begin, DateTime end,
+            double lessThen, double moreThen)
+        {
+            var fromDtBinary = begin.ToBinary();
+            var toDtBinary = end.ToBinary();
+
+            /*var itemid = (from i in masterscadadataitems
+                where i.name == name
+                select i.itemid).FirstOrDefault();*/
+
+            var itemid = GetItemid(name);
+            
+            var data = from v in masterscadadataraw
+                where v.itemid == itemid && v.quality == 192 && v.layer == 1 &&
+                      v.Time >= fromDtBinary && v.Time <= toDtBinary &&
+                      v.value < lessThen && v.value > moreThen
+                orderby v.Time
+                select v;
+
+            return data.ToArray();
+        }
+
         #region ITagArchive
+
+        public object[] GetEntities(string name, DateTime begin, DateTime end, double lessThen, double moreThen)
+        {
+            return GetMasterscadadataraws(name, begin, end, lessThen, moreThen).Select(x => (object) x).ToArray();
+        }
 
         public TimeSeries GetTimeSeries(string name, DateTime dateTimeFrom, DateTime dateTimeTo,
             double lessThen, double moreThen)
@@ -64,29 +99,27 @@ namespace SimpleProgram.Lib.Archives.MasterScada
             return ts;
         }
 
-        public object[] GetEntities(string name, DateTime begin, DateTime end, double lessThen, double moreThen)
-        {
-            return GetMasterscadadataraws(name, begin, end, lessThen, moreThen).Select(x => (object) x).ToArray();
-        }
-
-        private IEnumerable<masterscadadataraw> GetMasterscadadataraws(string name, DateTime begin, DateTime end,
-            double lessThen, double moreThen)
+        public double Increment(string name, DateTime begin, DateTime end)
         {
             var fromDtBinary = begin.ToBinary();
             var toDtBinary = end.ToBinary();
+            
+            var itemid = GetItemid(name);
 
-            var itemid = (from i in masterscadadataitems
-                where i.name == name
-                select i.itemid).FirstOrDefault();
+            var first = (from r in masterscadadataraw
+                where r.itemid == itemid && r.quality == 192 && r.layer == 1 && r.Time >= fromDtBinary
+                orderby r.Time
+                select r).FirstOrDefault();
+            
+            var last = (from r in masterscadadataraw
+                where r.itemid == itemid && r.quality == 192 && r.layer == 1 && r.Time <= toDtBinary
+                orderby r.Time
+                select r).LastOrDefault();
 
-            var data = from v in masterscadadataraw
-                where v.itemid == itemid && v.quality == 192 && v.layer == 1 &&
-                      v.Time >= fromDtBinary && v.Time <= toDtBinary &&
-                      v.value < lessThen && v.value > moreThen
-                orderby v.Time
-                select v;
-
-            return data.ToArray();
+            if (first?.value == null || last?.value == null)
+                return 0;
+            
+            return (double) last.value - (double) first.value;
         }
 
         #endregion

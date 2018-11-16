@@ -6,14 +6,24 @@ namespace SimpleProgram.Lib.Tag
 {
     public interface ITag
     {
-        ITagArchive Archive { get; set; }
+        #region Archive
+        
+        IArchive Archive { get; set; }
         string ArchiveTagId { get; set; }
-        string TagId { get; set; }
-        string TagName { get; set; }
+        
         TimeSeries GetTimeSeries(DateTime begin, DateTime end, 
             SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600,
             double lessThen = double.MaxValue, double moreThen = double.MinValue);
+        
         void DeleteData(DateTime begin, DateTime end, double lessThen, double moreThen);
+
+        double Increment(DateTime begin, DateTime end);
+        
+        #endregion
+        
+        string TagId { get; set; }
+        string TagName { get; set; }
+        
 
         T1 GetValue<T1>();
         void SetValue<T1>(T1 value);

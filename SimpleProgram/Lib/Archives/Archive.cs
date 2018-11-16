@@ -10,13 +10,13 @@ namespace SimpleProgram.Lib.Archives
         PostgreSql = 1
     }
 
-    public class Archive<TCont> : ITagArchive
+    public class Archive<TCont> : IArchive
         where TCont: DbContext
     {
         public string ArchiveName { get; set; } = "Archive";
 
         private string ConnectionString { get; set; }
-        private ITagArchive Context { get; set; }
+        private IArchive Context { get; set; }
         private Providers Provider { get; set; } = Providers.PostgreSql;
 
         private readonly Type type;
@@ -49,7 +49,7 @@ namespace SimpleProgram.Lib.Archives
 
             using (var context = (DbContext) Activator.CreateInstance(type, _optionsBuilder.Options))
             {
-                data =  ((IArchiveInterop) context).GetTimeSeries(name, dateTimeFrom, dateTimeTo, lessThen, moreThen);
+                data = ((IArchiveInterop) context).GetTimeSeries(name, dateTimeFrom, dateTimeTo, lessThen, moreThen);
             }
             
             return data;
@@ -67,16 +67,12 @@ namespace SimpleProgram.Lib.Archives
         
         public double Increment(string name, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            using (var context = (DbContext) Activator.CreateInstance(type, _optionsBuilder.Options))
+            {
+                return ((IArchiveInterop) context).Increment(name, begin, end);
+            }
         }
 
         #endregion
-    }
-
-    internal interface IArchiveInterop
-    {
-        TimeSeries GetTimeSeries(string name, DateTime dateTimeFrom, DateTime dateTimeTo,
-            double lessThen, double moreThen);
-        object[] GetEntities(string name, DateTime begin, DateTime end, double lessThen, double moreThen);
     }
 }
