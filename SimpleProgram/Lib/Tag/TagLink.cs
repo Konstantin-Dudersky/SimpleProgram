@@ -50,14 +50,15 @@ namespace SimpleProgram.Lib.Tag
             return _tagLink.ConvertTo<TNew1>();
         }
 
-        public TimeSeries GetTimeSeries(DateTime begin, DateTime end, SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600)
+        public TimeSeries GetTimeSeries(DateTime begin, DateTime end, SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600,
+            double lessThen = double.MaxValue, double moreThen = double.MinValue)
         {
-            return _tagLink.GetTimeSeries(begin, end, simplifyType, simplifyTime);
+            return _tagLink.GetTimeSeries(begin, end, simplifyType, simplifyTime, lessThen, moreThen);
         }
 
-        public void DeleteData(DateTime begin, DateTime end)
+        public void DeleteData(DateTime begin, DateTime end, double lessThen, double moreThen)
         {
-            _tagLink.DeleteData(begin, end);
+            _tagLink.DeleteData(begin, end, lessThen, moreThen);
         }
 
         public T1 GetValue<T1>()

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
@@ -48,54 +49,45 @@ namespace SimpleProgram.Lib.Archives.MasterScada
 
         #region ITagArchive
 
-        public TimeSeries GetTimeSeries(string name, DateTime dateTimeFrom, DateTime dateTimeTo)
+        public TimeSeries GetTimeSeries(string name, DateTime dateTimeFrom, DateTime dateTimeTo,
+            double lessThen, double moreThen)
         {
             var ts = new TimeSeries();
 
-            var fromDtBinary = dateTimeFrom.ToBinary();
-            var toDtBinary = dateTimeTo.ToBinary();
+            var entities = GetMasterscadadataraws(name, dateTimeFrom, dateTimeTo, lessThen, moreThen);
 
-            var itemid = (from i in masterscadadataitems
-                where i.name == name
-                select i.itemid).FirstOrDefault();
-
-            var data = from v in masterscadadataraw
-                where v.itemid == itemid && v.quality == 192 && v.layer == 1 &&
-                      v.Time >= fromDtBinary && v.Time <= toDtBinary
-                orderby v.Time
-                select new {Time = DateTime.FromBinary(v.Time), Value = (double) v.value};
+            var data = from e in entities
+                select new {Time = DateTime.FromBinary(e.Time).ToLocalTime(), Value = e.value};
 
             foreach (var timeValue in data) ts.Add(timeValue.Time, timeValue.Value);
 
             return ts;
         }
 
-        public void DeleteArchiveData(string name, DateTime begin, DateTime end)
+        public object[] GetEntities(string name, DateTime begin, DateTime end, double lessThen, double moreThen)
         {
-            
+            return GetMasterscadadataraws(name, begin, end, lessThen, moreThen).Select(x => (object) x).ToArray();
         }
 
-        public object[] GetEntities(string name, DateTime begin, DateTime end)
+        private IEnumerable<masterscadadataraw> GetMasterscadadataraws(string name, DateTime begin, DateTime end,
+            double lessThen, double moreThen)
         {
             var fromDtBinary = begin.ToBinary();
             var toDtBinary = end.ToBinary();
-            
+
             var itemid = (from i in masterscadadataitems
                 where i.name == name
                 select i.itemid).FirstOrDefault();
 
             var data = from v in masterscadadataraw
                 where v.itemid == itemid && v.quality == 192 && v.layer == 1 &&
-                      v.Time >= fromDtBinary && v.Time <= toDtBinary
+                      v.Time >= fromDtBinary && v.Time <= toDtBinary &&
+                      v.value < lessThen && v.value > moreThen
                 orderby v.Time
                 select v;
 
             return data.ToArray();
         }
-
-        public string ArchiveName { get; set; }
-        
-        
 
         #endregion
     }

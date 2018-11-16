@@ -1,6 +1,7 @@
 @page "/Plot"
 @page "/Plot/{TagId}"
 @using System.Globalization
+@using System.IO
 @using Blazor.App.Services
 @using SimpleProgram.Lib.JSInterop
 @inject Data data
@@ -369,7 +370,7 @@
                 {
                     if (tag.tagIdX == "")
                     {
-    // на оси Х выбрано время
+                        // на оси Х выбрано время
                         _plotly.AddData();
 
                         _plotly.GetLastData().x = ts.TimesToPlotly();
@@ -414,7 +415,7 @@
                     _plotly.GetLastData().header.values.Add(data.TagDict[tag.tagId].TagName);
 
                     break;
-
+                    
                 default:
                     _plotly.AddData();
 

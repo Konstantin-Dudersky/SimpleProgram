@@ -6,22 +6,21 @@ namespace SimpleProgram.Lib.Archives
 {
     public enum Providers
     {
+        // ReSharper disable once IdentifierTypo
         PostgreSql = 1
     }
 
     public class Archive<TCont> : ITagArchive
         where TCont: DbContext
     {
-        
-
         public string ArchiveName { get; set; } = "Archive";
 
         private string ConnectionString { get; set; }
         private ITagArchive Context { get; set; }
         private Providers Provider { get; set; } = Providers.PostgreSql;
 
-        private Type type;
-        private DbContextOptionsBuilder<TCont> _optionsBuilder;
+        private readonly Type type;
+        private readonly DbContextOptionsBuilder<TCont> _optionsBuilder;
         
 
         public Archive(Providers provider, string connectionString)
@@ -43,23 +42,24 @@ namespace SimpleProgram.Lib.Archives
 
         #region ITagArchive
 
-        public TimeSeries GetTimeSeries(string name, DateTime dateTimeFrom, DateTime dateTimeTo)
+        public TimeSeries GetTimeSeries(string name, DateTime dateTimeFrom, DateTime dateTimeTo,
+            double lessThen, double moreThen)
         {
             TimeSeries data;
 
             using (var context = (DbContext) Activator.CreateInstance(type, _optionsBuilder.Options))
             {
-                data =  ((IArchiveInterop) context).GetTimeSeries(name, dateTimeFrom, dateTimeTo);
+                data =  ((IArchiveInterop) context).GetTimeSeries(name, dateTimeFrom, dateTimeTo, lessThen, moreThen);
             }
             
             return data;
         }
 
-        public void DeleteArchiveData(string name, DateTime begin, DateTime end)
+        public void DeleteArchiveData(string name, DateTime begin, DateTime end, double lessThen, double moreThen)
         {
             using (var context = (DbContext) Activator.CreateInstance(type, _optionsBuilder.Options))
             {
-                var entities = ((IArchiveInterop) context).GetEntities(name, begin, end);
+                var entities = ((IArchiveInterop) context).GetEntities(name, begin, end, lessThen, moreThen);
                 context.RemoveRange(entities);
                 context.SaveChanges();
             }
@@ -73,9 +73,10 @@ namespace SimpleProgram.Lib.Archives
         #endregion
     }
 
-    interface IArchiveInterop
+    internal interface IArchiveInterop
     {
-        TimeSeries GetTimeSeries(string name, DateTime dateTimeFrom, DateTime dateTimeTo);
-        object[] GetEntities(string name, DateTime begin, DateTime end);
+        TimeSeries GetTimeSeries(string name, DateTime dateTimeFrom, DateTime dateTimeTo,
+            double lessThen, double moreThen);
+        object[] GetEntities(string name, DateTime begin, DateTime end, double lessThen, double moreThen);
     }
 }

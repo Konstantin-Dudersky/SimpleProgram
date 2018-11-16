@@ -38,10 +38,11 @@ namespace SimpleProgram.Lib.Tag
             return new TagLink<T, TNew>(this);
         }
 
-        public TimeSeries GetTimeSeries(DateTime begin, DateTime end, SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600)
+        public TimeSeries GetTimeSeries(DateTime begin, DateTime end, SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600,
+            double lessThen = double.MaxValue, double moreThen = double.MinValue)
         {
             if (_derivedFunc == null)
-                return Archive.GetTimeSeries(ArchiveTagId, begin, end).Simplify(simplifyType, simplifyTime);
+                return Archive.GetTimeSeries(ArchiveTagId, begin, end, lessThen, moreThen).Simplify(simplifyType, simplifyTime);
 
             return _derivedFunc(
                 _derivedTag1?.GetTimeSeries(begin, end, _derivedSimplify1, simplifyTime),
@@ -56,9 +57,9 @@ namespace SimpleProgram.Lib.Tag
                 _derivedTag10?.GetTimeSeries(begin, end, _derivedSimplify10, simplifyTime));
         }
 
-        public void DeleteData(DateTime begin, DateTime end)
+        public void DeleteData(DateTime begin, DateTime end, double lessThen, double moreThen)
         {
-            Archive.DeleteArchiveData(ArchiveTagId, begin, end);
+            Archive.DeleteArchiveData(ArchiveTagId, begin, end, lessThen, moreThen);
         }
 
         public T1 GetValue<T1>()

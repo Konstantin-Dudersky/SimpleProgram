@@ -71,7 +71,7 @@ namespace SimpleProgram.Lib.JSInterop
             /// <para>values: enumerated : "v" | "h"</para>
             /// <para>default: "h"</para>
             /// </summary>
-            public string orientation { get; set; } = "h";
+            public string orientation { get; set; } = "v";
 
             public string type { get; set; } = "";
 

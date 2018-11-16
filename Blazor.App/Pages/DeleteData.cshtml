@@ -1,5 +1,4 @@
 @page "/DeleteData"
-
 @using System.Globalization
 @using Blazor.App.Services
 @using SimpleProgram.Lib.JSInterop
@@ -7,41 +6,13 @@
 @inject Data data
 
 <div class="grid-container">
+
     <div class="grid-x grid-padding-x align-middle">
-        <div class="cell small-12 medium-4 large-2">
-            <label for="beginDate" class="text-right middle">От:</label>
-        </div>
-    
-        <div class="cell small-12 medium-4 large-2">
-            <input type="date" id="beginDate" value="@BeginDateStr"
-                   onchange="@((UIChangeEventArgs e) => BeginDateStr = e.Value.ToString())"/>
-        </div>
-    
-        <div class="cell small-12 medium-4 large-2">
-            <input type="time" id="beginTime" value="@BeginTimeStr"
-                   onchange="@((UIChangeEventArgs e) => BeginTimeStr = e.Value.ToString())"/>
-        </div>
-    
-        
-        <div class="cell small-12 medium-4 large-2">
-            <label for="endDate" class="text-right middle">До:</label>
-        </div>
-    
-        <div class="cell small-12 medium-4 large-2">
-            <input type="date" id="endDate" value="@EndDateStr"
-                   onchange="@((UIChangeEventArgs e) => EndDateStr = e.Value.ToString())"/>
-        </div>
-    
-        <div class="cell small-12 medium-4 large-2">
-            <input type="time" id="endTime" value="@EndTimeStr"
-                   onchange="@((UIChangeEventArgs e) => EndTimeStr = e.Value.ToString())"/>
-        </div>
-        
-        
+
         <div class="cell small-12 medium-4 large-2">
             <label for="tag" class="text-right middle">Тег:</label>
         </div>
-        
+
         <div class="cell small-12 medium-8 large-10">
             <select bind="@tagId" id="tag">
                 <option value="" selected>-- Тег не выбран --</option>
@@ -51,23 +22,74 @@
                 }
             </select>
         </div>
+
+    </div>
+
+
+    <div class="grid-x grid-padding-x align-middle">
+        <div class="cell small-12 medium-4 large-2">
+            <label for="beginDate" class="text-right middle">От:</label>
+        </div>
+
+        <div class="cell small-12 medium-4 large-2">
+            <input type="date" id="beginDate" value="@BeginDateStr"
+                   onchange="@((UIChangeEventArgs e) => BeginDateStr = e.Value.ToString())"/>
+        </div>
+
+        <div class="cell small-12 medium-4 large-2">
+            <input type="time" id="beginTime" value="@BeginTimeStr"
+                   onchange="@((UIChangeEventArgs e) => BeginTimeStr = e.Value.ToString())"/>
+        </div>
+
+
+        <div class="cell small-12 medium-4 large-2">
+            <label for="endDate" class="text-right middle">До:</label>
+        </div>
+
+        <div class="cell small-12 medium-4 large-2">
+            <input type="date" id="endDate" value="@EndDateStr"
+                   onchange="@((UIChangeEventArgs e) => EndDateStr = e.Value.ToString())"/>
+        </div>
+
+        <div class="cell small-12 medium-4 large-2">
+            <input type="time" id="endTime" value="@EndTimeStr"
+                   onchange="@((UIChangeEventArgs e) => EndTimeStr = e.Value.ToString())"/>
+        </div>
+
         
+        <div class="cell small-4 medium-2 large-2">
+            <label for="_deleteLessThen" class="text-right middle">Меньше, чем</label>
+        </div>
         
+        <div class="cell small-8 medium-4 large-4">
+            <input type="text" id="_deleteLessThen" bind="@_deleteLessThen"/>
+        </div>
+        
+        <div class="cell small-4 medium-2 large-2">
+            <label for="_deleteMoreThen" class="text-right middle">Больше, чем</label>
+        </div>
+        
+        <div class="cell small-8 medium-4 large-4">
+            <input type="text" id="_deleteMoreThen" bind="@_deleteMoreThen"/>
+        </div>
+        
+    </div>
+   
+    
+    <div class="grid-x grid-padding-x align-middle">
         <div class="cell small-6 medium-4 large-2">
             <button class="button expanded" onclick="@ToTable">Вывести в таблицу</button>
         </div>
-        
+
         <div class="cell small-6 medium-4 large-2">
             <button class="button expanded alert" onclick="@Delete">Удалить</button>
         </div>
-        
+
         <div class="cell small-12 medium-12 large-12">
             <div id="plotly" style="height: 500px; width: 100%"></div>
         </div>
     </div>
 </div>
-
-
 
 
 @functions
@@ -80,14 +102,14 @@
     private readonly Plotly _plotLy = new Plotly();
 
     private string tagId;
-    
+
     private async void ToTable()
     {
         if (tagId == "")
             return;
-        
+
         _plotLy.ClearData();
-        
+
         await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.purge", "plotly");
 
         var result = DateTime.TryParseExact($"{BeginDateStr} {BeginTimeStr}", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture,
@@ -99,9 +121,9 @@
             DateTimeStyles.None, out var end);
         if (!result)
             end = DateTime.MaxValue;
-        
-        var ts = data.TagDict[tagId].GetTimeSeries(begin, end);
-        
+
+        var ts = data.TagDict[tagId].GetTimeSeries(begin, end, lessThen: _deleteLessThen, moreThen: _deleteMoreThen);
+
         if (_plotLy.data.Count == 0)
         {
             _plotLy.AddData();
@@ -111,10 +133,10 @@
 
         _plotLy.GetLastData().cells.values.Add(ts.Values.Select(x => (object) x).ToList());
         _plotLy.GetLastData().header.values.Add(data.TagDict[tagId].TagName);
-        
+
         _plotLy.GetLastData().name = data.TagDict[tagId].TagName;
         _plotLy.GetLastData().type = PlotlyTypes.table;
-        
+
         await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", "plotly", _plotLy);
     }
 
@@ -132,7 +154,15 @@
             DateTimeStyles.None, out var end);
         if (!result)
             end = DateTime.MaxValue;
-        
-        data.TagDict[tagId].DeleteData(begin, end);
+
+        data.TagDict[tagId].DeleteData(begin, end, _deleteLessThen, _deleteMoreThen);
     }
+    
+    // ReSharper disable once FieldCanBeMadeReadOnly.Local
+    // ReSharper disable once ConvertToConstant.Local
+    private double _deleteLessThen = double.MaxValue;
+    
+    // ReSharper disable once FieldCanBeMadeReadOnly.Local
+    // ReSharper disable once ConvertToConstant.Local
+    private double _deleteMoreThen = double.MinValue;
 }
