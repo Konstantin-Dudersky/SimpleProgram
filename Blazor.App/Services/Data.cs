@@ -15,14 +15,20 @@ namespace Blazor.App.Services
 
         public static readonly OpcUaClient OpcClient = new OpcUaClient("opc.tcp://localhost:48010", false, 10);
 
-        public readonly TagGroup1 TagGroup1;
-        public readonly TgOpcItems TgOpcItems;
+        public readonly TGEnergy TGEnergy;
+        public readonly TGOpcItems TGOpcItems;
 
 
         public Data() : base(500)
         {
-            TagGroup1 = new TagGroup1();
-            TgOpcItems = new TgOpcItems();
+            TGEnergy = new TGEnergy
+            {
+                TGName = "Энергоменеждмент",
+            };
+            TGOpcItems = new TGOpcItems
+            {
+                TGName = "OPC UA",
+            };
 
 
 //            var bot = new TelegramBotClient("611768794:AAE1RZMstPcBkrjIZq2h2pzwgK8qAKMR-yU");

@@ -14,6 +14,7 @@ namespace SimpleProgram.Lib.Archives
         public List<int> LinkSources => (from l in _links select l.Source.Index).ToList();
         public List<int> LinkTargets => (from l in _links select l.Target.Index).ToList();
         public List<double> LinkValues => (from l in _links select l.Value).ToList();
+        public List<string> LinkLabels => (from l in _links select l.Label).ToList();
         
         public SankeyNode AddNode(string label)
         {
@@ -22,9 +23,11 @@ namespace SimpleProgram.Lib.Archives
             return node;
         }
 
-        public void AddLink(SankeyNode source, SankeyNode target, double value)
+        public SankeyLink AddLink(SankeyNode source, SankeyNode target, double value, string label = "")
         {
-            _links.Add(new SankeyLink(source, target, value));
+            var link = new SankeyLink(source, target, value, label);
+            _links.Add(link);
+            return link;
         }
     }
 
@@ -40,17 +43,19 @@ namespace SimpleProgram.Lib.Archives
         }
     }
 
-    internal struct SankeyLink
+    public struct SankeyLink
     {
         public SankeyNode Source { get; }
         public SankeyNode Target { get; }
         public double Value { get; }
+        public string Label { get; }
 
-        public SankeyLink(SankeyNode source, SankeyNode target, double value)
+        public SankeyLink(SankeyNode source, SankeyNode target, double value, string label)
         {
             Source = source;
             Target = target;
             Value = value;
+            Label = label;
         }
     }
 }

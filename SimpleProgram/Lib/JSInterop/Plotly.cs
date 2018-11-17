@@ -157,6 +157,13 @@ namespace SimpleProgram.Lib.JSInterop
             /// </summary>
             public class Link
             {
+                
+                /// <summary>
+                /// The shown name of the link.
+                /// <para>values: data array</para>
+                /// </summary>
+                public List<string> label { get; set; } = new List<string>();
+                
                 /// <summary>
                 /// An integer number `[0..nodes.length - 1]` that represents the source node.
                 /// <para>values: data array</para>
@@ -174,6 +181,7 @@ namespace SimpleProgram.Lib.JSInterop
                 /// <para>values: data array</para>
                 /// </summary>
                 public List<double> value { get; set; } = new List<double>();
+                
             }
 
             /// <summary>

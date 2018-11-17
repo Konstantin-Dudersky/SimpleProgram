@@ -154,7 +154,7 @@
                             <option value="" selected>-- Тег не выбран --</option>
                             @foreach (var tagDict in data.TagDict)
                             {
-                                <option value="@tagDict.Key">@tagDict.Value.ArchiveTagId</option>
+                                <option value="@tagDict.Key">@tagDict.Key (@tagDict.Value.TagName)</option>
                             }
                         </select>
                     </div>

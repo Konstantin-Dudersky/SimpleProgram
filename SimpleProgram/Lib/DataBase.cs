@@ -9,7 +9,7 @@ namespace SimpleProgram.Lib
     {
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         private Timer RefreshTimer { get; }
-        public readonly Dictionary<string, ITag> TagDict = new Dictionary<string, ITag>();
+        public readonly SortedDictionary<string, ITag> TagDict = new SortedDictionary<string, ITag>();
 
         protected DataBase(int refreshTime = 5000)
         {

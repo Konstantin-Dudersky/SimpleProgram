@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Globalization;
+using NCalc;
 using SimpleProgram.Lib.Archives;
 using SimpleProgram.Lib.OpcUa;
 
@@ -47,22 +48,43 @@ namespace SimpleProgram.Lib.Tag
             if (_derivedFunc == null)
                 return Archive.GetTimeSeries(ArchiveTagId, begin, end, lessThen, moreThen).Simplify(simplifyType, simplifyTime);
 
-            return _derivedFunc(
-                _derivedTag1?.GetTimeSeries(begin, end, _derivedSimplify1, simplifyTime),
-                _derivedTag2?.GetTimeSeries(begin, end, _derivedSimplify2, simplifyTime),
-                _derivedTag3?.GetTimeSeries(begin, end, _derivedSimplify3, simplifyTime),
-                _derivedTag4?.GetTimeSeries(begin, end, _derivedSimplify4, simplifyTime),
-                _derivedTag5?.GetTimeSeries(begin, end, _derivedSimplify5, simplifyTime),
-                _derivedTag6?.GetTimeSeries(begin, end, _derivedSimplify6, simplifyTime),
-                _derivedTag7?.GetTimeSeries(begin, end, _derivedSimplify7, simplifyTime),
-                _derivedTag8?.GetTimeSeries(begin, end, _derivedSimplify8, simplifyTime),
-                _derivedTag9?.GetTimeSeries(begin, end, _derivedSimplify9, simplifyTime),
-                _derivedTag10?.GetTimeSeries(begin, end, _derivedSimplify10, simplifyTime));
+            var f = new Expression(_derivedFunc).ToLambda<ExpressionContext<TimeSeries>, TimeSeries>();
+
+            var context = new ExpressionContext<TimeSeries> {
+                Tag1 = _derivedTag1?.GetTimeSeries(begin, end, _derivedSimplify1, simplifyTime), 
+                Tag2 = _derivedTag2?.GetTimeSeries(begin, end, _derivedSimplify2, simplifyTime),
+                Tag3 = _derivedTag3?.GetTimeSeries(begin, end, _derivedSimplify3, simplifyTime),
+                Tag4 = _derivedTag4?.GetTimeSeries(begin, end, _derivedSimplify4, simplifyTime),
+                Tag5 = _derivedTag5?.GetTimeSeries(begin, end, _derivedSimplify5, simplifyTime),
+                Tag6 = _derivedTag6?.GetTimeSeries(begin, end, _derivedSimplify6, simplifyTime),
+                Tag7 = _derivedTag7?.GetTimeSeries(begin, end, _derivedSimplify7, simplifyTime),
+                Tag8 = _derivedTag8?.GetTimeSeries(begin, end, _derivedSimplify8, simplifyTime),
+                Tag9 = _derivedTag9?.GetTimeSeries(begin, end, _derivedSimplify9, simplifyTime),
+                Tag10 = _derivedTag10?.GetTimeSeries(begin, end, _derivedSimplify10, simplifyTime)
+            };
+            return f(context);
         }
         
         public double Increment(DateTime begin, DateTime end)
         {
-            return Archive.Increment(ArchiveTagId, begin, end);
+            if (_derivedFunc == null)
+                return Archive.Increment(ArchiveTagId, begin, end);
+            
+            var f = new Expression(_derivedFunc).ToLambda<ExpressionContext<double?>, double?>();
+
+            var context = new ExpressionContext<double?> {
+                Tag1 = _derivedTag1?.Increment(begin, end), 
+                Tag2 = _derivedTag2?.Increment(begin, end),
+                Tag3 = _derivedTag3?.Increment(begin, end),
+                Tag4 = _derivedTag4?.Increment(begin, end),
+                Tag5 = _derivedTag5?.Increment(begin, end),
+                Tag6 = _derivedTag6?.Increment(begin, end),
+                Tag7 = _derivedTag7?.Increment(begin, end),
+                Tag8 = _derivedTag8?.Increment(begin, end),
+                Tag9 = _derivedTag9?.Increment(begin, end),
+                Tag10 = _derivedTag10?.Increment(begin, end)
+            };
+            return f(context) ?? 0;
         }
 
         public void DeleteData(DateTime begin, DateTime end, double lessThen, double moreThen)
@@ -101,7 +123,6 @@ namespace SimpleProgram.Lib.Tag
         }
 
         public Type GenericType => typeof(T);
-
         
         
         #region events        
@@ -120,7 +141,6 @@ namespace SimpleProgram.Lib.Tag
 
         #endregion
 
-        
         
         #region ConfDerivedFromTags
 
@@ -145,12 +165,10 @@ namespace SimpleProgram.Lib.Tag
         private SimplifyType _derivedSimplify9;
         private SimplifyType _derivedSimplify10;
 
-        private Func<TimeSeries, TimeSeries, TimeSeries, TimeSeries, TimeSeries, TimeSeries, TimeSeries, TimeSeries,
-            TimeSeries, TimeSeries, TimeSeries> _derivedFunc;
+        private string _derivedFunc;
 
         public void ConfDerivedFromTags(
-            Func<TimeSeries, TimeSeries, TimeSeries, TimeSeries, TimeSeries, TimeSeries, TimeSeries, TimeSeries,
-                TimeSeries, TimeSeries, TimeSeries> func,
+            string func,
             ITag tag1 = null, SimplifyType derivedSimplify1 = SimplifyType.Increment,
             ITag tag2 = null, SimplifyType derivedSimplify2 = SimplifyType.Increment,
             ITag tag3 = null, SimplifyType derivedSimplify3 = SimplifyType.Increment,
@@ -201,8 +219,23 @@ namespace SimpleProgram.Lib.Tag
         }
 
         #endregion
-    }
+        
+        private class ExpressionContext<TExpr>
+        {
+            public TExpr Tag1 { get; set; }
+            public TExpr Tag2 { get; set; }
+            public TExpr Tag3 { get; set; }
+            public TExpr Tag4 { get; set; }
+            public TExpr Tag5 { get; set; }
+            public TExpr Tag6 { get; set; }
+            public TExpr Tag7 { get; set; }
+            public TExpr Tag8 { get; set; }
+            public TExpr Tag9 { get; set; }
+            public TExpr Tag10 { get; set; }
+        }
 
+    }
+    
     public class TagExchangeWithChannelArgs : EventArgs
     {
         public TagExchangeWithChannelArgs(object value, DateTime timeStamp)

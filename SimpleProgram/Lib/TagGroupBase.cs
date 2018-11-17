@@ -8,5 +8,7 @@ namespace SimpleProgram.Lib
     public class TagGroupBase
     {
         public IArchive ArchiveDefault { get; set; }
+        public string TGName { get; set; }
+
     }
 }

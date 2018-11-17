@@ -9,7 +9,7 @@
     <div class="cell small-12 medium-6 large-4" style="height: 400px;">
         <ScatterByTime 
             Header="Температура"
-            Tag="@data.TagGroup1.temperature"
+            Tag="@data.TGEnergy.temperature"
             />
     </div>
     
@@ -22,7 +22,6 @@
     </div>
 </div>
 
-<BlazorPlot Counter="@data.TagGroup1.MDBB_QS1" State="@data.TagGroup1.tagBool"/>
 
 @functions {
 
