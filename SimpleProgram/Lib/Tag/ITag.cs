@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using SimpleProgram.Lib.Archives;
 using SimpleProgram.Lib.OpcUa;
 
@@ -11,13 +12,13 @@ namespace SimpleProgram.Lib.Tag
         IArchive Archive { get; set; }
         string ArchiveTagId { get; set; }
         
-        TimeSeries GetTimeSeries(DateTime begin, DateTime end, 
+        Task<TimeSeries> GetTimeSeriesAsync(DateTime begin, DateTime end, 
             SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600,
             double lessThen = double.MaxValue, double moreThen = double.MinValue);
         
         void DeleteData(DateTime begin, DateTime end, double lessThen, double moreThen);
 
-        double Increment(DateTime begin, DateTime end);
+        Task<double> IncrementAsync(DateTime begin, DateTime end);
         
         #endregion
         

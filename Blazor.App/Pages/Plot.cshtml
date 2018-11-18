@@ -1,10 +1,9 @@
 @page "/Plot"
 @page "/Plot/{TagId}"
 @using System.Globalization
-@using System.IO
 @using Blazor.App.Services
 @using SimpleProgram.Lib.JSInterop
-@inject Data data
+@inject Data Data
 
 
 <ul class="tabs" data-tabs id="example-tabs">
@@ -152,7 +151,7 @@
                     <div class="cell small-12 medium-10 large-5">
                         <select bind="@tag.tagId" id="@($"{nameof(tag.tagId)}-{tag.GetHashCode()}")">
                             <option value="" selected>-- Тег не выбран --</option>
-                            @foreach (var tagDict in data.TagDict)
+                            @foreach (var tagDict in Data.TagDict)
                             {
                                 <option value="@tagDict.Key">@tagDict.Key (@tagDict.Value.TagName)</option>
                             }
@@ -193,7 +192,7 @@
                         <select bind="@tag.tagIdX"
                                 id="@($"{nameof(tag.tagIdX)}-{tag.GetHashCode()}")">
                             <option value="" selected>-- Время --</option>
-                            @foreach (var tagDict in data.TagDict)
+                            @foreach (var tagDict in Data.TagDict)
                             {
                                 <option value="@tagDict.Key">@tagDict.Value.ArchiveTagId</option>
                             }
@@ -233,12 +232,12 @@
             <label for="right-label" class="text-right middle">Заголовок</label>
         </div>
         <div class="small-12 large-5 cell">
-            <input type="text" id="right-label" placeholder="Заголовок" bind="@_plotly.layout.title"/>
+            <input type="text" id="right-label" placeholder="Заголовок" bind="@_plotLy.layout.title"/>
         </div>
     </div>
 
     <ul class="accordion" data-accordion>
-        @foreach (var y in new List<Plotly.Layout.Yaxis> {_plotly.layout.yaxis, _plotly.layout.yaxis2})
+        @foreach (var y in new List<Plotly.Layout.Yaxis> {_plotLy.layout.yaxis, _plotLy.layout.yaxis2})
         {
             <li class="accordion-item" data-accordion-item>
                 <a class="accordion-title">@y</a>
@@ -247,18 +246,22 @@
 
                         @* overlaying *@
                         <div class="cell small-6 large-1">
-                            <label for="" class="text-right middle">Overlaying</label>
+                            <label for="@($"{nameof(y.overlaying)}-{y.GetHashCode()}")" 
+                                   class="text-right middle">Overlaying</label>
                         </div>
                         <div class="cell small-6 large-1">
-                            <input type="text" id="" bind="@y.overlaying" placeholder="overlaying"/>
+                            <input type="text" id="@($"{nameof(y.overlaying)}-{y.GetHashCode()}")" 
+                                   bind="@y.overlaying" placeholder="overlaying"/>
                         </div>
 
                         @* side *@
                         <div class="cell small-6 large-1">
-                            <label for="" class="text-right middle">Side</label>
+                            <label for="@($"{nameof(y.side)}-{y.GetHashCode()}")" 
+                                   class="text-right middle">Side</label>
                         </div>
                         <div class="cell small-6 large-1">
-                            <select id="" bind="@y.side">
+                            <select id="@($"{nameof(y.side)}-{y.GetHashCode()}")" 
+                                    bind="@y.side">
                                 @foreach (var side in Plotly.Layout.Yaxis.SideEnum.Values)
                                 {
                                     <option value="@side">@side</option>
@@ -268,18 +271,22 @@
 
                         @* anchor *@
                         <div class="cell small-6 large-1">
-                            <label for="" class="text-right middle">Anchor</label>
+                            <label for="@($"{nameof(y.anchor)}-{y.GetHashCode()}")" 
+                                   class="text-right middle">Anchor</label>
                         </div>
                         <div class="cell small-6 large-1">
-                            <input type="text" placeholder="anchor" bind="@y.anchor"/>
+                            <input type="text" id="@($"{nameof(y.anchor)}-{y.GetHashCode()}")" 
+                                   placeholder="anchor" bind="@y.anchor"/>
                         </div>
 
                         @* position *@
                         <div class="cell small-6 large-1">
-                            <label for="" class="text-right middle">Position</label>
+                            <label for="@($"{nameof(y.position)}-{y.GetHashCode()}")" 
+                                   class="text-right middle">Position</label>
                         </div>
                         <div class="cell small-6 large-1">
-                            <input type="text" placeholder="position" bind="@y.position"/>
+                            <input type="text" id="@($"{nameof(y.position)}-{y.GetHashCode()}")" 
+                                   placeholder="position" bind="@y.position"/>
                         </div>
                     </div>
                 </div>
@@ -320,7 +327,7 @@
         _selectedTagId.Add(new PlotlyBlalzorParam());
         _selectedTagId.Add(new PlotlyBlalzorParam());
 
-        _plotly = new Plotly();
+        _plotLy = new Plotly();
     }
 
     private bool _jqueryInitialized;
@@ -334,7 +341,7 @@
     private readonly List<PlotlyBlalzorParam> _selectedTagId = new List<PlotlyBlalzorParam>();
     private readonly List<string> _plotLyTypesList = PlotlyTypes.GetTypesList();
 
-    Plotly _plotly;
+    Plotly _plotLy;
 
     private string BeginDateStr { get; set; } = DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd");
     private string EndDateStr { get; set; } = DateTime.Now.ToString("yyyy-MM-dd");
@@ -342,7 +349,7 @@
 
     private async void BuildPlot()
     {
-        _plotly.ClearData();
+        _plotLy.ClearData();
 
         foreach (var tag in _selectedTagId)
         {
@@ -360,7 +367,7 @@
                 end = DateTime.MaxValue;
 
 
-            var ts = data.TagDict[tag.tagId].GetTimeSeries(begin, end,
+            var ts = await Data.TagDict[tag.tagId].GetTimeSeriesAsync(begin, end,
                 tag.transform, tag.transformTime * tag.transformTimeCoef);
 
             switch (tag.plotlyType)
@@ -371,21 +378,21 @@
                     if (tag.tagIdX == "")
                     {
                         // на оси Х выбрано время
-                        _plotly.AddData();
+                        _plotLy.AddData();
 
-                        _plotly.GetLastData().x = ts.TimesToPlotly();
-                        _plotly.GetLastData().y = ts.Values;
+                        _plotLy.GetLastData().x = ts.TimesToPlotly();
+                        _plotLy.GetLastData().y = ts.Values;
                     }
                     else
                     {
-                        _plotly.AddData();
+                        _plotLy.AddData();
 
-                        var tsX = data.TagDict[tag.tagIdX].GetTimeSeries(begin, end,
+                        var tsX = await Data.TagDict[tag.tagIdX].GetTimeSeriesAsync(begin, end,
                             tag.transformX, tag.transformTime * tag.transformTimeCoef);
 
                         var scatter = new Scatter(tsX, ts);
-                        _plotly.GetLastData().x = scatter.X;
-                        _plotly.GetLastData().y = scatter.Y;
+                        _plotLy.GetLastData().x = scatter.X;
+                        _plotLy.GetLastData().y = scatter.Y;
                     }
                     break;
                 }
@@ -393,44 +400,44 @@
 
                 case PlotlyTypes.heatmap:
                 {
-                    _plotly.AddData();
+                    _plotLy.AddData();
 
                     var heatMap = ts.ToHeatmap();
 
-                    _plotly.GetLastData().y = heatMap.YToString;
-                    _plotly.GetLastData().x = heatMap.X;
-                    _plotly.GetLastData().z = heatMap.Z;
+                    _plotLy.GetLastData().y = heatMap.YToString;
+                    _plotLy.GetLastData().x = heatMap.X;
+                    _plotLy.GetLastData().z = heatMap.Z;
                     break;
                 }
 
                 case PlotlyTypes.table:
-                    if (_plotly.data.Count == 0)
+                    if (_plotLy.data.Count == 0)
                     {
-                        _plotly.AddData();
-                        _plotly.GetLastData().cells.values.Add(ts.TimesToPlotly().Select(x => (object) x).ToList());
-                        _plotly.GetLastData().header.values.Add("Время");
+                        _plotLy.AddData();
+                        _plotLy.GetLastData().cells.values.Add(ts.TimesToPlotly().Select(x => (object) x).ToList());
+                        _plotLy.GetLastData().header.values.Add("Время");
                     }
 
-                    _plotly.GetLastData().cells.values.Add(ts.Values.Select(x => (object) x).ToList());
-                    _plotly.GetLastData().header.values.Add(data.TagDict[tag.tagId].TagName);
+                    _plotLy.GetLastData().cells.values.Add(ts.Values.Select(x => (object) x).ToList());
+                    _plotLy.GetLastData().header.values.Add(Data.TagDict[tag.tagId].TagName);
 
                     break;
                     
                 default:
-                    _plotly.AddData();
+                    _plotLy.AddData();
 
-                    _plotly.GetLastData().x = ts.TimesToPlotly();
-                    _plotly.GetLastData().y = ts.Values;
+                    _plotLy.GetLastData().x = ts.TimesToPlotly();
+                    _plotLy.GetLastData().y = ts.Values;
                     break;
             }
 
-            _plotly.GetLastData().Mode(tag.DataModeLines, tag.DataModeMarkers, tag.DataModeText);
-            _plotly.GetLastData().name = data.TagDict[tag.tagId].TagName;
-            _plotly.GetLastData().type = tag.plotlyType;
-            _plotly.GetLastData().yaxis = tag.yaxis;
+            _plotLy.GetLastData().Mode(tag.DataModeLines, tag.DataModeMarkers, tag.DataModeText);
+            _plotLy.GetLastData().name = Data.TagDict[tag.tagId].TagName;
+            _plotLy.GetLastData().type = tag.plotlyType;
+            _plotLy.GetLastData().yaxis = tag.yaxis;
         }
 
-        await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", "plotly", _plotly);
+        await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", "plotly", _plotLy);
     }
 
     private static async Task Purge()

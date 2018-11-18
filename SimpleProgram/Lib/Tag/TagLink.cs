@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using SimpleProgram.Lib.Archives;
 using SimpleProgram.Lib.OpcUa;
 
@@ -33,9 +34,9 @@ namespace SimpleProgram.Lib.Tag
             set => _tagLink.ArchiveTagId = value;
         }
 
-        public double Increment(DateTime begin, DateTime end)
+        public Task<double> IncrementAsync(DateTime begin, DateTime end)
         {
-            return _tagLink.Increment(begin, end);
+            return _tagLink.IncrementAsync(begin, end);
         }
 
         public string TagId
@@ -55,10 +56,10 @@ namespace SimpleProgram.Lib.Tag
             return _tagLink.ConvertTo<TNew1>();
         }
 
-        public TimeSeries GetTimeSeries(DateTime begin, DateTime end, SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600,
+        public Task<TimeSeries> GetTimeSeriesAsync(DateTime begin, DateTime end, SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600,
             double lessThen = double.MaxValue, double moreThen = double.MinValue)
         {
-            return _tagLink.GetTimeSeries(begin, end, simplifyType, simplifyTime, lessThen, moreThen);
+            return _tagLink.GetTimeSeriesAsync(begin, end, simplifyType, simplifyTime, lessThen, moreThen);
         }
 
         public void DeleteData(DateTime begin, DateTime end, double lessThen, double moreThen)

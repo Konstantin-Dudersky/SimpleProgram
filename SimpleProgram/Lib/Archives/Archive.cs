@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SimpleProgram.Lib.Archives.MasterScada;
 
@@ -42,14 +43,14 @@ namespace SimpleProgram.Lib.Archives
 
         #region ITagArchive
 
-        public TimeSeries GetTimeSeries(string name, DateTime dateTimeFrom, DateTime dateTimeTo,
+        public async Task<TimeSeries> GetTimeSeriesAsync(string name, DateTime dateTimeFrom, DateTime dateTimeTo,
             double lessThen, double moreThen)
         {
             TimeSeries data;
 
             using (var context = (DbContext) Activator.CreateInstance(type, _optionsBuilder.Options))
             {
-                data = ((IArchiveInterop) context).GetTimeSeries(name, dateTimeFrom, dateTimeTo, lessThen, moreThen);
+                data = await ((IArchiveInterop) context).GetTimeSeriesAsync(name, dateTimeFrom, dateTimeTo, lessThen, moreThen);
             }
             
             return data;
@@ -59,17 +60,17 @@ namespace SimpleProgram.Lib.Archives
         {
             using (var context = (DbContext) Activator.CreateInstance(type, _optionsBuilder.Options))
             {
-                var entities = ((IArchiveInterop) context).GetEntities(name, begin, end, lessThen, moreThen);
+                var entities = ((IArchiveInterop) context).GetEntitiesAsync(name, begin, end, lessThen, moreThen);
                 context.RemoveRange(entities);
                 context.SaveChanges();
             }
         }
         
-        public double Increment(string name, DateTime begin, DateTime end)
+        public async Task<double> IncrementAsync(string name, DateTime begin, DateTime end)
         {
             using (var context = (DbContext) Activator.CreateInstance(type, _optionsBuilder.Options))
             {
-                return ((IArchiveInterop) context).Increment(name, begin, end);
+               return await ((IArchiveInterop) context).IncrementAsync(name, begin, end);
             }
         }
 

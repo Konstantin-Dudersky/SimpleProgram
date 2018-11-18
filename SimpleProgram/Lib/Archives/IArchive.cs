@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace SimpleProgram.Lib.Archives
 {
@@ -8,9 +9,9 @@ namespace SimpleProgram.Lib.Archives
         
         void DeleteArchiveData(string name, DateTime begin, DateTime end, double lessThen, double moreThen);
 
-        TimeSeries GetTimeSeries(string name, DateTime dateTimeFrom, DateTime dateTimeTo,
+        Task<TimeSeries> GetTimeSeriesAsync(string name, DateTime dateTimeFrom, DateTime dateTimeTo,
             double lessThen, double moreThen);
 
-        double Increment(string name, DateTime begin, DateTime end);
+        Task<double> IncrementAsync(string name, DateTime begin, DateTime end);
     }
 }

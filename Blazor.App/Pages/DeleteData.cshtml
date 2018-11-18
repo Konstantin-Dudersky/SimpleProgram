@@ -122,7 +122,7 @@
         if (!result)
             end = DateTime.MaxValue;
 
-        var ts = data.TagDict[tagId].GetTimeSeries(begin, end, lessThen: _deleteLessThen, moreThen: _deleteMoreThen);
+        var ts = await data.TagDict[tagId].GetTimeSeriesAsync(begin, end, lessThen: _deleteLessThen, moreThen: _deleteMoreThen);
 
         if (_plotLy.data.Count == 0)
         {

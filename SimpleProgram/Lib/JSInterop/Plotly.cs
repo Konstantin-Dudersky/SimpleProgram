@@ -43,6 +43,12 @@ namespace SimpleProgram.Lib.JSInterop
             
             public Node node { get; } = new Node();
 
+            /// <summary>
+            /// If value is `snap` (the default), the node arrangement is assisted by automatic snapping of elements to preserve space between nodes specified via `nodepad`. If value is `perpendicular`, the nodes can only move along a line perpendicular to the flow. If value is `freeform`, the nodes can freely move on the plane. If value is `fixed`, the nodes are stationary.
+            /// <para>enumerated : "snap" | "perpendicular" | "freeform" | "fixed"</para>
+            /// <para>default: "snap"</para>
+            /// </summary>
+            public string arrangement { get; set; } = "snap";
 
             /// <summary>
             ///     Sets the legend group for this trace. Traces part of the same legend group hide/show at the same time when toggling
@@ -193,14 +199,13 @@ namespace SimpleProgram.Lib.JSInterop
                 /// The shown name of the node.
                 /// <para>values: data array</para>
                 /// </summary>
-                public List<string> label { get; set; } = new List<string>(); // {"A1", "A2", "B1", "B2", "C1", "C2"};
+                public List<string> label { get; set; } = new List<string>();
 
                 /// <summary>
                 /// Sets the `node` color. It can be a single value, or an array for specifying color for each `node`. If `node.color` is omitted, then the default `Plotly` color palette will be cycled through to have a variety of colors. These defaults are not fully opaque, to allow some visibility of what is beneath the node.
                 /// <para>values: color or array of colors</para>
                 /// </summary>
-//                public List<string> color { get; set; } = new List<string>
-//                    {"blue", "blue", "blue", "blue", "blue", "blue"};
+                public List<string> color { get; set; }
 
             }
 
@@ -354,8 +359,6 @@ namespace SimpleProgram.Lib.JSInterop
                         typeof(SideEnum).GetFields().Select(fieldInfo => fieldInfo.Name).ToList();
                 }
             }
-            
-            
         }
     }
 
@@ -394,8 +397,8 @@ namespace SimpleProgram.Lib.JSInterop
     {
         public string plotlyType { get; set; } = PlotlyTypes.scatter;
         public bool DataModeLines { get; set; } = true;
-        public bool DataModeMarkers { get; set; } = false;
-        public bool DataModeText { get; set; } = false;
+        public bool DataModeMarkers { get; set; }
+        public bool DataModeText { get; set; }
 
         public string tagId { get; set; } = "";
         public string tagIdX { get; set; } = "";

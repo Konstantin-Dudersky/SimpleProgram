@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 // ReSharper disable IdentifierTypo
@@ -47,25 +48,21 @@ namespace SimpleProgram.Lib.Archives.MasterScada
             });
         }
 
-        private int GetItemid(string name)
+        private async Task<int> GetItemid(string name)
         {
-            return 
+            return await
                 (from i in masterscadadataitems
                 where i.name == name
-                select i.itemid).FirstOrDefault();
+                select i.itemid).FirstOrDefaultAsync();
         }
         
-        private IEnumerable<masterscadadataraw> GetMasterscadadataraws(string name, DateTime begin, DateTime end,
+        private async Task<IEnumerable<masterscadadataraw>> GetMasterscadadataraws(string name, DateTime begin, DateTime end,
             double lessThen, double moreThen)
         {
             var fromDtBinary = begin.ToBinary();
             var toDtBinary = end.ToBinary();
 
-            /*var itemid = (from i in masterscadadataitems
-                where i.name == name
-                select i.itemid).FirstOrDefault();*/
-
-            var itemid = GetItemid(name);
+            var itemid = await GetItemid(name);
             
             var data = from v in masterscadadataraw
                 where v.itemid == itemid && v.quality == 192 && v.layer == 1 &&
@@ -74,22 +71,23 @@ namespace SimpleProgram.Lib.Archives.MasterScada
                 orderby v.Time
                 select v;
 
-            return data.ToArray();
+            return await data.ToArrayAsync();
         }
 
-        #region ITagArchive
+        #region IArchiveInterop
 
-        public object[] GetEntities(string name, DateTime begin, DateTime end, double lessThen, double moreThen)
+        public async Task<object[]> GetEntitiesAsync(string name, DateTime begin, DateTime end, double lessThen, double moreThen)
         {
-            return GetMasterscadadataraws(name, begin, end, lessThen, moreThen).Select(x => (object) x).ToArray();
+            var rows = await GetMasterscadadataraws(name, begin, end, lessThen, moreThen);
+            return rows.Select(x => (object) x).ToArray();
         }
 
-        public TimeSeries GetTimeSeries(string name, DateTime dateTimeFrom, DateTime dateTimeTo,
+        public async Task<TimeSeries> GetTimeSeriesAsync(string name, DateTime dateTimeFrom, DateTime dateTimeTo,
             double lessThen, double moreThen)
         {
             var ts = new TimeSeries();
 
-            var entities = GetMasterscadadataraws(name, dateTimeFrom, dateTimeTo, lessThen, moreThen);
+            var entities = await GetMasterscadadataraws(name, dateTimeFrom, dateTimeTo, lessThen, moreThen);
 
             var data = from e in entities
                 select new {Time = DateTime.FromBinary(e.Time).ToLocalTime(), Value = e.value};
@@ -99,22 +97,22 @@ namespace SimpleProgram.Lib.Archives.MasterScada
             return ts;
         }
 
-        public double Increment(string name, DateTime begin, DateTime end)
+        public async Task<double> IncrementAsync(string name, DateTime begin, DateTime end)
         {
             var fromDtBinary = begin.ToBinary();
             var toDtBinary = end.ToBinary();
             
-            var itemid = GetItemid(name);
+            var itemid = await GetItemid(name);
 
-            var first = (from r in masterscadadataraw
+            var first = await (from r in masterscadadataraw
                 where r.itemid == itemid && r.quality == 192 && r.layer == 1 && r.Time >= fromDtBinary
                 orderby r.Time
-                select r).FirstOrDefault();
+                select r).FirstOrDefaultAsync();
             
-            var last = (from r in masterscadadataraw
+            var last = await (from r in masterscadadataraw
                 where r.itemid == itemid && r.quality == 192 && r.layer == 1 && r.Time <= toDtBinary
                 orderby r.Time
-                select r).LastOrDefault();
+                select r).LastOrDefaultAsync();
 
             if (first?.value == null || last?.value == null)
                 return 0;

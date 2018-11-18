@@ -40,16 +40,16 @@
     // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
     private ITag Counter { get; set; } = new Tag<double>();
 
-    private Task<bool> Prompt()
+    private async Task Prompt()
     {
-        var plotly = new Plotly();
+        var plotLy = new Plotly();
 
-        var timeSeries = data.TagDict[_selectedTag].GetTimeSeries(DateTime.MinValue, DateTime.MaxValue);
+        var timeSeries = await data.TagDict[_selectedTag].GetTimeSeriesAsync(DateTime.MinValue, DateTime.MaxValue);
 
-        plotly.data[0].x = timeSeries.Times.Select(x => x.ToString()).ToList();
-        plotly.data[0].y = timeSeries.Values;
+        plotLy.data[0].x = timeSeries.Times.Select(x => x.ToString()).ToList();
+        plotLy.data[0].y = timeSeries.Values;
 
-        return JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", "plotly", plotly);
+        await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", "plotly", plotLy);
     }
 
     

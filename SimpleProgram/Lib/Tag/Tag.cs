@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 using NCalc;
 using SimpleProgram.Lib.Archives;
 using SimpleProgram.Lib.OpcUa;
@@ -29,60 +33,72 @@ namespace SimpleProgram.Lib.Tag
 
         public IArchive Archive { get; set; }
         public string ArchiveTagId { get; set; }
-        
-        
 
         public string TagId { get; set; }
         public string TagName { get; set; }
         public DateTime TimeStamp { get; private set; }
-
 
         public ITag<TNew> ConvertTo<TNew>() where TNew : IConvertible
         {
             return new TagLink<T, TNew>(this);
         }
 
-        public TimeSeries GetTimeSeries(DateTime begin, DateTime end, SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600,
+        public async Task<TimeSeries> GetTimeSeriesAsync(DateTime begin, DateTime end, SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600,
             double lessThen = double.MaxValue, double moreThen = double.MinValue)
         {
             if (_derivedFunc == null)
-                return Archive.GetTimeSeries(ArchiveTagId, begin, end, lessThen, moreThen).Simplify(simplifyType, simplifyTime);
+                return (await Archive.GetTimeSeriesAsync(ArchiveTagId, begin, end, lessThen, moreThen)).Simplify(simplifyType, simplifyTime);
 
             var f = new Expression(_derivedFunc).ToLambda<ExpressionContext<TimeSeries>, TimeSeries>();
 
+            var ts = new List<TimeSeries>();
+
+            for (var i = 0; i < _derivedTags.Count; i++)
+            {
+                if(_derivedTags[i] == null)
+                    ts.Add(new TimeSeries());
+                else
+                    ts.Add(await _derivedTags[i].GetTimeSeriesAsync(begin, end, _derivedSimplify[i], simplifyTime));
+            }
+            
             var context = new ExpressionContext<TimeSeries> {
-                Tag1 = _derivedTag1?.GetTimeSeries(begin, end, _derivedSimplify1, simplifyTime), 
-                Tag2 = _derivedTag2?.GetTimeSeries(begin, end, _derivedSimplify2, simplifyTime),
-                Tag3 = _derivedTag3?.GetTimeSeries(begin, end, _derivedSimplify3, simplifyTime),
-                Tag4 = _derivedTag4?.GetTimeSeries(begin, end, _derivedSimplify4, simplifyTime),
-                Tag5 = _derivedTag5?.GetTimeSeries(begin, end, _derivedSimplify5, simplifyTime),
-                Tag6 = _derivedTag6?.GetTimeSeries(begin, end, _derivedSimplify6, simplifyTime),
-                Tag7 = _derivedTag7?.GetTimeSeries(begin, end, _derivedSimplify7, simplifyTime),
-                Tag8 = _derivedTag8?.GetTimeSeries(begin, end, _derivedSimplify8, simplifyTime),
-                Tag9 = _derivedTag9?.GetTimeSeries(begin, end, _derivedSimplify9, simplifyTime),
-                Tag10 = _derivedTag10?.GetTimeSeries(begin, end, _derivedSimplify10, simplifyTime)
+                Tag1 = ts[0], 
+                Tag2 = ts[1],
+                Tag3 = ts[2],
+                Tag4 = ts[3],
+                Tag5 = ts[4],
+                Tag6 = ts[5],
+                Tag7 = ts[6],
+                Tag8 = ts[7],
+                Tag9 = ts[8],
+                Tag10 = ts[9]
             };
             return f(context);
         }
         
-        public double Increment(DateTime begin, DateTime end)
+        public async Task<double> IncrementAsync(DateTime begin, DateTime end)
         {
             if (_derivedFunc == null)
-                return Archive.Increment(ArchiveTagId, begin, end);
+                return await Archive.IncrementAsync(ArchiveTagId, begin, end);
             
             var f = new Expression(_derivedFunc).ToLambda<ExpressionContext<double?>, double?>();
 
+            var tagValues = new List<double>();
+            
+            foreach (var tag in _derivedTags)
+                tagValues.Add(tag == null ? 0 : await tag.IncrementAsync(begin, end));
+            
             var context = new ExpressionContext<double?> {
-                Tag1 = _derivedTag1?.Increment(begin, end), 
-                Tag2 = _derivedTag2?.Increment(begin, end),
-                Tag3 = _derivedTag3?.Increment(begin, end),
-                Tag4 = _derivedTag4?.Increment(begin, end),
-                Tag5 = _derivedTag5?.Increment(begin, end),
-                Tag6 = _derivedTag6?.Increment(begin, end),
-                Tag7 = _derivedTag7?.Increment(begin, end),
-                Tag8 = _derivedTag8?.Increment(begin, end),
-                Tag9 = _derivedTag9?.Increment(begin, end),
-                Tag10 = _derivedTag10?.Increment(begin, end)
+                Tag1 = tagValues[0], 
+                Tag2 = tagValues[1],
+                Tag3 = tagValues[2],
+                Tag4 = tagValues[3],
+                Tag5 = tagValues[4],
+                Tag6 = tagValues[5],
+                Tag7 = tagValues[6],
+                Tag8 = tagValues[7],
+                Tag9 = tagValues[8],
+                Tag10 = tagValues[9]
             };
             return f(context) ?? 0;
         }
@@ -144,26 +160,8 @@ namespace SimpleProgram.Lib.Tag
         
         #region ConfDerivedFromTags
 
-        private ITag _derivedTag1;
-        private ITag _derivedTag2;
-        private ITag _derivedTag3;
-        private ITag _derivedTag4;
-        private ITag _derivedTag5;
-        private ITag _derivedTag6;
-        private ITag _derivedTag7;
-        private ITag _derivedTag8;
-        private ITag _derivedTag9;
-        private ITag _derivedTag10;
-        private SimplifyType _derivedSimplify1;
-        private SimplifyType _derivedSimplify2;
-        private SimplifyType _derivedSimplify3;
-        private SimplifyType _derivedSimplify4;
-        private SimplifyType _derivedSimplify5;
-        private SimplifyType _derivedSimplify6;
-        private SimplifyType _derivedSimplify7;
-        private SimplifyType _derivedSimplify8;
-        private SimplifyType _derivedSimplify9;
-        private SimplifyType _derivedSimplify10;
+        private List<ITag> _derivedTags;
+        private List<SimplifyType> _derivedSimplify;
 
         private string _derivedFunc;
 
@@ -180,27 +178,35 @@ namespace SimpleProgram.Lib.Tag
             ITag tag9 = null, SimplifyType derivedSimplify9 = SimplifyType.Increment,
             ITag tag10 = null, SimplifyType derivedSimplify10 = SimplifyType.Increment)
         {
+            _derivedTags = new List<ITag>
+            {
+                tag1,
+                tag2,
+                tag3,
+                tag4,
+                tag5,
+                tag6,
+                tag7,
+                tag8,
+                tag9,
+                tag10
+            };
+            
+            _derivedSimplify = new List<SimplifyType>
+            {
+                derivedSimplify1,
+                derivedSimplify2,
+                derivedSimplify3,
+                derivedSimplify4,
+                derivedSimplify5,
+                derivedSimplify6,
+                derivedSimplify7,
+                derivedSimplify8,
+                derivedSimplify9,
+                derivedSimplify10
+            };
+
             _derivedFunc = func;
-            _derivedTag1 = tag1;
-            _derivedTag2 = tag2;
-            _derivedTag3 = tag3;
-            _derivedTag4 = tag4;
-            _derivedTag5 = tag5;
-            _derivedTag6 = tag6;
-            _derivedTag7 = tag7;
-            _derivedTag8 = tag8;
-            _derivedTag9 = tag9;
-            _derivedTag10 = tag10;
-            _derivedSimplify1 = derivedSimplify1;
-            _derivedSimplify2 = derivedSimplify2;
-            _derivedSimplify3 = derivedSimplify3;
-            _derivedSimplify4 = derivedSimplify4;
-            _derivedSimplify5 = derivedSimplify5;
-            _derivedSimplify6 = derivedSimplify6;
-            _derivedSimplify7 = derivedSimplify7;
-            _derivedSimplify8 = derivedSimplify8;
-            _derivedSimplify9 = derivedSimplify9;
-            _derivedSimplify10 = derivedSimplify10;
         }
 
         #endregion
@@ -220,6 +226,7 @@ namespace SimpleProgram.Lib.Tag
 
         #endregion
         
+        [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Local")]
         private class ExpressionContext<TExpr>
         {
             public TExpr Tag1 { get; set; }

@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace SimpleProgram.Lib.Archives
 {
     internal interface IArchiveInterop
     {
-        TimeSeries GetTimeSeries(string name, DateTime dateTimeFrom, DateTime dateTimeTo,
+        Task<TimeSeries> GetTimeSeriesAsync(string name, DateTime dateTimeFrom, DateTime dateTimeTo,
             double lessThen, double moreThen);
-        object[] GetEntities(string name, DateTime begin, DateTime end, double lessThen, double moreThen);
+        
+        Task<object[]> GetEntitiesAsync(string name, DateTime begin, DateTime end, double lessThen, double moreThen);
 
-        double Increment(string name, DateTime begin, DateTime end);
+        Task<double> IncrementAsync(string name, DateTime begin, DateTime end);
     }
 }

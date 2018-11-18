@@ -45,7 +45,7 @@
         plotLy.ClearData();
         plotLy.AddData();
 
-        var ts = Tag.GetTimeSeries(DateTime.MinValue, DateTime.MaxValue);
+        var ts = await Tag.GetTimeSeriesAsync(DateTime.MinValue, DateTime.MaxValue);
 
         plotLy.GetLastData().x = ts.Times;
         plotLy.GetLastData().y = ts.Values;
