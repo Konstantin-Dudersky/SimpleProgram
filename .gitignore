@@ -20,3 +20,5 @@ SimpleProgram\.Tests/obj/
 node_modules/
 
 Blazor\.App/wwwroot/lib/
+
+package-lock\.json

@@ -1,34 +1,55 @@
 var gulp = require('gulp');
+var $             = require('gulp-load-plugins')();
 
-gulp.task('font-awesome-css', function() {
+function font_awesome_css() {
     return gulp.src('node_modules/font-awesome/css/*')
       .pipe(gulp.dest('Blazor.App/wwwroot/lib/font-awesome/css'));
-  });
+};
   
-gulp.task('font-awesome-fonts', function() {
+function font_awesome_fonts() {
   return gulp.src('node_modules/font-awesome/fonts/*')
     .pipe(gulp.dest('Blazor.App/wwwroot/lib/font-awesome/fonts'));
-});
+};
 
-gulp.task('foundation', function() {
-  return gulp.src('node_modules/foundation-sites/dist/**/*')
-    .pipe(gulp.dest('Blazor.App/wwwroot/lib/foundation-sites/'));
-});
+function foundation() {
+  return gulp.src('node_modules/foundation-sites/dist/js/**/*')
+    .pipe(gulp.dest('Blazor.App/wwwroot/lib/foundation-sites/js'));
+};
 
-gulp.task('plotly', function() {
+function plotly() {
   return gulp.src('node_modules/plotly.js/dist/**/*')
     .pipe(gulp.dest('Blazor.App/wwwroot/lib/plotly.js/'));
-});
+};
 
-gulp.task('jquery', function() {
+function jquery() {
   return gulp.src('node_modules/jquery/dist/**/*')
     .pipe(gulp.dest('Blazor.App/wwwroot/lib/jquery/'));
-});
+};
   
-gulp.task('default', [
-  'font-awesome-css',
-  'font-awesome-fonts',
-'foundation',
-'plotly',
-'jquery']);
-  
+
+
+
+// foundation-sites
+//var autoprefixer  = require('autoprefixer');
+
+var sassPaths = [
+  'node_modules/foundation-sites/scss',
+  'node_modules/motion-ui/src'
+];
+
+function sass() {
+  return gulp.src('Blazor.App/wwwroot/scss/app.scss')
+    .pipe($.sass({
+      includePaths: sassPaths,
+      outputStyle: 'compressed' // if css compressed **file size**
+    })
+      .on('error', $.sass.logError))
+    // .pipe($.postcss([
+    //   autoprefixer({ browsers: ['last 2 versions', 'ie >= 9'] })
+    // ]))
+    .pipe(gulp.dest('Blazor.App/wwwroot/lib/foundation-sites/css'))
+};
+
+
+gulp.task('sass', sass)
+gulp.task('default', gulp.series(sass, foundation, font_awesome_css, font_awesome_fonts, plotly, jquery));
