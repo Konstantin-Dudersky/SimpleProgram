@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SimpleProgramBlazorLib\SimpleProgramBlazorLib.csproj" />
     <ProjectReference Include="..\SimpleProgram\SimpleProgram.csproj" />
   </ItemGroup>
 

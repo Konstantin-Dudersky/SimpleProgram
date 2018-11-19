@@ -1,15 +1,14 @@
 ﻿@page "/counter"
-@implements IDisposable
-@inject Data data
 
-@using System.Threading
 @using Blazor.App.Services
+
+@inject Data Data
 
 <div class="grid-x grid-padding-x grid-padding-y">
     <div class="cell small-12 medium-6 large-4" style="height: 400px;">
         <ScatterByTime 
             Header="Температура"
-            Tag="@data.TGEnergy.temperature"
+            Tag="@Data.TGEnergy.temperature"
             />
     </div>
     
@@ -20,29 +19,14 @@
     <div class="cell small-12 medium-6 large-4" style="height: 400px;">
         <SankeyComponent Header="Sankey"/>
     </div>
+
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <Component1/>
+    </div>
+    
 </div>
 
 
 @functions {
-
-    Timer _refresh;
-    private int _refreshCount = 0;
-    
-    protected override void OnInit()
-    {
-        base.OnInit();
-        _refresh = new Timer(Refresh, null, 0, 2000);
-    }
-
-    private void Refresh(object state)
-    {
-        StateHasChanged();
-//        Console.WriteLine($"refresh {++_refreshCount}");
-    }
-
-    public void Dispose()
-    {
-        _refresh.Dispose();
-    }
 
 }

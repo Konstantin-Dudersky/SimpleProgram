@@ -22,3 +22,7 @@ node_modules/
 Blazor\.App/wwwroot/lib/
 
 package-lock\.json
+
+SimpleProgramBlazorLib/obj/
+
+SimpleProgramBlazorLib/bin/

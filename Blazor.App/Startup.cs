@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Blazor.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Blazor.App.Services;
 
+// ReSharper disable once IdentifierTypo
 namespace Blazor.App
 {
     public class Startup
@@ -10,9 +11,8 @@ namespace Blazor.App
         {
             // Since Blazor is running on the server, we can use an application service
             // to read the forecast data.
-            services.AddSingleton<WeatherForecastService>();
-            Data data = new Data();
-            services.AddSingleton<Data>(data);
+            var data = new Data();
+            services.AddSingleton(data);
         }
 
         public void Configure(IBlazorApplicationBuilder app)
