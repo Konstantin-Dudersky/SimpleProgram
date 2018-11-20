@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SimpleProgram.Lib.Archives;
 
@@ -18,10 +19,7 @@ namespace SimpleProgram.Lib.JSInterop
         public List<Data> data { get; set; } = new List<Data>();
         public Layout layout { get; set; } = new Layout();
 
-        public Data GetLastData()
-        {
-            return data.Last();
-        }
+        public Data LastData => data.Last();
 
         public void AddData()
         {

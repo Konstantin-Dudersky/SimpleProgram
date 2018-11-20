@@ -1,6 +1,7 @@
-﻿@page "/counter"
+﻿@page "/cooling"
 
 @using Blazor.App.Services
+@implements IDisposable
 
 @inject Data Data
 
@@ -9,11 +10,22 @@
         <ScatterByTime 
             Header="Температура"
             Tag="@Data.TGEnergy.temperature"
+            BeginTime="@CascadingValue.DateTimeRange.Begin"
+            EndTime="@CascadingValue.DateTimeRange.End"
             />
     </div>
     
     <div class="cell small-12 medium-6 large-4" style="height: 400px;">
-        <ScatterByTime Header="52s5435345"/>
+        <ScatterByTag 
+            Header="От темп. наружного воздуха (1ч)"
+            TagX="@Data.TGEnergy.temperature"
+            TagXSimplifyType="@SimplifyType.Average"
+            TagY="@Data.TGEnergy.tagSum"          
+            TagYSimplifyType="@SimplifyType.Increment"
+            SimplifyTime="3600"
+            BeginTime="@CascadingValue.DateTimeRange.Begin"
+            EndTime="@CascadingValue.DateTimeRange.End"
+        />
     </div>
     
     <div class="cell small-12 medium-6 large-4" style="height: 400px;">
@@ -28,5 +40,12 @@
 
 
 @functions {
+    [CascadingParameter]
+    private CascadingValueClass CascadingValue { get; set; }
+
+    public void Dispose()
+    {
+//        throw new NotImplementedException();
+    }
 
 }

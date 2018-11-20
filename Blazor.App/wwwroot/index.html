@@ -58,6 +58,12 @@
         {
             $(document).foundation();
             return true;
+        },
+        
+        foundationIdInit: function(id, command)
+        {
+            $(id).foundation(command);
+            return true;
         }
     }
 </script>

@@ -6,7 +6,7 @@
 <div class="card" style="height: 100%; width: 100%;">
     
     <div class="card-divider">
-        <h4>@Header</h4>
+        <h6>@Header</h6>
     </div>
 
     <div id="@($"plotly-{_id}")" style="height: 100%; width: 100%;">
@@ -62,15 +62,15 @@
 
         plotLy.AddData();
         
-        plotLy.GetLastData().node.label = Sankey.NodeLabels;
+        plotLy.LastData.node.label = Sankey.NodeLabels;
 
-        plotLy.GetLastData().link.label = Sankey.LinkLabels;
-        plotLy.GetLastData().link.source = Sankey.LinkSources;
-        plotLy.GetLastData().link.target = Sankey.LinkTargets;
-        plotLy.GetLastData().link.value = Sankey.LinkValues;
+        plotLy.LastData.link.label = Sankey.LinkLabels;
+        plotLy.LastData.link.source = Sankey.LinkSources;
+        plotLy.LastData.link.target = Sankey.LinkTargets;
+        plotLy.LastData.link.value = Sankey.LinkValues;
 
-        plotLy.GetLastData().type = PlotlyTypes.sankey;
-        plotLy.GetLastData().orientation = "h";
+        plotLy.LastData.type = PlotlyTypes.sankey;
+        plotLy.LastData.orientation = "h";
 
         _rendered = await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", $"plotly-{_id}", plotLy);
         StateHasChanged();

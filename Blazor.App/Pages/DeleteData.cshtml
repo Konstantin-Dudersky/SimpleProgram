@@ -127,15 +127,15 @@
         if (_plotLy.data.Count == 0)
         {
             _plotLy.AddData();
-            _plotLy.GetLastData().cells.values.Add(ts.TimesToPlotly().Select(x => (object) x).ToList());
-            _plotLy.GetLastData().header.values.Add("Время");
+            _plotLy.LastData.cells.values.Add(ts.TimesToPlotly().Select(x => (object) x).ToList());
+            _plotLy.LastData.header.values.Add("Время");
         }
 
-        _plotLy.GetLastData().cells.values.Add(ts.Values.Select(x => (object) x).ToList());
-        _plotLy.GetLastData().header.values.Add(data.TagDict[tagId].TagName);
+        _plotLy.LastData.cells.values.Add(ts.Values.Select(x => (object) x).ToList());
+        _plotLy.LastData.header.values.Add(data.TagDict[tagId].TagName);
 
-        _plotLy.GetLastData().name = data.TagDict[tagId].TagName;
-        _plotLy.GetLastData().type = PlotlyTypes.table;
+        _plotLy.LastData.name = data.TagDict[tagId].TagName;
+        _plotLy.LastData.type = PlotlyTypes.table;
 
         await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", "plotly", _plotLy);
     }

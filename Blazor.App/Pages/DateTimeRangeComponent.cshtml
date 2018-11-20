@@ -1,0 +1,94 @@
+@using System.Globalization
+
+<button class="dropdown button" type="button" data-toggle="@($"{_id}-dropdown")">@BeginDateStr &ndash; @EndDateStr</button>
+<div class="dropdown-pane" id="@($"{_id}-dropdown")" data-dropdown data-auto-focus="true">
+    <div class="grid-x grid-padding-x align-center">
+
+        <div class="cell medium-12">
+            <p class="h6 text-center">От:</p>
+        </div>
+
+        <div class="cell medium-12">
+            <input type="date" id="beginDate" value="@BeginDateStr"
+                   onchange="@((UIChangeEventArgs e) => BeginDateStr = e.Value.ToString())"/>
+        </div>
+
+        <div class="cell medium-12">
+            <input type="time" id="beginTime" value="@BeginTimeStr"
+                   onchange="@((UIChangeEventArgs e) => BeginTimeStr = e.Value.ToString())"/>
+        </div>
+
+
+        <div class="cell medium-12">
+            <p class="h6 text-center">До:</p>
+        </div>
+
+        <div class="cell medium-12">
+            <input type="date" id="endDate" value="@EndDateStr"
+                   onchange="@((UIChangeEventArgs e) => EndDateStr = e.Value.ToString())"/>
+        </div>
+
+        <div class="cell medium-12">
+            <input type="time" id="endTime" value="@EndTimeStr"
+                   onchange="@((UIChangeEventArgs e) => EndTimeStr = e.Value.ToString())"/>
+        </div>
+
+        <div class="cell medium-12">
+            <button class="button expanded" onclick="@Enter">Применить</button>
+        </div>
+
+    </div>
+</div>
+
+
+
+@functions {
+
+    [Parameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
+    private DateTimeRange DateTimeRange { get; set; }
+
+    private string BeginDateStr { get; set; }
+    private string BeginTimeStr { get; set; }
+    private string EndDateStr { get; set; }
+    private string EndTimeStr { get; set; }
+
+    private bool _rendered;
+    private int _id;
+
+    protected override void OnInit()
+    {
+        _id = new Random().Next();
+        BeginDateStr = DateTimeRange.Begin.ToString("yyyy-MM-dd");
+        BeginTimeStr = DateTimeRange.Begin.ToString("HH:mm");
+        EndDateStr = DateTimeRange.End.ToString("yyyy-MM-dd");
+        EndTimeStr = DateTimeRange.End.ToString("HH:mm");
+    }
+
+    protected override async Task OnAfterRenderAsync()
+    {
+        if (_rendered) return;
+        _rendered = await JSRuntime.Current.InvokeAsync<bool>("global.foundationIdInit", $"#{_id}-dropdown");
+    }
+
+    private async void Enter()
+    {
+        await JSRuntime.Current.InvokeAsync<bool>("global.foundationIdInit", $"#{_id}-dropdown", "close");
+        
+        var result = DateTime.TryParseExact($"{BeginDateStr} {BeginTimeStr}", "yyyy-MM-dd HH:mm", 
+            CultureInfo.InvariantCulture, DateTimeStyles.None, out var begin);
+        if (!result)
+            begin = DateTime.MinValue;
+
+
+        result = DateTime.TryParseExact($"{EndDateStr} {EndTimeStr}", "yyyy-MM-dd HH:mm", 
+            CultureInfo.InvariantCulture, DateTimeStyles.None, out var end);
+        if (!result)
+            end = DateTime.MaxValue;
+
+        DateTimeRange.Begin = begin;
+        DateTimeRange.End = end;
+
+        DateTimeRange.OnRefresh();
+    }
+}

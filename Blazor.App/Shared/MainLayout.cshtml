@@ -1,4 +1,5 @@
-﻿@inherits BlazorLayoutComponent
+﻿@using Blazor.App.Services
+@inherits BlazorLayoutComponent
 
 @*<style>
     .cell { border: 1px solid red; }
@@ -19,7 +20,7 @@
                         <NavLink href="" Match="NavLinkMatch.All">Home</NavLink>
                     </li>
                     <li>
-                        <NavLink href="counter">Counter</NavLink>
+                        <NavLink href="cooling">Холодоснабжение</NavLink>
                     </li>
                     <li>
                         <NavLink href="SankeyPage">Распределение Э/Э</NavLink>
@@ -41,14 +42,31 @@
                     </li>
                 </ul>
             </div>
+            
+            <div class="top-bar-right">
+                <ul class="menu">
+                    <li>
+                        <DateTimeRangeComponent 
+                            DateTimeRange="@_cascadingValue.DateTimeRange"
+                        />
+                    </li>
+                </ul>
+            </div>
+            
         </div>
-    </div>
-
-    <div class="cell auto">
         
-        @Body
-
     </div>
+    
+    
+    <CascadingValue Value="@_cascadingValue">
+
+        <div class="cell auto">
+            
+            @Body
+    
+        </div>
+        
+    </CascadingValue>
     
 </div>
 
@@ -57,6 +75,13 @@
 @functions{
 
     private bool _rendered;
+
+    private readonly CascadingValueClass _cascadingValue = new CascadingValueClass();
+
+    protected override void OnInit()
+    {
+        _cascadingValue.DateTimeRange.Refresh += StateHasChanged;
+    }
 
     protected override async Task OnAfterRenderAsync()
     {

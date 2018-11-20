@@ -1,0 +1,109 @@
+@using Microsoft.JSInterop
+@using SimpleProgram.Lib.Archives
+@using SimpleProgram.Lib.JSInterop
+@using SimpleProgram.Lib.Tag
+
+
+<div class="card" style="height: 100%; width: 100%;">
+    <div class="card-divider align-center">
+        <h6>@Header</h6>
+    </div>
+    <div id="@($"plotly-{_id}")" style="height: 100%; width: 100%;">
+
+        @if (!_rendered)
+        {
+            <div class="sk-wave">
+                <div class="sk-rect sk-rect1"></div>
+                <div class="sk-rect sk-rect2"></div>
+                <div class="sk-rect sk-rect3"></div>
+                <div class="sk-rect sk-rect4"></div>
+                <div class="sk-rect sk-rect5"></div>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+@functions{
+
+    [Parameter]
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+    private string Header { get; set; } = "График";
+    
+    [Parameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
+    private ITag TagX { get; set; }
+
+    [Parameter]
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+    private SimplifyType TagXSimplifyType { get; set; } = SimplifyType.None;
+    
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
+    [Parameter]
+    private ITag TagY { get; set; }
+
+    [Parameter]
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+    private SimplifyType TagYSimplifyType { get; set; } = SimplifyType.None;
+    
+    [Parameter]
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+    private DateTime BeginTime { get; set; } = DateTime.MinValue;
+
+    [Parameter]
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+    private DateTime EndTime { get; set; } = DateTime.MaxValue;
+
+    [CascadingParameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
+    private CascadingValueClassBase CascadingValue { get; set; }
+
+    [Parameter]
+    private int SimplifyTime { get; set; } = 3600;
+
+    private int _id;
+
+    private bool _rendered;
+
+    protected override void OnInit()
+    {
+        base.OnInit();
+        _id = new Random().Next();
+        CascadingValue.Update += () =>
+        {
+            _rendered = false;
+        };
+    }
+
+    protected override async Task OnAfterRenderAsync()
+    {
+        if (_rendered || TagX == null || TagY == null) return;
+
+        var plotLy = new Plotly();
+
+        plotLy.ClearData();
+        plotLy.AddData();
+
+        var tsX = await TagX.GetTimeSeriesAsync(BeginTime, EndTime, TagXSimplifyType, SimplifyTime);
+        var tsY = await TagY.GetTimeSeriesAsync(BeginTime, EndTime, TagYSimplifyType, SimplifyTime);
+        
+        var scatter = new Scatter(tsX, tsY);
+
+        plotLy.LastData.x = scatter.X;
+        plotLy.LastData.y = scatter.Y;
+        plotLy.LastData.Mode(false, true, false);
+
+        plotLy.layout.showlegend = false;
+        plotLy.layout.margin.l = 60;
+        plotLy.layout.margin.r = 10;
+        plotLy.layout.margin.t = 10;
+        plotLy.layout.margin.b = 60;
+        plotLy.config.displayModeBar = false;
+
+        _rendered = await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", $"plotly-{_id}", plotLy);
+
+        StateHasChanged();
+    }
+
+}
