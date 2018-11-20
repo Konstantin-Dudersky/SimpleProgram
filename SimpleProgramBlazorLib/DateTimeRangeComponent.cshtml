@@ -1,4 +1,5 @@
 @using System.Globalization
+@using Microsoft.JSInterop
 
 <button class="dropdown button" type="button" data-toggle="@($"{_id}-dropdown")">@BeginDateStr &ndash; @EndDateStr</button>
 <div class="dropdown-pane" id="@($"{_id}-dropdown")" data-dropdown data-auto-focus="true">

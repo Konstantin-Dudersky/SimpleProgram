@@ -1,6 +1,6 @@
 using System;
 
-namespace Blazor.App.Pages
+namespace SimpleProgramBlazorLib
 {
     public class DateTimeRange
     {

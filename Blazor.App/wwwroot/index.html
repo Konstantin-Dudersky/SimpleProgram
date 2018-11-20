@@ -7,6 +7,8 @@
     <title>Blazor</title>
     <base href="/"/>
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
     <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i" rel="stylesheet">
     <link href="lib/foundation-sites/css/app.css" rel="stylesheet"/>
     <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
@@ -41,7 +43,7 @@
 
         downloadImage: function(id) {
             // TODO название файла из заголовка графика, если заголовок задан
-            Plotly.downloadImage(id, {format: 'png', width: 1800, height: 900, filename: 'График'});
+            Plotly.downloadImage(id, {format: 'png', width: 1600, height: 900, filename: 'График'});
             return true;
         }
     };

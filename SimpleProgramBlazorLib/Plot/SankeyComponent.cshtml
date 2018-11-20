@@ -6,7 +6,19 @@
 <div class="card" style="height: 100%; width: 100%;">
     
     <div class="card-divider">
-        <h6>@Header</h6>
+        <div class="grid-x align-middle align-justify" style="width: 100%;">
+            <div class="cell auto">
+                <h6 class="text-center" style="margin: 0;">@Header</h6>
+            </div>
+        
+            <div class="cell shrink">
+                <div class="small button-group" style="margin: 0;">
+                    <a class="button" onclick="@ExportPng"><i class="fa fa-download" aria-hidden="true"></i> PNG</a>
+                    <a class="button"><i class="fa fa-download" aria-hidden="true"></i> CSV</a>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div id="@($"plotly-{_id}")" style="height: 100%; width: 100%;">
@@ -40,11 +52,15 @@
         get => _sankey;
         set
         {
-            _sankey =value;
+            _sankey = value;
             if (_sankey != null)
                 Build();
         }
     }
+    
+    [CascadingParameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
+    private CascadingValueClassBase CascadingValue { get; set; }
 
     private int _id;
 
@@ -52,8 +68,12 @@
 
     protected override void OnInit()
     {
-        base.OnInit();
         _id = new Random().Next();
+        
+        CascadingValue.Update += () =>
+        {
+            _rendered = false;
+        };
     }
 
     private async void Build()
@@ -71,9 +91,19 @@
 
         plotLy.LastData.type = PlotlyTypes.sankey;
         plotLy.LastData.orientation = "h";
+        
+        plotLy.layout.margin.l = 20;
+        plotLy.layout.margin.r = 20;
+        plotLy.layout.margin.t = 20;
+        plotLy.layout.margin.b = 20;
 
         _rendered = await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", $"plotly-{_id}", plotLy);
         StateHasChanged();
+    }
+
+    private async void ExportPng()
+    {
+        await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.downloadImage", $"plotly-{_id}");
     }
 
 }

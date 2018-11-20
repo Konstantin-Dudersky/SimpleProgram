@@ -58,15 +58,22 @@
     </div>
     
     
-    <CascadingValue Value="@_cascadingValue">
+    <div class="cell auto cell-block-container">
+        <div class="grid-y" style="height: 100%;">
+            <div class="cell auto cell-block">
+            @* <div class="cell auto" style="overflow: auto"> *@
+                
+                <CascadingValue Value="@_cascadingValue">
 
-        <div class="cell auto">
-            
-            @Body
-    
+                    @Body
+
+                </CascadingValue>
+
+            </div>
         </div>
+    </div>
         
-    </CascadingValue>
+        
     
 </div>
 

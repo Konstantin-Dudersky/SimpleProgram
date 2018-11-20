@@ -1,0 +1,120 @@
+﻿@page "/cooling"
+
+@using Blazor.App.Services
+
+@inject Data Data
+
+<div class="grid-x grid-padding-x grid-padding-y">
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <ScatterByTime 
+            Header="Температура нар. воздуха"
+            Tag="@Data.TGEnergy.temperature"
+            BeginTime="@CascadingValue.DateTimeRange.Begin"
+            EndTime="@CascadingValue.DateTimeRange.End"
+            />
+    </div>
+    
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <ScatterByTag 
+            Header="Потребление от темп. наружного воздуха (1ч)"
+            TagX="@Data.TGEnergy.temperature"
+            TagXSimplifyType="@SimplifyType.Average"
+            TagY="@Data.TGEnergy.tagSum"          
+            TagYSimplifyType="@SimplifyType.Increment"
+            SimplifyTime="3600"
+            BeginTime="@CascadingValue.DateTimeRange.Begin"
+            EndTime="@CascadingValue.DateTimeRange.End"
+        />
+    </div>
+    
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <SankeyComponent 
+            Header="Sankey"
+            Sankey = "@Sankey"
+            />
+    </div>
+
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <Component1/>
+    </div>
+    
+</div>
+
+
+@functions {
+    [CascadingParameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
+    private CascadingValueClass CascadingValue { get; set; }
+
+    private Sankey Sankey { get; set; }
+    
+    private bool _rendered;
+
+    protected override void OnInit()
+    {
+        CascadingValue.Update += () =>
+        {
+            _rendered = false;
+            Sankey = null;
+            StateHasChanged();
+        };
+    }
+    
+    protected override async Task OnAfterRenderAsync()
+    {
+        if (_rendered) return;
+        _rendered = true;
+        
+        Sankey = await BuildSankey();
+        
+        StateHasChanged();
+    }
+    
+    private async Task<Sankey> BuildSankey()
+    {
+        var sankey = new Sankey();
+
+        var begin = CascadingValue.DateTimeRange.Begin;
+        var end = CascadingValue.DateTimeRange.End;
+
+        var nodeCooling = sankey.AddNode("Холодоснабжение");
+        
+        var nodeChiller1 = sankey.AddNode("Чиллер 1");
+        var nodeChiller2 = sankey.AddNode("Чиллер 2");
+        var nodeChiller3 = sankey.AddNode("Чиллер 3");
+        var nodeHydro1 = sankey.AddNode("Гидромодуль 1");
+        var nodeHydro2 = sankey.AddNode("Гидромодуль 2");
+        var nodeHydro3 = sankey.AddNode("Гидромодуль 3");
+
+        // Холодоснабжение
+        var linkChiller11 = sankey.AddLink(nodeCooling, nodeChiller1, 
+            await Data.TGEnergy.MDB_A__QF2_1.IncrementAsync(begin, end), "Ввод 1");
+        var linkChiller12 = sankey.AddLink(nodeCooling, nodeChiller1, 
+            await Data.TGEnergy.MDB_B__QF2_1.IncrementAsync(begin, end), "Ввод 2");
+        var linkChiller21 = sankey.AddLink(nodeCooling, nodeChiller2, 
+            await Data.TGEnergy.MDB_A__QF2_2.IncrementAsync(begin, end), "Ввод 1");
+        var linkChiller22 = sankey.AddLink(nodeCooling, nodeChiller2, 
+            await Data.TGEnergy.MDB_B__QF2_2.IncrementAsync(begin, end), "Ввод 2");
+        var linkChiller31 = sankey.AddLink(nodeCooling, nodeChiller3, 
+            await Data.TGEnergy.MDB_A__QF2_3.IncrementAsync(begin, end), "Ввод 1");
+        var linkChiller32 = sankey.AddLink(nodeCooling, nodeChiller3, 
+            await Data.TGEnergy.MDB_B__QF2_3.IncrementAsync(begin, end), "Ввод 2");
+        
+        var linkHydro11 = sankey.AddLink(nodeCooling, nodeHydro1, 
+            await Data.TGEnergy.MDB_B__QF2_4.IncrementAsync(begin, end), "Ввод 1");
+        var linkHydro12 = sankey.AddLink(nodeCooling, nodeHydro1, 
+            await Data.TGEnergy.UPS_MDB_A__QF4_1.IncrementAsync(begin, end), "Ввод 2");
+        var linkHydro21 = sankey.AddLink(nodeCooling, nodeHydro2, 
+            await Data.TGEnergy.MDB_B__QF2_5.IncrementAsync(begin, end), "Ввод 1");
+        var linkHydro22 = sankey.AddLink(nodeCooling, nodeHydro2, 
+            await Data.TGEnergy.UPS_MDB_A__QF4_2.IncrementAsync(begin, end), "Ввод 2");
+        var linkHydro31 = sankey.AddLink(nodeCooling, nodeHydro3, 
+            await Data.TGEnergy.MDB_B__QF2_6.IncrementAsync(begin, end), "Ввод 1");
+        var linkHydro32 = sankey.AddLink(nodeCooling, nodeHydro3, 
+            await Data.TGEnergy.UPS_MDB_A__QF4_3.IncrementAsync(begin, end), "Ввод 2");
+
+
+        return sankey;
+    }
+
+}
