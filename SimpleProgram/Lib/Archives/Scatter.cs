@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace SimpleProgram.Lib.Archives
 {
@@ -24,6 +25,18 @@ namespace SimpleProgram.Lib.Archives
                 X.Add(tsX[time].Value);
                 Y.Add(tsY[time].Value);
             }
+        }
+
+        public string ToCsv(string separator = ";")
+        {
+            var str = new StringBuilder();
+
+            for (var i = 0; i < X.Count; i++)
+            {
+                str.AppendLine($"{X[i]}{separator}{Y[i]}");
+            }
+
+            return str.ToString();
         }
     }
 }

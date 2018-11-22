@@ -15,7 +15,7 @@
             <div class="cell shrink">
                 <div class="small button-group" style="margin: 0;">
                     <a class="button" onclick="@ExportPng"><i class="fa fa-download" aria-hidden="true"></i> PNG</a>
-                    <a class="button"><i class="fa fa-download" aria-hidden="true"></i> CSV</a>
+                    <a class="button" onclick="@ExportCsv"><i class="fa fa-download" aria-hidden="true"></i> CSV</a>
                 </div>
             </div>
         </div>
@@ -122,6 +122,17 @@
     private async void ExportPng()
     {
         await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.downloadImage", $"plotly-{_id}");
+    }
+
+    private async void ExportCsv()
+    {
+        var tsX = await TagX.GetTimeSeriesAsync(BeginTime, EndTime, TagXSimplifyType, SimplifyTime);
+        var tsY = await TagY.GetTimeSeriesAsync(BeginTime, EndTime, TagYSimplifyType, SimplifyTime);
+        
+        var scatter = new Scatter(tsX, tsY);
+        
+        await JSRuntime.Current.InvokeAsync<bool>("filesaver.save", scatter.ToCsv());
+
     }
 
 }

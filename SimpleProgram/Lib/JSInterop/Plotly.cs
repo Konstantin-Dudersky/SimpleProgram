@@ -246,6 +246,13 @@ namespace SimpleProgram.Lib.JSInterop
 
         public class Layout
         {
+            /*/// <summary>
+            /// Sets the plot's height (in px).
+            /// <para>values: number greater than or equal to 10</para>
+            /// <para>default: 450</para>
+            /// </summary>
+            public int height { get; set; } = 450;*/
+            
             public readonly Margin margin = new Margin();
             
             public readonly Yaxis yaxis = new Yaxis();
