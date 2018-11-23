@@ -11,21 +11,47 @@
     </div>
 
     <div class="cell auto">
+        
+        @switch (_currentPage)
+        {
+            case 1:
+                <Gauge
+                    Value="60"
+                    ScaleLow="0"
+                    ScaleHigh="100"
+                    PvAlLim="10"
+                    PvWlLim="30"
+                    PvWhLim="80"
+                    PvAhLim="90"/>
+                break;
+            
+            case 2:
+                <div id="@($"plotly-{_id}")" style="height: 100%; width: 100%;">
 
-        <div id="@($"plotly-{_id}")" style="height: 100%; width: 100%;">
+                    @if (!_rendered)
+                    {
+                        <div class="sk-wave">
+                            <div class="sk-rect sk-rect1"></div>
+                            <div class="sk-rect sk-rect2"></div>
+                            <div class="sk-rect sk-rect3"></div>
+                            <div class="sk-rect sk-rect4"></div>
+                            <div class="sk-rect sk-rect5"></div>
+                        </div>
+                    }
 
-            @if (!_rendered)
-            {
-                <div class="sk-wave">
-                    <div class="sk-rect sk-rect1"></div>
-                    <div class="sk-rect sk-rect2"></div>
-                    <div class="sk-rect sk-rect3"></div>
-                    <div class="sk-rect sk-rect4"></div>
-                    <div class="sk-rect sk-rect5"></div>
                 </div>
-            }
+                
+                break;
+                
+            case 3:
+                break;        
+                
+            default:
+                throw new Exception($"Неправильное значение {nameof(_currentPage)}.");
+        }
 
-        </div>
+
+        
     </div>
 
     <div class="cell shrink card-divider">
@@ -117,28 +143,43 @@
 
     protected override async Task OnAfterRenderAsync()
     {
-        if (_rendered || Tag == null) return;
+        switch (_currentPage)
+        {
+            case 1:
+                
+                break;
+                
+            case 2:
+                if (_rendered || Tag == null) return;
 
-        var plotLy = new Plotly();
+                var plotLy = new Plotly();
 
-        plotLy.ClearData();
-        plotLy.AddData();
+                plotLy.ClearData();
+                plotLy.AddData();
 
-        var ts = await Tag.GetTimeSeriesAsync(BeginTime, EndTime);
+                var ts = await Tag.GetTimeSeriesAsync(BeginTime, EndTime);
 
-        plotLy.LastData.x = ts.Times;
-        plotLy.LastData.y = ts.Values;
+                plotLy.LastData.x = ts.Times;
+                plotLy.LastData.y = ts.Values;
 
-        plotLy.layout.showlegend = false;
-        plotLy.layout.margin.l = 60;
-        plotLy.layout.margin.r = 10;
-        plotLy.layout.margin.t = 10;
-        plotLy.layout.margin.b = 60;
-        plotLy.config.displayModeBar = false;
+                plotLy.layout.showlegend = false;
+                plotLy.layout.margin.l = 60;
+                plotLy.layout.margin.r = 10;
+                plotLy.layout.margin.t = 10;
+                plotLy.layout.margin.b = 60;
+                plotLy.config.displayModeBar = false;
 
-        _rendered = await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", $"plotly-{_id}", plotLy);
+                _rendered = await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", $"plotly-{_id}", plotLy);
 
-        StateHasChanged();
+                StateHasChanged();
+                break;
+                
+            case 3:
+                break;
+                
+            default:
+                throw new Exception($"Неправильное значение {nameof(_currentPage)}.");
+        }
     }
 
     private async void ExportPng()

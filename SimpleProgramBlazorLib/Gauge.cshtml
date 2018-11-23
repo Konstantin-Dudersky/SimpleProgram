@@ -1,0 +1,126 @@
+@using System.Globalization
+@using System.Threading
+
+<svg class="hide">
+    <symbol id="test">
+        
+        @* зеленый фон *@
+        <path stroke-width="0" fill="#ADB223"
+              d="M @Const.GapX @(Const.Height - Const.GapY)
+                 h @(2 * Const.Radius)
+                 a @Const.Radius @Const.Radius 0 0 0 -@(2 * Const.Radius) 0"/>
+
+        @* Нижний предупредительный *@
+        <path stroke-width="0" fill="#EDBB20"
+              d="M @(Const.Radius + Const.GapX) @(Const.Height - Const.GapY)
+                 h -@Const.Radius
+                 a @Const.Radius @Const.Radius 0 0 1 @(Const.Radius * (1 - Math.Cos(_points.PvWlAngle))) -@(Const.Radius * Math.Sin(_points.PvWlAngle))"/>
+
+        @* Нижний аварийный *@
+        <path stroke-width="0" fill="#96355F"
+              d="M @(Const.Radius + Const.GapX) @(Const.Height - Const.GapY)
+                 h -@Const.Radius
+                 a @Const.Radius @Const.Radius 0 0 1 @(Const.Radius * (1 - Math.Cos(_points.PvAlAngle))) -@(Const.Radius * Math.Sin(_points.PvAlAngle))"/>
+
+        @* Верхний предупредительный *@
+        <path stroke-width="0" fill="#EDBB20"
+              d="M @(Const.Radius + Const.GapX) @(Const.Height - Const.GapY)
+                 h -@Const.Radius
+                 a @Const.Radius @Const.Radius 0 0 1 @(Const.Radius * (1 - Math.Cos(_points.PvWhAngle))) -@(Const.Radius * Math.Sin(_points.PvWhAngle))"
+              transform="rotate(@(180 - _points.PvWhAngle * 180 / Math.PI), @(Const.Width / 2), @(Const.Height - Const.GapY))"/>
+
+        @* Верхний аварийный *@
+        <path stroke-width="0" fill="#96355F"
+              d="M @(Const.Radius + Const.GapX) @(Const.Height - Const.GapY)
+                 h -@Const.Radius
+                 a @Const.Radius @Const.Radius 0 0 1 @(Const.Radius * (1 - Math.Cos(_points.PvAhAngle))) -@(Const.Radius * Math.Sin(_points.PvAhAngle))"
+              transform="rotate(@(180 - _points.PvAhAngle * 180 / Math.PI), @(Const.Width / 2), @(Const.Height - Const.GapY))"/>
+
+        @* Полупрозрачный полукруг *@
+        <path stroke-width="0" fill="#FFFFFF" opacity="0.7"
+              d="M @(Const.GapX +  0.2 * Const.RadiusSmall) @(Const.Height - Const.GapY)
+                 h @(2 * Const.RadiusSmall)
+                 a @Const.RadiusSmall @Const.RadiusSmall 0 0 0 -@(2 * Const.RadiusSmall) 0"/>
+
+        @* Стрелка *@
+        <path stroke-width="5" fill="#233746" stroke="#FFF"
+              d="M @(Const.Width / 2 - Const.NeedleLength) @(Const.Height - Const.GapY)
+                 l @Const.NeedleLength -@Const.NeedleRadius
+                 a @Const.NeedleRadius @Const.NeedleRadius 0 0 1 0 @(2 * Const.NeedleRadius) 
+                 z"
+              transform="rotate(@(_points.PvValueAngle * 180 / Math.PI), @(Const.Width / 2), @(Const.Height - Const.GapY))"
+              vector-effect="non-scaling-stroke"
+              />
+        
+        @* Начальное значение *@
+        <text x="@Const.GapX" y="@(Const.Height - Const.GapY + 5)">@ScaleLow</text>
+        
+        @* Конечное значение *@
+        <text x="@(Const.Width - Const.GapX)" y="@(Const.Height - Const.GapY + 5)">@ScaleHigh</text>
+    </symbol>
+</svg>
+
+
+@*<figure>
+    <div>*@
+        <svg viewBox="0 0 100 100" style="height: 100%; width: 100%;">
+            <use xlink:href="#test"/>
+        </svg>
+    @*</div>
+</figure>*@
+
+
+@functions
+{
+    [Parameter]
+    private double Value { get; set; }
+
+    [Parameter]
+    private double ScaleLow { get; set; }
+
+    [Parameter]
+    private double ScaleHigh { get; set; }
+
+    [Parameter]
+    private double PvAlLim { get; set; }
+
+    [Parameter]
+    private double PvWlLim { get; set; }
+
+    [Parameter]
+    private double PvWhLim { get; set; }
+
+    [Parameter]
+    private double PvAhLim { get; set; }
+
+    private Const _points;
+
+    protected override void OnInit()
+    {
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+
+        _points.PvValueAngle = (Value - ScaleLow) * Math.PI / (ScaleHigh - ScaleLow);
+        _points.PvAlAngle = (PvAlLim - ScaleLow) * Math.PI / (ScaleHigh - ScaleLow);
+        _points.PvWlAngle = (PvWlLim - ScaleLow) * Math.PI / (ScaleHigh - ScaleLow);
+        _points.PvWhAngle = (ScaleHigh - PvWhLim) * Math.PI / (ScaleHigh - ScaleLow);
+        _points.PvAhAngle = (ScaleHigh - PvAhLim) * Math.PI / (ScaleHigh - ScaleLow);
+    }
+
+    private struct Const
+    {
+        public double PvAlAngle;
+        public double PvWlAngle;
+        public double PvWhAngle;
+        public double PvAhAngle;
+        public double PvValueAngle;
+
+        public const double NeedleLength = 35;
+        public const double NeedleRadius = 5;
+        public const double RadiusSmall = 0.7 * Radius;
+        public const double GapX = (Width - 2 * Radius) / 2;
+        public const double GapY = 30;
+        public const double Radius = 40;
+        public const double Width = 100;
+        public const double Height = 100;
+    }
+}
