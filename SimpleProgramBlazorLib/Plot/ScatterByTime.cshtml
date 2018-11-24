@@ -12,11 +12,14 @@
 
     <div class="cell auto">
         
+        @ChildContent
+
         @switch (_currentPage)
         {
             case 1:
                 <Gauge
                     Value="60"
+                    ValueUnit="°C"
                     ScaleLow="0"
                     ScaleHigh="100"
                     PvAlLim="10"
@@ -24,7 +27,7 @@
                     PvWhLim="80"
                     PvAhLim="90"/>
                 break;
-            
+
             case 2:
                 <div id="@($"plotly-{_id}")" style="height: 100%; width: 100%;">
 
@@ -40,18 +43,18 @@
                     }
 
                 </div>
-                
+
                 break;
-                
+
             case 3:
-                break;        
-                
+                break;
+
             default:
                 throw new Exception($"Неправильное значение {nameof(_currentPage)}.");
         }
 
 
-        
+
     </div>
 
     <div class="cell shrink card-divider">
@@ -105,6 +108,9 @@
 </div>
 
 @functions{
+    
+    [Parameter]
+    private RenderFragment ChildContent { get; set; }
 
     [Parameter]
     // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local

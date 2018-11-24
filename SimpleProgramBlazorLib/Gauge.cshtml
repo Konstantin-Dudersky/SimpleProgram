@@ -53,10 +53,20 @@
               />
         
         @* Начальное значение *@
-        <text x="@Const.GapX" y="@(Const.Height - Const.GapY + 5)">@ScaleLow</text>
+        <text x="@Const.GapX" y="@(Const.Height - Const.GapY + 5)" dominant-baseline="hanging" 
+              style="font-size: 5px;">@ScaleLow</text>
         
         @* Конечное значение *@
-        <text x="@(Const.Width - Const.GapX)" y="@(Const.Height - Const.GapY + 5)">@ScaleHigh</text>
+        <text x="@(Const.Width - Const.GapX)" y="@(Const.Height - Const.GapY + 5)" 
+              text-anchor="end" dominant-baseline="hanging" 
+              style="font-size: 5px;">@ScaleHigh</text>
+        
+        @* Текущее значение *@
+        <text x="@(Const.Width / 2)" y="@(Const.Height - Const.GapY / 2)"
+              text-anchor="middle" dominant-baseline="middle">
+            @($"{Value} {ValueUnit}")
+        </text>
+        
     </symbol>
 </svg>
 
@@ -74,6 +84,9 @@
 {
     [Parameter]
     private double Value { get; set; }
+    
+    [Parameter]
+    private string ValueUnit { get; set; }
 
     [Parameter]
     private double ScaleLow { get; set; }
