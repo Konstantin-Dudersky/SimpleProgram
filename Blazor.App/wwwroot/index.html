@@ -10,85 +10,19 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
     <link href="lib/foundation-sites/css/app.css" rel="stylesheet"/>
-    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="lib/fontawesome-free/css/all.min.css" rel="stylesheet"/>
     <link href="lib/spinkit/spinkit.css" rel="stylesheet"/>
     
     <script src="lib/file-saver/FileSaver.min.js"></script>
-    
     <script src="lib/plotly.js/plotly.min.js"></script>
     <script src="lib/plotly.js/plotly-locale-ru.js"></script>
     <script>Plotly.setPlotConfig({locale: 'ru'})</script>
     
-    <style>
-        .fullscreen{
-            z-index: 9999;
-            width: 100%;
-            height: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-        }
-    </style>
-
 </head>
 <body>
 <app>Loading...</app>
 
 <script src="_framework/blazor.server.js"></script>
-
-
-
-
-<script>
-    window.plotlyhelpers = {
-        react: function (id, obj) {
-            Plotly.react(id, obj);
-            return true;
-        },
-        
-        purge: function (id) {
-            Plotly.purge(id);
-            return true;
-        },
-        
-        downloadImage: function(id) {
-            // TODO название файла из заголовка графика, если заголовок задан
-            Plotly.downloadImage(id, {format: 'png', width: 1600, height: 900, filename: 'График'});
-            return true;
-        }
-    };
-    
-    window.filesaver = {
-        save: function(id){
-            var blob = new Blob([id], {type: "text/csv;charset=utf-8"});
-            saveAs(blob, "Данные.csv");
-            return true;
-        }  
-    };
-    
-    window.global = {
-        getCurrentLocation: function () {
-            console.log(window.location);
-            return window.location.href;
-        },
-        
-        // Инициализация плагонов Foundation, в которых используется JS
-        // Вызывать в методе OnAfterRenderAsync()
-        foundationInit: function()
-        {
-            $(document).foundation();
-            return true;
-        },
-        
-        foundationIdInit: function(id, command)
-        {
-            $(id).foundation(command);
-            return true;
-        }
-            
-    }
-</script>
-
 
 <script src="lib/jquery/jquery.min.js"></script>
 <script src="lib/foundation-sites/js/foundation.min.js"></script>

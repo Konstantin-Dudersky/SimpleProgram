@@ -8,14 +8,9 @@ function file_saver() {
         .pipe(gulp.dest('Blazor.App/wwwroot/lib/file-saver/'));
 }
 
-function font_awesome_css() {
-    return gulp.src('node_modules/font-awesome/css/*')
-      .pipe(gulp.dest('Blazor.App/wwwroot/lib/font-awesome/css'));
-}
-  
-function font_awesome_fonts() {
-  return gulp.src('node_modules/font-awesome/fonts/*')
-    .pipe(gulp.dest('Blazor.App/wwwroot/lib/font-awesome/fonts'));
+function font_awesome() {
+    return gulp.src('node_modules/@fortawesome/**/*')
+      .pipe(gulp.dest('Blazor.App/wwwroot/lib/'));
 }
 
 function jquery() {
@@ -62,4 +57,4 @@ function foundation_css() {
 
 gulp.task('sass', foundation_css);
 gulp.task('default', gulp.series(foundation_css, foundation_js, 
-    font_awesome_css, font_awesome_fonts, plotly, jquery, spinkit, file_saver));
+    font_awesome, plotly, jquery, spinkit, file_saver));

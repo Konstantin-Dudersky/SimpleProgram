@@ -1,0 +1,47 @@
+
+@if (_visible)
+{
+    switch (IndicatorType)
+    {
+        case IndicatorTypeEnum.Wave:
+            <div class="sk-wave">
+                <div class="sk-rect sk-rect1"></div>
+                <div class="sk-rect sk-rect2"></div>
+                <div class="sk-rect sk-rect3"></div>
+                <div class="sk-rect sk-rect4"></div>
+                <div class="sk-rect sk-rect5"></div>
+            </div>
+            break;
+        default:
+            throw new ArgumentOutOfRangeException();
+    }
+    
+}
+
+
+@functions
+{
+
+    [Parameter]
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+    private IndicatorTypeEnum IndicatorType { get; set; } = IndicatorTypeEnum.Wave;
+    
+    private bool _visible = true;
+
+    public void Hide()
+    {
+        _visible = false;
+        StateHasChanged();
+    }
+
+    public void Show()
+    {
+        _visible = true;
+        StateHasChanged();
+    }
+
+    public enum IndicatorTypeEnum
+    {
+        Wave
+    }
+}

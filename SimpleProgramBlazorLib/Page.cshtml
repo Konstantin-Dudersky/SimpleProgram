@@ -1,0 +1,20 @@
+
+<p> Page visible </p>
+<p class="@(_visible ? "" : "hide")">invisible</p>
+
+
+
+@functions
+{
+
+    private bool _visible = true;
+    
+    public void Reset()
+    {
+        _visible = false;
+        Console.WriteLine("reset");
+        StateHasChanged();
+    }
+    
+
+}

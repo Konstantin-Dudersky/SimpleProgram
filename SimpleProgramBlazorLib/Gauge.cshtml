@@ -1,115 +1,121 @@
 @using System.Globalization
 @using System.Threading
+@using Microsoft.JSInterop
 
-<svg class="hide">
-    <symbol id="test">
-        
-        @* зеленый фон *@
-        <path stroke-width="0" fill="#ADB223"
-              d="M @Const.GapX @(Const.Height - Const.GapY)
+<svg viewBox="0 0 100 100" style="height: 100%; width: 100%;" id="@($"_{_id}")">
+    @* зеленый фон *@
+    <path stroke-width="0" fill="#ADB223"
+          d="M @Const.GapX @(Const.Height - Const.GapY)
                  h @(2 * Const.Radius)
                  a @Const.Radius @Const.Radius 0 0 0 -@(2 * Const.Radius) 0"/>
 
-        @* Нижний предупредительный *@
-        <path stroke-width="0" fill="#EDBB20"
-              d="M @(Const.Radius + Const.GapX) @(Const.Height - Const.GapY)
+    @* Нижний предупредительный *@
+    <path stroke-width="0" fill="#EDBB20"
+          d="M @(Const.Radius + Const.GapX) @(Const.Height - Const.GapY)
                  h -@Const.Radius
                  a @Const.Radius @Const.Radius 0 0 1 @(Const.Radius * (1 - Math.Cos(_points.PvWlAngle))) -@(Const.Radius * Math.Sin(_points.PvWlAngle))"/>
 
-        @* Нижний аварийный *@
-        <path stroke-width="0" fill="#96355F"
-              d="M @(Const.Radius + Const.GapX) @(Const.Height - Const.GapY)
+    @* Нижний аварийный *@
+    <path stroke-width="0" fill="#96355F"
+          d="M @(Const.Radius + Const.GapX) @(Const.Height - Const.GapY)
                  h -@Const.Radius
                  a @Const.Radius @Const.Radius 0 0 1 @(Const.Radius * (1 - Math.Cos(_points.PvAlAngle))) -@(Const.Radius * Math.Sin(_points.PvAlAngle))"/>
 
-        @* Верхний предупредительный *@
-        <path stroke-width="0" fill="#EDBB20"
-              d="M @(Const.Radius + Const.GapX) @(Const.Height - Const.GapY)
+    @* Верхний предупредительный *@
+    <path stroke-width="0" fill="#EDBB20"
+          d="M @(Const.Radius + Const.GapX) @(Const.Height - Const.GapY)
                  h -@Const.Radius
                  a @Const.Radius @Const.Radius 0 0 1 @(Const.Radius * (1 - Math.Cos(_points.PvWhAngle))) -@(Const.Radius * Math.Sin(_points.PvWhAngle))"
-              transform="rotate(@(180 - _points.PvWhAngle * 180 / Math.PI), @(Const.Width / 2), @(Const.Height - Const.GapY))"/>
+          transform="rotate(@(180 - _points.PvWhAngle * 180 / Math.PI), @(Const.Width / 2), @(Const.Height - Const.GapY))"/>
 
-        @* Верхний аварийный *@
-        <path stroke-width="0" fill="#96355F"
-              d="M @(Const.Radius + Const.GapX) @(Const.Height - Const.GapY)
+    @* Верхний аварийный *@
+    <path stroke-width="0" fill="#96355F"
+          d="M @(Const.Radius + Const.GapX) @(Const.Height - Const.GapY)
                  h -@Const.Radius
                  a @Const.Radius @Const.Radius 0 0 1 @(Const.Radius * (1 - Math.Cos(_points.PvAhAngle))) -@(Const.Radius * Math.Sin(_points.PvAhAngle))"
-              transform="rotate(@(180 - _points.PvAhAngle * 180 / Math.PI), @(Const.Width / 2), @(Const.Height - Const.GapY))"/>
+          transform="rotate(@(180 - _points.PvAhAngle * 180 / Math.PI), @(Const.Width / 2), @(Const.Height - Const.GapY))"/>
 
-        @* Полупрозрачный полукруг *@
-        <path stroke-width="0" fill="#FFFFFF" opacity="0.7"
-              d="M @(Const.GapX +  0.2 * Const.RadiusSmall) @(Const.Height - Const.GapY)
+    @* Полупрозрачный полукруг *@
+    <path stroke-width="0" fill="#FFFFFF" opacity="0.7"
+          d="M @(Const.GapX + 0.2 * Const.RadiusSmall) @(Const.Height - Const.GapY)
                  h @(2 * Const.RadiusSmall)
                  a @Const.RadiusSmall @Const.RadiusSmall 0 0 0 -@(2 * Const.RadiusSmall) 0"/>
 
-        @* Стрелка *@
-        <path stroke-width="5" fill="#233746" stroke="#FFF"
-              d="M @(Const.Width / 2 - Const.NeedleLength) @(Const.Height - Const.GapY)
+    @* Стрелка *@
+    <path stroke-width="5" fill="#233746" stroke="#FFF"
+          d="M @(Const.Width / 2 - Const.NeedleLength) @(Const.Height - Const.GapY)
                  l @Const.NeedleLength -@Const.NeedleRadius
                  a @Const.NeedleRadius @Const.NeedleRadius 0 0 1 0 @(2 * Const.NeedleRadius) 
                  z"
-              transform="rotate(@(_points.PvValueAngle * 180 / Math.PI), @(Const.Width / 2), @(Const.Height - Const.GapY))"
-              vector-effect="non-scaling-stroke"
-              />
-        
-        @* Начальное значение *@
-        <text x="@Const.GapX" y="@(Const.Height - Const.GapY + 5)" dominant-baseline="hanging" 
-              style="font-size: 5px;">@ScaleLow</text>
-        
-        @* Конечное значение *@
-        <text x="@(Const.Width - Const.GapX)" y="@(Const.Height - Const.GapY + 5)" 
-              text-anchor="end" dominant-baseline="hanging" 
-              style="font-size: 5px;">@ScaleHigh</text>
-        
-        @* Текущее значение *@
-        <text x="@(Const.Width / 2)" y="@(Const.Height - Const.GapY / 2)"
-              text-anchor="middle" dominant-baseline="middle">
-            @($"{Value} {ValueUnit}")
-        </text>
-        
-    </symbol>
+          transform="rotate(@(_points.PvValueAngle * 180 / Math.PI), @(Const.Width / 2), @(Const.Height - Const.GapY))"
+          vector-effect="non-scaling-stroke"/>
+
+    @* Начальное значение *@
+    <text x="@Const.GapX" y="@(Const.Height - Const.GapY + 5)" dominant-baseline="hanging"
+          style="font-size: 5px;">
+        @ScaleLow</text>
+
+    @* Конечное значение *@
+    <text x="@(Const.Width - Const.GapX)" y="@(Const.Height - Const.GapY + 5)"
+          text-anchor="end" dominant-baseline="hanging"
+          style="font-size: 5px;">
+        @ScaleHigh</text>
+
+    @* Текущее значение *@
+    <text x="@(Const.Width / 2)" y="@(Const.Height - Const.GapY / 2)"
+          text-anchor="middle" dominant-baseline="middle">
+        @($"{Value} {ValueUnit}")
+    </text>
+
 </svg>
 
-
-@*<figure>
-    <div>*@
-        <svg viewBox="0 0 100 100" style="height: 100%; width: 100%;">
-            <use xlink:href="#test"/>
-        </svg>
-    @*</div>
-</figure>*@
-
+<div class="hide">
+    @* <a onclick="@ExportPng" id="export-png"></a> *@
+</div>
 
 @functions
 {
+
     [Parameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private double Value { get; set; }
-    
+
     [Parameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private string ValueUnit { get; set; }
 
     [Parameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private double ScaleLow { get; set; }
 
     [Parameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private double ScaleHigh { get; set; }
 
     [Parameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private double PvAlLim { get; set; }
 
     [Parameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private double PvWlLim { get; set; }
 
     [Parameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private double PvWhLim { get; set; }
 
     [Parameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private double PvAhLim { get; set; }
 
     private Const _points;
 
+    private int _id;
+
     protected override void OnInit()
     {
+        _id = new Random().Next();
+
         Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
         _points.PvValueAngle = (Value - ScaleLow) * Math.PI / (ScaleHigh - ScaleLow);
@@ -117,6 +123,13 @@
         _points.PvWlAngle = (PvWlLim - ScaleLow) * Math.PI / (ScaleHigh - ScaleLow);
         _points.PvWhAngle = (ScaleHigh - PvWhLim) * Math.PI / (ScaleHigh - ScaleLow);
         _points.PvAhAngle = (ScaleHigh - PvAhLim) * Math.PI / (ScaleHigh - ScaleLow);
+    }
+
+    protected override async Task OnAfterRenderAsync()
+    {
+    // баг https://github.com/aspnet/Blazor/issues/1571
+    // после починки удалить
+        await JSRuntime.Current.InvokeAsync<bool>("jquery.setAttribute", $"#_{_id}", "viewBox", "0 0 100 100");
     }
 
     private struct Const
@@ -136,4 +149,5 @@
         public const double Width = 100;
         public const double Height = 100;
     }
+
 }

@@ -1,0 +1,167 @@
+@using Microsoft.JSInterop
+<div class="card grid-y @(_fullscreen ? "fullscreen" : "")" style="height: 100%;" id="@_id">
+
+    <div class="cell shrink card-divider">
+        <h6 class="text-center" style="width: 100%">@Header</h6>
+
+    </div>
+
+    <div class="page0"></div>
+
+    @ChildContent
+
+    <div class="cell shrink card-divider">
+        <div class="grid-x align-middle align-justify" style="width: 100%;">
+
+            <div class="cell shrink">
+                <ul class="pagination" style="margin: 0;">
+                    @for (var i = 1; i <= _pagesCount; i++)
+                    {
+                        var i1 = i;
+                        if (_currentPage == i)
+                        {
+                            <li class="current">
+                                <i class="fa fa-circle fa-xs"></i>
+                                @* @i *@
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a onclick="@(() =>
+                                              {
+                                                  _currentPage = i1;
+                                                  StateHasChanged();
+                                              })">
+                                    <i class="fa fa-circle fa-xs"></i>
+                                    @* @i *@
+                                </a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+
+            <div class="cell auto"></div>
+
+            <div class="cell shrink">
+                <div class="small button-group" style="margin: 0;">
+                    <a class="button @(_exportPngVisible ? "" : "hide")" title="Экспорт в png" onclick="@ExportPng">
+                        <i class="fa fa-download fa-lg fa-fw"></i> PNG
+                    </a>
+                    <a class="button @(_exportCsvVisible ? "" : "hide")" title="Экспорт в csv" onclick="@ExportCsv">
+                        <i class="fa fa-download fa-lg fa-fw"></i> CSV
+                    </a>
+                    <a class="button" onclick="@Resize" title="На весь экран">
+                        <i class="fa @(_fullscreen ? "fa-compress" : "fa-expand") fa-lg fa-fw" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+@functions
+{
+        private const int MaxPages = 10;
+
+    [Parameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
+    private RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+    private string Header { get; set; } = "График";
+
+    private int _currentPage = 1;
+    private int _currentPageOld;
+    private int _pagesCount;
+
+    private bool _fullscreen;
+
+    private string _id;
+
+    private bool _exportPngVisible;
+    private bool _exportPngVisibleOld;
+    private bool _exportCsvVisible;
+    private bool _exportCsvVisibleOld;
+
+    protected override void OnInit()
+    {
+        _id = $"widget-{new Random().Next()}";
+    }
+
+    protected override void OnAfterRender()
+    {
+        SetVisiblePage();
+    }
+
+    protected override async Task OnAfterRenderAsync()
+    {
+    // при первой загрузке определяем кол-во вложенных страниц
+        if (_pagesCount == 0)
+        {
+            for (var i = 1; i <= MaxPages; i++)
+            {
+                if (await JSRuntime.Current.InvokeAsync<bool>("global.isExist", $"#{_id} .page{i}"))
+                    _pagesCount++;
+                else
+                    break;
+            }
+            StateHasChanged();
+        }
+
+
+        _exportPngVisible = await JSRuntime.Current.InvokeAsync<bool>("global.isExist", $"#{_id} .page{_currentPage} #export-png");
+        _exportCsvVisible = await JSRuntime.Current.InvokeAsync<bool>("global.isExist", $"#{_id} .page{_currentPage} #export-csv");
+
+        if (_exportPngVisibleOld != _exportPngVisible || _exportCsvVisibleOld != _exportCsvVisible)
+        {
+            StateHasChanged();
+            _exportPngVisibleOld = _exportPngVisible;
+            _exportCsvVisibleOld = _exportCsvVisible;
+        }
+    }
+
+    private void SetVisiblePage()
+    {
+        for (var i = 0; i <= MaxPages; i++)
+        {
+            JSRuntime.Current.InvokeAsync<bool>("jquery.addClass", $"#{_id} .page{i}", "cell auto hide");
+
+            if (i == _currentPage)
+            {
+                JSRuntime.Current.InvokeAsync<bool>("jquery.removeClass", $"#{_id} .page{i}", "hide");
+            }
+        }
+
+    // переключение размера виджета
+        if (_currentPage != 0) return;
+
+        _currentPage = _currentPageOld;
+        StateHasChanged();
+    }
+
+    private async void ExportPng()
+    {
+        await JSRuntime.Current.InvokeAsync<bool>("global.click", $"#{_id} .page{_currentPage} #export-png");
+    }
+
+    private async void ExportCsv()
+    {
+        await JSRuntime.Current.InvokeAsync<bool>("global.click", $"#{_id} .page{_currentPage} #export-csv");
+    }
+
+    private void Resize()
+    {
+        _fullscreen = !_fullscreen;
+
+        _currentPageOld = _currentPage;
+        _currentPage = 0;
+        StateHasChanged();
+    }
+
+}
