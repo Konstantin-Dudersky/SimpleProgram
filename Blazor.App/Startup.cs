@@ -1,3 +1,4 @@
+using System.Globalization;
 using Microsoft.AspNetCore.Blazor.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Blazor.App.Services;
@@ -17,6 +18,10 @@ namespace Blazor.App
 
         public void Configure(IBlazorApplicationBuilder app)
         {
+            var cultureInfo = new CultureInfo("en-US");
+            CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+            CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+            
             app.AddComponent<App>("app");
         }
     }

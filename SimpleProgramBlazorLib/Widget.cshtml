@@ -22,7 +22,6 @@
                         {
                             <li class="current">
                                 <i class="fa fa-circle fa-xs"></i>
-                                @* @i *@
                             </li>
                         }
                         else
@@ -34,7 +33,6 @@
                                                   StateHasChanged();
                                               })">
                                     <i class="fa fa-circle fa-xs"></i>
-                                    @* @i *@
                                 </a>
                             </li>
                         }
@@ -113,7 +111,6 @@
             }
             StateHasChanged();
         }
-
 
         _exportPngVisible = await JSRuntime.Current.InvokeAsync<bool>("global.isExist", $"#{_id} .page{_currentPage} #export-png");
         _exportCsvVisible = await JSRuntime.Current.InvokeAsync<bool>("global.isExist", $"#{_id} .page{_currentPage} #export-csv");

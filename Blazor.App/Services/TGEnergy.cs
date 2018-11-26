@@ -421,6 +421,10 @@ namespace Blazor.App.Services
             TagName = "Модуль 1, чиллер 3"
         };
 
+        public Tag<double> PUE = new Tag<double>
+        {
+            TagName = "Процент Э/Э на машзал"
+        };
 
         public TGEnergy()
         {
@@ -449,6 +453,14 @@ namespace Blazor.App.Services
                 MDB_A__QF2_3, SimplifyType.Increment,
                 MDB_B__QF2_3, SimplifyType.Increment
             );
+            
+            PUE.ConfDerivedFromTags(
+                "([Tag1] + [Tag2]) / ([Tag3] + [Tag4])",
+                MDB_A__QS1, SimplifyType.Increment,
+                MDB_B__QS1, SimplifyType.Increment,
+                UPS_MDB_A__QF3_1, SimplifyType.Increment,
+                UPS_MDB_B__QF3_1, SimplifyType.Increment
+                );
         }
     }
 }

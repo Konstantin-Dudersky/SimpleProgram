@@ -64,6 +64,16 @@ namespace SimpleProgram.Lib.Archives
             foreach (var time in times) TimeValues[time] = null;
         }
 
+        public bool Remove(DateTime key)
+        {
+            return TimeValues.Remove(key);
+        }
+
+        public void RemoveFirst()
+        {
+            TimeValues.RemoveAt(0);
+        }
+
         public void RemoveLast()
         {
             TimeValues.RemoveAt(Count - 1);
@@ -120,6 +130,34 @@ namespace SimpleProgram.Lib.Archives
         public static TimeSeries operator *(TimeSeries ts1, TimeSeries ts2)
         {
             return Operation(ts1, ts2, (x1, x2) => x1 * x2);
+        }
+        
+        public static TimeSeries operator *(double coef, TimeSeries ts)
+        {
+            var tsNew = new TimeSeries();
+            tsNew.AddTimes(ts.Times);
+            
+            foreach (var time in ts.Times)
+            {
+                tsNew[time] = ts[time] * coef;
+            }
+
+            return tsNew;
+        }
+        
+        public static TimeSeries operator *(TimeSeries ts, double coef)
+        {
+            return coef * ts;
+        }
+
+        public static TimeSeries operator *(int coef, TimeSeries ts)
+        {
+            return (double)coef * ts;
+        }
+        
+        public static TimeSeries operator *(TimeSeries ts, int coef)
+        {
+            return (double)coef * ts;
         }
 
         public static TimeSeries operator /(TimeSeries ts1, TimeSeries ts2)
@@ -208,6 +246,26 @@ namespace SimpleProgram.Lib.Archives
             }
             
             return newTs;
+        }
+
+        public static TimeSeries Trim(this TimeSeries ts)
+        {
+            if (ts.Count <= 0)
+                return new TimeSeries();
+
+            while (true)
+                if (ts[0] == null)
+                    ts.RemoveFirst();
+                else
+                    break;
+
+            while (true)
+                if(ts[ts.Count - 1] == null)
+                    ts.RemoveLast();
+                else
+                    break;
+
+            return ts;
         }
 
         public static Heatmap ToHeatmap(this TimeSeries ts, ByPeriod xPeriod = ByPeriod.Day)

@@ -62,6 +62,12 @@ namespace SimpleProgram.Lib.Tag
             return _tagLink.GetTimeSeriesAsync(begin, end, simplifyType, simplifyTime, lessThen, moreThen);
         }
 
+        public Task<double> GetValueAsync(DateTime begin, DateTime end, SimplifyType simplifyType = SimplifyType.None,
+            int simplifyTime = 3600)
+        {
+            throw new NotImplementedException();
+        }
+
         public void DeleteData(DateTime begin, DateTime end, double lessThen, double moreThen)
         {
             _tagLink.DeleteData(begin, end, lessThen, moreThen);

@@ -6,10 +6,14 @@
 
 
 <div style="height: 95%;">
-    <SankeyComponent 
-        Header="Распределение электроэнергии"
-        Sankey = "@Sankey"
-    />
+    
+    <Widget Header="Распределение Э/Э">
+        <div class="page1">
+            <SankeyComponent
+                SankeyFunc="BuildSankey"/>
+        </div>
+    </Widget>
+    
 </div>
 
 
@@ -18,31 +22,8 @@
     [CascadingParameter]
     // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private CascadingValueClass CascadingValue { get; set; }
-    
-    private Sankey Sankey { get; set; }
 
-    private bool _rendered;
-
-    protected override void OnInit()
-    {
-        CascadingValue.Update += () =>
-        {
-            _rendered = false;
-            Sankey = null;
-            StateHasChanged();
-        };
-    }
-
-    protected override async Task OnAfterRenderAsync()
-    {
-        if (_rendered) return;
-        _rendered = true;
-        
-        Sankey = await BuildSankey();
-        
-        StateHasChanged();
-    }
-
+    // ReSharper disable once UnusedMember.Local
     private async Task<Sankey> BuildSankey()
     {
         var sankey = new Sankey();
@@ -156,7 +137,7 @@
         sankey.AddLink(nodeDc, nodeFuel,
             linkDgs11.Value + linkDgs12.Value + linkDgs21.Value + linkDgs22.Value +
             linkFuelPump1.Value + linkFuelPump2.Value);
-
+        
         return sankey;
     }
 }

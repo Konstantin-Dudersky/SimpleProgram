@@ -42,11 +42,13 @@ namespace SimpleProgram.Lib.Tag
             return new TagLink<T, TNew>(this);
         }
 
-        public async Task<TimeSeries> GetTimeSeriesAsync(DateTime begin, DateTime end, SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600,
+        public async Task<TimeSeries> GetTimeSeriesAsync(DateTime begin, DateTime end, 
+            SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600,
             double lessThen = double.MaxValue, double moreThen = double.MinValue)
         {
             if (_derivedFunc == null)
-                return (await Archive.GetTimeSeriesAsync(ArchiveTagId, begin, end, lessThen, moreThen)).Simplify(simplifyType, simplifyTime);
+                return (await Archive.GetTimeSeriesAsync(ArchiveTagId, begin, end, lessThen, moreThen))
+                    .Simplify(simplifyType, simplifyTime);
 
             var f = new Expression(_derivedFunc).ToLambda<ExpressionContext<TimeSeries>, TimeSeries>();
 
@@ -74,7 +76,56 @@ namespace SimpleProgram.Lib.Tag
             };
             return f(context);
         }
-        
+
+        public async Task<double> GetValueAsync(DateTime begin, DateTime end, SimplifyType simplifyType = SimplifyType.None,
+            int simplifyTime = 3600)
+        {
+            if (_derivedFunc == null)
+                switch (simplifyType)
+                {
+                    case SimplifyType.None:
+                        break;
+                    case SimplifyType.Increment:
+                        return await IncrementAsync(begin, end);
+                    case SimplifyType.Average:
+                        break;
+                    case SimplifyType.Max:
+                        break;
+                    case SimplifyType.Min:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(simplifyType), simplifyType, null);
+                }
+            
+            var f = new Expression(_derivedFunc).ToLambda<ExpressionContext<double>, double>();
+
+            var ts = new List<double>();
+
+            for (var i = 0; i < _derivedTags.Count; i++)
+            {
+                if(_derivedTags[i] == null)
+                    ts.Add(new double());
+                else
+                    ts.Add(await _derivedTags[i].GetValueAsync(begin, end, _derivedSimplify[i], simplifyTime));
+            }
+            
+            var context = new ExpressionContext<double> {
+                Tag1 = ts[0], 
+                Tag2 = ts[1],
+                Tag3 = ts[2],
+                Tag4 = ts[3],
+                Tag5 = ts[4],
+                Tag6 = ts[5],
+                Tag7 = ts[6],
+                Tag8 = ts[7],
+                Tag9 = ts[8],
+                Tag10 = ts[9]
+            };
+            Console.WriteLine(f(context));
+            
+            return f(context);
+        }
+
         public async Task<double> IncrementAsync(DateTime begin, DateTime end)
         {
             if (_derivedFunc == null)

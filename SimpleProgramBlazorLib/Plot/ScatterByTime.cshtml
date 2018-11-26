@@ -1,5 +1,6 @@
 @using System.Text
 @using Microsoft.JSInterop
+@using SimpleProgram.Lib.Archives
 @using SimpleProgram.Lib.JSInterop
 @using SimpleProgram.Lib.Tag
 
@@ -23,6 +24,14 @@
     [Parameter]
     // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private ITag Tag { get; set; }
+    
+    [Parameter]
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+    private SimplifyType TagSimplifyType { get; set; } = SimplifyType.None;
+    
+    [Parameter]
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+    private int SimplifyTime { get; set; } = 3600;
 
     [CascadingParameter]
     // ReSharper disable once UnusedAutoPropertyAccessor.Local
@@ -61,7 +70,8 @@
 
         plotLy.AddData();
 
-        var ts = await Tag.GetTimeSeriesAsync(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End);
+        var ts = (await Tag.GetTimeSeriesAsync(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End,
+            TagSimplifyType, SimplifyTime)).Trim();
 
         plotLy.LastData.x = ts.Times;
         plotLy.LastData.y = ts.Values;

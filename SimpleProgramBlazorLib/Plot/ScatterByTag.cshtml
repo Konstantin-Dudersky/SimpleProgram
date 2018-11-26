@@ -3,46 +3,21 @@
 @using SimpleProgram.Lib.JSInterop
 @using SimpleProgram.Lib.Tag
 
+<div id="@($"plotly-{_id}")" style="height: 100%; width: 100%;">
+    <LoadIndicator ref="_loadIndicator" IndicatorType="@LoadIndicator.IndicatorTypeEnum.Wave"/>
+</div>
 
-<div class="card" style="height: 100%; width: 100%;">
-    
-    <div class="card-divider">
-        <div class="grid-x align-middle align-justify" style="width: 100%;">
-            <div class="cell auto">
-                <h6 class="text-center" style="margin: 0;">@Header</h6>
-            </div>
-        
-            <div class="cell shrink">
-                <div class="small button-group" style="margin: 0;">
-                    <a class="button" onclick="@ExportPng"><i class="fa fa-download" aria-hidden="true"></i> PNG</a>
-                    <a class="button" onclick="@ExportCsv"><i class="fa fa-download" aria-hidden="true"></i> CSV</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div id="@($"plotly-{_id}")" style="height: 100%; width: 100%;">
-
-        @if (!_rendered)
-        {
-            <div class="sk-wave">
-                <div class="sk-rect sk-rect1"></div>
-                <div class="sk-rect sk-rect2"></div>
-                <div class="sk-rect sk-rect3"></div>
-                <div class="sk-rect sk-rect4"></div>
-                <div class="sk-rect sk-rect5"></div>
-            </div>
-        }
-
-    </div>
+<div class="hide">
+    <a onclick="@ExportPng" id="export-png"></a>
+    <a onclick="@ExportCsv" id="export-csv"></a>
 </div>
 
 
 @functions{
 
-    [Parameter]
-    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
-    private string Header { get; set; } = "График";
+#pragma warning disable 649
+    LoadIndicator _loadIndicator;
+#pragma warning restore 649
     
     [Parameter]
     // ReSharper disable once UnusedAutoPropertyAccessor.Local
@@ -51,7 +26,7 @@
     [Parameter]
     // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
     private SimplifyType TagXSimplifyType { get; set; } = SimplifyType.None;
-    
+
     // ReSharper disable once UnusedAutoPropertyAccessor.Local
     [Parameter]
     private ITag TagY { get; set; }
@@ -59,20 +34,13 @@
     [Parameter]
     // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
     private SimplifyType TagYSimplifyType { get; set; } = SimplifyType.None;
-    
-    [Parameter]
-    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
-    private DateTime BeginTime { get; set; } = DateTime.MinValue;
-
-    [Parameter]
-    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
-    private DateTime EndTime { get; set; } = DateTime.MaxValue;
 
     [CascadingParameter]
     // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private CascadingValueClassBase CascadingValue { get; set; }
 
     [Parameter]
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
     private int SimplifyTime { get; set; } = 3600;
 
     private int _id;
@@ -85,21 +53,33 @@
         CascadingValue.Update += () =>
         {
             _rendered = false;
+            StateHasChanged();
         };
     }
 
     protected override async Task OnAfterRenderAsync()
     {
+        var hidden = await JSRuntime.Current.InvokeAsync<bool>("global.isHidden", $"#plotly-{_id}");
+
+        if (hidden)
+        {
+            _rendered = false;
+            await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.purge", $"plotly-{_id}");
+            return;
+        }
+        
         if (_rendered || TagX == null || TagY == null) return;
 
+        _loadIndicator.Show();
         var plotLy = new Plotly();
 
-        plotLy.ClearData();
         plotLy.AddData();
 
-        var tsX = await TagX.GetTimeSeriesAsync(BeginTime, EndTime, TagXSimplifyType, SimplifyTime);
-        var tsY = await TagY.GetTimeSeriesAsync(BeginTime, EndTime, TagYSimplifyType, SimplifyTime);
-        
+        var tsX = await TagX.GetTimeSeriesAsync(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End, 
+            TagXSimplifyType, SimplifyTime);
+        var tsY = await TagY.GetTimeSeriesAsync(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End, 
+            TagYSimplifyType, SimplifyTime);
+
         var scatter = new Scatter(tsX, tsY);
 
         plotLy.LastData.x = scatter.X;
@@ -115,9 +95,9 @@
 
         _rendered = await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", $"plotly-{_id}", plotLy);
 
-        StateHasChanged();
+        _loadIndicator.Hide();
     }
-    
+
     private async void ExportPng()
     {
         await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.downloadImage", $"plotly-{_id}");
@@ -125,13 +105,14 @@
 
     private async void ExportCsv()
     {
-        var tsX = await TagX.GetTimeSeriesAsync(BeginTime, EndTime, TagXSimplifyType, SimplifyTime);
-        var tsY = await TagY.GetTimeSeriesAsync(BeginTime, EndTime, TagYSimplifyType, SimplifyTime);
-        
-        var scatter = new Scatter(tsX, tsY);
-        
-        await JSRuntime.Current.InvokeAsync<bool>("filesaver.save", scatter.ToCsv());
+        var tsX = await TagX.GetTimeSeriesAsync(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End, 
+            TagXSimplifyType, SimplifyTime);
+        var tsY = await TagY.GetTimeSeriesAsync(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End, 
+            TagYSimplifyType, SimplifyTime);
 
+        var scatter = new Scatter(tsX, tsY);
+
+        await JSRuntime.Current.InvokeAsync<bool>("filesaver.save", scatter.ToCsv());
     }
 
 }

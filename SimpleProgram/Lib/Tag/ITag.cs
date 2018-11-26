@@ -15,7 +15,10 @@ namespace SimpleProgram.Lib.Tag
         Task<TimeSeries> GetTimeSeriesAsync(DateTime begin, DateTime end, 
             SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600,
             double lessThen = double.MaxValue, double moreThen = double.MinValue);
-        
+
+        Task<double> GetValueAsync(DateTime begin, DateTime end,
+            SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600);
+
         void DeleteData(DateTime begin, DateTime end, double lessThen, double moreThen);
 
         Task<double> IncrementAsync(DateTime begin, DateTime end);

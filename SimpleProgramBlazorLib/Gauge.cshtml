@@ -1,8 +1,6 @@
-@using System.Globalization
-@using System.Threading
 @using Microsoft.JSInterop
 
-<svg viewBox="0 0 100 100" style="height: 100%; width: 100%;" id="@($"_{_id}")">
+<svg viewBox="0 0 100 100" style="height: 100%; width: 100%;" id="@($"{_id}")">
     @* зеленый фон *@
     <path stroke-width="0" fill="#ADB223"
           d="M @Const.GapX @(Const.Height - Const.GapY)
@@ -33,8 +31,9 @@
           d="M @(Const.Radius + Const.GapX) @(Const.Height - Const.GapY)
                  h -@Const.Radius
                  a @Const.Radius @Const.Radius 0 0 1 @(Const.Radius * (1 - Math.Cos(_points.PvAhAngle))) -@(Const.Radius * Math.Sin(_points.PvAhAngle))"
-          transform="rotate(@(180 - _points.PvAhAngle * 180 / Math.PI), @(Const.Width / 2), @(Const.Height - Const.GapY))"/>
-
+          transform="rotate(@(180 - _points.PvAhAngle * 180 / Math.PI), @(Const.Width / 2), @(Const.Height - Const.GapY))"
+    />
+    
     @* Полупрозрачный полукруг *@
     <path stroke-width="0" fill="#FFFFFF" opacity="0.7"
           d="M @(Const.GapX + 0.2 * Const.RadiusSmall) @(Const.Height - Const.GapY)
@@ -64,7 +63,7 @@
     @* Текущее значение *@
     <text x="@(Const.Width / 2)" y="@(Const.Height - Const.GapY / 2)"
           text-anchor="middle" dominant-baseline="middle">
-        @($"{Value} {ValueUnit}")
+        @($"{Value:0.##}{ValueUnit}")
     </text>
 
 </svg>
@@ -75,7 +74,6 @@
 
 @functions
 {
-
     [Parameter]
     // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private double Value { get; set; }
@@ -85,51 +83,54 @@
     private string ValueUnit { get; set; }
 
     [Parameter]
-    // ReSharper disable once UnusedAutoPropertyAccessor.Local
-    private double ScaleLow { get; set; }
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+    private double ScaleLow { get; set; } = 0;
 
     [Parameter]
-    // ReSharper disable once UnusedAutoPropertyAccessor.Local
-    private double ScaleHigh { get; set; }
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+    private double ScaleHigh { get; set; } = 100;
 
     [Parameter]
-    // ReSharper disable once UnusedAutoPropertyAccessor.Local
-    private double PvAlLim { get; set; }
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+    private double PvAlLim { get; set; } = double.MinValue;
 
     [Parameter]
-    // ReSharper disable once UnusedAutoPropertyAccessor.Local
-    private double PvWlLim { get; set; }
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+    private double PvWlLim { get; set; } = double.MinValue;
 
     [Parameter]
-    // ReSharper disable once UnusedAutoPropertyAccessor.Local
-    private double PvWhLim { get; set; }
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+    private double PvWhLim { get; set; } = double.MaxValue;
 
     [Parameter]
-    // ReSharper disable once UnusedAutoPropertyAccessor.Local
-    private double PvAhLim { get; set; }
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+    private double PvAhLim { get; set; } = double.MaxValue;
 
     private Const _points;
 
-    private int _id;
+    private string _id;
 
     protected override void OnInit()
     {
-        _id = new Random().Next();
+        _id = "svg-gauge-" + new Random().Next();
+    }
 
-        Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-
+    protected override Task OnParametersSetAsync()
+    {
         _points.PvValueAngle = (Value - ScaleLow) * Math.PI / (ScaleHigh - ScaleLow);
         _points.PvAlAngle = (PvAlLim - ScaleLow) * Math.PI / (ScaleHigh - ScaleLow);
         _points.PvWlAngle = (PvWlLim - ScaleLow) * Math.PI / (ScaleHigh - ScaleLow);
         _points.PvWhAngle = (ScaleHigh - PvWhLim) * Math.PI / (ScaleHigh - ScaleLow);
         _points.PvAhAngle = (ScaleHigh - PvAhLim) * Math.PI / (ScaleHigh - ScaleLow);
+        
+        return base.OnParametersSetAsync();
     }
 
     protected override async Task OnAfterRenderAsync()
     {
     // баг https://github.com/aspnet/Blazor/issues/1571
     // после починки удалить
-        await JSRuntime.Current.InvokeAsync<bool>("jquery.setAttribute", $"#_{_id}", "viewBox", "0 0 100 100");
+        await JSRuntime.Current.InvokeAsync<bool>("jquery.setAttribute", $"#{_id}", "viewBox", "0 0 100 100");
     }
 
     private struct Const

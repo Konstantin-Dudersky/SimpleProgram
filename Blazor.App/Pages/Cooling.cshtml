@@ -5,20 +5,15 @@
 
 <div class="grid-x grid-padding-x grid-padding-y">
     <div class="cell small-12 medium-6 large-4" style="height: 400px;">
-        <Widget
-
-            Header="Температура нар. воздуха">
+        <Widget Header="Коэффициент PUE">
 
             <div class="page1">
                 <Gauge
-                    Value="50"
-                    ValueUnit="°C"
+                    Value="@Pue"
                     ScaleLow="0"
-                    ScaleHigh="100"
-                    PvAlLim="10"
-                    PvWlLim="30"
-                    PvWhLim="80"
-                    PvAhLim="90"/>
+                    ScaleHigh="2"
+                    PvWhLim="1.8"
+                    PvAhLim="1.9"/>
             </div>
 
             <div class="page2">
@@ -29,7 +24,6 @@
             <div class="page3">
                 <Gauge
                     Value="40"
-                    ValueUnit="°C"
                     ScaleLow="0"
                     ScaleHigh="100"
                     PvAlLim="10"
@@ -42,23 +36,45 @@
     </div>
 
     <div class="cell small-12 medium-6 large-4" style="height: 400px;">
-        <ScatterByTag
-            Header="Потребление от темп. наружного воздуха (1 сутки)"
-            TagX="@Data.TGEnergy.temperature"
-            TagXSimplifyType="@SimplifyType.Average"
-            TagY="@Data.TGEnergy.tagSum"
-            TagYSimplifyType="@SimplifyType.Increment"
-            SimplifyTime="86400"
-            BeginTime="@CascadingValue.DateTimeRange.Begin"
-            EndTime="@CascadingValue.DateTimeRange.End"/>
+        <Widget Header="Потребление от темп. наружного воздуха (1 сутки)">
+
+            <div class="page1">
+                <ScatterByTag
+                    TagX="@Data.TGEnergy.temperature"
+                    TagXSimplifyType="@SimplifyType.Average"
+                    TagY="@Data.TGEnergy.tagSum"
+                    TagYSimplifyType="@SimplifyType.Increment"
+                    SimplifyTime="86400"/>
+            </div>
+
+        </Widget>
     </div>
 
     <div class="cell small-12 medium-6 large-4" style="height: 400px;">
-        <SankeyComponent
-            Header="Sankey"
-            Sankey="@Sankey"/>
-    </div>
+        
+        <Widget Header="Распределение Э/Э">
 
+            <div class="page1">
+                <SankeyComponent
+                    SankeyFunc="@BuildSankey"/>
+            </div>
+            
+        </Widget>
+
+    </div>
+    
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <Widget Header="Процент Э/Э на машзал">
+
+            <div class="page1">
+                <ScatterByTime
+                    Tag="@Data.TGEnergy.PUE"
+                    SimplifyTime="86400"/>
+            </div>
+
+        </Widget>
+    </div>
+    
 </div>
 
 
@@ -68,28 +84,11 @@
     // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private CascadingValueClass CascadingValue { get; set; }
 
-    private Sankey Sankey { get; set; }
+    private double Pue { get; set; }
 
-    private bool _rendered;
-
-    protected override void OnInit()
+    protected override async Task OnParametersSetAsync()
     {
-        CascadingValue.Update += () =>
-        {
-            _rendered = false;
-            Sankey = null;
-            StateHasChanged();
-        };
-    }
-
-    protected override async Task OnAfterRenderAsync()
-    {
-        if (_rendered) return;
-        _rendered = true;
-
-        Sankey = await BuildSankey();
-
-        StateHasChanged();
+        Pue = await Data.TGEnergy.PUE.IncrementAsync(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End);
     }
 
     private async Task<Sankey> BuildSankey()
@@ -134,7 +133,6 @@
             await Data.TGEnergy.MDB_B__QF2_6.IncrementAsync(begin, end), "Ввод 1");
         sankey.AddLink(nodeCooling, nodeHydro3,
             await Data.TGEnergy.UPS_MDB_A__QF4_3.IncrementAsync(begin, end), "Ввод 2");
-
 
         return sankey;
     }
