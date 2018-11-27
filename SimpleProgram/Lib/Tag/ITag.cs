@@ -8,20 +8,17 @@ namespace SimpleProgram.Lib.Tag
     public interface ITag
     {
         #region Archive
-        
-        IArchive Archive { get; set; }
-        string ArchiveTagId { get; set; }
-        
-        Task<TimeSeries> GetTimeSeriesAsync(DateTime begin, DateTime end, 
+    
+        Task<TimeSeries> GetArchiveTimeSeriesAsync(DateTime begin, DateTime end, 
             SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600,
             double lessThen = double.MaxValue, double moreThen = double.MinValue);
 
-        Task<double> GetValueAsync(DateTime begin, DateTime end,
-            SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600);
-
         void DeleteData(DateTime begin, DateTime end, double lessThen, double moreThen);
 
-        Task<double> IncrementAsync(DateTime begin, DateTime end);
+        Task<double> GetArchiveValueAsync(DateTime begin, DateTime end,
+            SimplifyType simplifyType = SimplifyType.None);
+
+        TagChannelArchive ChannelArchive { get; set; }
         
         #endregion
         
@@ -37,7 +34,7 @@ namespace SimpleProgram.Lib.Tag
         Type GenericType { get; }
         DateTime TimeStamp { get; }
         
-        TagOpcUaClient OpcUaClient { get; }
+        TagChannelOpcUaClient ChannelOpcUaClient { get; }
     }
 
     public interface ITag<T> : ITag

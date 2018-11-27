@@ -49,10 +49,10 @@ namespace SimpleProgram.Lib
                     tag.TagName = tag.TagName ?? tag.TagId;
 
                     // ID архивного тега
-                    tag.ArchiveTagId = tag.ArchiveTagId ?? tag.TagId;
+//                    tag.ArchiveTagId = tag.ArchiveTagId ?? tag.TagId;
 
                     // ссылка на архив
-                    tag.Archive = tag.Archive ?? ((TagGroupBase) rootTagGroup).ArchiveDefault;
+//                    tag.Archive = tag.Archive ?? ((TagGroupBase) rootTagGroup).ArchiveDefault;
 
                     // добавляем в словарь архивных тегов
                     TagDict.Add(tag.TagId, tag);

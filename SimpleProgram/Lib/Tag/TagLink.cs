@@ -22,21 +22,16 @@ namespace SimpleProgram.Lib.Tag
             set => _tagLink.Value = (TOld) Convert.ChangeType(value, typeof(TOld));
         }
 
-        public IArchive Archive
+        public Task<double> GetArchiveValueAsync(DateTime begin, DateTime end,
+            SimplifyType simplifyType = SimplifyType.None)
         {
-            get => _tagLink.Archive;
-            set => _tagLink.Archive = value;
+            return _tagLink.GetArchiveValueAsync(begin, end);
         }
 
-        public string ArchiveTagId
+        public TagChannelArchive ChannelArchive
         {
-            get => _tagLink.ArchiveTagId;
-            set => _tagLink.ArchiveTagId = value;
-        }
-
-        public Task<double> IncrementAsync(DateTime begin, DateTime end)
-        {
-            return _tagLink.IncrementAsync(begin, end);
+            get => _tagLink.ChannelArchive;
+            set => _tagLink.ChannelArchive = value;
         }
 
         public string TagId
@@ -56,10 +51,10 @@ namespace SimpleProgram.Lib.Tag
             return _tagLink.ConvertTo<TNew1>();
         }
 
-        public Task<TimeSeries> GetTimeSeriesAsync(DateTime begin, DateTime end, SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600,
+        public Task<TimeSeries> GetArchiveTimeSeriesAsync(DateTime begin, DateTime end, SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600,
             double lessThen = double.MaxValue, double moreThen = double.MinValue)
         {
-            return _tagLink.GetTimeSeriesAsync(begin, end, simplifyType, simplifyTime, lessThen, moreThen);
+            return _tagLink.GetArchiveTimeSeriesAsync(begin, end, simplifyType, simplifyTime, lessThen, moreThen);
         }
 
         public Task<double> GetValueAsync(DateTime begin, DateTime end, SimplifyType simplifyType = SimplifyType.None,
@@ -91,6 +86,6 @@ namespace SimpleProgram.Lib.Tag
 
         public Type GenericType => typeof(TNew);
         public DateTime TimeStamp => _tagLink.TimeStamp;
-        public TagOpcUaClient OpcUaClient { get; set; }
+        public TagChannelOpcUaClient ChannelOpcUaClient { get; set; }
     }
 }

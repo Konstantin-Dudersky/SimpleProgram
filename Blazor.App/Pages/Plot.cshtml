@@ -194,7 +194,7 @@
                             <option value="" selected>-- Время --</option>
                             @foreach (var tagDict in Data.TagDict)
                             {
-                                <option value="@tagDict.Key">@tagDict.Value.ArchiveTagId</option>
+                                <option value="@tagDict.Key">@tagDict.Value.ChannelArchive?.Id</option>
                             }
                         </select>
                     </div>
@@ -367,7 +367,7 @@
                 end = DateTime.MaxValue;
 
 
-            var ts = await Data.TagDict[tag.tagId].GetTimeSeriesAsync(begin, end,
+            var ts = await Data.TagDict[tag.tagId].GetArchiveTimeSeriesAsync(begin, end,
                 tag.transform, tag.transformTime * tag.transformTimeCoef);
 
             switch (tag.plotlyType)
@@ -387,7 +387,7 @@
                     {
                         _plotLy.AddData();
 
-                        var tsX = await Data.TagDict[tag.tagIdX].GetTimeSeriesAsync(begin, end,
+                        var tsX = await Data.TagDict[tag.tagIdX].GetArchiveTimeSeriesAsync(begin, end,
                             tag.transformX, tag.transformTime * tag.transformTimeCoef);
 
                         var scatter = new Scatter(tsX, ts);

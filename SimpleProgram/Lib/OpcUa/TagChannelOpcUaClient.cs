@@ -4,9 +4,9 @@ using SimpleProgram.Lib.Tag;
 
 namespace SimpleProgram.Lib.OpcUa
 {
-    public class TagOpcUaClient
+    public class TagChannelOpcUaClient
     {
-        public TagOpcUaClient(OpcUaClient client, string nodeId, int samplingInterval)
+        public TagChannelOpcUaClient(OpcUaClient client, string nodeId, int samplingInterval)
         {
             Client = client;
             NodeId = nodeId;

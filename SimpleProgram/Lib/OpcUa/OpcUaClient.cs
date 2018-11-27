@@ -239,7 +239,7 @@ namespace SimpleProgram.Lib.OpcUa
                 e.Certificate.Subject);
         }
 
-        public void AddMonitoredItem(TagOpcUaClient client, string nodeId, int samplingInterval,
+        public void AddMonitoredItem(TagChannelOpcUaClient client, string nodeId, int samplingInterval,
             MonitoredItemNotificationEventHandler eventHandler)
         {
             var monitoredItem = new MonitoredItem

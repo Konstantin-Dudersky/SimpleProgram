@@ -57,30 +57,30 @@
 
         // Холодоснабжение
         var linkChiller11 = sankey.AddLink(nodeCooling, nodeChiller1, 
-            await Data.TGEnergy.MDB_A__QF2_1.IncrementAsync(begin, end), "Ввод 1");
+            await Data.TGEnergy.MDB_A__QF2_1.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 1");
         var linkChiller12 = sankey.AddLink(nodeCooling, nodeChiller1, 
-            await Data.TGEnergy.MDB_B__QF2_1.IncrementAsync(begin, end), "Ввод 2");
+            await Data.TGEnergy.MDB_B__QF2_1.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 2");
         var linkChiller21 = sankey.AddLink(nodeCooling, nodeChiller2, 
-            await Data.TGEnergy.MDB_A__QF2_2.IncrementAsync(begin, end), "Ввод 1");
+            await Data.TGEnergy.MDB_A__QF2_2.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 1");
         var linkChiller22 = sankey.AddLink(nodeCooling, nodeChiller2, 
-            await Data.TGEnergy.MDB_B__QF2_2.IncrementAsync(begin, end), "Ввод 2");
+            await Data.TGEnergy.MDB_B__QF2_2.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 2");
         var linkChiller31 = sankey.AddLink(nodeCooling, nodeChiller3, 
-            await Data.TGEnergy.MDB_A__QF2_3.IncrementAsync(begin, end), "Ввод 1");
+            await Data.TGEnergy.MDB_A__QF2_3.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 1");
         var linkChiller32 = sankey.AddLink(nodeCooling, nodeChiller3, 
-            await Data.TGEnergy.MDB_B__QF2_3.IncrementAsync(begin, end), "Ввод 2");
+            await Data.TGEnergy.MDB_B__QF2_3.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 2");
         
         var linkHydro11 = sankey.AddLink(nodeCooling, nodeHydro1, 
-            await Data.TGEnergy.MDB_B__QF2_4.IncrementAsync(begin, end), "Ввод 1");
+            await Data.TGEnergy.MDB_B__QF2_4.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 1");
         var linkHydro12 = sankey.AddLink(nodeCooling, nodeHydro1, 
-            await Data.TGEnergy.UPS_MDB_A__QF4_1.IncrementAsync(begin, end), "Ввод 2");
+            await Data.TGEnergy.UPS_MDB_A__QF4_1.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 2");
         var linkHydro21 = sankey.AddLink(nodeCooling, nodeHydro2, 
-            await Data.TGEnergy.MDB_B__QF2_5.IncrementAsync(begin, end), "Ввод 1");
+            await Data.TGEnergy.MDB_B__QF2_5.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 1");
         var linkHydro22 = sankey.AddLink(nodeCooling, nodeHydro2, 
-            await Data.TGEnergy.UPS_MDB_A__QF4_2.IncrementAsync(begin, end), "Ввод 2");
+            await Data.TGEnergy.UPS_MDB_A__QF4_2.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 2");
         var linkHydro31 = sankey.AddLink(nodeCooling, nodeHydro3, 
-            await Data.TGEnergy.MDB_B__QF2_6.IncrementAsync(begin, end), "Ввод 1");
+            await Data.TGEnergy.MDB_B__QF2_6.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 1");
         var linkHydro32 = sankey.AddLink(nodeCooling, nodeHydro3, 
-            await Data.TGEnergy.UPS_MDB_A__QF4_3.IncrementAsync(begin, end), "Ввод 2");
+            await Data.TGEnergy.UPS_MDB_A__QF4_3.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 2");
 
         var linkModule1Cooling = sankey.AddLink(nodeModule1, nodeCooling, 
             linkChiller11.Value + linkChiller12.Value + linkChiller21.Value + linkChiller22.Value +
@@ -90,45 +90,45 @@
         
         // Вентиляция
         var linkVentModule1 = sankey.AddLink(nodeVent, nodeVentModule,
-            await Data.TGEnergy.MDB_B__QF2_10.IncrementAsync(begin, end), "Ввод 1");
+            await Data.TGEnergy.MDB_B__QF2_10.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 1");
         
         var linkVentModule2 = sankey.AddLink(nodeVent, nodeVentModule,
-            await Data.TGEnergy.UPS_MDB_A__QF4_4.IncrementAsync(begin, end), "Ввод 2");
+            await Data.TGEnergy.UPS_MDB_A__QF4_4.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 2");
         
         var linkVentEr1 = sankey.AddLink(nodeVent, nodeVentEr,
-            await Data.TGEnergy.MDB_A__QF2_7.IncrementAsync(begin, end));
+            await Data.TGEnergy.MDB_A__QF2_7.GetArchiveValueAsync(begin, end, SimplifyType.Increment));
         
         var linkVentEr2 = sankey.AddLink(nodeVent, nodeVentEr,
-            await Data.TGEnergy.MDB_B__QF2_12.IncrementAsync(begin, end));
+            await Data.TGEnergy.MDB_B__QF2_12.GetArchiveValueAsync(begin, end, SimplifyType.Increment));
         
         var linkModule1Vent = sankey.AddLink(nodeModule1, nodeVent, 
             linkVentModule1.Value + linkVentModule2.Value + linkVentEr1.Value + linkVentEr2.Value);
 
         // Машзал
         var linkModule1MachineHall1 = sankey.AddLink(nodeModule1, nodeMachineHall, 
-            await Data.TGEnergy.UPS_MDB_A__QF3_1.IncrementAsync(begin, end), "Ввод 1");
+            await Data.TGEnergy.UPS_MDB_A__QF3_1.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 1");
         
         var linkModule1MachineHall2 = sankey.AddLink(nodeModule1, nodeMachineHall,
-            await Data.TGEnergy.UPS_MDB_B__QF3_1.IncrementAsync(begin, end), "Ввод 2");
+            await Data.TGEnergy.UPS_MDB_B__QF3_1.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 2");
 
         // Топливоснабжение
         var linkDgs11 = sankey.AddLink(nodeFuel, nodeDgs1,
-            await Data.TGEnergy.MDB_B__QF2_8.IncrementAsync(begin, end), "Ввод 1");
+            await Data.TGEnergy.MDB_B__QF2_8.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 1");
         
         var linkDgs12 = sankey.AddLink(nodeFuel, nodeDgs1,
-            await Data.TGEnergy.UPS_MDB_A__QF4_6.IncrementAsync(begin, end), "Ввод 2");
+            await Data.TGEnergy.UPS_MDB_A__QF4_6.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 2");
         
         var linkDgs21 = sankey.AddLink(nodeFuel, nodeDgs2,
-            await Data.TGEnergy.MDB_B__QF2_9.IncrementAsync(begin, end), "Ввод 1");
+            await Data.TGEnergy.MDB_B__QF2_9.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 1");
         
         var linkDgs22 = sankey.AddLink(nodeFuel, nodeDgs2,
-            await Data.TGEnergy.UPS_MDB_A__QF4_7.IncrementAsync(begin, end), "Ввод 2");
+            await Data.TGEnergy.UPS_MDB_A__QF4_7.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 2");
         
         var linkFuelPump1 = sankey.AddLink(nodeFuel, nodeFuelPump,
-            await Data.TGEnergy.MDB_B__QF2_13.IncrementAsync(begin, end), "Ввод 1");
+            await Data.TGEnergy.MDB_B__QF2_13.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 1");
         
         var linkFuelPump2 = sankey.AddLink(nodeFuel, nodeFuelPump,
-            await Data.TGEnergy.UPS_MDB_A__QF4_8.IncrementAsync(begin, end), "Ввод 2");
+            await Data.TGEnergy.UPS_MDB_A__QF4_8.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 2");
 
         sankey.AddLink(nodeDc, nodeModule1, 
             linkModule1Cooling.Value + linkModule1Vent.Value + linkModule1MachineHall1.Value + 

@@ -66,11 +66,12 @@ namespace SimpleProgram.Lib.Archives
             }
         }
         
-        public async Task<double> IncrementAsync(string name, DateTime begin, DateTime end)
+        public async Task<double> GetArchiveValueAsync(string name, DateTime begin, DateTime end,
+            SimplifyType simplifyType = SimplifyType.None)
         {
             using (var context = (DbContext) Activator.CreateInstance(type, _optionsBuilder.Options))
             {
-               return await ((IArchiveInterop) context).IncrementAsync(name, begin, end);
+               return await ((IArchiveInterop) context).GetArchiveValueAsync(name, begin, end, simplifyType);
             }
         }
 

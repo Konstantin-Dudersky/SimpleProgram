@@ -97,27 +97,55 @@ namespace SimpleProgram.Lib.Archives.MasterScada
             return ts;
         }
 
-        public async Task<double> IncrementAsync(string name, DateTime begin, DateTime end)
+        public async Task<double> GetArchiveValueAsync(string name, DateTime begin, DateTime end,
+            SimplifyType simplifyType = SimplifyType.None)
         {
             var fromDtBinary = begin.ToBinary();
             var toDtBinary = end.ToBinary();
             
             var itemid = await GetItemid(name);
 
-            var first = await (from r in masterscadadataraw
-                where r.itemid == itemid && r.quality == 192 && r.layer == 1 && r.Time >= fromDtBinary
-                orderby r.Time
-                select r).FirstOrDefaultAsync();
+            switch (simplifyType)
+            {
+                case SimplifyType.None:
+                    break;
+                
+                case SimplifyType.Increment:
+                    var first = await (from r in masterscadadataraw
+                        where r.itemid == itemid && r.quality == 192 && r.layer == 1 && r.Time >= fromDtBinary
+                        orderby r.Time
+                        select r).FirstOrDefaultAsync();
             
-            var last = await (from r in masterscadadataraw
-                where r.itemid == itemid && r.quality == 192 && r.layer == 1 && r.Time <= toDtBinary
-                orderby r.Time
-                select r).LastOrDefaultAsync();
+                    var last = await (from r in masterscadadataraw
+                        where r.itemid == itemid && r.quality == 192 && r.layer == 1 && r.Time <= toDtBinary
+                        orderby r.Time
+                        select r).LastOrDefaultAsync();
 
-            if (first?.value == null || last?.value == null)
-                return 0;
+                    if (first?.value == null || last?.value == null)
+                        return 0;
             
-            return (double) last.value - (double) first.value;
+                    return (double) last.value - (double) first.value;
+                
+                case SimplifyType.Average:
+                    break;
+                
+                case SimplifyType.Max:
+                    break;
+                
+                case SimplifyType.Min:
+                    break;
+                
+                case SimplifyType.Last:
+                    break;
+                
+                case SimplifyType.First:
+                    break;
+                
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(simplifyType), simplifyType, null);
+            }
+
+            return 0;
         }
 
         #endregion

@@ -12,6 +12,7 @@ namespace SimpleProgram.Lib.Archives
         Task<TimeSeries> GetTimeSeriesAsync(string name, DateTime dateTimeFrom, DateTime dateTimeTo,
             double lessThen, double moreThen);
 
-        Task<double> IncrementAsync(string name, DateTime begin, DateTime end);
+        Task<double> GetArchiveValueAsync(string name, DateTime begin, DateTime end,
+            SimplifyType simplifyType = SimplifyType.None);
     }
 }

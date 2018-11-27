@@ -429,6 +429,8 @@ namespace SimpleProgram.Lib.Archives
         Increment,
         Average,
         Max,
-        Min
+        Min,
+        Last,
+        First
     }
 }

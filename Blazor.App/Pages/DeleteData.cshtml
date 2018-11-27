@@ -3,7 +3,7 @@
 @using Blazor.App.Services
 @using SimpleProgram.Lib.JSInterop
 
-@inject Data data
+@inject Data Data
 
 <div class="grid-container">
 
@@ -14,11 +14,11 @@
         </div>
 
         <div class="cell small-12 medium-8 large-10">
-            <select bind="@tagId" id="tag">
+            <select bind="@_tagId" id="tag">
                 <option value="" selected>-- Тег не выбран --</option>
-                @foreach (var tagDict in data.TagDict)
+                @foreach (var tagDict in Data.TagDict)
                 {
-                    <option value="@tagDict.Key">@tagDict.Value.ArchiveTagId</option>
+                    <option value="@tagDict.Key">@tagDict.Value.ChannelArchive?.Id</option>
                 }
             </select>
         </div>
@@ -101,11 +101,13 @@
 
     private readonly Plotly _plotLy = new Plotly();
 
-    private string tagId;
+#pragma warning disable 649
+    private string _tagId;
+#pragma warning restore 649
 
     private async void ToTable()
     {
-        if (tagId == "")
+        if (_tagId == "")
             return;
 
         _plotLy.ClearData();
@@ -122,7 +124,7 @@
         if (!result)
             end = DateTime.MaxValue;
 
-        var ts = await data.TagDict[tagId].GetTimeSeriesAsync(begin, end, lessThen: _deleteLessThen, moreThen: _deleteMoreThen);
+        var ts = await Data.TagDict[_tagId].GetArchiveTimeSeriesAsync(begin, end, lessThen: _deleteLessThen, moreThen: _deleteMoreThen);
 
         if (_plotLy.data.Count == 0)
         {
@@ -132,9 +134,9 @@
         }
 
         _plotLy.LastData.cells.values.Add(ts.Values.Select(x => (object) x).ToList());
-        _plotLy.LastData.header.values.Add(data.TagDict[tagId].TagName);
+        _plotLy.LastData.header.values.Add(Data.TagDict[_tagId].TagName);
 
-        _plotLy.LastData.name = data.TagDict[tagId].TagName;
+        _plotLy.LastData.name = Data.TagDict[_tagId].TagName;
         _plotLy.LastData.type = PlotlyTypes.table;
 
         await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", "plotly", _plotLy);
@@ -142,7 +144,7 @@
 
     private void Delete()
     {
-        if (tagId == "")
+        if (_tagId == "")
             return;
 
         var result = DateTime.TryParseExact($"{BeginDateStr} {BeginTimeStr}", "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture,
@@ -155,7 +157,7 @@
         if (!result)
             end = DateTime.MaxValue;
 
-        data.TagDict[tagId].DeleteData(begin, end, _deleteLessThen, _deleteMoreThen);
+        Data.TagDict[_tagId].DeleteData(begin, end, _deleteLessThen, _deleteMoreThen);
     }
     
     // ReSharper disable once FieldCanBeMadeReadOnly.Local

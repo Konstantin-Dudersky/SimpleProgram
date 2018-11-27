@@ -10,6 +10,7 @@ namespace SimpleProgram.Lib.Archives
         
         Task<object[]> GetEntitiesAsync(string name, DateTime begin, DateTime end, double lessThen, double moreThen);
 
-        Task<double> IncrementAsync(string name, DateTime begin, DateTime end);
+        Task<double> GetArchiveValueAsync(string name, DateTime begin, DateTime end,
+            SimplifyType simplifyType = SimplifyType.None);
     }
 }
