@@ -1,5 +1,4 @@
 @using Microsoft.JSInterop
-
 <svg viewBox="0 0 100 100" style="height: 100%; width: 100%;" id="@($"{_id}")">
     @* зеленый фон *@
     <path stroke-width="0" fill="#ADB223"
@@ -31,9 +30,8 @@
           d="M @(Const.Radius + Const.GapX) @(Const.Height - Const.GapY)
                  h -@Const.Radius
                  a @Const.Radius @Const.Radius 0 0 1 @(Const.Radius * (1 - Math.Cos(_points.PvAhAngle))) -@(Const.Radius * Math.Sin(_points.PvAhAngle))"
-          transform="rotate(@(180 - _points.PvAhAngle * 180 / Math.PI), @(Const.Width / 2), @(Const.Height - Const.GapY))"
-    />
-    
+          transform="rotate(@(180 - _points.PvAhAngle * 180 / Math.PI), @(Const.Width / 2), @(Const.Height - Const.GapY))"/>
+
     @* Полупрозрачный полукруг *@
     <path stroke-width="0" fill="#FFFFFF" opacity="0.7"
           d="M @(Const.GapX + 0.2 * Const.RadiusSmall) @(Const.Height - Const.GapY)
@@ -74,6 +72,7 @@
 
 @functions
 {
+
     [Parameter]
     // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private double Value { get; set; }
@@ -122,7 +121,7 @@
         _points.PvWlAngle = (PvWlLim - ScaleLow) * Math.PI / (ScaleHigh - ScaleLow);
         _points.PvWhAngle = (ScaleHigh - PvWhLim) * Math.PI / (ScaleHigh - ScaleLow);
         _points.PvAhAngle = (ScaleHigh - PvAhLim) * Math.PI / (ScaleHigh - ScaleLow);
-        
+
         return base.OnParametersSetAsync();
     }
 

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using SimpleProgram.Lib.Archives;
-using System.Reflection;
-
-namespace SimpleProgram.Lib
+﻿namespace SimpleProgram.Lib
 {
     public class TagGroupBase
     {
-        public IArchive ArchiveDefault { get; set; }
-        public string TGName { get; set; }
-
+        // ReSharper disable once UnusedAutoPropertyAccessor.Global
+        public string Name { get; set; }
     }
 }

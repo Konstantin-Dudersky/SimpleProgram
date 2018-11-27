@@ -492,9 +492,6 @@ namespace Blazor.App.Services
 
         public TGEnergy()
         {
-            ArchiveDefault = Data.MsArchive;
-
-            
             tagSum.ConfDerivedFromTags(
                 "[Tag1] + [Tag2]",
                 MDB_A__QS1, SimplifyType.Increment,

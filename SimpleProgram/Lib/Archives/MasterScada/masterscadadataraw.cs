@@ -1,4 +1,8 @@
-﻿namespace SimpleProgram.Lib.Archives.MasterScada
+﻿// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable IdentifierTypo
+// ReSharper disable InconsistentNaming
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+namespace SimpleProgram.Lib.Archives.MasterScada
 {
     public class masterscadadataraw
     {

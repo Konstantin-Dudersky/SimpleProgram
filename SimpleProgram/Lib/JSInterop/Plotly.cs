@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using SimpleProgram.Lib.Archives;
 
@@ -38,13 +37,16 @@ namespace SimpleProgram.Lib.JSInterop
             public Header header { get; set; } = new Header();
 
             public Link link { get; } = new Link();
-            
+
             public Node node { get; } = new Node();
 
             /// <summary>
-            /// If value is `snap` (the default), the node arrangement is assisted by automatic snapping of elements to preserve space between nodes specified via `nodepad`. If value is `perpendicular`, the nodes can only move along a line perpendicular to the flow. If value is `freeform`, the nodes can freely move on the plane. If value is `fixed`, the nodes are stationary.
-            /// <para>enumerated : "snap" | "perpendicular" | "freeform" | "fixed"</para>
-            /// <para>default: "snap"</para>
+            ///     If value is `snap` (the default), the node arrangement is assisted by automatic snapping of elements to preserve
+            ///     space between nodes specified via `nodepad`. If value is `perpendicular`, the nodes can only move along a line
+            ///     perpendicular to the flow. If value is `freeform`, the nodes can freely move on the plane. If value is `fixed`, the
+            ///     nodes are stationary.
+            ///     <para>enumerated : "snap" | "perpendicular" | "freeform" | "fixed"</para>
+            ///     <para>default: "snap"</para>
             /// </summary>
             public string arrangement { get; set; } = "snap";
 
@@ -71,9 +73,9 @@ namespace SimpleProgram.Lib.JSInterop
             public double opacity { get; set; } = 1.0;
 
             /// <summary>
-            /// Sets the orientation of the Sankey diagram.
-            /// <para>values: enumerated : "v" | "h"</para>
-            /// <para>default: "h"</para>
+            ///     Sets the orientation of the Sankey diagram.
+            ///     <para>values: enumerated : "v" | "h"</para>
+            ///     <para>default: "h"</para>
             /// </summary>
             public string orientation { get; set; } = "v";
 
@@ -157,54 +159,53 @@ namespace SimpleProgram.Lib.JSInterop
             }
 
             /// <summary>
-            /// The links of the Sankey plot.
+            ///     The links of the Sankey plot.
             /// </summary>
             public class Link
             {
-                
                 /// <summary>
-                /// The shown name of the link.
-                /// <para>values: data array</para>
+                ///     The shown name of the link.
+                ///     <para>values: data array</para>
                 /// </summary>
                 public List<string> label { get; set; } = new List<string>();
-                
+
                 /// <summary>
-                /// An integer number `[0..nodes.length - 1]` that represents the source node.
-                /// <para>values: data array</para>
+                ///     An integer number `[0..nodes.length - 1]` that represents the source node.
+                ///     <para>values: data array</para>
                 /// </summary>
                 public List<int> source { get; set; } = new List<int>();
-                
+
                 /// <summary>
-                /// An integer number `[0..nodes.length - 1]` that represents the source node.
-                /// <para>values: data array</para>
+                ///     An integer number `[0..nodes.length - 1]` that represents the source node.
+                ///     <para>values: data array</para>
                 /// </summary>
                 public List<int> target { get; set; } = new List<int>();
-                
+
                 /// <summary>
-                /// A numeric value representing the flow volume value.
-                /// <para>values: data array</para>
+                ///     A numeric value representing the flow volume value.
+                ///     <para>values: data array</para>
                 /// </summary>
                 public List<double> value { get; set; } = new List<double>();
-                
             }
 
             /// <summary>
-            /// The nodes of the Sankey plot.
+            ///     The nodes of the Sankey plot.
             /// </summary>
             public class Node
             {
                 /// <summary>
-                /// The shown name of the node.
-                /// <para>values: data array</para>
+                ///     The shown name of the node.
+                ///     <para>values: data array</para>
                 /// </summary>
                 public List<string> label { get; set; } = new List<string>();
 
                 /// <summary>
-                /// Sets the `node` color. It can be a single value, or an array for specifying color for each `node`. If `node.color` is omitted, then the default `Plotly` color palette will be cycled through to have a variety of colors. These defaults are not fully opaque, to allow some visibility of what is beneath the node.
-                /// <para>values: color or array of colors</para>
+                ///     Sets the `node` color. It can be a single value, or an array for specifying color for each `node`. If `node.color`
+                ///     is omitted, then the default `Plotly` color palette will be cycled through to have a variety of colors. These
+                ///     defaults are not fully opaque, to allow some visibility of what is beneath the node.
+                ///     <para>values: color or array of colors</para>
                 /// </summary>
                 public List<string> color { get; set; }
-
             }
 
             public static class YaxisEnum
@@ -252,9 +253,9 @@ namespace SimpleProgram.Lib.JSInterop
             /// <para>default: 450</para>
             /// </summary>
             public int height { get; set; } = 450;*/
-            
+
             public readonly Margin margin = new Margin();
-            
+
             public readonly Yaxis yaxis = new Yaxis();
             public readonly Yaxis yaxis2 = new Yaxis();
             public readonly Yaxis yaxis3 = new Yaxis();
@@ -283,42 +284,42 @@ namespace SimpleProgram.Lib.JSInterop
             public class Margin
             {
                 /// <summary>
-                /// Sets the left margin (in px).
-                /// <para>values: number greater than or equal to 0</para> 
-                /// <para>default: 80</para>
+                ///     Sets the left margin (in px).
+                ///     <para>values: number greater than or equal to 0</para>
+                ///     <para>default: 80</para>
                 /// </summary>
                 public int l { get; set; } = 80;
-                
+
                 /// <summary>
-                /// Sets the right margin (in px).
-                /// <para>values: number greater than or equal to 0</para> 
-                /// <para>default: 80</para>
+                ///     Sets the right margin (in px).
+                ///     <para>values: number greater than or equal to 0</para>
+                ///     <para>default: 80</para>
                 /// </summary>
                 public int r { get; set; } = 80;
-                
+
                 /// <summary>
-                /// Sets the top margin (in px).
-                /// <para>values: number greater than or equal to 0</para> 
-                /// <para>default: 100</para>
+                ///     Sets the top margin (in px).
+                ///     <para>values: number greater than or equal to 0</para>
+                ///     <para>default: 100</para>
                 /// </summary>
                 public int t { get; set; } = 100;
-                
+
                 /// <summary>
-                /// Sets the bottom margin (in px).
-                /// <para>values: number greater than or equal to 0</para> 
-                /// <para>default: 80</para>
+                ///     Sets the bottom margin (in px).
+                ///     <para>values: number greater than or equal to 0</para>
+                ///     <para>default: 80</para>
                 /// </summary>
                 public int b { get; set; } = 80;
 
                 /// <summary>
-                /// Sets the amount of padding (in px) between the plotting area and the axis lines.
-                /// <para>values: number greater than or equal to 0</para> 
-                /// <para>default: 0</para>
+                ///     Sets the amount of padding (in px) between the plotting area and the axis lines.
+                ///     <para>values: number greater than or equal to 0</para>
+                ///     <para>default: 0</para>
                 /// </summary>
                 public int pad { get; set; } = 0;
-                
+
                 /// <summary>
-                /// <para>default: true</para>
+                ///     <para>default: true</para>
                 /// </summary>
                 public bool autoexpand { get; set; } = true;
             }

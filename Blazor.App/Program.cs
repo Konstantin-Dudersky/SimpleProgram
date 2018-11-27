@@ -1,7 +1,4 @@
-﻿using System.Net.Http.Headers;
-using Blazor.App.Services;
-using Microsoft.AspNetCore.Blazor.Hosting;
-using SimpleProgram.Lib;
+﻿using Microsoft.AspNetCore.Blazor.Hosting;
 
 
 namespace Blazor.App

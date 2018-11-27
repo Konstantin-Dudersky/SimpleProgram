@@ -1,4 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+// ReSharper disable InconsistentNaming
+// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable IdentifierTypo
 
 namespace SimpleProgram.Lib.Archives.MasterScada
 {
