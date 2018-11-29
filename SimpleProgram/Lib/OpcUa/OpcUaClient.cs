@@ -278,11 +278,6 @@ namespace SimpleProgram.Lib.OpcUa
             }
         }
 
-        private void Callback(IAsyncResult ar)
-        {
-            
-            throw new NotImplementedException();
-        }
     }
 
 

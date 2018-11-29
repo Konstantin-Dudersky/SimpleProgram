@@ -9,7 +9,8 @@
 
     private async void Get()
     {
-        var ts = await Data.TagGroupWinCc.testReal.ChannelOpcUaClient.GetTimeSeriesAsync("123", DateTime.MinValue, DateTime.MaxValue, 0, 0);
+        var ts = await Data.TagGroupWinCc.testReal.ChannelOpcUaClient.GetTimeSeriesAsync(DateTime.MinValue, 
+            DateTime.MaxValue, 0, 0);
 
         Console.WriteLine(ts);
     }

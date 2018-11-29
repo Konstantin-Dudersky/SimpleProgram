@@ -44,7 +44,7 @@ namespace SimpleProgram.Lib.Tag
             double lessThen = double.MaxValue, double moreThen = double.MinValue)
         {
             if (_derivedFunc == null)
-                return (await _channelArchive.GetArchiveTimeSeriesAsync(begin, end, lessThen, moreThen))
+                return (await _historyManager.Get().GetTimeSeriesAsync(begin, end, lessThen, moreThen))
                     .Simplify(simplifyType, simplifyTime);
 
             var f = new Expression(_derivedFunc).ToLambda<ExpressionContext<TimeSeries>, TimeSeries>();
@@ -79,7 +79,7 @@ namespace SimpleProgram.Lib.Tag
             SimplifyType simplifyType = SimplifyType.None)
         {
             if (_derivedFunc == null)
-                return await ChannelArchive.GetArchiveValueAsync(begin, end, simplifyType);
+                return await _historyManager.Get().GetArchiveValueAsync(begin, end, simplifyType);
 
             var f = new Expression(_derivedFunc).ToLambda<ExpressionContext<double?>, double?>();
 
@@ -111,7 +111,7 @@ namespace SimpleProgram.Lib.Tag
 
         public void DeleteData(DateTime begin, DateTime end, double lessThen, double moreThen)
         {
-            ChannelArchive.DeleteArchiveData(begin, end, lessThen, moreThen);
+            _historyManager.Get().DeleteArchiveData(begin, end, lessThen, moreThen);
         }
 
         public T1 GetValue<T1>()
@@ -229,26 +229,21 @@ namespace SimpleProgram.Lib.Tag
                 _channelOpcUaClient = value;
                 ChannelOpcUaClient.NewValueFromChannel += OnNewValueFromChannel;
                 NewValueToChannelOpcUaClient += ChannelOpcUaClient.OnNewValueToChannel;
+                _historyManager.Add(0, _channelOpcUaClient);
             }
         }
-
-        /*public void ConfOpcUaClient(OpcUaClient client, string nodeId, int samplingInterval)
-        {
-            ChannelOpcUaClient = new TagChannelOpcUaClient(client, nodeId, samplingInterval, hisorizing);
-            
-        }*/
 
         #endregion
 
         #region TagChannelArchive
 
-        private TagChannelArchive _channelArchive;
-
-        public TagChannelArchive ChannelArchive
+        private TagChannelDatabase _channelDatabase;
+        public TagChannelDatabase ChannelDatabase
         {
-            get { return _channelArchive; }
+            get => _channelDatabase;
             set { 
-                _channelArchive = value;
+                _channelDatabase = value;
+                _historyManager.Add(1, _channelDatabase);
             }
         }
 
@@ -267,6 +262,50 @@ namespace SimpleProgram.Lib.Tag
             public TExpr Tag8 { get; set; }
             public TExpr Tag9 { get; set; }
             public TExpr Tag10 { get; set; }
+        }
+        
+        private readonly TagChannelHistoryManager _historyManager = new TagChannelHistoryManager();
+
+        private class TagChannelHistoryManager
+        {
+            private readonly List<TagChannelHistoryManagerItem> _items = new List<TagChannelHistoryManagerItem>();
+            private int _maxOrder;
+
+            internal void Add(int order, ITagChannelHistory tagChannelHistory)
+            {
+                _items.Add(new TagChannelHistoryManagerItem(order, tagChannelHistory));
+
+                if (order > _maxOrder) _maxOrder = order;
+            }
+
+            internal ITagChannelHistory Get()
+            {
+                if (_items.Count <= 0)
+                    throw new Exception("В теге не определено ни одного архива");
+                
+                var currentOrder = 0;
+                while (true)
+                {
+                    foreach (var item in _items)
+                    {
+                        if (item.Order == currentOrder)
+                            return item.TagChannelHistory;
+                    }
+                    currentOrder++;
+                }
+            }
+
+            private struct TagChannelHistoryManagerItem
+            {
+                public readonly int Order;
+                public readonly ITagChannelHistory TagChannelHistory;
+
+                public TagChannelHistoryManagerItem(int order, ITagChannelHistory tagChannelHistory)
+                {
+                    Order = order;
+                    TagChannelHistory = tagChannelHistory;
+                }
+            }
         }
     }
 

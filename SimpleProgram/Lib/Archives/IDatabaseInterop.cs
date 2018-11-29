@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace SimpleProgram.Lib.Archives
 {
-    internal interface IDatabaseInterop
+    public interface IDatabaseInterop
     {
         Task<TimeSeries> GetTimeSeriesAsync(string name, DateTime dateTimeFrom, DateTime dateTimeTo,
             double lessThen, double moreThen);

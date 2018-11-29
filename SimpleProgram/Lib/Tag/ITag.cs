@@ -18,7 +18,7 @@ namespace SimpleProgram.Lib.Tag
         Task<double> GetArchiveValueAsync(DateTime begin, DateTime end,
             SimplifyType simplifyType = SimplifyType.None);
 
-        TagChannelArchive ChannelArchive { get; set; }
+        TagChannelDatabase ChannelDatabase { get; set; }
         
         #endregion
         

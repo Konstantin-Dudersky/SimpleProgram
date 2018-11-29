@@ -28,10 +28,10 @@ namespace SimpleProgram.Lib.Tag
             return _tagLink.GetArchiveValueAsync(begin, end);
         }
 
-        public TagChannelArchive ChannelArchive
+        public TagChannelDatabase ChannelDatabase
         {
-            get => _tagLink.ChannelArchive;
-            set => _tagLink.ChannelArchive = value;
+            get => _tagLink.ChannelDatabase;
+            set => _tagLink.ChannelDatabase = value;
         }
 
         public string TagId
