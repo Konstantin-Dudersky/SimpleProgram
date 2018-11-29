@@ -21,17 +21,6 @@
                     Tag="@Data.TGEnergy.temperature"/>
             </div>
 
-            <div class="page3">
-                <Gauge
-                    Value="40"
-                    ScaleLow="0"
-                    ScaleHigh="100"
-                    PvAlLim="10"
-                    PvWlLim="30"
-                    PvWhLim="70"
-                    PvAhLim="80"/>
-            </div>
-
         </Widget>
     </div>
 
@@ -42,8 +31,8 @@
                 <ScatterByTag
                     TagX="@Data.TGEnergy.temperature"
                     TagXSimplifyType="@SimplifyType.Average"
-                    TagY="@Data.TGEnergy.tagSum"
-                    TagYSimplifyType="@SimplifyType.Increment"
+                    TagY="@Data.TGEnergy.PUE"
+                    TagYSimplifyType="@SimplifyType.None"
                     SimplifyTime="86400"/>
             </div>
 

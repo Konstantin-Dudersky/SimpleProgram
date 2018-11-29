@@ -220,14 +220,23 @@ namespace SimpleProgram.Lib.Tag
 
         #region TagChannelOpcUaClient
 
-        public TagChannelOpcUaClient ChannelOpcUaClient { get; private set; }
-
-        public void ConfOpcUaClient(OpcUaClient client, string nodeId, int samplingInterval)
+        private TagChannelOpcUaClient _channelOpcUaClient;
+        public TagChannelOpcUaClient ChannelOpcUaClient
         {
-            ChannelOpcUaClient = new TagChannelOpcUaClient(client, nodeId, samplingInterval);
-            ChannelOpcUaClient.NewValueFromChannel += OnNewValueFromChannel;
-            NewValueToChannelOpcUaClient += ChannelOpcUaClient.OnNewValueToChannel;
+            get => _channelOpcUaClient;
+            set
+            {
+                _channelOpcUaClient = value;
+                ChannelOpcUaClient.NewValueFromChannel += OnNewValueFromChannel;
+                NewValueToChannelOpcUaClient += ChannelOpcUaClient.OnNewValueToChannel;
+            }
         }
+
+        /*public void ConfOpcUaClient(OpcUaClient client, string nodeId, int samplingInterval)
+        {
+            ChannelOpcUaClient = new TagChannelOpcUaClient(client, nodeId, samplingInterval, hisorizing);
+            
+        }*/
 
         #endregion
 

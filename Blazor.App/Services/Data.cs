@@ -14,9 +14,11 @@ namespace Blazor.App.Services
         };
 
         public static readonly OpcUaClient OpcClient = new OpcUaClient("opc.tcp://localhost:48010", false, 10);
+        public static readonly OpcUaClient OpcWinCC = new OpcUaClient("opc.tcp://VirtualWin7:4861", false, 10);
 
         public readonly TGEnergy TGEnergy;
         public readonly TGOpcItems TGOpcItems;
+        public readonly TagGroupWinCC TagGroupWinCc;
 
 
         public Data() : base(500)
@@ -28,6 +30,10 @@ namespace Blazor.App.Services
             TGOpcItems = new TGOpcItems
             {
                 Name = "OPC UA",
+            };
+            TagGroupWinCc = new TagGroupWinCC
+            {
+                Name = "WinCC OPC UA"
             };
 
 

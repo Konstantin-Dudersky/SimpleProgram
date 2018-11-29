@@ -23,12 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Opc.Ua.SampleClient.Config.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\font-awesome\css\font-awesome.css" />
     <_ContentIncludedByDefault Remove="wwwroot\font-awesome\css\font-awesome.css.map" />
     <_ContentIncludedByDefault Remove="wwwroot\font-awesome\css\font-awesome.min.css" />
@@ -465,6 +459,12 @@
     <_ContentIncludedByDefault Remove="wwwroot\lib\plotly.js\topojson\world_110m.json" />
     <_ContentIncludedByDefault Remove="wwwroot\lib\plotly.js\topojson\world_50m.json" />
     <_ContentIncludedByDefault Remove="wwwroot\lib\plotly.js\translation-keys.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Opc.Ua.SampleClient.Config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

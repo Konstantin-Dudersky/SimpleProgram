@@ -1,8 +1,16 @@
 ﻿@page "/"
+@using Blazor.App.Services
+@inject Data Data
 
-
+<button type="button" onclick="@Get">Button</button>
 
 @functions
 {
 
+    private async void Get()
+    {
+        var ts = await Data.TagGroupWinCc.testReal.ChannelOpcUaClient.GetTimeSeriesAsync("123", DateTime.MinValue, DateTime.MaxValue, 0, 0);
+
+        Console.WriteLine(ts);
+    }
 }

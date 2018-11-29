@@ -9,7 +9,7 @@ namespace SimpleProgram.Lib.Archives
         PostgreSql = 1
     }
 
-    public class Archive<TCont> : IArchive
+    public class Archive<TCont> : IHistory
         where TCont : DbContext
     {
         private readonly DbContextOptionsBuilder<TCont> _optionsBuilder;
@@ -42,7 +42,7 @@ namespace SimpleProgram.Lib.Archives
         public string ConnectionString { get; }
         public Providers Provider { get; }
 
-        #region ITagArchive
+        #region IHistory
 
         public async Task<TimeSeries> GetTimeSeriesAsync(string name, DateTime dateTimeFrom, DateTime dateTimeTo,
             double lessThen, double moreThen)
@@ -51,7 +51,7 @@ namespace SimpleProgram.Lib.Archives
 
             using (var context = (DbContext) Activator.CreateInstance(_type, _optionsBuilder.Options))
             {
-                data = await ((IArchiveInterop) context).GetTimeSeriesAsync(name, dateTimeFrom, dateTimeTo, lessThen,
+                data = await ((IDatabaseInterop) context).GetTimeSeriesAsync(name, dateTimeFrom, dateTimeTo, lessThen,
                     moreThen);
             }
 
@@ -62,7 +62,7 @@ namespace SimpleProgram.Lib.Archives
         {
             using (var context = (DbContext) Activator.CreateInstance(_type, _optionsBuilder.Options))
             {
-                var entities = ((IArchiveInterop) context).GetEntitiesAsync(name, begin, end, lessThen, moreThen);
+                var entities = ((IDatabaseInterop) context).GetEntitiesAsync(name, begin, end, lessThen, moreThen);
                 context.RemoveRange(entities);
                 context.SaveChanges();
             }
@@ -73,7 +73,7 @@ namespace SimpleProgram.Lib.Archives
         {
             using (var context = (DbContext) Activator.CreateInstance(_type, _optionsBuilder.Options))
             {
-                return await ((IArchiveInterop) context).GetArchiveValueAsync(name, begin, end, simplifyType);
+                return await ((IDatabaseInterop) context).GetArchiveValueAsync(name, begin, end, simplifyType);
             }
         }
 

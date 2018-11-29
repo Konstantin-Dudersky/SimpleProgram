@@ -33,7 +33,7 @@ namespace SimpleProgram.Lib.OpcUa
         private readonly List<MonitoredItem> _monitoredItems = new List<MonitoredItem>();
         private readonly Timer _timer;
         private SessionReconnectHandler _reconnectHandler;
-        private Session _session;
+        internal Session Session { get; private set; }
 
         public OpcUaClient(string endpointUrl, bool autoAccept, int stopTimeout)
         {
@@ -76,7 +76,7 @@ namespace SimpleProgram.Lib.OpcUa
             quitEvent.WaitOne(_clientRunTime);
 
             // return error conditions
-            if (_session.KeepAliveStopped)
+            if (Session.KeepAliveStopped)
             {
                 ExitCode = ExitCode.ErrorNoKeepAlive;
                 return;
@@ -120,56 +120,56 @@ namespace SimpleProgram.Lib.OpcUa
             ExitCode = ExitCode.ErrorCreateSession;
             var endpointConfiguration = EndpointConfiguration.Create(config);
             var endpoint = new ConfiguredEndpoint(null, selectedEndpoint, endpointConfiguration);
-            _session = await Session.Create(config, endpoint, false, "OPC UA Console Client", 60000,
+            Session = await Session.Create(config, endpoint, false, "OPC UA Console Client", 60000,
                 new UserIdentity(new AnonymousIdentityToken()), null);
 
             // register keep alive handler
-            _session.KeepAlive += Client_KeepAlive;
+            Session.KeepAlive += Client_KeepAlive;
 
             Console.WriteLine("4 - Browse the OPC UA server namespace.");
             ExitCode = ExitCode.ErrorBrowseNamespace;
-            byte[] continuationPoint;
+            /*byte[] continuationPoint;
 
             var references = _session.FetchReferences(ObjectIds.ObjectsFolder);
 
-//            _session.Browse(
-//                null,
-//                null,
-//                ObjectIds.ObjectsFolder,
-//                0u,
-//                BrowseDirection.Forward,
-//                ReferenceTypeIds.HierarchicalReferences,
-//                true,
-//                (uint) NodeClass.Variable | (uint) NodeClass.Object | (uint) NodeClass.Method,
-//                out continuationPoint,
-//                out references);
-//
-//            Console.WriteLine(" DisplayName, BrowseName, NodeClass");
-//            foreach (var rd in references)
-//            {
-//                Console.WriteLine(" {0}, {1}, {2}", rd.DisplayName, rd.BrowseName, rd.NodeClass);
-//                ReferenceDescriptionCollection nextRefs;
-//                byte[] nextCp;
-//                _session.Browse(
-//                    null,
-//                    null,
-//                    ExpandedNodeId.ToNodeId(rd.NodeId, _session.NamespaceUris),
-//                    0u,
-//                    BrowseDirection.Forward,
-//                    ReferenceTypeIds.HierarchicalReferences,
-//                    true,
-//                    (uint) NodeClass.Variable | (uint) NodeClass.Object | (uint) NodeClass.Method,
-//                    out nextCp,
-//                    out nextRefs);
-//
-//                foreach (var nextRd in nextRefs)
-//                    Console.WriteLine("   + {0}, {1}, {2}", nextRd.DisplayName, nextRd.BrowseName,
-//                        nextRd.NodeClass);
-//            }
+            _session.Browse(
+                null,
+                null,
+                ObjectIds.ObjectsFolder,
+                0u,
+                BrowseDirection.Forward,
+                ReferenceTypeIds.HierarchicalReferences,
+                true,
+                (uint) NodeClass.Variable | (uint) NodeClass.Object | (uint) NodeClass.Method,
+                out continuationPoint,
+                out references);
+
+            Console.WriteLine(" DisplayName, BrowseName, NodeClass");
+            foreach (var rd in references)
+            {
+                Console.WriteLine(" {0}, {1}, {2}", rd.DisplayName, rd.BrowseName, rd.NodeClass);
+                ReferenceDescriptionCollection nextRefs;
+                byte[] nextCp;
+                _session.Browse(
+                    null,
+                    null,
+                    ExpandedNodeId.ToNodeId(rd.NodeId, _session.NamespaceUris),
+                    0u,
+                    BrowseDirection.Forward,
+                    ReferenceTypeIds.HierarchicalReferences,
+                    true,
+                    (uint) NodeClass.Variable | (uint) NodeClass.Object | (uint) NodeClass.Method,
+                    out nextCp,
+                    out nextRefs);
+
+                foreach (var nextRd in nextRefs)
+                    Console.WriteLine("   + {0}, {1}, {2}", nextRd.DisplayName, nextRd.BrowseName,
+                        nextRd.NodeId);
+            }*/
 
             Console.WriteLine("5 - Create a subscription with publishing interval of 1 second.");
             ExitCode = ExitCode.ErrorCreateSubscription;
-            var subscription = new Subscription(_session.DefaultSubscription)
+            var subscription = new Subscription(Session.DefaultSubscription)
             {
                 PublishingInterval = 1000
             };
@@ -190,7 +190,7 @@ namespace SimpleProgram.Lib.OpcUa
 
             Console.WriteLine("7 - Add the subscription to the session.");
             ExitCode = ExitCode.ErrorAddSubscription;
-            _session.AddSubscription(subscription);
+            Session.AddSubscription(subscription);
             subscription.Create();
 
 
@@ -216,7 +216,7 @@ namespace SimpleProgram.Lib.OpcUa
             // ignore callbacks from discarded objects.
             if (!ReferenceEquals(sender, _reconnectHandler)) return;
 
-            _session = _reconnectHandler.Session;
+            Session = _reconnectHandler.Session;
             _reconnectHandler.Dispose();
             _reconnectHandler = null;
 
@@ -254,8 +254,9 @@ namespace SimpleProgram.Lib.OpcUa
 
         private void OnNewValueToChannel(object sender, ValueToChannelArgs eventArgs)
         {
-            var dataValue = _session.ReadValue(eventArgs.NodeId);
 
+            var dataValue = Session.ReadValue(eventArgs.NodeId);
+            
             dataValue.Value = eventArgs.Value;
             var writeValueCollection = new WriteValueCollection
             {
@@ -268,14 +269,19 @@ namespace SimpleProgram.Lib.OpcUa
                 }
             };
 
-            _session.Write(null, writeValueCollection, out var status, out _);
+            Session.Write(null, writeValueCollection, out var status, out _);
 
             foreach (var s in status)
             {
                 if (s != StatusCodes.Good)
                     Console.WriteLine($"{eventArgs.NodeId}\t{s}");
             }
+        }
 
+        private void Callback(IAsyncResult ar)
+        {
+            
+            throw new NotImplementedException();
         }
     }
 

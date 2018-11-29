@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SimpleProgram.Lib.Archives.MasterScada
 {
-    public class MasterScadaDb : DbContext, IArchiveInterop
+    public class MasterScadaDb : DbContext, IDatabaseInterop
     {
         public MasterScadaDb(DbContextOptions options)
             : base(options)
@@ -144,8 +144,9 @@ namespace SimpleProgram.Lib.Archives.MasterScada
                 default:
                     throw new ArgumentOutOfRangeException(nameof(simplifyType), simplifyType, null);
             }
+            
+            throw new NotImplementedException($"{nameof(GetArchiveValueAsync)} - {simplifyType}");
 
-            return 0;
         }
 
         #endregion

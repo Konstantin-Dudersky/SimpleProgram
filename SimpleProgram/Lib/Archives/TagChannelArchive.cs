@@ -5,13 +5,13 @@ namespace SimpleProgram.Lib.Archives
 {
     public class TagChannelArchive
     {
-        public TagChannelArchive(IArchive archive, string id)
+        public TagChannelArchive(IHistory archive, string id)
         {
             Archive = archive;
             Id = id;
         }
 
-        public IArchive Archive { get; }
+        public IHistory Archive { get; }
         public string Id { get; }
 
         internal async Task<TimeSeries> GetArchiveTimeSeriesAsync(DateTime begin, DateTime end, double lessThen,
