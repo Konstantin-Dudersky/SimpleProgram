@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using SimpleProgram.Lib.Archives;
+using SimpleProgram.Lib.Modbus;
 using SimpleProgram.Lib.OpcUa;
 
 namespace SimpleProgram.Lib.Tag
@@ -35,6 +36,7 @@ namespace SimpleProgram.Lib.Tag
         DateTime TimeStamp { get; }
         
         TagChannelOpcUaClient ChannelOpcUaClient { get; }
+        TagChannelModbusTcpClient ChannelModbusTcpClient { get; }
     }
 
     public interface ITag<T> : ITag

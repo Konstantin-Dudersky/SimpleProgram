@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using SimpleProgram.Lib.Archives;
+using SimpleProgram.Lib.Modbus;
 using SimpleProgram.Lib.OpcUa;
 
 namespace SimpleProgram.Lib.Tag
@@ -87,5 +88,6 @@ namespace SimpleProgram.Lib.Tag
         public Type GenericType => typeof(TNew);
         public DateTime TimeStamp => _tagLink.TimeStamp;
         public TagChannelOpcUaClient ChannelOpcUaClient { get; set; }
+        public TagChannelModbusTcpClient ChannelModbusTcpClient { get; }
     }
 }

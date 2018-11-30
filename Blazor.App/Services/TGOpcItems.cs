@@ -1,6 +1,7 @@
 using SimpleProgram.Lib;
 using SimpleProgram.Lib.OpcUa;
 using SimpleProgram.Lib.Tag;
+
 // ReSharper disable UnusedMember.Global
 // ReSharper disable StringLiteralTypo
 // ReSharper disable InconsistentNaming
@@ -29,6 +30,12 @@ namespace Blazor.App.Services
         {
             ChannelOpcUaClient =
                 new TagChannelOpcUaClient(Data.OpcClient, "ns=2;s=Demo.Dynamic.Scalar.Int32", 1000, false)
+        };
+
+        public Tag<double> doubleWithHistory = new Tag<double>
+        {
+            ChannelOpcUaClient =
+                new TagChannelOpcUaClient(Data.OpcClient, "ns=2;s=Demo.History.DoubleWithHistory", 1000, true)
         };
     }
 }

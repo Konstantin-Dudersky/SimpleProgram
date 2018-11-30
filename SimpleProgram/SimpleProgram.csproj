@@ -13,4 +13,10 @@
     <PackageReference Include="OPCFoundation.NetStandard.Opc.Ua.Symbols" Version="1.4.354.23" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="NModbus, Version=3.0.58.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\.nuget\packages\nmodbus\3.0.58\lib\netstandard2.0\NModbus.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

@@ -25,9 +25,8 @@ namespace SimpleProgram.Lib.OpcUa
 
     public class OpcUaClient
     {
-        private const int ReconnectPeriod = 5;
+        private const int ReconnectPeriod = 10;
         private static bool _autoAccept;
-        private readonly int _clientRunTime;
         private readonly string _endpointUrl;
 
         private readonly List<MonitoredItem> _monitoredItems = new List<MonitoredItem>();
@@ -35,57 +34,35 @@ namespace SimpleProgram.Lib.OpcUa
         private SessionReconnectHandler _reconnectHandler;
         internal Session Session { get; private set; }
 
-        public OpcUaClient(string endpointUrl, bool autoAccept, int stopTimeout)
+        public OpcUaClient(string endpointUrl, bool autoAccept, bool disabled = false)
         {
             _endpointUrl = endpointUrl;
             _autoAccept = autoAccept;
-            _clientRunTime = stopTimeout <= 0 ? Timeout.Infinite : stopTimeout * 1000;
             _timer = new Timer(obj => Run(), null, 0, ReconnectPeriod * 1000);
+            if (disabled) _timer.Dispose();
         }
 
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
         private static ExitCode ExitCode { get; set; }
 
         private void Run()
         {
             try
             {
-                ConsoleSampleClient().Wait();
+                Client().Wait();
                 
             }
             catch (Exception ex)
             {
                 Utils.Trace("ServiceResultException:" + ex.Message);
-                Console.WriteLine("Exception_: {0}", ex.Message);
-                return;
-            }
-
-            var quitEvent = new ManualResetEvent(false);
-            try
-            {
-                Console.CancelKeyPress += (sender, eArgs) =>
-                {
-                    quitEvent.Set();
-                    eArgs.Cancel = true;
-                };
-            }
-            catch
-            {
-            }
-
-            // wait for timeout or Ctrl-C
-            quitEvent.WaitOne(_clientRunTime);
-
-            // return error conditions
-            if (Session.KeepAliveStopped)
-            {
-                ExitCode = ExitCode.ErrorNoKeepAlive;
+                Console.WriteLine("Exception: {0}", ex.Message);
                 return;
             }
 
             ExitCode = ExitCode.Ok;
         }
 
-        private async Task ConsoleSampleClient()
+        private async Task Client()
         {
             Console.WriteLine("1 - Create an Application Configuration.");
             ExitCode = ExitCode.ErrorCreateApplication;
@@ -185,7 +162,6 @@ namespace SimpleProgram.Lib.OpcUa
                 }
             };
             list.AddRange(_monitoredItems);
-//            list.ForEach(i => i.Notification += OnNotification);
             subscription.AddItems(list);
 
             Console.WriteLine("7 - Add the subscription to the session.");
@@ -193,8 +169,6 @@ namespace SimpleProgram.Lib.OpcUa
             Session.AddSubscription(subscription);
             subscription.Create();
 
-
-            Console.WriteLine("8 - Running...Press Ctrl-C to exit...");
             ExitCode = ExitCode.ErrorRunning;
 
             _timer.Dispose();
@@ -223,13 +197,6 @@ namespace SimpleProgram.Lib.OpcUa
             Console.WriteLine("--- RECONNECTED ---");
         }
 
-        private static void OnNotification(MonitoredItem item, MonitoredItemNotificationEventArgs e)
-        {
-            foreach (var value in item.DequeueValues())
-                Console.WriteLine("{0}: {1}, {2}, {3}", item.DisplayName, value.Value, value.SourceTimestamp,
-                    value.StatusCode);
-        }
-
         private static void CertificateValidator_CertificateValidation(CertificateValidator validator,
             CertificateValidationEventArgs e)
         {
@@ -254,7 +221,6 @@ namespace SimpleProgram.Lib.OpcUa
 
         private void OnNewValueToChannel(object sender, ValueToChannelArgs eventArgs)
         {
-
             var dataValue = Session.ReadValue(eventArgs.NodeId);
             
             dataValue.Value = eventArgs.Value;
@@ -277,7 +243,6 @@ namespace SimpleProgram.Lib.OpcUa
                     Console.WriteLine($"{eventArgs.NodeId}\t{s}");
             }
         }
-
     }
 
 

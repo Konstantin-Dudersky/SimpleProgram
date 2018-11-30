@@ -1,7 +1,11 @@
 using SimpleProgram.Lib;
 using SimpleProgram.Lib.Archives;
 using SimpleProgram.Lib.Archives.MasterScada;
+using SimpleProgram.Lib.Modbus;
 using SimpleProgram.Lib.OpcUa;
+// ReSharper disable InconsistentNaming
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable IdentifierTypo
 
 namespace Blazor.App.Services
 {
@@ -13,12 +17,14 @@ namespace Blazor.App.Services
             ArchiveName = "Архив MasterScada"
         };
 
-        public static readonly OpcUaClient OpcClient = new OpcUaClient("opc.tcp://localhost:48010", false, 10);
-        public static readonly OpcUaClient OpcWinCC = new OpcUaClient("opc.tcp://VirtualWin7:4861", false, 10);
-
+        public static readonly OpcUaClient OpcClient = new OpcUaClient("opc.tcp://localhost:48010", false);
+        public static readonly OpcUaClient OpcWinCC = new OpcUaClient("opc.tcp://VirtualWin7:4861", false, disabled: true);
+        public static readonly ModbusTcpClient ModbusTcpClient = new ModbusTcpClient("127.0.0.1", 502, 0);
+        
         public readonly TGEnergy TGEnergy;
         public readonly TGOpcItems TGOpcItems;
         public readonly TagGroupWinCC TagGroupWinCc;
+        public readonly TgModbus TgModbus = new TgModbus();
 
 
         public Data() : base(500)

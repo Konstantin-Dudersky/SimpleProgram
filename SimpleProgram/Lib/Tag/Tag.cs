@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Threading.Tasks;
 using NCalc;
 using SimpleProgram.Lib.Archives;
+using SimpleProgram.Lib.Modbus;
 using SimpleProgram.Lib.OpcUa;
 
 namespace SimpleProgram.Lib.Tag
@@ -25,6 +26,10 @@ namespace SimpleProgram.Lib.Tag
 
                 if (_newValueFromChannel != nameof(TagChannelOpcUaClient))
                     NewValueToChannelOpcUaClient?.Invoke(this, new TagExchangeWithChannelArgs(Value, DateTime.Now));
+                
+                if (_newValueFromChannel != nameof(TagChannelModbusTcpClient))
+                    NewValueToChannelModbusTcpClient?.Invoke(this, new TagExchangeWithChannelArgs(Value, DateTime.Now));
+                
 
                 _newValueFromChannel = "";
             }
@@ -152,7 +157,7 @@ namespace SimpleProgram.Lib.Tag
         public event Action OnChange;
 
         private string _newValueFromChannel;
-        public event EventHandler<TagExchangeWithChannelArgs> NewValueToChannelOpcUaClient;
+        
 
         private void OnNewValueFromChannel(object sender, TagExchangeWithChannelArgs eventArgs)
         {
@@ -219,6 +224,8 @@ namespace SimpleProgram.Lib.Tag
 
 
         #region TagChannelOpcUaClient
+        
+        public event EventHandler<TagExchangeWithChannelArgs> NewValueToChannelOpcUaClient;
 
         private TagChannelOpcUaClient _channelOpcUaClient;
         public TagChannelOpcUaClient ChannelOpcUaClient
@@ -227,9 +234,30 @@ namespace SimpleProgram.Lib.Tag
             set
             {
                 _channelOpcUaClient = value;
-                ChannelOpcUaClient.NewValueFromChannel += OnNewValueFromChannel;
+                _channelOpcUaClient.NewValueFromChannel += OnNewValueFromChannel;
                 NewValueToChannelOpcUaClient += ChannelOpcUaClient.OnNewValueToChannel;
+                
                 _historyManager.Add(0, _channelOpcUaClient);
+            }
+        }
+
+        #endregion
+        
+        
+
+        #region TagChannelModbusTcpClient
+        
+        public event EventHandler<TagExchangeWithChannelArgs> NewValueToChannelModbusTcpClient;
+
+        private TagChannelModbusTcpClient _channelModbusTcpClient;
+        public TagChannelModbusTcpClient ChannelModbusTcpClient
+        {
+            get => _channelModbusTcpClient;
+            set
+            {
+                _channelModbusTcpClient = value;
+                _channelModbusTcpClient.NewValueFromChannel += OnNewValueFromChannel;
+                NewValueToChannelModbusTcpClient += ChannelModbusTcpClient.OnNewValueToChannel;
             }
         }
 
