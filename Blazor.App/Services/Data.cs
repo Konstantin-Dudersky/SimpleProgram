@@ -1,8 +1,11 @@
 using SimpleProgram.Lib;
 using SimpleProgram.Lib.Archives;
 using SimpleProgram.Lib.Archives.MasterScada;
+using SimpleProgram.Lib.Messages;
 using SimpleProgram.Lib.Modbus;
 using SimpleProgram.Lib.OpcUa;
+using Telegram.Bot;
+
 // ReSharper disable InconsistentNaming
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable IdentifierTypo
@@ -20,6 +23,8 @@ namespace Blazor.App.Services
         public static readonly OpcUaClient OpcClient = new OpcUaClient("opc.tcp://localhost:48010", false);
         public static readonly OpcUaClient OpcWinCC = new OpcUaClient("opc.tcp://VirtualWin7:4861", false, disabled: true);
         public static readonly ModbusTcpClient ModbusTcpClient = new ModbusTcpClient("127.0.0.1", 502, 0);
+        
+        public static readonly TelegramClient TelegramClient = new TelegramClient("611768794:AAE1RZMstPcBkrjIZq2h2pzwgK8qAKMR-yU");
         
         public readonly TGEnergy TGEnergy;
         public readonly TGOpcItems TGOpcItems;

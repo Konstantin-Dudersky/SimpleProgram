@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Threading.Tasks;
 using NCalc;
 using SimpleProgram.Lib.Archives;
+using SimpleProgram.Lib.Messages;
 using SimpleProgram.Lib.Modbus;
 using SimpleProgram.Lib.OpcUa;
 
@@ -26,11 +27,12 @@ namespace SimpleProgram.Lib.Tag
 
                 if (_newValueFromChannel != nameof(TagChannelOpcUaClient))
                     NewValueToChannelOpcUaClient?.Invoke(this, new TagExchangeWithChannelArgs(Value, DateTime.Now));
-                
+
                 if (_newValueFromChannel != nameof(TagChannelModbusTcpClient))
                     NewValueToChannelModbusTcpClient?.Invoke(this, new TagExchangeWithChannelArgs(Value, DateTime.Now));
-                
 
+                NewValueToChannelMessage?.Invoke(this, new TagExchangeWithChannelArgs(Value, DateTime.Now));
+                
                 _newValueFromChannel = "";
             }
         }
@@ -61,7 +63,8 @@ namespace SimpleProgram.Lib.Tag
                 if (_derivedTags[i] == null)
                     ts.Add(new TimeSeries());
                 else
-                    ts.Add(await _derivedTags[i].GetArchiveTimeSeriesAsync(begin, end, _derivedSimplify[i], simplifyTime));
+                    ts.Add(await _derivedTags[i]
+                        .GetArchiveTimeSeriesAsync(begin, end, _derivedSimplify[i], simplifyTime));
             }
 
             var context = new ExpressionContext<TimeSeries>
@@ -80,7 +83,7 @@ namespace SimpleProgram.Lib.Tag
             return f(context);
         }
 
-        public async Task<double> GetArchiveValueAsync(DateTime begin, DateTime end, 
+        public async Task<double> GetArchiveValueAsync(DateTime begin, DateTime end,
             SimplifyType simplifyType = SimplifyType.None)
         {
             if (_derivedFunc == null)
@@ -157,7 +160,7 @@ namespace SimpleProgram.Lib.Tag
         public event Action OnChange;
 
         private string _newValueFromChannel;
-        
+
 
         private void OnNewValueFromChannel(object sender, TagExchangeWithChannelArgs eventArgs)
         {
@@ -224,10 +227,11 @@ namespace SimpleProgram.Lib.Tag
 
 
         #region TagChannelOpcUaClient
-        
+
         public event EventHandler<TagExchangeWithChannelArgs> NewValueToChannelOpcUaClient;
 
         private TagChannelOpcUaClient _channelOpcUaClient;
+
         public TagChannelOpcUaClient ChannelOpcUaClient
         {
             get => _channelOpcUaClient;
@@ -235,21 +239,21 @@ namespace SimpleProgram.Lib.Tag
             {
                 _channelOpcUaClient = value;
                 _channelOpcUaClient.NewValueFromChannel += OnNewValueFromChannel;
-                NewValueToChannelOpcUaClient += ChannelOpcUaClient.OnNewValueToChannel;
-                
+                NewValueToChannelOpcUaClient += _channelOpcUaClient.OnNewValueToChannel;
+
                 _historyManager.Add(0, _channelOpcUaClient);
             }
         }
 
         #endregion
-        
-        
+
 
         #region TagChannelModbusTcpClient
-        
+
         public event EventHandler<TagExchangeWithChannelArgs> NewValueToChannelModbusTcpClient;
 
         private TagChannelModbusTcpClient _channelModbusTcpClient;
+
         public TagChannelModbusTcpClient ChannelModbusTcpClient
         {
             get => _channelModbusTcpClient;
@@ -263,19 +267,43 @@ namespace SimpleProgram.Lib.Tag
 
         #endregion
 
+
         #region TagChannelArchive
 
         private TagChannelDatabase _channelDatabase;
+
         public TagChannelDatabase ChannelDatabase
         {
             get => _channelDatabase;
-            set { 
+            set
+            {
                 _channelDatabase = value;
                 _historyManager.Add(1, _channelDatabase);
             }
         }
 
         #endregion
+
+
+        #region Message
+        
+        public event EventHandler<TagExchangeWithChannelArgs> NewValueToChannelMessage;
+
+        private Dictionary<string, Message> _messages;
+        public Dictionary<string, Message> Messages { 
+            get => _messages;
+            set
+            {
+                _messages = value;
+                foreach (var message in _messages)
+                {
+                    NewValueToChannelMessage += message.Value.OnNewValueToChannel;
+                }
+            } 
+        }
+
+        #endregion
+        
 
         [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Local")]
         private class ExpressionContext<TExpr>
@@ -291,7 +319,7 @@ namespace SimpleProgram.Lib.Tag
             public TExpr Tag9 { get; set; }
             public TExpr Tag10 { get; set; }
         }
-        
+
         private readonly TagChannelHistoryManager _historyManager = new TagChannelHistoryManager();
 
         private class TagChannelHistoryManager
@@ -310,7 +338,7 @@ namespace SimpleProgram.Lib.Tag
             {
                 if (_items.Count <= 0)
                     throw new Exception("В теге не определено ни одного архива");
-                
+
                 var currentOrder = 0;
                 while (true)
                 {
@@ -319,6 +347,7 @@ namespace SimpleProgram.Lib.Tag
                         if (item.Order == currentOrder)
                             return item.TagChannelHistory;
                     }
+
                     currentOrder++;
                 }
             }

@@ -4,7 +4,7 @@ var autoprefixer = require('autoprefixer');
 
 
 function file_saver() {
-    return gulp.src('node_modules/file-saver/dist/*')
+    return gulp.src('node_modules/file-saver/dist/FileSaver.min.js')
         .pipe(gulp.dest('Blazor.App/wwwroot/lib/file-saver/'));
 }
 
@@ -14,14 +14,25 @@ function font_awesome() {
 }
 
 function jquery() {
-  return gulp.src('node_modules/jquery/dist/**/*')
+  return gulp.src('node_modules/jquery/dist/jquery.min.js')
     .pipe(gulp.dest('Blazor.App/wwwroot/lib/jquery/'));
 }
 
-function plotly() {
-    return gulp.src('node_modules/plotly.js/dist/**/*')
+
+// plotly
+function plotly_min_js() {
+    return gulp.src('node_modules/plotly.js/dist/plotly.min.js')
         .pipe(gulp.dest('Blazor.App/wwwroot/lib/plotly.js/'));
 }
+
+function plotly_locale_ru_js() {
+    return gulp.src('node_modules/plotly.js/dist/plotly-locale-ru.js')
+        .pipe(gulp.dest('Blazor.App/wwwroot/lib/plotly.js/'));
+}
+
+gulp.task('plotly', gulp.series(plotly_min_js, plotly_locale_ru_js));
+
+
 
 function spinkit() {
     return gulp.src('node_modules/spinkit/css/spinkit.css')
@@ -37,7 +48,7 @@ var sassPaths = [
 ];
 
 function foundation_js() {
-    return gulp.src('node_modules/foundation-sites/dist/js/**/*')
+    return gulp.src('node_modules/foundation-sites/dist/js/foundation.min.js')
         .pipe(gulp.dest('Blazor.App/wwwroot/lib/foundation-sites/js'));
 }
 
@@ -57,4 +68,4 @@ function foundation_css() {
 
 gulp.task('sass', foundation_css);
 gulp.task('default', gulp.series(foundation_css, foundation_js, 
-    font_awesome, plotly, jquery, spinkit, file_saver));
+    font_awesome, 'plotly', jquery, spinkit, file_saver));

@@ -8,9 +8,11 @@
   <ItemGroup>
     <PackageReference Include="CoreCLR-NCalc" Version="2.2.51" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
+    <PackageReference Include="NModbus" Version="3.0.58" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.2" />
     <PackageReference Include="OPCFoundation.NetStandard.Opc.Ua" Version="1.4.354.23" />
     <PackageReference Include="OPCFoundation.NetStandard.Opc.Ua.Symbols" Version="1.4.354.23" />
+    <PackageReference Include="Telegram.Bot" Version="14.10.0" />
   </ItemGroup>
 
   <ItemGroup>

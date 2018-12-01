@@ -9,7 +9,7 @@ namespace SimpleProgram.Lib.Modbus
     public class ModbusTcpClient
     {
         private const int ReconnectPeriod = 5000;
-        private const int MinSamplingInterval = 100;
+        private const int MinSamplingInterval = 1000;
         
         private readonly List<MonitoredItem> _items = new List<MonitoredItem>();
 

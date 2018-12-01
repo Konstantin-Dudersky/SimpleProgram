@@ -12,10 +12,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Browser" Version="0.7.0" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="0.7.0" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
-    <PackageReference Include="NModbus" Version="3.0.58" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.2" />
-    <PackageReference Include="Telegram.Bot" Version="14.10.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -460,6 +456,9 @@
     <_ContentIncludedByDefault Remove="wwwroot\lib\plotly.js\topojson\world_110m.json" />
     <_ContentIncludedByDefault Remove="wwwroot\lib\plotly.js\topojson\world_50m.json" />
     <_ContentIncludedByDefault Remove="wwwroot\lib\plotly.js\translation-keys.txt" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\file-saver\FileSaver.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\file-saver\FileSaver.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\file-saver\FileSaver.min.js.map" />
   </ItemGroup>
 
   <ItemGroup>

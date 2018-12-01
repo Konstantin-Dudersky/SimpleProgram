@@ -1,13 +1,3 @@
-// This file is to show how a library package may provide JavaScript interop features
-// wrapped in a .NET API
-
-window.exampleJsFunctions = {
-  showPrompt: function (message) {
-    return prompt(message, 'Type anything here');
-  }
-};
-
-
 window.plotlyhelpers = {
     react: function (id, obj) {
         Plotly.react(id, obj);
@@ -20,8 +10,8 @@ window.plotlyhelpers = {
     },
 
     downloadImage: function(id) {
-        // TODO название файла из заголовка графика, если заголовок задан
-        Plotly.downloadImage(id, {format: 'png', width: 1600, height: 900, filename: 'График'});
+        // TODO РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° РёР· Р·Р°РіРѕР»РѕРІРєР°
+        Plotly.downloadImage(id, {format: 'png', width: 1600, height: 900, filename: 'Р“СЂР°С„РёРє'});
         return true;
     }
 };
@@ -29,7 +19,7 @@ window.plotlyhelpers = {
 window.filesaver = {
     save: function(id){
         var blob = new Blob([id], {type: "text/csv;charset=utf-8"});
-        saveAs(blob, "Данные.csv");
+        saveAs(blob, "Р”Р°РЅРЅС‹Рµ.csv");
         return true;
     },
 
@@ -62,8 +52,8 @@ window.global = {
         return window.location.href;
     },
 
-    // Инициализация плагонов Foundation, в которых используется JS
-    // Вызывать в методе OnAfterRenderAsync()
+    // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїР»Р°РіРёРЅРѕРІ Foundation
+    // РІС‹Р·С‹РІР°С‚СЊ РІ РјРµС‚РѕРґРµ OnAfterRenderAsync()
     foundationInit: function()
     {
         $(document).foundation();

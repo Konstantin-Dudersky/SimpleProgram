@@ -32,11 +32,11 @@ namespace SimpleProgram.Lib.Archives
         }
 
 
-        public void DeleteArchiveData(DateTime begin, DateTime end, double lessThen, double moreThen)
+        public async void DeleteArchiveData(DateTime begin, DateTime end, double lessThen, double moreThen)
         {
             using (var context = Archive.GetDbContext())
             {
-                var entities = ((IDatabaseInterop) context).GetEntitiesAsync(Id, begin, end, lessThen, moreThen);
+                var entities = await ((IDatabaseInterop) context).GetEntitiesAsync(Id, begin, end, lessThen, moreThen);
                 context.RemoveRange(entities);
                 context.SaveChanges();
             }
