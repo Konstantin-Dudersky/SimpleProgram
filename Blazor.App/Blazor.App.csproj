@@ -461,10 +461,4 @@
     <_ContentIncludedByDefault Remove="wwwroot\lib\file-saver\FileSaver.min.js.map" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Opc.Ua.SampleClient.Config.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

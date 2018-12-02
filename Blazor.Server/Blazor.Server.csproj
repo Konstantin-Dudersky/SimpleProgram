@@ -19,10 +19,4 @@
     <ProjectReference Include="..\Blazor.App\Blazor.App.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Resource Include="Opc.Ua.SampleClient.Config.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-
 </Project>

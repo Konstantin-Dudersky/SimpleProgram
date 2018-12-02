@@ -22,8 +22,21 @@ namespace SimpleProgram.Lib.OpcUa
         ErrorNoKeepAlive = 0x30,
         ErrorInvalidCommandLine = 0x100
     }
+    
+    public class SimpleProgramChannelBase
+    {
+        private string ChannelName { get; }
+        protected NLog.Logger Logger { get; }
 
-    public class OpcUaClient
+        protected SimpleProgramChannelBase(string channelName)
+        {
+            ChannelName = channelName;
+            
+            Logger = NLog.LogManager.GetLogger(channelName);
+        }
+    }
+
+    public class OpcUaClient : SimpleProgramChannelBase
     {
         private const int ReconnectPeriod = 10;
         private static bool _autoAccept;
@@ -34,7 +47,9 @@ namespace SimpleProgram.Lib.OpcUa
         private SessionReconnectHandler _reconnectHandler;
         internal Session Session { get; private set; }
 
-        public OpcUaClient(string endpointUrl, bool autoAccept, bool disabled = false)
+
+        public OpcUaClient(string channelName, string endpointUrl, bool autoAccept, bool disabled = false) 
+            : base(channelName)
         {
             _endpointUrl = endpointUrl;
             _autoAccept = autoAccept;
@@ -54,8 +69,7 @@ namespace SimpleProgram.Lib.OpcUa
             }
             catch (Exception ex)
             {
-                Utils.Trace("ServiceResultException:" + ex.Message);
-                Console.WriteLine("Exception: {0}", ex.Message);
+                Logger.Error(ex);
                 return;
             }
 
@@ -64,14 +78,13 @@ namespace SimpleProgram.Lib.OpcUa
 
         private async Task Client()
         {
-            Console.WriteLine("1 - Create an Application Configuration.");
+            Logger.Info("1 - Create an Application Configuration.");
             ExitCode = ExitCode.ErrorCreateApplication;
 
             var application = new ApplicationInstance
             {
-                ApplicationName = "UA Core Sample Client",
                 ApplicationType = ApplicationType.Client,
-                ConfigSectionName = "Opc.Ua.SampleClient"
+                ConfigSectionName = nameof(OpcUaClient)
             };
 
             // load the application configuration.
@@ -87,13 +100,13 @@ namespace SimpleProgram.Lib.OpcUa
             if (config.SecurityConfiguration.AutoAcceptUntrustedCertificates) _autoAccept = true;
             config.CertificateValidator.CertificateValidation += CertificateValidator_CertificateValidation;
 
-            Console.WriteLine("2 - Discover endpoints of {0}.", _endpointUrl);
+            Logger.Info("2 - Discover endpoints of {0}.", _endpointUrl);
             ExitCode = ExitCode.ErrorDiscoverEndpoints;
             var selectedEndpoint = CoreClientUtils.SelectEndpoint(_endpointUrl, true, 15000);
-            Console.WriteLine("    Selected endpoint uses: {0}",
+            Logger.Info("    Selected endpoint uses: {0}",
                 selectedEndpoint.SecurityPolicyUri.Substring(selectedEndpoint.SecurityPolicyUri.LastIndexOf('#') + 1));
 
-            Console.WriteLine("3 - Create a session with OPC UA server.");
+            Logger.Info("3 - Create a session with OPC UA server.");
             ExitCode = ExitCode.ErrorCreateSession;
             var endpointConfiguration = EndpointConfiguration.Create(config);
             var endpoint = new ConfiguredEndpoint(null, selectedEndpoint, endpointConfiguration);
@@ -103,7 +116,7 @@ namespace SimpleProgram.Lib.OpcUa
             // register keep alive handler
             Session.KeepAlive += Client_KeepAlive;
 
-            Console.WriteLine("4 - Browse the OPC UA server namespace.");
+            Logger.Info("4 - Browse the OPC UA server namespace.");
             ExitCode = ExitCode.ErrorBrowseNamespace;
             /*byte[] continuationPoint;
 
@@ -144,14 +157,14 @@ namespace SimpleProgram.Lib.OpcUa
                         nextRd.NodeId);
             }*/
 
-            Console.WriteLine("5 - Create a subscription with publishing interval of 1 second.");
+            Logger.Info("5 - Create a subscription with publishing interval of 1 second.");
             ExitCode = ExitCode.ErrorCreateSubscription;
             var subscription = new Subscription(Session.DefaultSubscription)
             {
                 PublishingInterval = 1000
             };
 
-            Console.WriteLine("6 - Add a list of items (server current time and status) to the subscription.");
+            Logger.Info("6 - Add a list of items (server current time and status) to the subscription.");
             ExitCode = ExitCode.ErrorMonitoredItem;
             var list = new List<MonitoredItem>
             {
@@ -164,7 +177,7 @@ namespace SimpleProgram.Lib.OpcUa
             list.AddRange(_monitoredItems);
             subscription.AddItems(list);
 
-            Console.WriteLine("7 - Add the subscription to the session.");
+            Logger.Info("7 - Add the subscription to the session.");
             ExitCode = ExitCode.ErrorAddSubscription;
             Session.AddSubscription(subscription);
             subscription.Create();
@@ -177,10 +190,10 @@ namespace SimpleProgram.Lib.OpcUa
         private void Client_KeepAlive(Session sender, KeepAliveEventArgs e)
         {
             if (e.Status == null || !ServiceResult.IsNotGood(e.Status)) return;
-            Console.WriteLine("{0} {1}/{2}", e.Status, sender.OutstandingRequestCount, sender.DefunctRequestCount);
+            Logger.Info("{0} {1}/{2}", e.Status, sender.OutstandingRequestCount, sender.DefunctRequestCount);
 
             if (_reconnectHandler != null) return;
-            Console.WriteLine("--- RECONNECTING ---");
+            Logger.Info("--- RECONNECTING ---");
             _reconnectHandler = new SessionReconnectHandler();
             _reconnectHandler.BeginReconnect(sender, ReconnectPeriod * 1000, Client_ReconnectComplete);
         }
@@ -194,7 +207,7 @@ namespace SimpleProgram.Lib.OpcUa
             _reconnectHandler.Dispose();
             _reconnectHandler = null;
 
-            Console.WriteLine("--- RECONNECTED ---");
+            Logger.Info("--- RECONNECTED ---");
         }
 
         private static void CertificateValidator_CertificateValidation(CertificateValidator validator,
@@ -240,11 +253,10 @@ namespace SimpleProgram.Lib.OpcUa
             foreach (var s in status)
             {
                 if (s != StatusCodes.Good)
-                    Console.WriteLine($"{eventArgs.NodeId}\t{s}");
+                    Logger.Info($"{eventArgs.NodeId}\t{s}");
             }
         }
     }
-
 
     public class ValueToChannelArgs : EventArgs
     {

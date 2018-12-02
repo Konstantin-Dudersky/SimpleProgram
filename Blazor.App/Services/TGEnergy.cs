@@ -491,6 +491,11 @@ namespace Blazor.App.Services
             TagName = "Процент Э/Э на машзал"
         };
 
+        public Tag<double> MachineHall = new Tag<double>
+        {
+            TagName = "Нагрузка на машзал"
+        };
+
         public TGEnergy()
         {
             tagSum.ConfDerivedFromTags(
@@ -523,6 +528,11 @@ namespace Blazor.App.Services
                 UPS_MDB_A__QF3_1, SimplifyType.Increment,
                 UPS_MDB_B__QF3_1, SimplifyType.Increment
                 );
+            
+            MachineHall.ConfDerivedFromTags(
+                "[Tag1] + [Tag2]",
+                UPS_MDB_A__QF3_1, SimplifyType.Increment,
+                UPS_MDB_B__QF3_1, SimplifyType.Increment);
         }
     }
 }

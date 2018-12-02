@@ -19,7 +19,6 @@ namespace Blazor.Server
                     .AddCommandLine(args)
                     .Build())
                 .UseStartup<Startup>()
-                .ConfigureLogging(logging => logging.SetMinimumLevel(LogLevel.Warning))
                 .UseKestrel(options =>
                 {
                     options.Listen(IPAddress.Any, 5001);

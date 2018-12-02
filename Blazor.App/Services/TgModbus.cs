@@ -34,5 +34,10 @@ namespace Blazor.App.Services
             ChannelModbusTcpClient = new TagChannelModbusTcpClient(Data.ModbusTcpClient, 1, 5000),
         };
 
+        public TgModbus()
+        {
+            Console.WriteLine(register0.Messages["123"].Isactive);
+        }
+
     }
 }

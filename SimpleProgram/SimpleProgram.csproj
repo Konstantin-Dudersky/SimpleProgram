@@ -8,6 +8,7 @@
   <ItemGroup>
     <PackageReference Include="CoreCLR-NCalc" Version="2.2.51" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="1.3.0" />
     <PackageReference Include="NModbus" Version="3.0.58" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.2" />
     <PackageReference Include="OPCFoundation.NetStandard.Opc.Ua" Version="1.4.354.23" />
@@ -19,6 +20,33 @@
     <Reference Include="NModbus, Version=3.0.58.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\.nuget\packages\nmodbus\3.0.58\lib\netstandard2.0\NModbus.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\nlog.development.config">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logs\nlog.production.config">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="OpcUaClient.Config.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

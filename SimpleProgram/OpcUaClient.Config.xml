@@ -81,7 +81,7 @@
   </ClientConfiguration>
   
   <TraceConfiguration>
-    <OutputFilePath>%LocalApplicationData%/Logs/Opc.Ua.CoreSampleClient.log.txt</OutputFilePath>
+    <OutputFilePath>logs/Opc.Ua.CoreSampleClient.log.txt</OutputFilePath>
     <DeleteOnLoad>true</DeleteOnLoad>
     <!-- Show Only Errors -->
     <!-- <TraceMasks>1</TraceMasks> -->

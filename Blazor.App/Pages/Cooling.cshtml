@@ -5,18 +5,9 @@
 
 <div class="grid-x grid-padding-x grid-padding-y">
     <div class="cell small-12 medium-6 large-4" style="height: 400px;">
-        <Widget Header="Коэффициент PUE">
+        <Widget Header="Температура наружного воздуха">
 
             <div class="page1">
-                <Gauge
-                    Value="@Pue"
-                    ScaleLow="0"
-                    ScaleHigh="2"
-                    PvWhLim="1.8"
-                    PvAhLim="1.9"/>
-            </div>
-
-            <div class="page2">
                 <ScatterByTime
                     Tag="@Data.TGEnergy.temperature"/>
             </div>
@@ -24,20 +15,6 @@
         </Widget>
     </div>
 
-    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
-        <Widget Header="Потребление от темп. наружного воздуха (1 сутки)">
-
-            <div class="page1">
-                <ScatterByTag
-                    TagX="@Data.TGEnergy.temperature"
-                    TagXSimplifyType="@SimplifyType.Average"
-                    TagY="@Data.TGEnergy.PUE"
-                    TagYSimplifyType="@SimplifyType.None"
-                    SimplifyTime="86400"/>
-            </div>
-
-        </Widget>
-    </div>
 
     <div class="cell small-12 medium-6 large-4" style="height: 400px;">
         
@@ -52,18 +29,8 @@
 
     </div>
     
-    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
-        <Widget Header="Процент Э/Э на машзал">
-
-            <div class="page1">
-                <ScatterByTime
-                    Tag="@Data.TGEnergy.PUE"
-                    SimplifyTime="86400"/>
-            </div>
-
-        </Widget>
-    </div>
     
+   
 </div>
 
 
@@ -73,12 +40,6 @@
     // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private CascadingValueClass CascadingValue { get; set; }
 
-    private double Pue { get; set; }
-
-    protected override async Task OnParametersSetAsync()
-    {
-        Pue = await Data.TGEnergy.PUE.GetArchiveValueAsync(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End);
-    }
 
     private async Task<Sankey> BuildSankey()
     {

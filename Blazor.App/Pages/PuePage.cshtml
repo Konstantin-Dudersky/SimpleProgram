@@ -1,0 +1,83 @@
+@page "/pue"
+
+@using Blazor.App.Services
+
+@inject Data Data
+
+<div class="grid-x grid-padding-x grid-padding-y">
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <Widget Header="Коэффициент PUE">
+
+            <div class="page1">
+                <Gauge
+                    Value="@Pue"
+                    ScaleLow="0"
+                    ScaleHigh="2"
+                    PvWhLim="1.8"
+                    PvAhLim="1.9"/>
+            </div>
+
+        </Widget>
+    </div>
+    
+    
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <Widget Header="PUE">
+
+            <div class="page1">
+                <ScatterByTime
+                    Tag="@Data.TGEnergy.PUE"
+                    SimplifyTime="86400"/>
+            </div>
+
+        </Widget>
+    </div>
+    
+
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <Widget Header="PUE от среднесуточной температуры">
+
+            <div class="page1">
+                <ScatterByTag
+                    TagX="@Data.TGEnergy.temperature"
+                    TagXSimplifyType="@SimplifyType.Average"
+                    TagY="@Data.TGEnergy.PUE"
+                    TagYSimplifyType="@SimplifyType.None"
+                    SimplifyTime="86400"/>
+            </div>
+
+        </Widget>
+    </div>
+    
+    
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <Widget Header="PUE от нагрузки машзала">
+
+            <div class="page1">
+                <ScatterByTag
+                    TagX="@Data.TGEnergy.MachineHall"
+                    TagXSimplifyType="@SimplifyType.Average"
+                    TagY="@Data.TGEnergy.PUE"
+                    TagYSimplifyType="@SimplifyType.None"
+                    SimplifyTime="86400"/>
+            </div>
+
+        </Widget>
+    </div>
+
+</div>
+
+
+@functions {
+
+    [CascadingParameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
+    private CascadingValueClass CascadingValue { get; set; }
+
+    private double Pue { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        Pue = await Data.TGEnergy.PUE.GetArchiveValueAsync(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End);
+    }
+}

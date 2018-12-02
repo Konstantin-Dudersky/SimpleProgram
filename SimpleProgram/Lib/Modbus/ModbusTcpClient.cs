@@ -19,6 +19,7 @@ namespace SimpleProgram.Lib.Modbus
         private readonly string _ip;
         private readonly int _port;
         private readonly byte _slaveAddress;
+        private readonly bool _disabled;
         private IModbusMaster _master;
 
         // ReSharper disable once NotAccessedField.Local
@@ -27,12 +28,15 @@ namespace SimpleProgram.Lib.Modbus
 
         private bool _connected;
 
-        public ModbusTcpClient(string ip, int port, byte slaveAddress)
+        public ModbusTcpClient(string ip, int port, byte slaveAddress, bool disabled = false)
         {
             _ip = ip;
             _port = port;
             _slaveAddress = slaveAddress;
-            
+            _disabled = disabled;
+
+            if (_disabled) return;
+                
             _timerReconnect = new Timer(Reconnect);
             SetConnected(false);
             _timerCyclicRead = new Timer(TimerCyclicRead, null, 0, MinSamplingInterval);
@@ -40,6 +44,8 @@ namespace SimpleProgram.Lib.Modbus
 
         private void Reconnect(object obj)
         {
+            if (_disabled) return;
+            
             try
             {
                 var client = new TcpClient(_ip, _port);
@@ -72,8 +78,7 @@ namespace SimpleProgram.Lib.Modbus
 
         private void TimerCyclicRead(object obj)
         {
-
-            if (!_connected) return;
+            if (!_connected || _disabled) return;
 
             foreach (var item in _items)
             {
@@ -81,7 +86,7 @@ namespace SimpleProgram.Lib.Modbus
                 
                 try
                 {
-                    var value = _master.ReadHoldingRegisters(_slaveAddress, item.StartAddress, 100);
+                    var value = _master.ReadHoldingRegisters(_slaveAddress, item.StartAddress, 1);
                     item.NewValueFromChannel(value[0]);
                 }
                 catch (Exception e)
