@@ -16,25 +16,25 @@ namespace Blazor.App.Services
     {
         public Tag<double> testOpcWithWrite = new Tag<double>
         {
-            ChannelOpcUaClient =
+            TagChannelOpcUaClient =
                 new TagChannelOpcUaClient(Data.OpcClient, "ns=2;s=Demo.Static.Scalar.Double", 1000, false)
         };
 
         public Tag<double> testTagOpc = new Tag<double>
         {
-            ChannelOpcUaClient =
+            TagChannelOpcUaClient =
                 new TagChannelOpcUaClient(Data.OpcClient, "ns=2;s=Demo.Dynamic.Scalar.Double", 1000, false)
         };
 
         public Tag<int> testTagOpcInt = new Tag<int>
         {
-            ChannelOpcUaClient =
+            TagChannelOpcUaClient =
                 new TagChannelOpcUaClient(Data.OpcClient, "ns=2;s=Demo.Dynamic.Scalar.Int32", 1000, false)
         };
 
         public Tag<double> doubleWithHistory = new Tag<double>
         {
-            ChannelOpcUaClient =
+            TagChannelOpcUaClient =
                 new TagChannelOpcUaClient(Data.OpcClient, "ns=2;s=Demo.History.DoubleWithHistory", 1000, true)
         };
     }

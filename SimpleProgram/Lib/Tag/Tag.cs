@@ -13,7 +13,7 @@ using SimpleProgram.Lib.OpcUa;
 namespace SimpleProgram.Lib.Tag
 {
     public sealed class Tag<T> : ITag<T>
-        where T : IConvertible
+        where T : IConvertible, IComparable
     {
         private T _value;
 
@@ -25,10 +25,10 @@ namespace SimpleProgram.Lib.Tag
                 _value = value;
                 OnChange?.Invoke();
 
-                if (_newValueFromChannel != nameof(TagChannelOpcUaClient))
+                if (_newValueFromChannel != nameof(OpcUa.TagChannelOpcUaClient))
                     NewValueToChannelOpcUaClient?.Invoke(this, new TagExchangeWithChannelArgs(Value, DateTime.Now));
 
-                if (_newValueFromChannel != nameof(TagChannelModbusTcpClient))
+                if (_newValueFromChannel != nameof(Modbus.TagChannelModbusTcpClient))
                     NewValueToChannelModbusTcpClient?.Invoke(this, new TagExchangeWithChannelArgs(Value, DateTime.Now));
 
                 NewValueToChannelMessage?.Invoke(this, new TagExchangeWithChannelArgs(Value, DateTime.Now));
@@ -41,7 +41,7 @@ namespace SimpleProgram.Lib.Tag
         public string TagName { get; set; }
         public DateTime TimeStamp { get; private set; }
 
-        public ITag<TNew> ConvertTo<TNew>() where TNew : IConvertible
+        public ITag<TNew> ConvertTo<TNew>() where TNew : IConvertible, IComparable
         {
             return new TagLink<T, TNew>(this);
         }
@@ -232,7 +232,7 @@ namespace SimpleProgram.Lib.Tag
 
         private TagChannelOpcUaClient _channelOpcUaClient;
 
-        public TagChannelOpcUaClient ChannelOpcUaClient
+        public TagChannelOpcUaClient TagChannelOpcUaClient
         {
             get => _channelOpcUaClient;
             set
@@ -254,14 +254,14 @@ namespace SimpleProgram.Lib.Tag
 
         private TagChannelModbusTcpClient _channelModbusTcpClient;
 
-        public TagChannelModbusTcpClient ChannelModbusTcpClient
+        public TagChannelModbusTcpClient TagChannelModbusTcpClient
         {
             get => _channelModbusTcpClient;
             set
             {
                 _channelModbusTcpClient = value;
                 _channelModbusTcpClient.NewValueFromChannel += OnNewValueFromChannel;
-                NewValueToChannelModbusTcpClient += ChannelModbusTcpClient.OnNewValueToChannel;
+                NewValueToChannelModbusTcpClient += TagChannelModbusTcpClient.OnNewValueToChannel;
             }
         }
 
@@ -272,7 +272,7 @@ namespace SimpleProgram.Lib.Tag
 
         private TagChannelDatabase _channelDatabase;
 
-        public TagChannelDatabase ChannelDatabase
+        public TagChannelDatabase TagChannelDatabase
         {
             get => _channelDatabase;
             set
@@ -289,8 +289,8 @@ namespace SimpleProgram.Lib.Tag
         
         public event EventHandler<TagExchangeWithChannelArgs> NewValueToChannelMessage;
 
-        private Dictionary<string, Message> _messages;
-        public Dictionary<string, Message> Messages { 
+        private Dictionary<string, Message<T>> _messages;
+        public Dictionary<string, Message<T>> Messages { 
             get => _messages;
             set
             {

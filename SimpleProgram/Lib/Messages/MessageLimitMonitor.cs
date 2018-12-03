@@ -3,74 +3,124 @@ using SimpleProgram.Lib.Tag;
 
 namespace SimpleProgram.Lib.Messages
 {
-    public class MessageLimitMonitor : Message
+    public class MessageLimitMonitor<T> : Message<T>
+        where T : IComparable
     {
         private readonly MessageLimitMonitorType _limitMonitorType;
-        private readonly double _limit;
-        private readonly double _hysteresys;
+        private readonly T _limit;
 
-        public MessageLimitMonitor(string text, MessageLimitMonitorType limitMonitorType, 
-            double limit, double hysteresys) : base(text)
+        private readonly T _limitMinusHyst;
+        private readonly T _limitPlusHyst;
+
+        public MessageLimitMonitor(string text, MessageLimitMonitorType limitMonitorType,
+            T limit, T hysteresys = default) : base(text)
         {
             _limitMonitorType = limitMonitorType;
             _limit = limit;
-            _hysteresys = hysteresys;
+
+            var limitD = (double) Convert.ChangeType(limit, typeof(double));
+            var hysteresysD = (double) Convert.ChangeType(hysteresys, typeof(double));
+            _limitMinusHyst = (T) Convert.ChangeType(limitD - hysteresysD, typeof(T));
+            _limitPlusHyst = (T) Convert.ChangeType(limitD + hysteresysD, typeof(T));
         }
-        
+
         public override void OnNewValueToChannel(object sender, TagExchangeWithChannelArgs eventArgs)
         {
             base.OnNewValueToChannel(sender, eventArgs);
 
-            if (!Isactive)
+            switch (_limitMonitorType)
             {
-                switch (_limitMonitorType)
-                {
-                    case MessageLimitMonitorType.GreateThen:
-                        if (Value > _limit)
+                case MessageLimitMonitorType.GreaterThen:
+                    if (IsActive)
+                    {
+                        if (Value.CompareTo(_limitMinusHyst) < 0)
+                            IsActive = false;
+                    }
+                    else
+                    {
+                        if (Value.CompareTo(_limit) > 0)
                         {
-                            Isactive = true;
+                            IsActive = true;
                             OnActivated();
                         }
-                        break;
-                    case MessageLimitMonitorType.GreateOrEqual:
-                        break;
-                    case MessageLimitMonitorType.LessThen:
-                        break;
-                    case MessageLimitMonitorType.LessOrEqual:
-                        break;
-                    case MessageLimitMonitorType.Equal:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                    }
+
+                    break;
+                case MessageLimitMonitorType.GreaterOrEqual:
+                    if (IsActive)
+                    {
+                        if (Value.CompareTo(_limitMinusHyst) < 0)
+                            IsActive = false;
+                    }
+                    else
+                    {
+                        if (Value.CompareTo(_limit) >= 0)
+                        {
+                            IsActive = true;
+                            OnActivated();
+                        }
+                    }
+                    break;
+                case MessageLimitMonitorType.LessThen:
+                    if (IsActive)
+                    {
+                        if (Value.CompareTo(_limitPlusHyst) > 0)
+                            IsActive = false;
+                    }
+                    else
+                    {
+                        if (Value.CompareTo(_limit) < 0)
+                        {
+                            IsActive = true;
+                            OnActivated();
+                        }
+                    }
+                    
+                    break;
+                case MessageLimitMonitorType.LessOrEqual:
+                    if (IsActive)
+                    {
+                        if (Value.CompareTo(_limitPlusHyst) > 0)
+                            IsActive = false;
+                    }
+                    else
+                    {
+                        if (Value.CompareTo(_limit) <= 0)
+                        {
+                            IsActive = true;
+                            OnActivated();
+                        }
+                    }
+                    
+                    break;
+                case MessageLimitMonitorType.Equal:
+                    if (IsActive)
+                    {
+                        if (Value.CompareTo(_limit) != 0)
+                            IsActive = false;
+                    }
+                    else
+                    {
+                        if (Value.CompareTo(_limit) == 0)
+                        {
+                            IsActive = true;
+                            OnActivated();
+                        }
+                    }
+
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
-            else
-            {
-                switch (_limitMonitorType)
-                {
-                    case MessageLimitMonitorType.GreateThen:
-                        if (Value < _limit - _hysteresys)
-                            Isactive = false;
-                        break;
-                    case MessageLimitMonitorType.GreateOrEqual:
-                        break;
-                    case MessageLimitMonitorType.LessThen:
-                        break;
-                    case MessageLimitMonitorType.LessOrEqual:
-                        break;
-                    case MessageLimitMonitorType.Equal:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
+
+            IsFirstCall = false;
         }
     }
 
     public enum MessageLimitMonitorType
     {
-        GreateThen,
-        GreateOrEqual,
+        GreaterThen,
+        GreaterOrEqual,
         LessThen,
         LessOrEqual,
         Equal

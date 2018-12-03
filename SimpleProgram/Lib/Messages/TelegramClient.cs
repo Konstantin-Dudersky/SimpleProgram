@@ -1,23 +1,36 @@
 using System;
+using NLog;
+using SimpleProgram.Lib.OpcUa;
 using Telegram.Bot;
 
 namespace SimpleProgram.Lib.Messages
 {
-    public class TelegramClient
+    public class TelegramClient : SimpleProgramChannelBase
     {
         private readonly TelegramBotClient _bot;
         
-        public TelegramClient(string token)
+        public TelegramClient(string channelName, string token) : base(channelName)
         {
-            _bot = new TelegramBotClient(token);
-//            var bot = new TelegramBotClient("611768794:AAE1RZMstPcBkrjIZq2h2pzwgK8qAKMR-yU");
+            try
+            {
+                _bot = new TelegramBotClient(token);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Ошибка при создании канала Telegram");
+            }
         }
 
         internal async void SendTextMessageAsync(string chatId, string text)
         {
-            var me = await _bot.SendTextMessageAsync(chatId, text);
+            try
+            {
+                await _bot.SendTextMessageAsync(chatId, text);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Ошибка отправки сообщения Telegram");
+            }
         }
-        
-        
     }
 }

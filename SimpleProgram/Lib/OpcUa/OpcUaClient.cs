@@ -22,19 +22,6 @@ namespace SimpleProgram.Lib.OpcUa
         ErrorNoKeepAlive = 0x30,
         ErrorInvalidCommandLine = 0x100
     }
-    
-    public class SimpleProgramChannelBase
-    {
-        private string ChannelName { get; }
-        protected NLog.Logger Logger { get; }
-
-        protected SimpleProgramChannelBase(string channelName)
-        {
-            ChannelName = channelName;
-            
-            Logger = NLog.LogManager.GetLogger(channelName);
-        }
-    }
 
     public class OpcUaClient : SimpleProgramChannelBase
     {

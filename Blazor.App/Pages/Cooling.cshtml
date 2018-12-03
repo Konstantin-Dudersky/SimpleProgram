@@ -1,5 +1,6 @@
 ﻿@page "/cooling"
 @using Blazor.App.Services
+@using SimpleProgram.Lib.JSInterop
 
 @inject Data Data
 
@@ -17,20 +18,33 @@
 
 
     <div class="cell small-12 medium-6 large-4" style="height: 400px;">
-        
+
         <Widget Header="Распределение Э/Э">
 
             <div class="page1">
                 <SankeyComponent
                     SankeyFunc="@BuildSankey"/>
             </div>
-            
+
         </Widget>
 
     </div>
-    
-    
-   
+
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <Widget Header="Потребление машзала">
+
+            <div class="page1">
+                <ScatterByTime
+                    Tag="@Data.TGEnergy.MachineHall"
+                    PlotLyType="@PlotlyTypes.bar"
+                    SimplifyTime="86400"
+                    />
+            </div>
+
+        </Widget>
+
+    </div>
+
 </div>
 
 

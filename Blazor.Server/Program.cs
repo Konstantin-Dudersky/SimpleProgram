@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
-using System.Net;
-using Microsoft.Extensions.Logging;
 
 namespace Blazor.Server
 {
@@ -19,10 +17,6 @@ namespace Blazor.Server
                     .AddCommandLine(args)
                     .Build())
                 .UseStartup<Startup>()
-                .UseKestrel(options =>
-                {
-                    options.Listen(IPAddress.Any, 5001);
-                })
                 .Build();
     }
 }

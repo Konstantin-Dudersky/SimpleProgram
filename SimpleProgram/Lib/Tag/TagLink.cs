@@ -7,8 +7,8 @@ using SimpleProgram.Lib.OpcUa;
 namespace SimpleProgram.Lib.Tag
 {
     public class TagLink<TOld, TNew> : ITag<TNew>
-        where TNew : IConvertible
-        where TOld : IConvertible
+        where TNew : IConvertible, IComparable
+        where TOld : IConvertible, IComparable
     {
         private readonly Tag<TOld> _tagLink;
 
@@ -29,10 +29,10 @@ namespace SimpleProgram.Lib.Tag
             return _tagLink.GetArchiveValueAsync(begin, end);
         }
 
-        public TagChannelDatabase ChannelDatabase
+        public TagChannelDatabase TagChannelDatabase
         {
-            get => _tagLink.ChannelDatabase;
-            set => _tagLink.ChannelDatabase = value;
+            get => _tagLink.TagChannelDatabase;
+            set => _tagLink.TagChannelDatabase = value;
         }
 
         public string TagId
@@ -47,7 +47,7 @@ namespace SimpleProgram.Lib.Tag
             set => _tagLink.TagName = value;
         }
 
-        public ITag<TNew1> ConvertTo<TNew1>() where TNew1 : IConvertible
+        public ITag<TNew1> ConvertTo<TNew1>() where TNew1 : IConvertible, IComparable
         {
             return _tagLink.ConvertTo<TNew1>();
         }
@@ -87,7 +87,7 @@ namespace SimpleProgram.Lib.Tag
 
         public Type GenericType => typeof(TNew);
         public DateTime TimeStamp => _tagLink.TimeStamp;
-        public TagChannelOpcUaClient ChannelOpcUaClient { get; set; }
-        public TagChannelModbusTcpClient ChannelModbusTcpClient { get; }
+        public TagChannelOpcUaClient TagChannelOpcUaClient { get; set; }
+        public TagChannelModbusTcpClient TagChannelModbusTcpClient { get; }
     }
 }

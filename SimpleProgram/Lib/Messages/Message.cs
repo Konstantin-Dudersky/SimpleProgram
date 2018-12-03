@@ -3,24 +3,41 @@ using SimpleProgram.Lib.Tag;
 
 namespace SimpleProgram.Lib.Messages
 {
-    public class Message
+    public class Message<T>
+        where T : IComparable
     {
-        private readonly string _text;
-        protected double Value;
-        public bool Isactive { get; protected set; }
+        private string _text;        
+        public string Text { 
+            get => _text;
+            set
+            {
+                _text = value;
+                _msgChannelTelegram?.SetText(_text);
+            }
+        }
+        protected T Value;
+        
+        public bool IsActive { get; protected set; }
+        protected bool IsFirstCall = true;
 
         protected event EventHandler Activated;
 
         protected Message(string text = "Message")
         {
-            _text = text;
+            Text = text;
         }
         
         public virtual void OnNewValueToChannel(object sender, TagExchangeWithChannelArgs eventArgs)
         {
-            Value = Convert.ToDouble(eventArgs.Value);
+            Value = (T) Convert.ChangeType(eventArgs.Value, typeof(T));
         }
-
+        
+        protected void OnActivated()
+        {
+            if (!IsFirstCall)
+                Activated?.Invoke(this, EventArgs.Empty);
+        }
+        
         #region Telegram
 
         private MsgChannelTelegram _msgChannelTelegram;
@@ -30,16 +47,11 @@ namespace SimpleProgram.Lib.Messages
             set
             {
                 _msgChannelTelegram = value;
-                _msgChannelTelegram.SetText(_text);
+                _msgChannelTelegram.SetText(Text);
                 Activated += _msgChannelTelegram.OnNewMessage;
             }
         }
         
         #endregion
-
-        protected void OnActivated()
-        {
-            Activated?.Invoke(this, EventArgs.Empty);
-        }
     }
 }

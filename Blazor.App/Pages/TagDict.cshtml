@@ -44,8 +44,8 @@
             <tr>
                 <th>@_visibleColumns.Keys.ToList()[0]</th>
                 <th>@nameof(ITag.TagName)</th>
-                <th>@nameof(ITag.ChannelDatabase.Id)</th>
-                <th>@(nameof(ITag.ChannelDatabase.Archive) + nameof(ITag.ChannelDatabase.Archive.ArchiveName))</th>
+                <th>@nameof(ITag.TagChannelDatabase.Id)</th>
+                <th>@(nameof(ITag.TagChannelDatabase.Archive) + nameof(ITag.TagChannelDatabase.Archive.ArchiveName))</th>
                 <th>@nameof(ITag.ValueString)</th>
                 <th>@nameof(ITag.TimeStamp)</th>
                 <th>@nameof(ITag.GenericType)</th>
@@ -57,17 +57,17 @@
                 <tr>
                     <td>@tag.TagId</td>
                     <td>@tag.TagName</td>
-                    <td>@tag.ChannelDatabase?.Id</td>
-                    <td>@tag.ChannelDatabase?.Archive?.ArchiveName</td>
+                    <td>@tag.TagChannelDatabase?.Id</td>
+                    <td>@tag.TagChannelDatabase?.Archive?.ArchiveName</td>
                     <td>
                         <input style="margin-bottom: 0" type="text"
                                bind="@tag.ValueString" onfocusin="@StopRefresh" onfocusout="@StartRefresh"/>
                     </td>
                     <td>@tag.TimeStamp.ToLocalTime()</td>
                     <td>@tag.GenericType</td>
-                    <td>@tag.ChannelOpcUaClient?.Client</td>
-                    <td>@tag.ChannelOpcUaClient?.NodeId</td>
-                    <td>@tag.ChannelOpcUaClient?.SamplingInterval</td>
+                    <td>@tag.TagChannelOpcUaClient?.Client</td>
+                    <td>@tag.TagChannelOpcUaClient?.NodeId</td>
+                    <td>@tag.TagChannelOpcUaClient?.SamplingInterval</td>
                     
                     @* <td> *@
                     @*     <NavLink href="@($"/Plot/{tag.TagId}")"> *@
@@ -96,15 +96,15 @@
         // управление видимостью столбцов
         _visibleColumns[nameof(ITag.TagId)] = true;
         _visibleColumns[nameof(ITag.TagName)] = true;
-        _visibleColumns[nameof(ITag.ChannelDatabase.Id)] = true;
-        _visibleColumns[$"{nameof(ITag.ChannelDatabase.Archive)}.{nameof(ITag.ChannelDatabase.Archive.ArchiveName)}"] = true;
+        _visibleColumns[nameof(ITag.TagChannelDatabase.Id)] = true;
+        _visibleColumns[$"{nameof(ITag.TagChannelDatabase.Archive)}.{nameof(ITag.TagChannelDatabase.Archive.ArchiveName)}"] = true;
         _visibleColumns[nameof(ITag.ValueString)] = true;
         _visibleColumns[nameof(ITag.TimeStamp)] = true;
         _visibleColumns[nameof(ITag.GenericType)] = true;
         _visibleColumns[nameof(ITag.GenericType)] = true;
-        _visibleColumns[nameof(ITag.ChannelOpcUaClient.Client)] = false;
-        _visibleColumns[nameof(ITag.ChannelOpcUaClient.NodeId)] = false;
-        _visibleColumns[nameof(ITag.ChannelOpcUaClient.SamplingInterval)] = false;
+        _visibleColumns[nameof(ITag.TagChannelOpcUaClient.Client)] = false;
+        _visibleColumns[nameof(ITag.TagChannelOpcUaClient.NodeId)] = false;
+        _visibleColumns[nameof(ITag.TagChannelOpcUaClient.SamplingInterval)] = false;
     }
 
     protected override async Task OnAfterRenderAsync()

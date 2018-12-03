@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Blazor.Hosting;
+﻿using System.IO;
+using Microsoft.AspNetCore.Blazor.Hosting;
 
 
 namespace Blazor.App

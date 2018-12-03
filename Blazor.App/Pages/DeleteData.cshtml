@@ -18,7 +18,7 @@
                 <option value="" selected>-- Тег не выбран --</option>
                 @foreach (var tagDict in Data.TagDict)
                 {
-                    <option value="@tagDict.Key">@tagDict.Value.ChannelDatabase?.Id</option>
+                    <option value="@tagDict.Key">@tagDict.Value.TagChannelDatabase?.Id</option>
                 }
             </select>
         </div>

@@ -461,4 +461,11 @@
     <_ContentIncludedByDefault Remove="wwwroot\lib\file-saver\FileSaver.min.js.map" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="appsettings.local.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

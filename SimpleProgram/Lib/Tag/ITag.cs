@@ -8,7 +8,7 @@ namespace SimpleProgram.Lib.Tag
 {
     public interface ITag
     {
-        #region Archive
+        #region TagChannelDatabase
     
         Task<TimeSeries> GetArchiveTimeSeriesAsync(DateTime begin, DateTime end, 
             SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600,
@@ -19,13 +19,12 @@ namespace SimpleProgram.Lib.Tag
         Task<double> GetArchiveValueAsync(DateTime begin, DateTime end,
             SimplifyType simplifyType = SimplifyType.None);
 
-        TagChannelDatabase ChannelDatabase { get; set; }
+        TagChannelDatabase TagChannelDatabase { get; set; }
         
         #endregion
         
         string TagId { get; set; }
         string TagName { get; set; }
-        
 
         T1 GetValue<T1>();
         void SetValue<T1>(T1 value);
@@ -35,15 +34,15 @@ namespace SimpleProgram.Lib.Tag
         Type GenericType { get; }
         DateTime TimeStamp { get; }
         
-        TagChannelOpcUaClient ChannelOpcUaClient { get; }
-        TagChannelModbusTcpClient ChannelModbusTcpClient { get; }
+        TagChannelOpcUaClient TagChannelOpcUaClient { get; }
+        TagChannelModbusTcpClient TagChannelModbusTcpClient { get; }
     }
 
     public interface ITag<T> : ITag
     {
         T Value { get; set; }
 
-        ITag<TNew> ConvertTo<TNew>() where TNew : IConvertible;
+        ITag<TNew> ConvertTo<TNew>() where TNew : IConvertible, IComparable;
     }
         
 }

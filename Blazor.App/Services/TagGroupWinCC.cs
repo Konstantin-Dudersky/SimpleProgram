@@ -16,12 +16,12 @@ namespace Blazor.App.Services
     {
         public Tag<double> testReal = new Tag<double>
         {
-            ChannelOpcUaClient = new TagChannelOpcUaClient(Data.OpcWinCC, @"ns=1;s=v|Data_log_1\testReal", 1000, true)
+            TagChannelOpcUaClient = new TagChannelOpcUaClient(Data.OpcWinCC, @"ns=1;s=v|Data_log_1\testReal", 1000, true)
         };
         
         public Tag<double> testInt = new Tag<double>
         {
-            ChannelOpcUaClient = new TagChannelOpcUaClient(Data.OpcWinCC, @"ns=1;s=v|Data_log_1\testInt", 1000, true)
+            TagChannelOpcUaClient = new TagChannelOpcUaClient(Data.OpcWinCC, @"ns=1;s=v|Data_log_1\testInt", 1000, true)
         };
     }
 }

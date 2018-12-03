@@ -19,10 +19,10 @@ namespace Blazor.App.Services
     {
         public Tag<int> register0 = new Tag<int>
         {
-            ChannelModbusTcpClient = new TagChannelModbusTcpClient(Data.ModbusTcpClient, 0, 1000),
-            Messages = new Dictionary<string, Message>
+            TagChannelModbusTcpClient = new TagChannelModbusTcpClient(Data.ModbusTcpClient, 0, 1000),
+            Messages = new Dictionary<string, Message<int>>
             {
-                ["123"] = new MessageLimitMonitor("Лимит достигнут", MessageLimitMonitorType.GreateThen, 100, 5)
+                ["123"] = new MessageLimitMonitor<int>("Лимит достигнут", MessageLimitMonitorType.GreaterThen, 100, 5)
                 {
                     MsgChannelTelegram = new MsgChannelTelegram(Data.TelegramClient, "@saria_channel")
                 }
@@ -31,12 +31,12 @@ namespace Blazor.App.Services
 
         public Tag<int> register1 = new Tag<int>
         {
-            ChannelModbusTcpClient = new TagChannelModbusTcpClient(Data.ModbusTcpClient, 1, 5000),
+            TagChannelModbusTcpClient = new TagChannelModbusTcpClient(Data.ModbusTcpClient, 1, 5000),
         };
 
         public TgModbus()
         {
-            Console.WriteLine(register0.Messages["123"].Isactive);
+            Console.WriteLine(register0.Messages["123"].IsActive);
         }
 
     }

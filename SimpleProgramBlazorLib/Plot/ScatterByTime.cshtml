@@ -33,6 +33,10 @@
     // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
     private int SimplifyTime { get; set; } = 3600;
 
+    [Parameter]
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+    private string PlotLyType { get; set; } = PlotlyTypes.scatter;
+
     [CascadingParameter]
     // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private CascadingValueClassBase CascadingValue { get; set; }
@@ -75,6 +79,7 @@
 
         plotLy.LastData.x = ts.Times;
         plotLy.LastData.y = ts.Values;
+        plotLy.LastData.type = PlotLyType;
 
         plotLy.layout.showlegend = false;
         plotLy.layout.margin.l = 60;

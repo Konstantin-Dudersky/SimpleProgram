@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
@@ -18,26 +19,31 @@ namespace Blazor.App.Services
     public class Data : DataBase
     {
         public static readonly Database<MasterScadaDb> MsDatabase = new Database<MasterScadaDb>(Providers.PostgreSql,
-            "Host=localhost;Database=energy;Username=postgres;Password=123")
+            Config["MasterScadaDb"])
         {
             ArchiveName = "Архив MasterScada"
         };
 
         public static readonly OpcUaClient OpcClient =
-            new OpcUaClient("Test OPC UA channel", "opc.tcp://localhost:48010", false);
+            new OpcUaClient("Test OPC UA channel", "opc.tcp://localhost:48010", false, disabled: true);
 
         public static readonly OpcUaClient OpcWinCC =
             new OpcUaClient("WinCC OPC UA channel", "opc.tcp://VirtualWin7:4861", false, disabled: true);
 
-        public static readonly ModbusTcpClient ModbusTcpClient = new ModbusTcpClient("127.0.0.1", 502, 0);
+        public static readonly ModbusTcpClient ModbusTcpClient =
+            new ModbusTcpClient("127.0.0.1", 502, 0, disabled: false);
 
         public static readonly TelegramClient TelegramClient =
-            new TelegramClient("611768794:AAE1RZMstPcBkrjIZq2h2pzwgK8qAKMR-yU");
+            new TelegramClient("Рассылка сообщений в Telegram", "611768794:AAE1RZMstPcBkrjIZq2h2pzwgK8qAKMR-yU");
+        
+        public static readonly TelegramClient SimpleProgramTelegramClient = 
+            new TelegramClient("Тестовый бот Telegram", "712777006:AAFaGZCCjGa_PH4vq37KxOAPytNO0cF1DlY");
 
         public readonly TGEnergy TGEnergy;
         public readonly TGOpcItems TGOpcItems;
         public readonly TagGroupWinCC TagGroupWinCc;
         public readonly TgModbus TgModbus = new TgModbus();
+        public readonly TgTelegram TgTelegram = new TgTelegram();
 
 
         public Data() : base(500)
@@ -54,7 +60,6 @@ namespace Blazor.App.Services
             {
                 Name = "WinCC OPC UA"
             };
-
 
             // находим ссылки на архивы
             InitTagDict();

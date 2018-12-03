@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using Microsoft.Extensions.Configuration;
 using SimpleProgram.Lib.Tag;
 
 namespace SimpleProgram.Lib
@@ -10,6 +11,13 @@ namespace SimpleProgram.Lib
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         private Timer RefreshTimer { get; }
         public readonly SortedDictionary<string, ITag> TagDict = new SortedDictionary<string, ITag>();
+
+        /// <summary>
+        /// Опциональный файл конфигурации appsettings.local.json
+        /// </summary>
+        protected static readonly IConfiguration Config = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.local.json", true, true)
+            .Build();
 
         protected DataBase(int refreshTime = 5000)
         {
