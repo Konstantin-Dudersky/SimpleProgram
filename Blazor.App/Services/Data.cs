@@ -25,13 +25,13 @@ namespace Blazor.App.Services
         };
 
         public static readonly OpcUaClient OpcClient =
-            new OpcUaClient("Test OPC UA channel", "opc.tcp://localhost:48010", false, disabled: true);
+            new OpcUaClient("Test OPC UA channel", "opc.tcp://192.168.100.12:48010", disabled: false);
 
         public static readonly OpcUaClient OpcWinCC =
-            new OpcUaClient("WinCC OPC UA channel", "opc.tcp://VirtualWin7:4861", false, disabled: true);
+            new OpcUaClient("WinCC OPC UA channel", "opc.tcp://VirtualWin7:4861", disabled: true);
 
         public static readonly ModbusTcpClient ModbusTcpClient =
-            new ModbusTcpClient("127.0.0.1", 502, 0, disabled: false);
+            new ModbusTcpClient("127.0.0.1", 502, 0, disabled: true);
 
         public static readonly TelegramClient TelegramClient =
             new TelegramClient("Рассылка сообщений в Telegram", "611768794:AAE1RZMstPcBkrjIZq2h2pzwgK8qAKMR-yU");

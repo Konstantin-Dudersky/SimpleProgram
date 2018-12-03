@@ -26,7 +26,6 @@ namespace SimpleProgram.Lib.OpcUa
     public class OpcUaClient : SimpleProgramChannelBase
     {
         private const int ReconnectPeriod = 10;
-        private static bool _autoAccept;
         private readonly string _endpointUrl;
 
         private readonly List<MonitoredItem> _monitoredItems = new List<MonitoredItem>();
@@ -35,11 +34,10 @@ namespace SimpleProgram.Lib.OpcUa
         internal Session Session { get; private set; }
 
 
-        public OpcUaClient(string channelName, string endpointUrl, bool autoAccept, bool disabled = false) 
+        public OpcUaClient(string channelName, string endpointUrl, bool disabled = false) 
             : base(channelName)
         {
             _endpointUrl = endpointUrl;
-            _autoAccept = autoAccept;
             _timer = new Timer(obj => Run(), null, 0, ReconnectPeriod * 1000);
             if (disabled) _timer.Dispose();
         }
@@ -75,7 +73,7 @@ namespace SimpleProgram.Lib.OpcUa
             };
 
             // load the application configuration.
-            var config = await application.LoadApplicationConfiguration(false);
+            var config = await application.LoadApplicationConfiguration("OpcUaClient.Config.xml", false);
 
             // check the application certificate.
             var haveAppCertificate = await application.CheckApplicationInstanceCertificate(false, 0);
@@ -84,7 +82,6 @@ namespace SimpleProgram.Lib.OpcUa
             config.ApplicationUri =
                 Utils.GetApplicationUriFromCertificate(config.SecurityConfiguration.ApplicationCertificate
                     .Certificate);
-            if (config.SecurityConfiguration.AutoAcceptUntrustedCertificates) _autoAccept = true;
             config.CertificateValidator.CertificateValidation += CertificateValidator_CertificateValidation;
 
             Logger.Info("2 - Discover endpoints of {0}.", _endpointUrl);
@@ -201,9 +198,8 @@ namespace SimpleProgram.Lib.OpcUa
             CertificateValidationEventArgs e)
         {
             if (e.Error.StatusCode != StatusCodes.BadCertificateUntrusted) return;
-            e.Accept = _autoAccept;
-            Console.WriteLine(_autoAccept ? "Accepted Certificate: {0}" : "Rejected Certificate: {0}",
-                e.Certificate.Subject);
+            e.Accept = true;
+            Console.WriteLine("Accepted Certificate: {0}", e.Certificate.Subject);
         }
 
         public void AddMonitoredItem(TagChannelOpcUaClient client, string nodeId, int samplingInterval,
