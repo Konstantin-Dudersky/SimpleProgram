@@ -1,0 +1,50 @@
+@using Microsoft.JSInterop
+<div style=@Style>
+    <svg id="@_id" x="0px" y="0px"
+         viewBox="0 0 43.984 43.986" enable-background="new 0 0 43.984 43.986" xml:space="preserve">
+        <style type="text/css">
+            @_id .color,
+            #@_id .stroked {
+                stroke-width: 1;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke: #000000;
+            }
+
+            #@_id .color { fill: @FillColor; }
+
+            #@_id .stroked { fill: none; }
+        </style>
+
+        <circle class="color" cx="21.992" cy="21.992" r="20.576"/>
+
+        <g class="stroked">
+            <line x1="5.592" y1="34.418" x2="10.964" y2="4.709"/>
+            <line x1="38.403" y1="34.405" x2="33.349" y2="4.709"/>
+        </g>
+    </svg>
+</div>
+
+@functions
+{
+    [Parameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
+    private string Style { get; set; }
+
+    [Parameter]
+    private string FillColor { get; set; } = "tomato";
+
+    private string _id;
+
+    protected override void OnInit()
+    {
+        _id = "svg-gauge-" + new Random().Next();
+    }
+    
+    protected override async Task OnAfterRenderAsync()
+    {
+    // баг https://github.com/aspnet/Blazor/issues/1571
+    // после починки удалить
+        await JSRuntime.Current.InvokeAsync<bool>("jquery.setAttribute", $"#{_id}", "viewBox", "0 0 43.984 43.986");
+    }
+}

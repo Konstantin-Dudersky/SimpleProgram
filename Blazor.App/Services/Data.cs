@@ -25,7 +25,7 @@ namespace Blazor.App.Services
         };
 
         public static readonly OpcUaClient OpcClient =
-            new OpcUaClient("Test OPC UA channel", "opc.tcp://192.168.100.12:48010", disabled: false);
+            new OpcUaClient("Test OPC UA channel", "opc.tcp://192.168.100.12:48010", disabled: true);
 
         public static readonly OpcUaClient OpcWinCC =
             new OpcUaClient("WinCC OPC UA channel", "opc.tcp://VirtualWin7:4861", disabled: true);

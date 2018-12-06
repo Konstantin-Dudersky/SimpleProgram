@@ -5,44 +5,104 @@
 @inject Data Data
 
 <div class="grid-x grid-padding-x grid-padding-y">
+    
     <div class="cell small-12 medium-6 large-4" style="height: 400px;">
         <Widget Header="Температура наружного воздуха">
-
             <div class="page1">
                 <ScatterByTime
-                    Tag="@Data.TGEnergy.temperature"/>
+                    Tag="@Data.TGEnergy.temperature"
+                    SimplifyType="@SimplifyType.Average"
+                    SimplifyTime="86400"/>
             </div>
-
         </Widget>
     </div>
 
-
     <div class="cell small-12 medium-6 large-4" style="height: 400px;">
-
-        <Widget Header="Распределение Э/Э">
-
-            <div class="page1">
-                <SankeyComponent
-                    SankeyFunc="@BuildSankey"/>
-            </div>
-
-        </Widget>
-
-    </div>
-
-    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
-        <Widget Header="Потребление машзала">
-
+        <Widget Header="Чиллер 1">
             <div class="page1">
                 <ScatterByTime
-                    Tag="@Data.TGEnergy.MachineHall"
+                    Tag="@Data.TGEnergy.chiller1"
                     PlotLyType="@PlotlyTypes.bar"
-                    SimplifyTime="86400"
-                    />
+                    SimplifyTime="86400"/>
             </div>
-
         </Widget>
+    </div>
 
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <Widget Header="Чиллер 2">
+            <div class="page1">
+                <ScatterByTime
+                    Tag="@Data.TGEnergy.chiller2"
+                    PlotLyType="@PlotlyTypes.bar"
+                    SimplifyTime="86400"/>
+            </div>
+        </Widget>
+    </div>
+
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <Widget Header="Чиллер 3">
+            <div class="page1">
+                <ScatterByTime
+                    Tag="@Data.TGEnergy.chiller3"
+                    PlotLyType="@PlotlyTypes.bar"
+                    SimplifyTime="86400"/>
+            </div>
+        </Widget>
+    </div>
+
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <Widget Header="Гидромодуль 1">
+            <div class="page1">
+                <ScatterByTime
+                    Tag="@Data.TGEnergy.hydro1"
+                    PlotLyType="@PlotlyTypes.bar"
+                    SimplifyTime="86400"/>
+            </div>
+        </Widget>
+    </div>
+
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <Widget Header="Гидромодуль 2">
+            <div class="page1">
+                <ScatterByTime
+                    Tag="@Data.TGEnergy.hydro2"
+                    PlotLyType="@PlotlyTypes.bar"
+                    SimplifyTime="86400"/>
+            </div>
+        </Widget>
+    </div>
+
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <Widget Header="Гидромодуль 3">
+            <div class="page1">
+                <ScatterByTime
+                    Tag="@Data.TGEnergy.hydro3"
+                    PlotLyType="@PlotlyTypes.bar"
+                    SimplifyTime="86400"/>
+            </div>
+        </Widget>
+    </div>
+    
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <Widget Header="Чиллеры">
+            <div class="page1">
+                <ScatterByTime
+                    Tag="@Data.TGEnergy.chillers"
+                    PlotLyType="@PlotlyTypes.bar"
+                    SimplifyTime="86400"/>
+            </div>
+        </Widget>
+    </div>
+    
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <Widget Header="Гидромодули">
+            <div class="page1">
+                <ScatterByTime
+                    Tag="@Data.TGEnergy.hydros"
+                    PlotLyType="@PlotlyTypes.bar"
+                    SimplifyTime="86400"/>
+            </div>
+        </Widget>
     </div>
 
 </div>

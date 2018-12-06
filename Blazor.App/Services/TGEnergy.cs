@@ -334,14 +334,14 @@ namespace Blazor.App.Services
         
         public Tag<double> UPS_MDB_A__QF4_2 = new Tag<double>
         {
-            TagName = "РЩБП-А, QF4.1, Гидромодуль №2",
+            TagName = "РЩБП-А, QF4.2, Гидромодуль №2",
             TagChannelDatabase = new TagChannelDatabase(Data.MsDatabase, 
                 "Энергоменеджмент.Счетчики.Модуль 1, UPS-MDB-A, QF4_2, PAC")
         };
         
         public Tag<double> UPS_MDB_A__QF4_3 = new Tag<double>
         {
-            TagName = "РЩБП-А, QF4.1, Гидромодуль №3",
+            TagName = "РЩБП-А, QF4.3, Гидромодуль №3",
             TagChannelDatabase = new TagChannelDatabase(Data.MsDatabase, 
                 "Энергоменеджмент.Счетчики.Модуль 1, UPS-MDB-A, QF4_3, PAC")
         };
@@ -485,6 +485,32 @@ namespace Blazor.App.Services
         {
             TagName = "Модуль 1, чиллер 3"
         };
+        
+        public Tag<double> chillers = new Tag<double>
+        {
+            TagName = "Модуль 1, чиллеры"
+        };
+        
+        public Tag<double> hydro1 = new Tag<double>
+        {
+            TagName = "Модуль 1, гидромодуль 1"
+        };
+        
+        public Tag<double> hydro2 = new Tag<double>
+        {
+            TagName = "Модуль 1, гидромодуль 2"
+        };
+        
+        public Tag<double> hydro3 = new Tag<double>
+        {
+            TagName = "Модуль 1, гидромодуль 3"
+        };
+        
+        public Tag<double> hydros = new Tag<double>
+        {
+            TagName = "Модуль 1, гидромодули"
+        };
+
 
         public Tag<double> PUE = new Tag<double>
         {
@@ -519,6 +545,38 @@ namespace Blazor.App.Services
                 "[Tag1] + [Tag2]",
                 MDB_A__QF2_3, SimplifyType.Increment,
                 MDB_B__QF2_3, SimplifyType.Increment
+            );
+            
+            chillers.ConfDerivedFromTags(
+                "[Tag1] + [Tag2] + [Tag3]",
+                chiller1, SimplifyType.Increment,
+                chiller2, SimplifyType.Increment,
+                chiller3, SimplifyType.Increment
+            );
+            
+            hydro1.ConfDerivedFromTags(
+                "[Tag1] + [Tag2]",
+                MDB_B__QF2_4, SimplifyType.Increment,
+                UPS_MDB_A__QF4_1, SimplifyType.Increment
+            );
+            
+            hydro2.ConfDerivedFromTags(
+                "[Tag1] + [Tag2]",
+                MDB_B__QF2_5, SimplifyType.Increment,
+                UPS_MDB_A__QF4_2, SimplifyType.Increment
+            );
+            
+            hydro3.ConfDerivedFromTags(
+                "[Tag1] + [Tag2]",
+                MDB_B__QF2_6, SimplifyType.Increment,
+                UPS_MDB_A__QF4_3, SimplifyType.Increment
+            );
+            
+            hydros.ConfDerivedFromTags(
+                "[Tag1] + [Tag2] + [Tag3]",
+                hydro1, SimplifyType.Increment,
+                hydro2, SimplifyType.Increment,
+                hydro3, SimplifyType.Increment
             );
             
             PUE.ConfDerivedFromTags(

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +31,7 @@ namespace SimpleProgram.Lib.Archives
         /// <summary>
         ///     Разница в секундах между последовательными метками времени
         /// </summary>
-        public int? PeriodInSeconds => 
+        public int? PeriodInSeconds =>
             Count >= 2 ? (int?) (TimeValues.ElementAt(1).Key - TimeValues.ElementAt(0).Key).TotalSeconds : null;
 
         /// <summary>
@@ -100,43 +100,55 @@ namespace SimpleProgram.Lib.Archives
             ts.AddTimes(ts2.Times);
 
             foreach (var time in ts.Times.ToList())
-                if (ts1[time] == null || ts2[time] == null)
-                {
-                    ts[time] = null;
-                }
-                else
-                {
-                    var value = func(ts1[time], ts2[time]);
+            {
+                var value = func(ts1[time], ts2[time]);
 
-                    if (value != null && (double.IsNaN((double) value) || double.IsInfinity((double) value)))
-                        ts[time] = null;
-                    else
-                        ts[time] = value;
-                }
+                if (value != null && (double.IsNaN((double) value) || double.IsInfinity((double) value)))
+                    ts[time] = null;
+                else
+                    ts[time] = value;
+            }
 
             return ts;
         }
 
         public static TimeSeries operator +(TimeSeries ts1, TimeSeries ts2)
         {
-            return Operation(ts1, ts2, (x1, x2) => x1 + x2);
+            return Operation(ts1, ts2, (x1, x2) =>
+            {
+                if (x1 == null && x2 == null)
+                    return null;
+                return (x1 ?? 0) + (x2 ?? 0);
+            });
         }
 
         public static TimeSeries operator -(TimeSeries ts1, TimeSeries ts2)
         {
-            return Operation(ts1, ts2, (x1, x2) => x1 - x2);
+            return Operation(ts1, ts2, (x1, x2) =>
+                {
+                    if (x1 == null && x2 == null)
+                        return null;
+                    return (x1 ?? 0) - (x2 ?? 0);
+                }
+            );
         }
 
         public static TimeSeries operator *(TimeSeries ts1, TimeSeries ts2)
         {
-            return Operation(ts1, ts2, (x1, x2) => x1 * x2);
+            return Operation(ts1, ts2, (x1, x2) =>
+                {
+                    if (x1 == null && x2 == null)
+                        return null;
+                    return (x1 ?? 1) * (x2 ?? 1);
+                }
+            );
         }
-        
+
         public static TimeSeries operator *(double coef, TimeSeries ts)
         {
             var tsNew = new TimeSeries();
             tsNew.AddTimes(ts.Times);
-            
+
             foreach (var time in ts.Times)
             {
                 tsNew[time] = ts[time] * coef;
@@ -144,7 +156,7 @@ namespace SimpleProgram.Lib.Archives
 
             return tsNew;
         }
-        
+
         public static TimeSeries operator *(TimeSeries ts, double coef)
         {
             return coef * ts;
@@ -152,17 +164,23 @@ namespace SimpleProgram.Lib.Archives
 
         public static TimeSeries operator *(int coef, TimeSeries ts)
         {
-            return (double)coef * ts;
+            return (double) coef * ts;
         }
-        
+
         public static TimeSeries operator *(TimeSeries ts, int coef)
         {
-            return (double)coef * ts;
+            return (double) coef * ts;
         }
 
         public static TimeSeries operator /(TimeSeries ts1, TimeSeries ts2)
         {
-            return Operation(ts1, ts2, (x1, x2) => x1 / x2);
+            return Operation(ts1, ts2, (x1, x2) =>
+                {
+                    if (x1 == null && x2 == null)
+                        return null;
+                    return (x1 ?? 0) / (x2 ?? 1);
+                }
+            );
         }
 
         #endregion
@@ -188,7 +206,8 @@ namespace SimpleProgram.Lib.Archives
         public static TimeSeries Simplify(this TimeSeries ts, SimplifyType simplifyType, int seconds)
         {
             if (simplifyType == SimplifyType.None) return ts;
-            
+            if (ts.Count == 0) return ts;
+
             var dict = GetDateTimeRange(ts.TimeBegin, ts.TimeEnd, seconds);
 
             var j = 1;
@@ -207,7 +226,7 @@ namespace SimpleProgram.Lib.Archives
                 case SimplifyType.None:
                     newTs = ts;
                     break;
-                
+
                 case SimplifyType.Increment:
                     // начальные значения
                     foreach (var d in dict)
@@ -219,14 +238,14 @@ namespace SimpleProgram.Lib.Archives
                         else if (newTs[i - 1] != null)
                             newTs[i - 1] = newTs[i] - newTs[i - 1];
                     newTs.RemoveLast();
-                    
+
                     break;
 
                 case SimplifyType.Average:
                     foreach (var d in dict)
                         newTs.Add(d.Key, d.Value.Average());
                     newTs.RemoveLast();
-                    
+
                     break;
 
                 case SimplifyType.Max:
@@ -234,17 +253,21 @@ namespace SimpleProgram.Lib.Archives
                         newTs.Add(d.Key, d.Value.Max());
                     newTs.RemoveLast();
                     break;
-                
+
                 case SimplifyType.Min:
                     foreach (var d in dict)
                         newTs.Add(d.Key, d.Value.Min());
                     newTs.RemoveLast();
                     break;
-                
+
+                case SimplifyType.Last:
+                    break;
+                case SimplifyType.First:
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(simplifyType), simplifyType, null);
             }
-            
+
             return newTs;
         }
 
@@ -253,14 +276,14 @@ namespace SimpleProgram.Lib.Archives
             if (ts.Count <= 0)
                 return new TimeSeries();
 
-            while (true)
+            while (true && ts.Count > 0)
                 if (ts[0] == null)
                     ts.RemoveFirst();
                 else
                     break;
 
-            while (true)
-                if(ts[ts.Count - 1] == null)
+            while (true && ts.Count > 0)
+                if (ts[ts.Count - 1] == null)
                     ts.RemoveLast();
                 else
                     break;
@@ -330,7 +353,7 @@ namespace SimpleProgram.Lib.Archives
             }
 
             var x = new List<DateTime>();
-            
+
             if (ts.PeriodInSeconds == null)
                 throw new Exception("Значение PeriodInSeconds класса TimeSeries не определено");
             var seconds = (int) ts.PeriodInSeconds;

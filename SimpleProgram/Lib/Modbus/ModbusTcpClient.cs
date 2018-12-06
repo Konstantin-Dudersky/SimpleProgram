@@ -2,11 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Threading;
+using NLog.Config;
 using NModbus;
+using SimpleProgram.Lib.OpcUa;
 
 namespace SimpleProgram.Lib.Modbus
 {
-    public class ModbusTcpClient
+    public class ModbusTcpClient : SimpleProgramChannelBase
     {
         private const int ReconnectPeriod = 5000;
         private const int MinSamplingInterval = 1000;
@@ -28,7 +30,8 @@ namespace SimpleProgram.Lib.Modbus
 
         private bool _connected;
 
-        public ModbusTcpClient(string ip, int port, byte slaveAddress, bool disabled = false)
+        public ModbusTcpClient(string ip, int port, byte slaveAddress, bool disabled = false) 
+            : base("Modbus TCP client")
         {
             _ip = ip;
             _port = port;
@@ -56,7 +59,7 @@ namespace SimpleProgram.Lib.Modbus
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Logger.Error(e, "Не удалось подключиться к Modbus TCP серверу");
                 
                 if (_connected) SetConnected(false);
             }
@@ -68,6 +71,7 @@ namespace SimpleProgram.Lib.Modbus
             {
                 _connected = true;
                 _timerReconnect.Change(Timeout.Infinite, Timeout.Infinite);
+                Logger.Info("Подключение к Modbus TCP серверу создано");
             }
             else
             {

@@ -1,3 +1,4 @@
+using System.Net;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -16,6 +17,10 @@ namespace Blazor.Server
                 .UseConfiguration(new ConfigurationBuilder()
                     .AddCommandLine(args)
                     .Build())
+                /*.UseKestrel(options =>
+                {
+                    options.Listen(IPAddress.Any, 5000);
+                })*/
                 .UseStartup<Startup>()
                 .Build();
     }

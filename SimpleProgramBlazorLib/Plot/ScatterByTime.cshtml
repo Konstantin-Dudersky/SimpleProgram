@@ -27,7 +27,7 @@
     
     [Parameter]
     // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
-    private SimplifyType TagSimplifyType { get; set; } = SimplifyType.None;
+    private SimplifyType SimplifyType { get; set; } = SimplifyType.None;
     
     [Parameter]
     // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
@@ -75,7 +75,7 @@
         plotLy.AddData();
 
         var ts = (await Tag.GetArchiveTimeSeriesAsync(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End,
-            TagSimplifyType, SimplifyTime)).Trim();
+            SimplifyType, SimplifyTime)).Trim();
 
         plotLy.LastData.x = ts.Times;
         plotLy.LastData.y = ts.Values;
