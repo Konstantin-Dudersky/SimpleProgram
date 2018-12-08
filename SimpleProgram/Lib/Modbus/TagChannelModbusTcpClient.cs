@@ -5,13 +5,13 @@ namespace SimpleProgram.Lib.Modbus
 {
     public class TagChannelModbusTcpClient
     {
-        private readonly ModbusTcpClient _client;
+        public ModbusTcpClient Client { get; }
         private readonly ushort _startAddress;
         private readonly int _samplingInterval;
 
         public TagChannelModbusTcpClient(ModbusTcpClient client, ushort startAddress, int samplingInterval)
         {
-            _client = client;
+            Client = client;
             _startAddress = startAddress;
             _samplingInterval = samplingInterval;
             

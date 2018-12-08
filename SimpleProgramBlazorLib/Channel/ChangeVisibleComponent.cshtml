@@ -1,0 +1,30 @@
+<div class="@(IsVisible ? "" : "hide")" style="height: 100%;">
+    @ChildContent
+</div>
+
+@functions
+{
+
+    [Parameter]
+    private RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
+    private bool IsVisible { get; set; }
+
+    private bool _hide = true;
+
+    protected override bool ShouldRender()
+    {
+        if (IsVisible)
+        {
+            _hide = false;
+            return true;
+        }
+        if (_hide) return false;
+        _hide = true;
+
+        return true;
+    }
+
+}

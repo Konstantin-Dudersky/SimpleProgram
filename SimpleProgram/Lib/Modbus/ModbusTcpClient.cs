@@ -30,8 +30,8 @@ namespace SimpleProgram.Lib.Modbus
 
         private bool _connected;
 
-        public ModbusTcpClient(string ip, int port, byte slaveAddress, bool disabled = false) 
-            : base("Modbus TCP client")
+        public ModbusTcpClient(string channelName, string ip, int port, byte slaveAddress, bool disabled = false) 
+            : base(channelName, disabled)
         {
             _ip = ip;
             _port = port;

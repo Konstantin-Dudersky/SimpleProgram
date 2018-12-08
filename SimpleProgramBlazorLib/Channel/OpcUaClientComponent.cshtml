@@ -1,0 +1,217 @@
+@using System.IO
+@using Microsoft.JSInterop
+@using SimpleProgram.Lib
+@using SimpleProgram.Lib.OpcUa
+@using SimpleProgram.Lib.Tag
+
+<div class="card grid-y" style="height: 100%;">
+    <div class="cell shrink card-divider">
+        <h6 class="text-center" style="width: 100%">@Client.ChannelName</h6>
+    </div>
+
+    <ul class="tabs" data-tabs id="@("tabs_" + _id)">
+        <li class="tabs-title is-active">
+            <a data-tabs-target="@("panel1_" + _id)">О канале</a>
+        </li>
+        <li class="tabs-title">
+            <a data-tabs-target="@("panel2_" + _id)">Теги</a>
+        </li>
+        <li class="tabs-title">
+            <a data-tabs-target="@("panel3_" + _id)" onmouseup="@Read">Лог</a>
+        </li>
+    </ul>
+
+    <div class="tabs-content" data-tabs-content="@("tabs_" + _id)" style="height: 95%;">
+
+        <div class="tabs-panel is-active" id="@("panel1_" + _id)">
+
+            <table class="hover">
+                <thead>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        Канал активирован в конфигурации?
+                    </td>
+                    <td>
+                        @if (Client.IsDisabled)
+                        {
+                            <span class="label warning">Дективирован</span>
+                        }
+                        else
+                        {
+                            <span class="label success">Активирован</span>
+                        }
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Канал подключен?
+                    </td>
+                    <td>
+                        @if (Client.IsConnected)
+                        {
+                            <span class="label success">Подключен</span>
+                        }
+                        else
+                        {
+                            <span class="label @(Client.IsDisabled ? "secondary" : "alert")">Не подключен</span>
+                        }
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Последнее подключение
+                    </td>
+
+                    <td>
+                        @Client.Session?.LastKeepAliveTime.ToLocalTime().ToString("yyyy-MM-dd HH:mm")
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        URL
+                    </td>
+                    <td>
+                        @Client.EndpointUrl
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Количество контролируемых параметров
+                    </td>
+
+                    <td>
+                        @Client.Session?.SubscriptionCount
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Identity.DisplayName</td>
+                    <td>@Client.Session?.Identity.DisplayName</td>
+                </tr>
+
+                <tr>
+                    <td>Identity.PolicyId</td>
+                    <td>@Client.Session?.Identity.PolicyId</td>
+                </tr>
+
+                <tr>
+                    <td>Identity.SupportsSignatures</td>
+                    <td>@Client.Session?.Identity.SupportsSignatures</td>
+                </tr>
+
+                <tr>
+                    <td>Identity.TokenType</td>
+                    <td>@Client.Session?.Identity.TokenType</td>
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="tabs-panel" id="@("panel2_" + _id)">
+
+            <table class="hover">
+                <thead>
+                <tr>
+                    <th>
+                        Имя тега
+                    </th>
+                    <th>
+                        ID тега
+                    </th>
+                    <th>
+                        NodeId
+                    </th>
+                    <th>
+                        Период, мс
+                    </th>
+                    <th>
+                        Historizing
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var tag in TagDict.Values)
+                {
+                    if (tag.TagChannelOpcUaClient?.Client == Client)
+                    {
+                        <tr>
+                            <td>
+                                @tag.TagName
+                            </td>
+                            <td>
+                                @tag.TagId
+                            </td>
+                            <td>
+                                @tag.TagChannelOpcUaClient?.NodeId
+                            </td>
+                            <td>
+                                @tag.TagChannelOpcUaClient?.SamplingInterval
+                            </td>
+                            <td>
+                                @tag.TagChannelOpcUaClient?.Historizing
+                            </td>
+                        </tr>
+                    }
+                }
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="tabs-panel" id="@("panel3_" + _id)" style="height: 95%">
+            <textarea style="height: 100%; resize: none; font-size: 1rem;" placeholder="None">@_log</textarea>
+        </div>
+    </div>
+</div>
+
+
+@functions
+{
+
+    [Parameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
+    private OpcUaClient Client { get; set; }
+
+    [Parameter]
+    private SortedDictionary<string, ITag> TagDict { get; set; }
+
+    private string _log;
+
+    private bool _rendered;
+
+    private int _id;
+
+    protected override void OnInit()
+    {
+        _id = new Random().Next();
+    }
+
+    protected override async Task OnAfterRenderAsync()
+    {
+        if (_rendered) return;
+        _rendered = await JSRuntime.Current.InvokeAsync<bool>("global.foundationIdInit", $"#tabs_{_id}");
+    }
+
+    private void Read()
+    {
+        try
+        {
+            var fileName = $"logs/{Client.ChannelName}/{Client.ChannelName}.log";
+            _log = File.ReadAllText(fileName);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+}

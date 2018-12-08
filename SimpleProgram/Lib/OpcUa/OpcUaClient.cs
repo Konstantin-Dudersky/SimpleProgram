@@ -26,18 +26,17 @@ namespace SimpleProgram.Lib.OpcUa
     public class OpcUaClient : SimpleProgramChannelBase
     {
         private const int ReconnectPeriod = 10;
-        private readonly string _endpointUrl;
+        public string EndpointUrl { get; }
 
         private readonly List<MonitoredItem> _monitoredItems = new List<MonitoredItem>();
         private readonly Timer _timer;
         private SessionReconnectHandler _reconnectHandler;
-        internal Session Session { get; private set; }
-
+        public Session Session { get; private set; }
 
         public OpcUaClient(string channelName, string endpointUrl, bool disabled = false) 
-            : base(channelName)
+            : base(channelName, disabled)
         {
-            _endpointUrl = endpointUrl;
+            EndpointUrl = endpointUrl;
             _timer = new Timer(obj => Run(), null, 0, ReconnectPeriod * 1000);
             if (disabled) _timer.Dispose();
         }
@@ -84,9 +83,9 @@ namespace SimpleProgram.Lib.OpcUa
                     .Certificate);
             config.CertificateValidator.CertificateValidation += CertificateValidator_CertificateValidation;
 
-            Logger.Info("2 - Discover endpoints of {0}.", _endpointUrl);
+            Logger.Info("2 - Discover endpoints of {0}.", EndpointUrl);
             ExitCode = ExitCode.ErrorDiscoverEndpoints;
-            var selectedEndpoint = CoreClientUtils.SelectEndpoint(_endpointUrl, true, 15000);
+            var selectedEndpoint = CoreClientUtils.SelectEndpoint(EndpointUrl, true, 15000);
             Logger.Info("    Selected endpoint uses: {0}",
                 selectedEndpoint.SecurityPolicyUri.Substring(selectedEndpoint.SecurityPolicyUri.LastIndexOf('#') + 1));
 
@@ -96,7 +95,7 @@ namespace SimpleProgram.Lib.OpcUa
             var endpoint = new ConfiguredEndpoint(null, selectedEndpoint, endpointConfiguration);
             Session = await Session.Create(config, endpoint, false, "OPC UA Console Client", 60000,
                 new UserIdentity(new AnonymousIdentityToken()), null);
-
+            
             // register keep alive handler
             Session.KeepAlive += Client_KeepAlive;
 
@@ -168,6 +167,8 @@ namespace SimpleProgram.Lib.OpcUa
 
             ExitCode = ExitCode.ErrorRunning;
 
+            IsConnected = true;
+            
             _timer.Dispose();
         }
 
@@ -175,6 +176,8 @@ namespace SimpleProgram.Lib.OpcUa
         {
             if (e.Status == null || !ServiceResult.IsNotGood(e.Status)) return;
             Logger.Info("{0} {1}/{2}", e.Status, sender.OutstandingRequestCount, sender.DefunctRequestCount);
+            
+            IsConnected = false;
 
             if (_reconnectHandler != null) return;
             Logger.Info("--- RECONNECTING ---");

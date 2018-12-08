@@ -1,17 +1,20 @@
 ﻿@using Blazor.App.Services
 @inherits BlazorLayoutComponent
 
+@inject Data Data
+
 @*<style>
     .cell { border: 1px solid red; }
 </style>*@
 
 <div class="grid-y grid-frame">
+
     <div class="cell">
         <div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
             <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
             <div class="title-bar-title">Menu</div>
         </div>
-        
+
         <div class="top-bar" id="responsive-menu">
             <div class="top-bar-left">
                 <ul class="dropdown menu" data-dropdown-menu>
@@ -45,28 +48,29 @@
                     <li>
                         <NavLink href="telegram">Telegram</NavLink>
                     </li>
-                </ul>
-            </div>
-            
-            <div class="top-bar-right">
-                <ul class="menu">
                     <li>
-                        <DateTimeRangeComponent 
-                            DateTimeRange="@_cascadingValue.DateTimeRange"
-                        />
+                        <NavLink href="channels">Коммуникация</NavLink>
                     </li>
                 </ul>
             </div>
-            
+
+            <div class="top-bar-right">
+                <ul class="menu">
+                    <li>
+                        <DateTimeRangeComponent
+                            DateTimeRange="@_cascadingValue.DateTimeRange"/>
+                    </li>
+                </ul>
+            </div>
+
         </div>
-        
+
     </div>
-    
-    
+
     <div class="cell auto cell-block-container">
         <div class="grid-y" style="height: 100%;">
             <div class="cell auto cell-block">
-                
+
                 <CascadingValue Value="@_cascadingValue">
 
                     @Body
@@ -76,21 +80,18 @@
             </div>
         </div>
     </div>
-        
-        
-    
+
 </div>
-
-
 
 @functions{
 
     private bool _rendered;
 
-    private readonly CascadingValueClass _cascadingValue = new CascadingValueClass();
+    private CascadingValueClass _cascadingValue;
 
     protected override void OnInit()
     {
+        _cascadingValue = new CascadingValueClass(Data.TagDict);
         _cascadingValue.DateTimeRange.Refresh += StateHasChanged;
     }
 

@@ -16,6 +16,28 @@
             </div>
         </Widget>
     </div>
+    
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <Widget Header="Чиллеры">
+            <div class="page1">
+                <ScatterByTime
+                    Tag="@Data.TGEnergy.chillers"
+                    PlotLyType="@PlotlyTypes.bar"
+                    SimplifyTime="86400"/>
+            </div>
+        </Widget>
+    </div>
+    
+    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
+        <Widget Header="Гидромодули">
+            <div class="page1">
+                <ScatterByTime
+                    Tag="@Data.TGEnergy.hydros"
+                    PlotLyType="@PlotlyTypes.bar"
+                    SimplifyTime="86400"/>
+            </div>
+        </Widget>
+    </div>
 
     <div class="cell small-12 medium-6 large-4" style="height: 400px;">
         <Widget Header="Чиллер 1">
@@ -82,28 +104,6 @@
             </div>
         </Widget>
     </div>
-    
-    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
-        <Widget Header="Чиллеры">
-            <div class="page1">
-                <ScatterByTime
-                    Tag="@Data.TGEnergy.chillers"
-                    PlotLyType="@PlotlyTypes.bar"
-                    SimplifyTime="86400"/>
-            </div>
-        </Widget>
-    </div>
-    
-    <div class="cell small-12 medium-6 large-4" style="height: 400px;">
-        <Widget Header="Гидромодули">
-            <div class="page1">
-                <ScatterByTime
-                    Tag="@Data.TGEnergy.hydros"
-                    PlotLyType="@PlotlyTypes.bar"
-                    SimplifyTime="86400"/>
-            </div>
-        </Widget>
-    </div>
 
 </div>
 
@@ -113,7 +113,6 @@
     [CascadingParameter]
     // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private CascadingValueClass CascadingValue { get; set; }
-
 
     private async Task<Sankey> BuildSankey()
     {

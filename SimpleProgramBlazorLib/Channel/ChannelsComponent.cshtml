@@ -1,0 +1,82 @@
+
+@using Microsoft.JSInterop
+@using SimpleProgram.Lib.Modbus
+@using SimpleProgram.Lib.OpcUa
+
+<div class="grid-x grid-padding-x grid-padding-y" style="height: 100%;">
+    <div class="cell small-12 medium-12 large-3">
+
+        <ul class="vertical menu drilldown" data-drilldown id="menu" data-scroll-top="true" data-auto-height="true"
+            data-animate-height="true"
+            data-back-button="<li class='js-drilldown-back'><a tabindex='0'>Назад</a></li>" style="width: 100%;">
+            <li>
+                <a >OPC UA клиент</a>
+                <ul class="vertical menu">
+                    @foreach (var client in _opcUaClients)
+                    {
+                        <li>
+                            <a onclick="@(() => _visibleChannelName = client.ChannelName)">@client.ChannelName</a>
+                        </li>
+                    }
+                </ul>
+            </li>
+            <li>
+                <a>Modbus TCP клиент</a>
+                <ul class="vertical menu">
+                    @foreach (var client in _modbusTcpClients)
+                    {
+                        <li>
+                            <a onclick="@(() => _visibleChannelName = client.ChannelName)">@client.ChannelName</a>
+                        </li>
+                    }
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="cell small-12 medium-12 large-9" style="height: 100%;">
+        
+        @foreach (var client in _opcUaClients)
+        {
+            <ChangeVisibleComponent IsVisible="@(client.ChannelName == _visibleChannelName)">
+                <OpcUaClientComponent Client="@client" TagDict="@CascadingValue.TagDict"/>
+            </ChangeVisibleComponent>
+        }
+
+    </div>
+
+</div>
+
+
+@functions
+{
+    [CascadingParameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
+    private CascadingValueClassBase CascadingValue { get; set; }
+    
+    private string _visibleChannelName;
+
+    private bool _rendered;
+
+    private readonly SortedSet<OpcUaClient> _opcUaClients = new SortedSet<OpcUaClient>();
+    private readonly SortedSet<ModbusTcpClient> _modbusTcpClients = new SortedSet<ModbusTcpClient>();
+
+    protected override void OnInit()
+    {
+        foreach (var tag in CascadingValue.TagDict.Values)
+        {
+            if (tag.TagChannelOpcUaClient != null)
+                _opcUaClients.Add(tag.TagChannelOpcUaClient.Client);
+            if (tag.TagChannelModbusTcpClient != null)
+                _modbusTcpClients.Add(tag.TagChannelModbusTcpClient.Client);
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync()
+    {
+        if (_rendered) return;
+        _rendered = await JSRuntime.Current.InvokeAsync<bool>("global.foundationIdInit", "#menu");
+    }
+
+}

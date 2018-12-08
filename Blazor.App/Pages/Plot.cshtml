@@ -246,21 +246,25 @@
 
                         @* overlaying *@
                         <div class="cell small-6 large-1">
-                            <label for="@($"{nameof(y.overlaying)}-{y.GetHashCode()}")" 
-                                   class="text-right middle">Overlaying</label>
+                            <label for="@($"{nameof(y.overlaying)}-{y.GetHashCode()}")"
+                                   class="text-right middle">
+                                Overlaying
+                            </label>
                         </div>
                         <div class="cell small-6 large-1">
-                            <input type="text" id="@($"{nameof(y.overlaying)}-{y.GetHashCode()}")" 
+                            <input type="text" id="@($"{nameof(y.overlaying)}-{y.GetHashCode()}")"
                                    bind="@y.overlaying" placeholder="overlaying"/>
                         </div>
 
                         @* side *@
                         <div class="cell small-6 large-1">
-                            <label for="@($"{nameof(y.side)}-{y.GetHashCode()}")" 
-                                   class="text-right middle">Side</label>
+                            <label for="@($"{nameof(y.side)}-{y.GetHashCode()}")"
+                                   class="text-right middle">
+                                Side
+                            </label>
                         </div>
                         <div class="cell small-6 large-1">
-                            <select id="@($"{nameof(y.side)}-{y.GetHashCode()}")" 
+                            <select id="@($"{nameof(y.side)}-{y.GetHashCode()}")"
                                     bind="@y.side">
                                 @foreach (var side in Plotly.Layout.Yaxis.SideEnum.Values)
                                 {
@@ -272,20 +276,24 @@
                         @* anchor *@
                         <div class="cell small-6 large-1">
                             <label for="@($"{nameof(y.anchor)}-{y.GetHashCode()}")"
-                                   class="text-right middle">Anchor</label>
+                                   class="text-right middle">
+                                Anchor
+                            </label>
                         </div>
                         <div class="cell small-6 large-1">
-                            <input type="text" id="@($"{nameof(y.anchor)}-{y.GetHashCode()}")" 
+                            <input type="text" id="@($"{nameof(y.anchor)}-{y.GetHashCode()}")"
                                    placeholder="anchor" bind="@y.anchor"/>
                         </div>
 
                         @* position *@
                         <div class="cell small-6 large-1">
-                            <label for="@($"{nameof(y.position)}-{y.GetHashCode()}")" 
-                                   class="text-right middle">Position</label>
+                            <label for="@($"{nameof(y.position)}-{y.GetHashCode()}")"
+                                   class="text-right middle">
+                                Position
+                            </label>
                         </div>
                         <div class="cell small-6 large-1">
-                            <input type="text" id="@($"{nameof(y.position)}-{y.GetHashCode()}")" 
+                            <input type="text" id="@($"{nameof(y.position)}-{y.GetHashCode()}")"
                                    placeholder="position" bind="@y.position"/>
                         </div>
                     </div>
@@ -312,7 +320,6 @@
 </div>
 
 </div>
-
 
 
 @functions
@@ -377,7 +384,7 @@
                 {
                     if (tag.tagIdX == "")
                     {
-                        // на оси Х выбрано время
+    // на оси Х выбрано время
                         _plotLy.AddData();
 
                         _plotLy.LastData.x = ts.TimesToPlotly();
@@ -422,7 +429,7 @@
                     _plotLy.LastData.header.values.Add(Data.TagDict[tag.tagId].TagName);
 
                     break;
-                    
+
                 default:
                     _plotLy.AddData();
 

@@ -9,7 +9,7 @@ namespace SimpleProgram.Lib.Messages
     {
         private readonly TelegramBotClient _bot;
         
-        public TelegramClient(string channelName, string token) : base(channelName)
+        public TelegramClient(string channelName, string token) : base(channelName, false)
         {
             try
             {

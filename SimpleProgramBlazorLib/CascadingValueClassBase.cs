@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
+using SimpleProgram.Lib.Tag;
 
 namespace SimpleProgramBlazorLib
 {
     public class CascadingValueClassBase
     {
+        public SortedDictionary<string, ITag> TagDict { get; }
         public event Action Update;
         public event Action CyclicUpdate;
         
@@ -12,8 +15,9 @@ namespace SimpleProgramBlazorLib
 
         private Timer _timer;
 
-        public CascadingValueClassBase()
+        protected CascadingValueClassBase(SortedDictionary<string, ITag> tagDict)
         {
+            TagDict = tagDict;
             _timer = new Timer((obj) => OnCyclicUpdate(), null, 5000, 5000);
             DateTimeRange.Refresh += OnUpdate;
         }
@@ -22,7 +26,6 @@ namespace SimpleProgramBlazorLib
         {
             Update?.Invoke();
         }
-
 
         protected virtual void OnCyclicUpdate()
         {
