@@ -25,7 +25,7 @@ using System.Xml;
 using Opc.Ua;
 using Opc.Ua.Client;
 
-namespace SimpleProgram.Lib.OpcUa
+namespace SimpleProgram.Channels.OpcUaClient
 {
     public class UaClientHelperApi
     {

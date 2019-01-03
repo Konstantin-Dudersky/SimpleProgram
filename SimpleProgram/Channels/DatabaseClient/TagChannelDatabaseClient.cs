@@ -1,19 +1,29 @@
 using System;
 using System.Threading.Tasks;
+using SimpleProgram.Lib.Archives;
+using SimpleProgram.Lib.Tag;
 
-namespace SimpleProgram.Lib.Archives
+namespace SimpleProgram.Channels.DatabaseClient
 {
-    public class TagChannelDatabase : ITagChannelHistory
+    public class TagChannelDatabaseClient : ITagChannelHistory
     {
-        public TagChannelDatabase(IDatabase archive, string id)
+        public TagChannelDatabaseClient(IDatabaseClient archive, string id, int samplingInterval)
         {
             Archive = archive;
             Id = id;
+            
+            archive.AddMonitoredItem(this, id, samplingInterval, OnNewValueFromChannel);
         }
 
-        public IDatabase Archive { get; }
+        public IDatabaseClient Archive { get; }
         public string Id { get; }
 
+        private void OnNewValueFromChannel(object sender, ValueFromChannelArgs e)
+        {
+            NewValueFromChannel?.Invoke(this, new TagExchangeWithChannelArgs(e.Value, DateTime.Now));
+        }
+        
+        public event EventHandler<TagExchangeWithChannelArgs> NewValueFromChannel;
 
         #region ITagChannelHistory
 
@@ -30,7 +40,6 @@ namespace SimpleProgram.Lib.Archives
 
             return data;
         }
-
 
         public async void DeleteArchiveData(DateTime begin, DateTime end, double lessThen, double moreThen)
         {

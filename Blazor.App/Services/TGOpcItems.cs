@@ -1,5 +1,5 @@
+using SimpleProgram.Channels.OpcUaClient;
 using SimpleProgram.Lib;
-using SimpleProgram.Lib.OpcUa;
 using SimpleProgram.Lib.Tag;
 
 // ReSharper disable UnusedMember.Global

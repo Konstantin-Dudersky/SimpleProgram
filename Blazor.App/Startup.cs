@@ -2,7 +2,6 @@ using System.Globalization;
 using Microsoft.AspNetCore.Blazor.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Blazor.App.Services;
-using SimpleProgram.Lib;
 
 // ReSharper disable once IdentifierTypo
 namespace Blazor.App

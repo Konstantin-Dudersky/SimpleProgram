@@ -1,66 +1,121 @@
 ﻿@page "/"
 @using Blazor.App.Services
+@using SimpleProgram.Lib.Archives
+@using SimpleProgram.Lib.Tag
+@using SimpleProgramBlazorLib
 @inject Data Data
 
-@*<div id="visible"></div>
+<div class="grid-x grid-padding-x grid-padding-y">
 
-<div style="width: 300px; height: 300px;">
-    <svg version="1.1" id="_x30_" x="0px" y="0px"
-         viewBox="0 0 43.984 43.986" enable-background="new 0 0 43.984 43.986" xml:space="preserve">
+    <div class="cell small-12 medium-12 large-6" style="height: 800px;">
+        <Widget Header="Потребление за период">
 
-        <style type="text/css">
+            <div class="page1" style="overflow: auto">
+                <TableBeginEndIncComponent
+                    Table="@_table"/>
+            </div>
 
-            .color, .stroked, .dashed {
-                stroke-width: 1;
-                stroke-linecap: round;
-                stroke-linejoin: round;
-                stroke: #000000;
-            }
-
-            .color { fill: #A1BFE2; }
-
-            .stroked, .dashed { fill: none; }
-
-            .dashed { stroke-dasharray: 1.4173, 1.4173; }
-
-        </style>
-
-        <circle class="color" cx="21.992" cy="21.993" r="17.436"/>
-
-        <g class="stroked">
-            <line x1="21.993" y1="39.429" x2="21.993" y2="42.569"/>
-            <line x1="19.831" y1="34.966" x2="24.485" y2="34.966"/>
-            <line x1="19.831" y1="9.02" x2="24.153" y2="9.02"/>
-            <line x1="35.122" y1="19.762" x2="35.122" y2="24.224"/>
-            <line x1="8.864" y1="24.224" x2="8.864" y2="19.762"/>
-            <polyline points="17.671,9.02 8.864,9.02 8.864,17.614 "/>
-            <polyline points="35.122,17.614 35.122,9.02 26.313,9.02 "/>
-            <polyline points="26.313,34.966 35.122,34.966 35.122,26.373 "/>
-            <polyline points="8.864,26.373 8.864,34.966 17.671,34.966 "/>
-            <line x1="8.864" y1="22.075" x2="13.35" y2="22.075"/>
-            <line x1="30.968" y1="22.075" x2="35.122" y2="22.075"/>
-            <line x1="21.993" y1="13.317" x2="21.993" y2="9.02"/>
-            <line x1="21.993" y1="30.671" x2="21.993" y2="34.966"/>
-            <line x1="39.442" y1="22.075" x2="42.567" y2="22.075"/>
-            <line x1="4.708" y1="22.075" x2="1.417" y2="22.075"/>
-            <line x1="21.993" y1="4.557" x2="21.993" y2="1.417"/>
-            <line x1="21.993" y1="24.058" x2="21.993" y2="19.762"/>
-            <line x1="19.831" y1="21.91" x2="24.153" y2="21.91"/>
-        </g>
-
-        <circle class="dashed stroked" cx="21.992" cy="21.993" r="8.676"/>
-    </svg>
-
+        </Widget>
+    </div>
 </div>
 
+<div style="position: relative">
 
-<air_conditioning_13
-    Style="width: 100px; height: 100px;"
-    FillColor="@(Data.TgModbus.register0.Value > 100 ? "red" : "green")"/>*@
+
+    <air_conditioning_13
+        Style="height: 100px; top: 600px; width: 100px;"
+        FillColor="@(Data.TgModbus.register0.Value > 100 ? "red" : "green")"/>
+</div>
 
 
 @functions
 {
+    private readonly Table<TableBeginEndIncComponent.TableRow> _table = new Table<TableBeginEndIncComponent.TableRow>();
 
+    protected override void OnInit()
+    {
+        _table.AddGroup("ГРЩ-А", new List<ITag>
+        {
+            Data.TGEnergy.MDB_A__QS1,
+            Data.TGEnergy.MDB_A__QF1_1,
+            Data.TGEnergy.MDB_A__QF1_2,
+            Data.TGEnergy.MDB_A__QF1_3,
+            Data.TGEnergy.MDB_A__QF1_4,
+            Data.TGEnergy.MDB_A__QF1_5,
+            Data.TGEnergy.MDB_A__QF2_1,
+            Data.TGEnergy.MDB_A__QF2_2,
+            Data.TGEnergy.MDB_A__QF2_3,
+            Data.TGEnergy.MDB_A__QF2_4,
+            Data.TGEnergy.MDB_A__QF2_5,
+            Data.TGEnergy.MDB_A__QF2_6,
+            Data.TGEnergy.MDB_A__QF2_7,
+            Data.TGEnergy.MDB_A__QF2_8,
+            Data.TGEnergy.MDB_A__QF3_1,
+            Data.TGEnergy.MDB_A__QF3_2,
+            Data.TGEnergy.MDB_A__QF3_3,
+            Data.TGEnergy.MDB_A__QF3_4,
+            Data.TGEnergy.MDB_A__QF3_5,
+            Data.TGEnergy.MDB_A__QF3_6,
+        });
+        
+        _table.AddGroup("ГРЩ-B", new List<ITag>
+        {
+            Data.TGEnergy.MDB_B__QS1,
+            Data.TGEnergy.MDB_B__QF1_1,
+            Data.TGEnergy.MDB_B__QF1_2,
+            Data.TGEnergy.MDB_B__QF1_3,
+            Data.TGEnergy.MDB_B__QF1_4,
+            Data.TGEnergy.MDB_B__QF1_5,
+            Data.TGEnergy.MDB_B__QF1_6,
+            Data.TGEnergy.MDB_B__QF1_7,
+            Data.TGEnergy.MDB_B__QF1_8,
+            Data.TGEnergy.MDB_B__QF2_1,
+            Data.TGEnergy.MDB_B__QF2_2,
+            Data.TGEnergy.MDB_B__QF2_3,
+            Data.TGEnergy.MDB_B__QF2_4,
+            Data.TGEnergy.MDB_B__QF2_5,
+            Data.TGEnergy.MDB_B__QF2_6,
+            Data.TGEnergy.MDB_B__QF2_7,
+            Data.TGEnergy.MDB_B__QF2_8,
+            Data.TGEnergy.MDB_B__QF2_9,
+            Data.TGEnergy.MDB_B__QF2_10,
+            Data.TGEnergy.MDB_B__QF2_11,
+            Data.TGEnergy.MDB_B__QF2_12,
+            Data.TGEnergy.MDB_B__QF2_13,
+            Data.TGEnergy.MDB_B__QF2_14,
+        });
+        
+        _table.AddGroup("РЩБП-А", new List<ITag>
+        {
+            Data.TGEnergy.UPS_MDB_A__QF3_1,
+            Data.TGEnergy.UPS_MDB_A__QF4_1,
+            Data.TGEnergy.UPS_MDB_A__QF4_2,
+            Data.TGEnergy.UPS_MDB_A__QF4_3,
+            Data.TGEnergy.UPS_MDB_A__QF4_4,
+            Data.TGEnergy.UPS_MDB_A__QF4_5,
+            Data.TGEnergy.UPS_MDB_A__QF4_6,
+            Data.TGEnergy.UPS_MDB_A__QF4_7,
+            Data.TGEnergy.UPS_MDB_A__QF4_8,
+            Data.TGEnergy.UPS_MDB_A__QF4_9,
+            Data.TGEnergy.UPS_MDB_A__QF4_10,
+            Data.TGEnergy.UPS_MDB_A__QF4_11,
+            Data.TGEnergy.UPS_MDB_A__QF4_12,
+            Data.TGEnergy.UPS_MDB_A__QF4_13,
+            Data.TGEnergy.UPS_MDB_A__QF4_14,
+            Data.TGEnergy.UPS_MDB_A__QF4_15,
+            Data.TGEnergy.UPS_MDB_A__QF4_16,
+        });
+        
+        _table.AddGroup("РЩБП-B", new List<ITag>
+        {
+            Data.TGEnergy.UPS_MDB_B__QF3_1,
+        });
+        
+        _table.AddGroup("РЩБП-AB", new List<ITag>
+        {
+            Data.TGEnergy.UPS_MDB_AB__QF2_1,
+            Data.TGEnergy.UPS_MDB_AB__QF2_2,
+        });
+    }
 
 }

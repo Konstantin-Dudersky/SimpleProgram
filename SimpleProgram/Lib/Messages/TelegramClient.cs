@@ -1,11 +1,10 @@
 using System;
-using NLog;
-using SimpleProgram.Lib.OpcUa;
+using SimpleProgram.Channels;
 using Telegram.Bot;
 
 namespace SimpleProgram.Lib.Messages
 {
-    public class TelegramClient : SimpleProgramChannelBase
+    public class TelegramClient : ChannelBase
     {
         private readonly TelegramBotClient _bot;
         

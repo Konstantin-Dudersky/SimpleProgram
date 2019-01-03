@@ -1,14 +1,10 @@
 using System;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using NLog.Extensions.Logging;
+using SimpleProgram.Channels.DatabaseClient;
+using SimpleProgram.Channels.ModbusTcpClient;
+using SimpleProgram.Channels.OpcUaClient;
 using SimpleProgram.Lib;
-using SimpleProgram.Lib.Archives;
 using SimpleProgram.Lib.Archives.MasterScada;
 using SimpleProgram.Lib.Messages;
-using SimpleProgram.Lib.Modbus;
-using SimpleProgram.Lib.OpcUa;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable MemberCanBePrivate.Global
@@ -18,14 +14,15 @@ namespace Blazor.App.Services
 {
     public class Data : DataBase
     {
-        public static readonly Database<MasterScadaDb> MsDatabase = new Database<MasterScadaDb>(Providers.PostgreSql,
-            Config["MasterScadaDb"])
+        public static readonly DatabaseClient<MasterScadaDb> MsDatabaseClient = new DatabaseClient<MasterScadaDb>(
+            Providers.PostgreSql,
+            "Host=localhost;Database=energy;Username=postgres;Password=123")
         {
             ArchiveName = "Архив MasterScada"
         };
 
         public static readonly OpcUaClient OpcClient =
-            new OpcUaClient("Test OPC UA channel", "opc.tcp://localhost:48010", disabled: false);
+            new OpcUaClient("Test OPC UA channel", "opc.tcp://localhost:48010");
 
         public static readonly OpcUaClient OpcWinCC =
             new OpcUaClient("WinCC OPC UA channel", "opc.tcp://VirtualWin7:4861", disabled: true);

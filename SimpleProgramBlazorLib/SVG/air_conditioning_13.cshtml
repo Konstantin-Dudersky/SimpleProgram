@@ -1,14 +1,14 @@
 @using Microsoft.JSInterop
-<div style=@Style>
+<div style=@(Style + "; position: absolute;")>
     <svg id="@_id" x="0px" y="0px"
          viewBox="0 0 43.984 43.986" enable-background="new 0 0 43.984 43.986" xml:space="preserve">
         <style type="text/css">
-            @_id .color,
+            #@_id .color,
             #@_id .stroked {
-                stroke-width: 1;
+                stroke: #000000;
                 stroke-linecap: round;
                 stroke-linejoin: round;
-                stroke: #000000;
+                stroke-width: 1;
             }
 
             #@_id .color { fill: @FillColor; }
@@ -27,11 +27,13 @@
 
 @functions
 {
+
     [Parameter]
     // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private string Style { get; set; }
 
     [Parameter]
+    // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
     private string FillColor { get; set; } = "tomato";
 
     private string _id;
@@ -40,11 +42,12 @@
     {
         _id = "svg-gauge-" + new Random().Next();
     }
-    
+
     protected override async Task OnAfterRenderAsync()
     {
     // баг https://github.com/aspnet/Blazor/issues/1571
     // после починки удалить
         await JSRuntime.Current.InvokeAsync<bool>("jquery.setAttribute", $"#{_id}", "viewBox", "0 0 43.984 43.986");
     }
+
 }

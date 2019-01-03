@@ -1,8 +1,9 @@
 using System;
 using System.Threading.Tasks;
+using SimpleProgram.Channels.DatabaseClient;
+using SimpleProgram.Channels.ModbusTcpClient;
+using SimpleProgram.Channels.OpcUaClient;
 using SimpleProgram.Lib.Archives;
-using SimpleProgram.Lib.Modbus;
-using SimpleProgram.Lib.OpcUa;
 
 namespace SimpleProgram.Lib.Tag
 {
@@ -19,7 +20,7 @@ namespace SimpleProgram.Lib.Tag
         Task<double> GetArchiveValueAsync(DateTime begin, DateTime end,
             SimplifyType simplifyType = SimplifyType.None);
 
-        TagChannelDatabase TagChannelDatabase { get; set; }
+        TagChannelDatabaseClient TagChannelDatabaseClient { get; set; }
         
         #endregion
         
@@ -30,6 +31,8 @@ namespace SimpleProgram.Lib.Tag
         void SetValue<T1>(T1 value);
 
         string ValueString { get; set; }
+        
+        string FormatString { get; set; }
         
         Type GenericType { get; }
         DateTime TimeStamp { get; }

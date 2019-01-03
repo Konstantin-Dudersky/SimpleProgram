@@ -1,0 +1,102 @@
+@using SimpleProgram.Lib.Archives
+@using SimpleProgram.Lib.Tag
+<table class="hover">
+    <thead>
+    <tr>
+        <th>
+            Тег
+        </th>
+        <th>
+            @CascadingValue.DateTimeRange.Begin
+        </th>
+        <th>
+            @CascadingValue.DateTimeRange.End
+        </th>
+        <th>
+            Прирост
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+
+    @foreach (var tg in Table)
+    {
+        <tr>
+            <td colspan="4">
+                @tg.Title
+            </td>
+
+        </tr>
+        foreach (var t in tg)
+        {
+            <tr>
+                <td>
+                    @t.TagName
+                </td>
+                <td>
+                    @t.ValueBegin.ToString(t.tag.FormatString)
+                </td>
+                <td>
+                    @t.ValueEnd.ToString(t.tag.FormatString)
+                </td>
+                <td>
+                    @t.ValueInc.ToString(t.tag.FormatString)
+                </td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+
+
+@functions
+{
+
+    [CascadingParameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
+    private CascadingValueClassBase CascadingValue { get; set; }
+
+    [Parameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
+    private Table<TableRow> Table { get; set; }
+
+    private bool _parametersSet;
+
+    protected override void OnInit()
+    {
+        CascadingValue.Update += () =>
+        {
+            Table.Update(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End);
+        };
+    }
+
+    protected override void OnParametersSet()
+    {
+        if (Table == null || _parametersSet) return;
+
+        _parametersSet = true;
+        Table.UpdatedEvent += StateHasChanged;
+        Table.Update(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End);
+    }
+
+    public class TableRow : ITableRow
+    {
+        internal string TagName => tag.TagName;
+        internal double ValueBegin { get; private set; }
+        internal double ValueEnd { get; private set; }
+        internal double ValueInc => ValueEnd - ValueBegin;
+        public bool Updated { get; set; }
+        public ITag tag { get; set; }
+
+        public async void Update(DateTime begin, DateTime end)
+        {
+            ValueBegin = await tag.GetArchiveValueAsync(begin, end, SimplifyType.First);
+            ValueEnd = await tag.GetArchiveValueAsync(begin, end, SimplifyType.Last);
+            Updated = true;
+            UpdatedEvent?.Invoke();
+        }
+
+        public event Action UpdatedEvent;
+    }
+
+}

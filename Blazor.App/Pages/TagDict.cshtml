@@ -44,8 +44,8 @@
             <tr>
                 <th>@_visibleColumns.Keys.ToList()[0]</th>
                 <th>@nameof(ITag.TagName)</th>
-                <th>@nameof(ITag.TagChannelDatabase.Id)</th>
-                <th>@(nameof(ITag.TagChannelDatabase.Archive) + nameof(ITag.TagChannelDatabase.Archive.ArchiveName))</th>
+                <th>@nameof(ITag.TagChannelDatabaseClient.Id)</th>
+                <th>@(nameof(ITag.TagChannelDatabaseClient.Archive) + nameof(ITag.TagChannelDatabaseClient.Archive.ArchiveName))</th>
                 <th>@nameof(ITag.ValueString)</th>
                 <th>@nameof(ITag.TimeStamp)</th>
                 <th>@nameof(ITag.GenericType)</th>
@@ -57,8 +57,8 @@
                 <tr>
                     <td>@tag.TagId</td>
                     <td>@tag.TagName</td>
-                    <td>@tag.TagChannelDatabase?.Id</td>
-                    <td>@tag.TagChannelDatabase?.Archive?.ArchiveName</td>
+                    <td>@tag.TagChannelDatabaseClient?.Id</td>
+                    <td>@tag.TagChannelDatabaseClient?.Archive?.ArchiveName</td>
                     <td>
                         <input style="margin-bottom: 0" type="text"
                                bind="@tag.ValueString" onfocusin="@StopRefresh" onfocusout="@StartRefresh"/>
@@ -96,8 +96,8 @@
         // управление видимостью столбцов
         _visibleColumns[nameof(ITag.TagId)] = true;
         _visibleColumns[nameof(ITag.TagName)] = true;
-        _visibleColumns[nameof(ITag.TagChannelDatabase.Id)] = true;
-        _visibleColumns[$"{nameof(ITag.TagChannelDatabase.Archive)}.{nameof(ITag.TagChannelDatabase.Archive.ArchiveName)}"] = true;
+        _visibleColumns[nameof(ITag.TagChannelDatabaseClient.Id)] = true;
+        _visibleColumns[$"{nameof(ITag.TagChannelDatabaseClient.Archive)}.{nameof(ITag.TagChannelDatabaseClient.Archive.ArchiveName)}"] = true;
         _visibleColumns[nameof(ITag.ValueString)] = true;
         _visibleColumns[nameof(ITag.TimeStamp)] = true;
         _visibleColumns[nameof(ITag.GenericType)] = true;

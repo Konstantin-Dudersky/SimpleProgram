@@ -24,4 +24,10 @@
       <ProjectReference Include="..\SimpleProgram\SimpleProgram.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="Blazor.App, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\Blazor.Server\bin\Debug\netcoreapp2.1\Blazor.App.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

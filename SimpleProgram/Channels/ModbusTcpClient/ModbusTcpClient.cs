@@ -2,16 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Threading;
-using NLog.Config;
 using NModbus;
-using SimpleProgram.Lib.OpcUa;
 
-namespace SimpleProgram.Lib.Modbus
+namespace SimpleProgram.Channels.ModbusTcpClient
 {
-    public class ModbusTcpClient : SimpleProgramChannelBase
+    public class ModbusTcpClient : ChannelBase
     {
-        private const int ReconnectPeriod = 5000;
-        private const int MinSamplingInterval = 1000;
+        private const int reconnectPeriod = 5000;
+        private const int minSamplingInterval = 1000;
         
         private readonly List<MonitoredItem> _items = new List<MonitoredItem>();
 
@@ -42,7 +40,7 @@ namespace SimpleProgram.Lib.Modbus
                 
             _timerReconnect = new Timer(Reconnect);
             SetConnected(false);
-            _timerCyclicRead = new Timer(TimerCyclicRead, null, 0, MinSamplingInterval);
+            _timerCyclicRead = new Timer(TimerCyclicRead, null, 0, minSamplingInterval);
         }
 
         private void Reconnect(object obj)
@@ -76,7 +74,7 @@ namespace SimpleProgram.Lib.Modbus
             else
             {
                 _connected = false;
-                _timerReconnect.Change(0, ReconnectPeriod);
+                _timerReconnect.Change(0, reconnectPeriod);
             }
         }
 
@@ -109,7 +107,7 @@ namespace SimpleProgram.Lib.Modbus
         internal void AddMonitoredItem(TagChannelModbusTcpClient client, ushort startAddress, int samplingInterval, 
             EventHandler<ValueFromChannelArgs> eventHandler)
         {
-            var relSamplingInterval = (int) Math.Ceiling((double) samplingInterval / MinSamplingInterval);
+            var relSamplingInterval = (int) Math.Ceiling((double) samplingInterval / minSamplingInterval);
 
             _maxRelSamplingInterval = Math.Max(_maxRelSamplingInterval, relSamplingInterval);
             

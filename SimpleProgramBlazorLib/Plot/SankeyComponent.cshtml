@@ -2,7 +2,6 @@
 @using SimpleProgram.Lib.Archives
 @using SimpleProgram.Lib.JSInterop
 
-
 <div id="@($"plotly-{_id}")" style="height: 100%; width: 100%;">
     <LoadIndicator ref="_loadIndicator" IndicatorType="@LoadIndicator.IndicatorTypeEnum.Wave"/>
 </div>
@@ -15,11 +14,11 @@
 
 
 @functions {
-    
+
 #pragma warning disable 649
     LoadIndicator _loadIndicator;
 #pragma warning restore 649
-    
+
     [Parameter]
     // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private Func<Task<Sankey>> SankeyFunc { get; set; }
@@ -45,7 +44,6 @@
 
     protected override async Task OnAfterRenderAsync()
     {
-
         var hidden = await JSRuntime.Current.InvokeAsync<bool>("global.isHidden", $"#plotly-{_id}");
 
         if (hidden)
@@ -58,11 +56,11 @@
         if (_rendered || SankeyFunc == null) return;
 
         _rendered = true;
-        
+
         _loadIndicator.Show();
 
         var sankey = await SankeyFunc();
-        
+
         var plotLy = new Plotly();
 
         plotLy.AddData();
@@ -73,7 +71,7 @@
         plotLy.LastData.link.source = sankey.LinkSources;
         plotLy.LastData.link.target = sankey.LinkTargets;
         plotLy.LastData.link.value = sankey.LinkValues;
-        
+
         plotLy.LastData.type = PlotlyTypes.sankey;
         plotLy.LastData.orientation = "h";
 
@@ -81,7 +79,7 @@
         plotLy.layout.margin.r = 20;
         plotLy.layout.margin.t = 20;
         plotLy.layout.margin.b = 20;
-        
+
         plotLy.config.displayModeBar = false;
 
         await JSRuntime.Current.InvokeAsync<bool>("plotlyhelpers.react", $"plotly-{_id}", plotLy);

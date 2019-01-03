@@ -1,7 +1,7 @@
 using System;
 using SimpleProgram.Lib.Tag;
 
-namespace SimpleProgram.Lib.Modbus
+namespace SimpleProgram.Channels.ModbusTcpClient
 {
     public class TagChannelModbusTcpClient
     {

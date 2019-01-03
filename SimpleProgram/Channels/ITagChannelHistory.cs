@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
+using SimpleProgram.Lib.Archives;
 
-namespace SimpleProgram.Lib.Archives
+namespace SimpleProgram.Channels
 {
     public interface ITagChannelHistory
     {

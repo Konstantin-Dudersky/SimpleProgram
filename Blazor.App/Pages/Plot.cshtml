@@ -194,7 +194,7 @@
                             <option value="" selected>-- Время --</option>
                             @foreach (var tagDict in Data.TagDict)
                             {
-                                <option value="@tagDict.Key">@tagDict.Value.TagChannelDatabase?.Id</option>
+                                <option value="@tagDict.Key">@tagDict.Value.TagChannelDatabaseClient?.Id</option>
                             }
                         </select>
                     </div>

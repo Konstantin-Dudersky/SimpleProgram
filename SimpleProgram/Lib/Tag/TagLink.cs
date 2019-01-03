@@ -1,8 +1,9 @@
 using System;
 using System.Threading.Tasks;
+using SimpleProgram.Channels.DatabaseClient;
+using SimpleProgram.Channels.ModbusTcpClient;
+using SimpleProgram.Channels.OpcUaClient;
 using SimpleProgram.Lib.Archives;
-using SimpleProgram.Lib.Modbus;
-using SimpleProgram.Lib.OpcUa;
 
 namespace SimpleProgram.Lib.Tag
 {
@@ -29,10 +30,10 @@ namespace SimpleProgram.Lib.Tag
             return _tagLink.GetArchiveValueAsync(begin, end);
         }
 
-        public TagChannelDatabase TagChannelDatabase
+        public TagChannelDatabaseClient TagChannelDatabaseClient
         {
-            get => _tagLink.TagChannelDatabase;
-            set => _tagLink.TagChannelDatabase = value;
+            get => _tagLink.TagChannelDatabaseClient;
+            set => _tagLink.TagChannelDatabaseClient = value;
         }
 
         public string TagId
@@ -52,7 +53,8 @@ namespace SimpleProgram.Lib.Tag
             return _tagLink.ConvertTo<TNew1>();
         }
 
-        public Task<TimeSeries> GetArchiveTimeSeriesAsync(DateTime begin, DateTime end, SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600,
+        public Task<TimeSeries> GetArchiveTimeSeriesAsync(DateTime begin, DateTime end,
+            SimplifyType simplifyType = SimplifyType.None, int simplifyTime = 3600,
             double lessThen = double.MaxValue, double moreThen = double.MinValue)
         {
             return _tagLink.GetArchiveTimeSeriesAsync(begin, end, simplifyType, simplifyTime, lessThen, moreThen);
@@ -85,9 +87,25 @@ namespace SimpleProgram.Lib.Tag
             set => _tagLink.ValueString = value;
         }
 
+        public string FormatString
+        {
+            get => _tagLink.FormatString;
+            set => _tagLink.FormatString = value;
+        }
+
         public Type GenericType => typeof(TNew);
         public DateTime TimeStamp => _tagLink.TimeStamp;
-        public TagChannelOpcUaClient TagChannelOpcUaClient { get; set; }
-        public TagChannelModbusTcpClient TagChannelModbusTcpClient { get; }
+
+        public TagChannelOpcUaClient TagChannelOpcUaClient
+        {
+            get => _tagLink.TagChannelOpcUaClient;
+            set => _tagLink.TagChannelOpcUaClient = value;
+        }
+
+        public TagChannelModbusTcpClient TagChannelModbusTcpClient
+        {
+            get => _tagLink.TagChannelModbusTcpClient;
+            set => _tagLink.TagChannelModbusTcpClient = value;
+        }
     }
 }

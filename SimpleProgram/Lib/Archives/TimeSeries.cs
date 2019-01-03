@@ -214,7 +214,7 @@ namespace SimpleProgram.Lib.Archives
             var endTime = dict.ElementAt(j).Key;
             foreach (var timeValue in ts.TimeValues)
             {
-                while (timeValue.Key > endTime)
+                while (timeValue.Key >= endTime)
                     endTime = dict.ElementAt(++j).Key;
                 dict.ElementAt(j - 1).Value.Add(timeValue.Value);
             }
@@ -261,9 +261,17 @@ namespace SimpleProgram.Lib.Archives
                     break;
 
                 case SimplifyType.Last:
+                    foreach (var d in dict)
+                        newTs.Add(d.Key, d.Value.LastOrDefault());
+                    newTs.RemoveLast();
                     break;
+                
                 case SimplifyType.First:
+                    foreach (var d in dict)
+                        newTs.Add(d.Key, d.Value.FirstOrDefault());
+                    newTs.RemoveLast();
                     break;
+                
                 default:
                     throw new ArgumentOutOfRangeException(nameof(simplifyType), simplifyType, null);
             }
@@ -276,13 +284,13 @@ namespace SimpleProgram.Lib.Archives
             if (ts.Count <= 0)
                 return new TimeSeries();
 
-            while (true && ts.Count > 0)
+            while (ts.Count > 0)
                 if (ts[0] == null)
                     ts.RemoveFirst();
                 else
                     break;
 
-            while (true && ts.Count > 0)
+            while (ts.Count > 0)
                 if (ts[ts.Count - 1] == null)
                     ts.RemoveLast();
                 else

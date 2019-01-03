@@ -105,18 +105,21 @@ namespace SimpleProgram.Lib.Archives.MasterScada
             
             var itemid = await GetItemid(name);
 
+            masterscadadataraw last;
+
+            masterscadadataraw first;
             switch (simplifyType)
             {
                 case SimplifyType.None:
                     break;
                 
                 case SimplifyType.Increment:
-                    var first = await (from r in masterscadadataraw
+                    first = await (from r in masterscadadataraw
                         where r.itemid == itemid && r.quality == 192 && r.layer == 1 && r.Time >= fromDtBinary
                         orderby r.Time
                         select r).FirstOrDefaultAsync();
             
-                    var last = await (from r in masterscadadataraw
+                    last = await (from r in masterscadadataraw
                         where r.itemid == itemid && r.quality == 192 && r.layer == 1 && r.Time <= toDtBinary
                         orderby r.Time
                         select r).LastOrDefaultAsync();
@@ -136,10 +139,26 @@ namespace SimpleProgram.Lib.Archives.MasterScada
                     break;
                 
                 case SimplifyType.Last:
-                    break;
+                    last = await (from r in masterscadadataraw
+                        where r.itemid == itemid && r.quality == 192 && r.layer == 1 && r.Time <= toDtBinary
+                        orderby r.Time
+                        select r).LastOrDefaultAsync();
+                    
+                    if (last?.value == null)
+                        return 0;
+
+                    return (double) last.value;
                 
                 case SimplifyType.First:
-                    break;
+                    first = await (from r in masterscadadataraw
+                        where r.itemid == itemid && r.quality == 192 && r.layer == 1 && r.Time >= fromDtBinary
+                        orderby r.Time
+                        select r).FirstOrDefaultAsync();
+                    
+                    if (first?.value == null)
+                        return 0;
+                    
+                    return (double) first.value;
                 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(simplifyType), simplifyType, null);

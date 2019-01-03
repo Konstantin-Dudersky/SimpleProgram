@@ -64,7 +64,7 @@
 
 @functions
 {
-        private const int MaxPages = 10;
+        private const int maxPages = 10;
 
     [Parameter]
     // ReSharper disable once UnusedAutoPropertyAccessor.Local
@@ -102,7 +102,7 @@
     // при первой загрузке определяем кол-во вложенных страниц
         if (_pagesCount == 0)
         {
-            for (var i = 1; i <= MaxPages; i++)
+            for (var i = 1; i <= maxPages; i++)
             {
                 if (await JSRuntime.Current.InvokeAsync<bool>("global.isExist", $"#{_id} .page{i}"))
                     _pagesCount++;
@@ -125,7 +125,7 @@
 
     private void SetVisiblePage()
     {
-        for (var i = 0; i <= MaxPages; i++)
+        for (var i = 0; i <= maxPages; i++)
         {
             JSRuntime.Current.InvokeAsync<bool>("jquery.addClass", $"#{_id} .page{i}", "cell auto hide");
 

@@ -1,7 +1,6 @@
 @using System.IO
 @using Microsoft.JSInterop
-@using SimpleProgram.Lib
-@using SimpleProgram.Lib.OpcUa
+@using SimpleProgram.Channels.OpcUaClient
 @using SimpleProgram.Lib.Tag
 
 <div class="card grid-y" style="height: 100%;">
@@ -182,6 +181,7 @@
     private OpcUaClient Client { get; set; }
 
     [Parameter]
+    // ReSharper disable once UnusedAutoPropertyAccessor.Local
     private SortedDictionary<string, ITag> TagDict { get; set; }
 
     private string _log;
@@ -198,7 +198,8 @@
     protected override async Task OnAfterRenderAsync()
     {
         if (_rendered) return;
-        _rendered = await JSRuntime.Current.InvokeAsync<bool>("global.foundationIdInit", $"#tabs_{_id}");
+        _rendered = await JSRuntime.Current.InvokeAsync<bool>("global.foundationIdInit", 
+            $"#tabs_{_id}");
     }
 
     private void Read()
@@ -208,9 +209,9 @@
             var fileName = $"logs/{Client.ChannelName}/{Client.ChannelName}.log";
             _log = File.ReadAllText(fileName);
         }
-        catch (Exception e)
+        catch (Exception)
         {
-            Console.WriteLine(e);
+            Console.WriteLine($"Log-файл для {Client.ChannelName} не найден");
         }
     }
 

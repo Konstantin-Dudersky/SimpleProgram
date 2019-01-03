@@ -8,9 +8,9 @@
 
 using System;
 using System.Collections.Generic;
+using SimpleProgram.Channels.ModbusTcpClient;
 using SimpleProgram.Lib;
 using SimpleProgram.Lib.Messages;
-using SimpleProgram.Lib.Modbus;
 using SimpleProgram.Lib.Tag;
 
 namespace Blazor.App.Services

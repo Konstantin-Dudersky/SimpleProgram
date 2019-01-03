@@ -6,7 +6,7 @@ using Opc.Ua;
 using Opc.Ua.Client;
 using Opc.Ua.Configuration;
 
-namespace SimpleProgram.Lib.OpcUa
+namespace SimpleProgram.Channels.OpcUaClient
 {
     public enum ExitCode
     {
@@ -23,9 +23,9 @@ namespace SimpleProgram.Lib.OpcUa
         ErrorInvalidCommandLine = 0x100
     }
 
-    public class OpcUaClient : SimpleProgramChannelBase
+    public class OpcUaClient : ChannelBase
     {
-        private const int ReconnectPeriod = 10;
+        private const int reconnectPeriod = 10;
         public string EndpointUrl { get; }
 
         private readonly List<MonitoredItem> _monitoredItems = new List<MonitoredItem>();
@@ -37,7 +37,7 @@ namespace SimpleProgram.Lib.OpcUa
             : base(channelName, disabled)
         {
             EndpointUrl = endpointUrl;
-            _timer = new Timer(obj => Run(), null, 0, ReconnectPeriod * 1000);
+            _timer = new Timer(obj => Run(), null, 0, reconnectPeriod * 1000);
             if (disabled) _timer.Dispose();
         }
 
@@ -182,7 +182,7 @@ namespace SimpleProgram.Lib.OpcUa
             if (_reconnectHandler != null) return;
             Logger.Info("--- RECONNECTING ---");
             _reconnectHandler = new SessionReconnectHandler();
-            _reconnectHandler.BeginReconnect(sender, ReconnectPeriod * 1000, Client_ReconnectComplete);
+            _reconnectHandler.BeginReconnect(sender, reconnectPeriod * 1000, Client_ReconnectComplete);
         }
 
         private void Client_ReconnectComplete(object sender, EventArgs e)

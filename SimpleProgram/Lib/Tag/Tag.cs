@@ -5,16 +5,26 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading.Tasks;
 using NCalc;
+using SimpleProgram.Channels;
+using SimpleProgram.Channels.DatabaseClient;
+using SimpleProgram.Channels.ModbusTcpClient;
+using SimpleProgram.Channels.OpcUaClient;
 using SimpleProgram.Lib.Archives;
 using SimpleProgram.Lib.Messages;
-using SimpleProgram.Lib.Modbus;
-using SimpleProgram.Lib.OpcUa;
 
 namespace SimpleProgram.Lib.Tag
 {
     public sealed class Tag<T> : ITag<T>
         where T : IConvertible, IComparable
     {
+        public Tag()
+        {
+            if (GenericType == typeof(double))
+            {
+                FormatString = "f3";
+            }
+        }
+
         private T _value;
 
         public T Value
@@ -25,14 +35,17 @@ namespace SimpleProgram.Lib.Tag
                 _value = value;
                 OnChange?.Invoke();
 
-                if (_newValueFromChannel != nameof(OpcUa.TagChannelOpcUaClient))
-                    NewValueToChannelOpcUaClient?.Invoke(this, new TagExchangeWithChannelArgs(Value, DateTime.Now));
+                if (_newValueFromChannel != nameof(Channels.OpcUaClient.TagChannelOpcUaClient))
+                    NewValueToChannelOpcUaClient?.Invoke(this, new TagExchangeWithChannelArgs(Value, TimeStamp));
 
-                if (_newValueFromChannel != nameof(Modbus.TagChannelModbusTcpClient))
-                    NewValueToChannelModbusTcpClient?.Invoke(this, new TagExchangeWithChannelArgs(Value, DateTime.Now));
+                if (_newValueFromChannel != nameof(Channels.ModbusTcpClient.TagChannelModbusTcpClient))
+                    NewValueToChannelModbusTcpClient?.Invoke(this, new TagExchangeWithChannelArgs(Value, TimeStamp));
 
-                NewValueToChannelMessage?.Invoke(this, new TagExchangeWithChannelArgs(Value, DateTime.Now));
-                
+                if (_newValueFromChannel != nameof(Channels.DatabaseClient.TagChannelDatabaseClient))
+                    NewValueToChannelDatabaseClient?.Invoke(this, new TagExchangeWithChannelArgs(Value, TimeStamp));
+
+                NewValueToChannelMessage?.Invoke(this, new TagExchangeWithChannelArgs(Value, TimeStamp));
+
                 _newValueFromChannel = "";
             }
         }
@@ -152,6 +165,8 @@ namespace SimpleProgram.Lib.Tag
             }
         }
 
+        public string FormatString { get; set; }
+
         public Type GenericType => typeof(T);
 
 
@@ -268,17 +283,21 @@ namespace SimpleProgram.Lib.Tag
         #endregion
 
 
-        #region TagChannelArchive
+        #region TagChannelDatabaseClient
 
-        private TagChannelDatabase _channelDatabase;
+        public event EventHandler<TagExchangeWithChannelArgs> NewValueToChannelDatabaseClient;
 
-        public TagChannelDatabase TagChannelDatabase
+        private TagChannelDatabaseClient _channelDatabaseClient;
+
+        public TagChannelDatabaseClient TagChannelDatabaseClient
         {
-            get => _channelDatabase;
+            get => _channelDatabaseClient;
             set
             {
-                _channelDatabase = value;
-                _historyManager.Add(1, _channelDatabase);
+                _channelDatabaseClient = value;
+                _historyManager.Add(1, _channelDatabaseClient);
+                _channelDatabaseClient.NewValueFromChannel += OnNewValueFromChannel;
+                // to channel
             }
         }
 
@@ -286,11 +305,13 @@ namespace SimpleProgram.Lib.Tag
 
 
         #region Message
-        
+
         public event EventHandler<TagExchangeWithChannelArgs> NewValueToChannelMessage;
 
         private Dictionary<string, Message<T>> _messages;
-        public Dictionary<string, Message<T>> Messages { 
+
+        public Dictionary<string, Message<T>> Messages
+        {
             get => _messages;
             set
             {
@@ -299,11 +320,11 @@ namespace SimpleProgram.Lib.Tag
                 {
                     NewValueToChannelMessage += message.Value.OnNewValueToChannel;
                 }
-            } 
+            }
         }
 
         #endregion
-        
+
 
         [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Local")]
         private class ExpressionContext<TExpr>
@@ -321,6 +342,24 @@ namespace SimpleProgram.Lib.Tag
         }
 
         private readonly TagChannelHistoryManager _historyManager = new TagChannelHistoryManager();
+
+        public override string ToString()
+        {
+            if (FormatString == "")
+                return Value.ToString(CultureInfo.InvariantCulture);
+
+            switch (FormatString[0])
+            {
+                case 'F':
+                case 'f':
+                    var value = GetValue<double>();
+                    return value.ToString(FormatString);
+
+                default:
+                    Console.WriteLine("Неизвестный формат");
+                    return Value.ToString(CultureInfo.InvariantCulture);
+            }
+        }
 
         private class TagChannelHistoryManager
         {

@@ -13,6 +13,7 @@ namespace SimpleProgramBlazorLib
         
         public DateTimeRange DateTimeRange { get; } = new DateTimeRange();
 
+        // ReSharper disable once NotAccessedField.Local
         private Timer _timer;
 
         protected CascadingValueClassBase(SortedDictionary<string, ITag> tagDict)
