@@ -1,8 +1,6 @@
 ﻿@page "/"
 @using Blazor.App.Services
-@using SimpleProgram.Lib.Archives
 @using SimpleProgram.Lib.Tag
-@using SimpleProgramBlazorLib
 @inject Data Data
 
 <div class="grid-x grid-padding-x grid-padding-y">
@@ -23,7 +21,7 @@
 
 
     <air_conditioning_13
-        Style="height: 100px; top: 600px; width: 100px;"
+        Style="height: 100px; top: 100px; width: 100px;"
         FillColor="@(Data.TgModbus.register0.Value > 100 ? "red" : "green")"/>
 </div>
 

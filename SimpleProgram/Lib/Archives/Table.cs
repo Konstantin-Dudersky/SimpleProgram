@@ -66,7 +66,7 @@ namespace SimpleProgram.Lib.Archives
         public string Title { get; }
         private List<T> tags { get; } = new List<T>();
 
-        internal bool Updated { get; set; } = false;
+        internal bool Updated { get; set; }
 
         #region IEnumerable<T>
         public IEnumerator<T> GetEnumerator()

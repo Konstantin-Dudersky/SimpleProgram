@@ -147,7 +147,22 @@ namespace SimpleProgram.Lib.Tag
 
         public string ValueString
         {
-            get => Value.ToString(CultureInfo.InvariantCulture);
+            get
+            {
+                if (FormatString == "")
+                    return Value.ToString(CultureInfo.InvariantCulture);
+
+                switch (FormatString[0])
+                {
+                    case 'F':
+                    case 'f':
+                        return GetValue<double>().ToString(FormatString);
+
+                    default:
+                        Console.WriteLine("Неизвестный формат");
+                        return Value.ToString(CultureInfo.InvariantCulture);
+                }
+            }
             set
             {
                 T fromString;
@@ -157,7 +172,7 @@ namespace SimpleProgram.Lib.Tag
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e);
+//                    Console.WriteLine(e);
                     fromString = Value;
                 }
 
@@ -165,7 +180,7 @@ namespace SimpleProgram.Lib.Tag
             }
         }
 
-        public string FormatString { get; set; }
+        public string FormatString { get; set; } = "";
 
         public Type GenericType => typeof(T);
 
@@ -345,20 +360,7 @@ namespace SimpleProgram.Lib.Tag
 
         public override string ToString()
         {
-            if (FormatString == "")
-                return Value.ToString(CultureInfo.InvariantCulture);
-
-            switch (FormatString[0])
-            {
-                case 'F':
-                case 'f':
-                    var value = GetValue<double>();
-                    return value.ToString(FormatString);
-
-                default:
-                    Console.WriteLine("Неизвестный формат");
-                    return Value.ToString(CultureInfo.InvariantCulture);
-            }
+            return ValueString;
         }
 
         private class TagChannelHistoryManager

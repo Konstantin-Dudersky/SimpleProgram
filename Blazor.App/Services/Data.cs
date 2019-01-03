@@ -1,4 +1,3 @@
-using System;
 using SimpleProgram.Channels.DatabaseClient;
 using SimpleProgram.Channels.ModbusTcpClient;
 using SimpleProgram.Channels.OpcUaClient;

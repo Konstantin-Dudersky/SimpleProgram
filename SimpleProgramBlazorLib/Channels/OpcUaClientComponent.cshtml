@@ -135,6 +135,9 @@
                     <th>
                         Historizing
                     </th>
+                    <th>
+                        Значение
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -157,6 +160,10 @@
                             </td>
                             <td>
                                 @tag.TagChannelOpcUaClient?.Historizing
+                            </td>
+                            <td>
+                                <input style="margin-bottom: 0" type="text"
+                                       bind="@tag.ValueString"/>
                             </td>
                         </tr>
                     }
