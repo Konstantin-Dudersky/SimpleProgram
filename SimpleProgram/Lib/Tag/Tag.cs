@@ -97,7 +97,7 @@ namespace SimpleProgram.Lib.Tag
         }
 
         public async Task<double> GetArchiveValueAsync(DateTime begin, DateTime end,
-            SimplifyType simplifyType = SimplifyType.None)
+            SimplifyType simplifyType = SimplifyType.Last)
         {
             if (_derivedFunc == null)
                 return await _historyManager.Get().GetArchiveValueAsync(begin, end, simplifyType);
@@ -170,9 +170,8 @@ namespace SimpleProgram.Lib.Tag
                 {
                     fromString = (T) TypeDescriptor.GetConverter(typeof(T)).ConvertFromString(value);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-//                    Console.WriteLine(e);
                     fromString = Value;
                 }
 

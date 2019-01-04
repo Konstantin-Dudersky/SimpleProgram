@@ -1,9 +1,12 @@
+using System;
+using System.Text;
 using SimpleProgram.Channels.DatabaseClient;
 using SimpleProgram.Channels.ModbusTcpClient;
 using SimpleProgram.Channels.OpcUaClient;
 using SimpleProgram.Lib;
 using SimpleProgram.Lib.Archives.MasterScada;
 using SimpleProgram.Lib.Messages;
+using SimpleProgram.Report;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable MemberCanBePrivate.Global
@@ -56,6 +59,39 @@ namespace Blazor.App.Services
             {
                 Name = "WinCC OPC UA"
             };
+
+            var report = new Report
+            {
+                BodyAsync = async (begin, end) =>
+                {
+                    var text = new StringBuilder();
+
+                    text.AppendLine(@"
+                    <table class='hover'>
+                        <thead>
+                            <th>
+                                Тег
+                            </th>
+                            <th>
+                                Прирост
+                            </th>
+                        </thead>
+                        <tbody>
+                    ");
+
+                    text.AppendLine($"<tr> <td> {TGEnergy.MDB_A__QS1.TagName} </td>" +
+                                    $"<td> {await TGEnergy.MDB_A__QS1.GetArchiveValueAsync(begin, end)} </td>" +
+                                    $"</tr>");
+
+                    text.AppendLine(@"
+                        </tbody>
+                    </table>
+                    ");
+                    return text.ToString();
+                }
+            };
+            
+            report.BuildHtml(DateTime.MinValue, DateTime.UtcNow);
 
             // находим ссылки на архивы
             InitTagDict();
