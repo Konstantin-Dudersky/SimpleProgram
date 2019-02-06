@@ -133,30 +133,31 @@
 
     // Холодоснабжение
         sankey.AddLink(nodeCooling, nodeChiller1,
-            await Data.TGEnergy.MDB_A__QF2_1.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 1");
+            await Data.TGEnergy.MDB_A__QF2_1.GetArchiveValueAsync(begin.ToDateTimeUnspecified(), 
+                end.ToDateTimeUnspecified(), SimplifyType.Increment), "Ввод 1");
         sankey.AddLink(nodeCooling, nodeChiller1,
-            await Data.TGEnergy.MDB_B__QF2_1.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 2");
+            await Data.TGEnergy.MDB_B__QF2_1.GetArchiveValueAsync(begin.ToDateTimeUnspecified(), end.ToDateTimeUnspecified(), SimplifyType.Increment), "Ввод 2");
         sankey.AddLink(nodeCooling, nodeChiller2,
-            await Data.TGEnergy.MDB_A__QF2_2.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 1");
+            await Data.TGEnergy.MDB_A__QF2_2.GetArchiveValueAsync(begin.ToDateTimeUnspecified(), end.ToDateTimeUnspecified(), SimplifyType.Increment), "Ввод 1");
         sankey.AddLink(nodeCooling, nodeChiller2,
-            await Data.TGEnergy.MDB_B__QF2_2.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 2");
+            await Data.TGEnergy.MDB_B__QF2_2.GetArchiveValueAsync(begin.ToDateTimeUnspecified(), end.ToDateTimeUnspecified(), SimplifyType.Increment), "Ввод 2");
         sankey.AddLink(nodeCooling, nodeChiller3,
-            await Data.TGEnergy.MDB_A__QF2_3.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 1");
+            await Data.TGEnergy.MDB_A__QF2_3.GetArchiveValueAsync(begin.ToDateTimeUnspecified(), end.ToDateTimeUnspecified(), SimplifyType.Increment), "Ввод 1");
         sankey.AddLink(nodeCooling, nodeChiller3,
-            await Data.TGEnergy.MDB_B__QF2_3.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 2");
+            await Data.TGEnergy.MDB_B__QF2_3.GetArchiveValueAsync(begin.ToDateTimeUnspecified(), end.ToDateTimeUnspecified(), SimplifyType.Increment), "Ввод 2");
 
         sankey.AddLink(nodeCooling, nodeHydro1,
-            await Data.TGEnergy.MDB_B__QF2_4.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 1");
+            await Data.TGEnergy.MDB_B__QF2_4.GetArchiveValueAsync(begin.ToDateTimeUnspecified(), end.ToDateTimeUnspecified(), SimplifyType.Increment), "Ввод 1");
         sankey.AddLink(nodeCooling, nodeHydro1,
-            await Data.TGEnergy.UPS_MDB_A__QF4_1.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 2");
+            await Data.TGEnergy.UPS_MDB_A__QF4_1.GetArchiveValueAsync(begin.ToDateTimeUnspecified(), end.ToDateTimeUnspecified(), SimplifyType.Increment), "Ввод 2");
         sankey.AddLink(nodeCooling, nodeHydro2,
-            await Data.TGEnergy.MDB_B__QF2_5.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 1");
+            await Data.TGEnergy.MDB_B__QF2_5.GetArchiveValueAsync(begin.ToDateTimeUnspecified(), end.ToDateTimeUnspecified(), SimplifyType.Increment), "Ввод 1");
         sankey.AddLink(nodeCooling, nodeHydro2,
-            await Data.TGEnergy.UPS_MDB_A__QF4_2.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 2");
+            await Data.TGEnergy.UPS_MDB_A__QF4_2.GetArchiveValueAsync(begin.ToDateTimeUnspecified(), end.ToDateTimeUnspecified(), SimplifyType.Increment), "Ввод 2");
         sankey.AddLink(nodeCooling, nodeHydro3,
-            await Data.TGEnergy.MDB_B__QF2_6.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 1");
+            await Data.TGEnergy.MDB_B__QF2_6.GetArchiveValueAsync(begin.ToDateTimeUnspecified(), end.ToDateTimeUnspecified(), SimplifyType.Increment), "Ввод 1");
         sankey.AddLink(nodeCooling, nodeHydro3,
-            await Data.TGEnergy.UPS_MDB_A__QF4_3.GetArchiveValueAsync(begin, end, SimplifyType.Increment), "Ввод 2");
+            await Data.TGEnergy.UPS_MDB_A__QF4_3.GetArchiveValueAsync(begin.ToDateTimeUnspecified(), end.ToDateTimeUnspecified(), SimplifyType.Increment), "Ввод 2");
 
         return sankey;
     }

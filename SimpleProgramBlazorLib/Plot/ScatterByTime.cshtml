@@ -74,7 +74,8 @@
 
         plotLy.AddData();
 
-        var ts = (await Tag.GetArchiveTimeSeriesAsync(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End,
+        var ts = (await Tag.GetArchiveTimeSeriesAsync(CascadingValue.DateTimeRange.Begin.ToDateTimeUnspecified(), 
+            CascadingValue.DateTimeRange.End.ToDateTimeUnspecified(),
             SimplifyType, SimplifyTime)).Trim();
 
         plotLy.LastData.x = ts.Times;
@@ -103,7 +104,8 @@
         var str = new StringBuilder();
 
         foreach (var value 
-            in await Tag.GetArchiveTimeSeriesAsync(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End))
+            in await Tag.GetArchiveTimeSeriesAsync(CascadingValue.DateTimeRange.Begin.ToDateTimeUnspecified(), 
+                CascadingValue.DateTimeRange.End.ToDateTimeUnspecified()))
             str.AppendLine($"{value.Key};{value.Value}");
 
         await JSRuntime.Current.InvokeAsync<bool>("filesaver.save", str.ToString());

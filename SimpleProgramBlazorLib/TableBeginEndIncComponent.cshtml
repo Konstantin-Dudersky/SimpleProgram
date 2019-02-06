@@ -66,7 +66,7 @@
     {
         CascadingValue.Update += () =>
         {
-            Table.Update(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End);
+            Table.Update(CascadingValue.DateTimeRange.Begin.ToDateTimeUnspecified(), CascadingValue.DateTimeRange.End.ToDateTimeUnspecified());
         };
     }
 
@@ -76,7 +76,7 @@
 
         _parametersSet = true;
         Table.UpdatedEvent += StateHasChanged;
-        Table.Update(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End);
+        Table.Update(CascadingValue.DateTimeRange.Begin.ToDateTimeUnspecified(), CascadingValue.DateTimeRange.End.ToDateTimeUnspecified());
     }
 
     public class TableRow : ITableRow

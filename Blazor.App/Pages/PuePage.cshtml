@@ -78,6 +78,7 @@
 
     protected override async Task OnParametersSetAsync()
     {
-        Pue = await Data.TGEnergy.PUE.GetArchiveValueAsync(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End);
+        Pue = await Data.TGEnergy.PUE.GetArchiveValueAsync(CascadingValue.DateTimeRange.Begin.ToDateTimeUnspecified(), 
+            CascadingValue.DateTimeRange.End.ToDateTimeUnspecified());
     }
 }

@@ -1,5 +1,6 @@
 @using System.Globalization
 @using Microsoft.JSInterop
+@using NodaTime.Text
 
 <button class="dropdown button" type="button" data-toggle="@($"{_id}-dropdown")">@BeginDateStr &ndash; @EndDateStr</button>
 <div class="dropdown-pane" data-position="left" data-alignment="top" id="@($"{_id}-dropdown")" data-dropdown data-auto-focus="true">
@@ -60,10 +61,10 @@
     protected override void OnInit()
     {
         _id = new Random().Next();
-        BeginDateStr = DateTimeRange.Begin.ToString("yyyy-MM-dd");
-        BeginTimeStr = DateTimeRange.Begin.ToString("HH:mm");
-        EndDateStr = DateTimeRange.End.ToString("yyyy-MM-dd");
-        EndTimeStr = DateTimeRange.End.ToString("HH:mm");
+        BeginDateStr = DateTimeRange.Begin.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+        BeginTimeStr = DateTimeRange.Begin.ToString("HH:mm", CultureInfo.InvariantCulture);
+        EndDateStr = DateTimeRange.End.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+        EndTimeStr = DateTimeRange.End.ToString("HH:mm", CultureInfo.InvariantCulture);
     }
 
     protected override async Task OnAfterRenderAsync()
@@ -76,20 +77,9 @@
     {
         await JSRuntime.Current.InvokeAsync<bool>("global.foundationIdInit", $"#{_id}-dropdown", "close");
         
-        var result = DateTime.TryParseExact($"{BeginDateStr} {BeginTimeStr}", "yyyy-MM-dd HH:mm", 
-            CultureInfo.InvariantCulture, DateTimeStyles.None, out var begin);
-        if (!result)
-            begin = DateTime.MinValue;
-
-
-        result = DateTime.TryParseExact($"{EndDateStr} {EndTimeStr}", "yyyy-MM-dd HH:mm", 
-            CultureInfo.InvariantCulture, DateTimeStyles.None, out var end);
-        if (!result)
-            end = DateTime.MaxValue;
-
-        DateTimeRange.Begin = begin;
-        DateTimeRange.End = end;
-
-        DateTimeRange.OnRefresh();
+        var pattern = LocalDateTimePattern.CreateWithInvariantCulture("yyyy-MM-dd HH:mm");
+        
+        DateTimeRange.ParseBeginAndEnd(pattern.Parse($"{BeginDateStr} {BeginTimeStr}"), 
+            pattern.Parse($"{EndDateStr} {EndTimeStr}"));
     }
 }

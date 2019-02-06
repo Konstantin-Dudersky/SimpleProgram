@@ -75,9 +75,11 @@
 
         plotLy.AddData();
 
-        var tsX = await TagX.GetArchiveTimeSeriesAsync(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End, 
+        var tsX = await TagX.GetArchiveTimeSeriesAsync(CascadingValue.DateTimeRange.Begin.ToDateTimeUnspecified(), 
+            CascadingValue.DateTimeRange.End.ToDateTimeUnspecified(), 
             TagXSimplifyType, SimplifyTime);
-        var tsY = await TagY.GetArchiveTimeSeriesAsync(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End, 
+        var tsY = await TagY.GetArchiveTimeSeriesAsync(CascadingValue.DateTimeRange.Begin.ToDateTimeUnspecified(), 
+        CascadingValue.DateTimeRange.End.ToDateTimeUnspecified(), 
             TagYSimplifyType, SimplifyTime);
 
         var scatter = new Scatter(tsX, tsY);
@@ -105,9 +107,11 @@
 
     private async void ExportCsv()
     {
-        var tsX = await TagX.GetArchiveTimeSeriesAsync(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End, 
+        var tsX = await TagX.GetArchiveTimeSeriesAsync(CascadingValue.DateTimeRange.Begin.ToDateTimeUnspecified(), 
+            CascadingValue.DateTimeRange.End.ToDateTimeUnspecified(), 
             TagXSimplifyType, SimplifyTime);
-        var tsY = await TagY.GetArchiveTimeSeriesAsync(CascadingValue.DateTimeRange.Begin, CascadingValue.DateTimeRange.End, 
+        var tsY = await TagY.GetArchiveTimeSeriesAsync(CascadingValue.DateTimeRange.Begin.ToDateTimeUnspecified(), 
+            CascadingValue.DateTimeRange.End.ToDateTimeUnspecified(), 
             TagYSimplifyType, SimplifyTime);
 
         var scatter = new Scatter(tsX, tsY);

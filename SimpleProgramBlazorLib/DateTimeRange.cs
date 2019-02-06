@@ -1,22 +1,34 @@
 using System;
+using NodaTime;
+using NodaTime.Extensions;
+using NodaTime.Text;
 
 namespace SimpleProgramBlazorLib
 {
     public class DateTimeRange
     {
-        public DateTime Begin { get; set; } = DateTime.Now.AddMonths(-1);
-        public DateTime End { get; set; } = DateTime.Now;
-        public event Action Refresh;
-
         public DateTimeRange()
         {
-            Begin = new DateTime(Begin.Year, Begin.Month, Begin.Day, Begin.Hour, Begin.Minute, Begin.Second);
-            End = new DateTime(End.Year, End.Month, End.Day, End.Hour, End.Minute, End.Second);
+            End = SystemClock.Instance.InZone(DateTimeZoneProviders.Tzdb[Zone]).GetCurrentLocalDateTime();
+            Begin = End.Minus(Period.FromMonths(1));
         }
 
-        public void OnRefresh()
+        public LocalDateTime Begin { get; private set; }
+        public LocalDateTime End { get; private set; }
+        public event Action Refresh;
+        private string Zone { get; } = "Europe/Minsk";
+
+        private void OnRefresh()
         {
             Refresh?.Invoke();
+        }
+
+        public void ParseBeginAndEnd(ParseResult<LocalDateTime> begin, ParseResult<LocalDateTime> end)
+        {
+            //Begin = begin.Success ? begin.Value : ZonedDateTime. .FromDateTime(DateTime.MinValue);
+            End = end.Success ? end.Value : LocalDateTime.FromDateTime(DateTime.MaxValue);
+
+            OnRefresh();
         }
     }
 }
